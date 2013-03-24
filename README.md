@@ -39,7 +39,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
   <tr>
     <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFURLConnectionOperation.html">MMRecord</a></td>
     <td>
-      A subclass of <tt>NSManagedObject</tt> that defines the <tt>MMRecord</tt> interface.
+      A main class of <tt>MMRecord</tt> and a subclass of <tt>NSManagedObject</tt> that defines the <tt>MMRecord</tt> interface.
       
       <ul>
         <li>Entry point for making requests</li>
