@@ -129,17 +129,20 @@ This is helpful if one endpoint you are working with is complete, but another is
 
 You are required to override one method on your subclass of MMRecord in order to tell the parsing system where to locate the object(s) are tbat you wish to parse. This method returns a key path that specifies the location relative to the root of the response object. If your response object is an array, you can just return nil.
 
-In an App.net request, all returned objects are located in an object called "data", so our subclass of MMRecord will look like this:
+In an App.net request, all returned objects are located in an object called "data", so our subclass of <tt>MMRecord</tt> will look like this:
 
 ``` objective-c
+@interface ADNRecord : MMRecord
+@end
+
+static NSDateFormatter *ADNRecordDateFormatter;
+
+@implementation ADNRecord
+
 + (NSString *)keyPathForResponseObject {
     return @"data";
 }
-```
 
-There are other optional methods you may wish to implement on MMRecord. One such method returns a date formatter configured for populating attributes of type Date:
-
-``` objective-c
 + (NSDateFormatter *)dateFormatter {
     if (!ADNRecordDateFormatter) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -149,9 +152,12 @@ There are other optional methods you may wish to implement on MMRecord. One such
     
     return ADNRecordDateFormatter;
 }
-```
 
-You can see this implementation in the AppDotNet example app. Note that both methods were implemented on a class called ADNRecord : MMRecord. Additional entities are subclasses of ADNRecord, and do not need to implement these methods themselves.
+@end
+```
+There are also some optional methods you may wish to implement on <tt>MMRecord</tt>. One such method returns a date formatter configured for populating attributes of type Date.
+
+Note that these methods were implemented on a class called <tt>ADNRecord</tt>, which is a subclass of <tt>MMRecord</tt>. Additional entities are subclasses of <tt>ADNRecord</tt>, and do not need to implement these methods themselves.
 
 ### Model Configuration
 
@@ -193,6 +199,12 @@ For reference, here's a truncated version of the App.net User object to illustra
         "height": 118,
         "url": "https://example.com/cover_image.jpg",
         "is_default": false
+    },
+	"counts": {
+		"following": 100,
+		"followers": 200,
+        "posts": 24,
+        "stars": 76
     }
 }
 ```
