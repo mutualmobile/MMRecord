@@ -167,7 +167,7 @@ MMRecord leverages the introspective properties of the Core Data model to decide
 
 #### Primary Key
 
-MMRecord works best if there is a way to uniquely identify records of a given entity type. That allows it to fetch the existing record (if it exists) and update it, rather than create a duplicate one. To designate the primary key for an entity, we leverage the entity's user info dictionary. Specify the name of the primary key property as the value, and MMRecordEntityPrimaryAttributeKey as the key.
+MMRecord works best if there is a way to uniquely identify records of a given entity type. That allows it to fetch the existing record (if it exists) and update it, rather than create a duplicate one. To designate the primary key for an entity, we leverage the entity's user info dictionary. Specify the name of the primary key property as the value, and <b>MMRecordEntityPrimaryAttributeKey</b> as the key.
 
 ![MMRecord Primary Key](Images/MMRecord-primary-key.png)
 
@@ -177,7 +177,7 @@ Note that the primary key can be any property, which includes a relationship. If
 
 #### Alternate Property Names
 
-Sometimes, you may need to define an alternate name for a property on one of your entities. This could be for a variety of reasons. Perhaps you don't like your Core Data property names to include underscores? Perhaps the API response changed, and you don't want to change your NSManagedObject property names. Or maybe the value of a property is actually inside of a sub-object, and you need to bring it up to root level. Well, that's what the MMRecordAttributeAlternateNameKey is for. You can define this key on any attribute or relationship user info dictionary. The value of this key can be an alternate name, or alternate keyPath that will be used to locate the object for that property.
+Sometimes, you may need to define an alternate name for a property on one of your entities. This could be for a variety of reasons. Perhaps you don't like your Core Data property names to include underscores? Perhaps the API response changed, and you don't want to change your NSManagedObject property names. Or maybe the value of a property is actually inside of a sub-object, and you need to bring it up to root level. Well, that's what the <b>MMRecordAttributeAlternateNameKey</b> is for. You can define this key on any attribute or relationship user info dictionary. The value of this key can be an alternate name, or alternate keyPath that will be used to locate the object for that property.
 
 ![MMRecord Alternate Name Key](Images/MMRecord-alternate-name-key.png)
 
