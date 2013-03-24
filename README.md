@@ -60,11 +60,13 @@ The library is architected to be as simple and lightweight as possible. Here's a
       </ul>
     </td>
   </tr>
+</table>
   
-  <p align="center">
-    <img src="Images/MMRecord-architecture-diagram.png") alt="MMRecord Architecture Diagram"/>
-  </p>
+<p align="center">
+  <img src="Images/MMRecord-architecture-diagram.png") alt="MMRecord Architecture Diagram"/>
+</p>
 
+<table>
   <tr><th colspan="2" style="text-align:center;">Population</th></tr>
   <tr>
     <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFHTTPRequestOperation.html">MMRecordResponse</a></td>
@@ -94,12 +96,11 @@ The library is architected to be as simple and lightweight as possible. Here's a
     <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFImageRequestOperation.html">MMRecordCache</a></td>
     <td>An class that maps <tt>NSManagedObject</tt> ObjectIDs to an <tt>NSCachedURLResponse</tt>	.</td>
   </tr>
-  
-  <p align="center">
-    <img src="Images/MMRecord-parsing.png") alt="MMRecord Population Architecture"/>
-  </p>
-  
 </table>
+
+<p align="center">
+  <img src="Images/MMRecord-parsing.png") alt="MMRecord Population Architecture"/>
+</p>
 
 ## Integration Guide
 
