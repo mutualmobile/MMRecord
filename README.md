@@ -1,7 +1,7 @@
 MMRecord
 ========
 
-MMRecord is a block-based seamless web service integration library for iOS and Mac OS X. It leverages the [CoreData](https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/CoreData_ObjC/_index.html) model configuration to automatically create and populate a complete object graph from an API response. It works with any networking library, is simple to setup, and includes many popular features that make working with web services even easier. Here's how to make a request for App.net Post records:
+MMRecord is a block-based seamless web service integration library for iOS and Mac OS X. It leverages the [Core Data](https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/CoreData_ObjC/_index.html) model configuration to automatically create and populate a complete object graph from an API response. It works with any networking library, is simple to setup, and includes many popular features that make working with web services even easier. Here's how to make a request for App.net Post records:
 
 
 ``` objective-c
@@ -37,7 +37,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
 <table>
   <tr><th colspan="2" style="text-align:center;">Core</th></tr>
   <tr>
-    <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFURLConnectionOperation.html">MMRecord</a></td>
+    <td><a href="Documentation/Classes/MMRecord.html">MMRecord</a></td>
     <td>
       A subclass of <tt>NSManagedObject</tt> that defines the <tt>MMRecord</tt> interface and initiates the object graph population process.
       
@@ -50,7 +50,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
     </td>
   </tr>
   <tr>
-    <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFURLConnectionOperation.html">MMServer</a></td>
+    <td><a href="Documentation/Classes/MMServer.html">MMServer</a></td>
     <td>
 	  An abstract class that defines the request interface used by <tt>MMRecord</tt>.
 	  
@@ -69,31 +69,31 @@ The library is architected to be as simple and lightweight as possible. Here's a
 <table>
   <tr><th colspan="2" style="text-align:center;">Population</th></tr>
   <tr>
-    <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFHTTPRequestOperation.html">MMRecordResponse</a></td>
+    <td><a href="Documentation/Classes/MMRecord.html">MMRecordResponse</a></td>
     <td>A class that handles the process of turning a response into native <tt>MMRecord</tt> objects.</td>
   </tr>
   <tr>
-    <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFJSONRequestOperation.html">MMRecordProtoRecord</a></td>
+    <td><a href="Documentation/Classes/MMRecord.html">MMRecordProtoRecord</a></td>
     <td>A container class used as a placeholder for the object graph during the population process.</td>
   </tr>
   <tr>
-    <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFXMLRequestOperation.html">MMRecordRepresentation</a></td>
+    <td><a href="Documentation/Classes/MMRecordRepresentation.html">MMRecordRepresentation</a></td>
     <td>A class that defines the mapping between a dictionary and a Core Data <tt>NSEntityDescription</tt>.</td>
   </tr>
   <tr>
-    <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFPropertyListRequestOperation.html">MMRecordMarshaler</a></td>
+    <td><a href="Documentation/Classes/MMRecordMarshaler.html">MMRecordMarshaler</a></td>
     <td>A class responsible for populating an instance of <tt>MMRecord</tt> based on the <tt>MMRecordRepresentation</tt>.</td>
   </tr>
 
   <tr><th colspan="2" style="text-align:center;">Pagination</th></tr>
   <tr>
-    <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFImageRequestOperation.html">MMServerPageManager</a></td>
+    <td><a href="Documentation/Classes/MMServerPageManager.html">MMServerPageManager</a></td>
     <td>An abstract class that defines the interface for handling pagination.</td>
   </tr>
   
   <tr><th colspan="2" style="text-align:center;">Caching</th></tr>
   <tr>
-    <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFImageRequestOperation.html">MMRecordCache</a></td>
+    <td><a href="Documentation/Classes/MMRecord.html">MMRecordCache</a></td>
     <td>An class that maps <tt>NSManagedObject</tt> ObjectIDs to an <tt>NSCachedURLResponse</tt>	.</td>
   </tr>
 </table>
