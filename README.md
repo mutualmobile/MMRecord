@@ -104,11 +104,11 @@ The library is architected to be as simple and lightweight as possible. Here's a
 
 ## Integration Guide
 
-MMRecord does require some basic setup before you can use it to make requests. This guide will go through the steps in that configuration process.
+MMRecord does require some basic setup before you can use it to make requests. This guide will go take you through the steps in that configuration process.
 
 ### Server Class Configuration
 
-MMRecord requires a registered server class to be able to make requests. The server class will need to be specific to the API you are integrating with. The only requirement of a server implementation is that it return a response object (array or dictionary) that contains the objects you are requesting. A server might use AFNetworking then, to perform a GET request to a specific API. Or it might load and return local JSON files. There are two sub specs which provide pre-built servers that use AFNetworking and local JSON files. Generally speaking though, you are encouraged to implement your own server.
+MMRecord requires a registered server class to make requests. The server class should know how to make a request to the API you are integrating with. The only requirement of a server implementation is that it return a response object (array or dictionary) that contains the objects you are requesting. A server might use [AFNetworking](https://github.com/AFNetworking/AFNetworking) to perform a GET request to a specific API. Or it might load and return local JSON files. There are two sub specs which provide pre-built servers that use AFNetworking and local JSON files. Generally speaking though, you are encouraged to implement your own server to talk to the API you are using.
 
 Once you have defined your server class, you must register it with MMRecord:
 
@@ -122,6 +122,8 @@ Note that you can register different server classes on different subclasses of M
 [Tweet registerServerClass:[TWSocialServer class]];
 [User registerServerClass:[MMJSONServer class]];
 ```
+
+This is helpful if one endpoint you are working with is complete, but another is not, or is located on another API.
 
 ### MMRecord Subclass Implementation
 
@@ -153,7 +155,9 @@ You can see this implementation in the AppDotNet example app. Note that both met
 
 ### Model Configuration
 
-The Core Data <tt>NSManagedObjectModel</tt> is very useful. MMRecord leverages the introspective properties of the model to decide how to parse a response. The class you start the request from is considered to be the root of the object graph. From there, MMRecord looks at that entity's attributes and relationships and attempts to populate each of them from the given response object. That information is very helpful, because it makes population of most attributes very straightforward. Because of this, it's helpful if your data model representation maps very closely to your API response representation.
+The Core Data <tt>NSManagedObjectModel</tt> is very useful. At a highlevel, the model is composed of a list of entities. Likewise, an API is typically composed of a list of endpoints. MMRecord takes advantage of this convention to map an entity representation to an endpoint representation in order to create native objects from an API response. 
+
+MMRecord leverages the introspective properties of the Core Data model to decide how to parse a response. The class you start the request from is considered to be the root of the object graph. From there, MMRecord looks at that <tt>NSEntityDescription</tt>'s attributes and relationships and attempts to populate each of them from the given response object. That information is very helpful, because it makes population of most attributes very straightforward. Because of this, it's helpful if your data model entity representations maps very closely to your API endpoint response representations.
 
 #### Primary Key
 
@@ -167,9 +171,31 @@ Note that the primary key can be any property, which includes a relationship. If
 
 #### Alternate Property Names
 
-Sometimes, you may need to define an alternate name for a property on one of your entities. This could be for a variety of reasons. Perhaps you don't like your Core Data property names to include underscores? Perhaps the API response changed, and you don't want to change your NSManagedObject property names. Or perhaps the value of a property is actually inside of a sub-object, and you want to bring it up to root level? Well, that's what the MMRecordAttributeAlternateNameKey is for. You can define this key on any attribute or relationship user info dictionary. The value of this key can be an alternate name, or alternate keyPath that will be used to locate the object for that property.
+Sometimes, you may need to define an alternate name for a property on one of your entities. This could be for a variety of reasons. Perhaps you don't like your Core Data property names to include underscores? Perhaps the API response changed, and you don't want to change your NSManagedObject property names. Or maybe the value of a property is actually inside of a sub-object, and you need to bring it up to root level. Well, that's what the MMRecordAttributeAlternateNameKey is for. You can define this key on any attribute or relationship user info dictionary. The value of this key can be an alternate name, or alternate keyPath that will be used to locate the object for that property.
 
 ![MMRecord Alternate Name Key](Images/MMRecord-alternate-name-key.png)
+
+For reference, here's a truncated version of the App.net User object to illustrate how those configuration values were determined:
+
+``` objective-c
+{
+    "id": "1", // note this is a string
+    "username": "johnappleseed",
+    "name": "John Appleseed",
+    "avatar_image": {
+        "height": 512,
+        "width": 512,
+        "url": "https://example.com/avatar_image.jpg",
+        "is_default": false
+    },
+    "cover_image": {
+        "width": 320,
+        "height": 118,
+        "url": "https://example.com/cover_image.jpg",
+        "is_default": false
+    }
+}
+```
 
 ## Example Usage
 
