@@ -24,14 +24,11 @@ Keep reading to learn more about how to start using MMRecord in your project!
 
 ## Getting Started
 
-- [Download MMRecord](https://github.com/mutualmobile/MMRecord/archive/master.zip) and try out the included example apps
+- [Download MMRecord](https://github.com/mutualmobile/MMRecord/archive/master.zip) and try out the included example apps.
 - Continue reading the integration instructions below.
 - Check out the [documentation](Documentation/) for all the rest of the details.
 
 ## Overview
-<p align="center">
-  <img src="Images/MMRecord-architecture-diagram.png") alt="MMRecord Architecture Diagram"/>
-</p>
 
 MMRecord is designed to make it as easy and fast as possible to obtain native objects from a new web service request. It handles all of the fetching, creation, and population of NSManagedObjects for you in the background so that when you make a request, all you get back is the native objects that you can use immediately. No parsing required.
 
@@ -63,6 +60,10 @@ The library is architected to be as simple and lightweight as possible. Here's a
       </ul>
     </td>
   </tr>
+  
+  <p align="center">
+    <img src="Images/MMRecord-architecture-diagram.png") alt="MMRecord Architecture Diagram"/>
+  </p>
 
   <tr><th colspan="2" style="text-align:center;">Population</th></tr>
   <tr>
@@ -93,6 +94,11 @@ The library is architected to be as simple and lightweight as possible. Here's a
     <td><a href="http://afnetworking.github.com/AFNetworking/Classes/AFImageRequestOperation.html">MMRecordCache</a></td>
     <td>An class that maps <tt>NSManagedObject</tt> ObjectIDs to an <tt>NSCachedURLResponse</tt>	.</td>
   </tr>
+  
+  <p align="center">
+    <img src="Images/MMRecord-parsing.png") alt="MMRecord Population Architecture"/>
+  </p>
+  
 </table>
 
 ## Integration Guide
