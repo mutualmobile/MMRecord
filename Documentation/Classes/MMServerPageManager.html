@@ -1,0 +1,1030 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MMServerPageManager Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MMRecord </a></h1>
+				<a id="developerHome" href="../index.html">Mutual Mobile</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MMServerPageManager Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/recordClass">&nbsp;&nbsp;&nbsp;&nbsp;recordClass</option>
+	
+	<option value="//api/name/requestData">&nbsp;&nbsp;&nbsp;&nbsp;requestData</option>
+	
+	<option value="//api/name/requestURN">&nbsp;&nbsp;&nbsp;&nbsp;requestURN</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/canRequestNextPage">&nbsp;&nbsp;&nbsp;&nbsp;- canRequestNextPage</option>
+	
+	<option value="//api/name/currentPageIndex">&nbsp;&nbsp;&nbsp;&nbsp;- currentPageIndex</option>
+	
+	<option value="//api/name/initWithResponseObject:requestURN:requestData:recordClass:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithResponseObject:requestURN:requestData:recordClass:</option>
+	
+	<option value="//api/name/nextPageData">&nbsp;&nbsp;&nbsp;&nbsp;- nextPageData</option>
+	
+	<option value="//api/name/nextPageURN">&nbsp;&nbsp;&nbsp;&nbsp;- nextPageURN</option>
+	
+	<option value="//api/name/resultsPerPage">&nbsp;&nbsp;&nbsp;&nbsp;- resultsPerPage</option>
+	
+	<option value="//api/name/startNextPageRequestWithContext:domain:resultBlock:failureBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- startNextPageRequestWithContext:domain:resultBlock:failureBlock:</option>
+	
+	<option value="//api/name/totalResultsCount">&nbsp;&nbsp;&nbsp;&nbsp;- totalResultsCount</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Server Request Properties">Server Request Properties</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Designated Initializer">Designated Initializer</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Defining the Request for the Next Page">Defining the Request for the Next Page</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Metadata Describing the Current Page">Metadata Describing the Current Page</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Next Page Request Convenience">Next Page Request Convenience</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/recordClass">recordClass</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestData">requestData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestURN">requestURN</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/canRequestNextPage">canRequestNextPage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentPageIndex">currentPageIndex</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithResponseObject:requestURN:requestData:recordClass:">initWithResponseObject:requestURN:requestData:recordClass:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/nextPageData">nextPageData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/nextPageURN">nextPageURN</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resultsPerPage">resultsPerPage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startNextPageRequestWithContext:domain:resultBlock:failureBlock:">startNextPageRequestWithContext:domain:resultBlock:failureBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/totalResultsCount">totalResultsCount</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MMServerPageManager Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MMServerPageManager Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MMServerPageManager.h<br />MMServerPageManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p><code>MMServerPageManager</code> encapsulates the logic for representing the current page from a given
+request&rsquo;s response.  Further, it provides access to the next and previous pages via the URN&rsquo;s to
+those resources.  This class should be treated as an interface and subclassed for a server&rsquo;s
+specific implementation of pagination</p>
+
+<h2>Pagination Best Practice</h2>
+
+<p>The best practice for pagination is considered to be that the server will return the URN&rsquo;s for the
+next and previous page.  This removes the need for additional logic on the client side to determine
+the next URN they should call to retrieve more data.</p>
+
+<h2>Subclassing Notes</h2>
+
+<p>This class is required to be subclassed.  There is no default implementation.  It is completely up
+to the user to implement functionality that conforms to the below interface.  You are responsible
+for maintaining the internal structure of this object such that the methods below will function as
+desired when they are called.  You must override the designated initializer.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Server Request Properties" name="task_Server Request Properties"></a>
+						<h3 class="subsubtitle task-title">Server Request Properties</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestData">&nbsp;&nbsp;requestData</a></code>
+		<span class="tooltip"><p>The data used to make the request which the page manager will represent</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestURN">&nbsp;&nbsp;requestURN</a></code>
+		<span class="tooltip"><p>The URN used to make the request which the page manager will represent</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/recordClass">&nbsp;&nbsp;recordClass</a></code>
+		<span class="tooltip"><p>The record class which started the request which the page manager will represent</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Designated Initializer" name="task_Designated Initializer"></a>
+						<h3 class="subsubtitle task-title">Designated Initializer</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithResponseObject:requestURN:requestData:recordClass:">&ndash;&nbsp;initWithResponseObject:requestURN:requestData:recordClass:</a></code>
+		<span class="tooltip"><p>Initializes a page manager object to represent the current page of a request&rsquo;s response.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Defining the Request for the Next Page" name="task_Defining the Request for the Next Page"></a>
+						<h3 class="subsubtitle task-title">Defining the Request for the Next Page</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/canRequestNextPage">&ndash;&nbsp;canRequestNextPage</a></code>
+		<span class="tooltip"><p>This method should return YES if there is a next page to request and NO if there is not a next page
+to request.  The default implementation of this method returns NO if the <a href="#//api/name/nextPageURN">nextPageURN</a> is nil or NULL
+and otherwise returns YES.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/nextPageURN">&ndash;&nbsp;nextPageURN</a></code>
+		<span class="tooltip"><p>This method should be implemented one of two ways.  In the best case it will simply return the next
+page URN as returned by the server.  Alternatively, if you wish to use request parameters, then you
+should return the original request URN and then modify the <a href="#//api/name/requestData">requestData</a> object and return it in
+<a href="#//api/name/nextPageData">nextPageData</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/nextPageData">&ndash;&nbsp;nextPageData</a></code>
+		<span class="tooltip"><p>This method should be implemented one of two ways.  If your API gives you the next page URN in the
+response then simply return nil.  Otherwise it may be easier to modify the original request&rsquo;s
+<a href="#//api/name/requestData">requestData</a> object to change the page index parameter to request the next page.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Metadata Describing the Current Page" name="task_Metadata Describing the Current Page"></a>
+						<h3 class="subsubtitle task-title">Metadata Describing the Current Page</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/totalResultsCount">&ndash;&nbsp;totalResultsCount</a></code>
+		<span class="tooltip"><p>The total number of results.  This should be the same regardless of which page you&rsquo;re on for a
+given set of results.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/resultsPerPage">&ndash;&nbsp;resultsPerPage</a></code>
+		<span class="tooltip"><p>The number of results per page.  This should also be the same regardless of which page you&rsquo;re on,
+except possibly for the last page.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentPageIndex">&ndash;&nbsp;currentPageIndex</a></code>
+		<span class="tooltip"><p>The index of the current page.  The value returned by this method may need to be computed in some
+cases from the number of results and size per page depending on the values returned by the API.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Next Page Request Convenience" name="task_Next Page Request Convenience"></a>
+						<h3 class="subsubtitle task-title">Next Page Request Convenience</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startNextPageRequestWithContext:domain:resultBlock:failureBlock:">&ndash;&nbsp;startNextPageRequestWithContext:domain:resultBlock:failureBlock:</a></code>
+		<span class="tooltip"><p>This method starts a request for the next page.  This is intended to be used in two ways.
+MMRecord&rsquo;s pagination support provides a convenience variable for starting the request for the next
+page after a given page&rsquo;s request has finished.  If that convenience variable is set then this
+method will be called.  The other common case is that the first page of results are used to
+populate a list and the list scrolls down and the next set of results need to be fetched.  If the
+caller of the original request holds a reference to this page manager object then it is then simple
+for them to lazily start the next page request to get the next set of data to populate the list.
+This method should be implemented by calling the startPagedRequest method on the <a href="../Classes/MMRecord.html">MMRecord</a> class
+property of the page manager.  The best case implementation would be to pass through the following
+parameters to the startPagedRequest method as well as the nextPageURN/<a href="#//api/name/nextPageData">nextPageData</a> from the page
+manager.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/recordClass" title="recordClass"></a>
+	<h3 class="subsubtitle method-title">recordClass</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The record class which started the request which the page manager will represent</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) Class recordClass</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The record class which started the request which the page manager will represent</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestData" title="requestData"></a>
+	<h3 class="subsubtitle method-title">requestData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The data used to make the request which the page manager will represent</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSDictionary *requestData</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The data used to make the request which the page manager will represent</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestURN" title="requestURN"></a>
+	<h3 class="subsubtitle method-title">requestURN</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The URN used to make the request which the page manager will represent</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSString *requestURN</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The URN used to make the request which the page manager will represent</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/canRequestNextPage" title="canRequestNextPage"></a>
+	<h3 class="subsubtitle method-title">canRequestNextPage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method should return YES if there is a next page to request and NO if there is not a next page
+to request.  The default implementation of this method returns NO if the <a href="#//api/name/nextPageURN">nextPageURN</a> is nil or NULL
+and otherwise returns YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)canRequestNextPage</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if there is a next page</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method should return YES if there is a next page to request and NO if there is not a next page
+to request.  The default implementation of this method returns NO if the <a href="#//api/name/nextPageURN">nextPageURN</a> is nil or NULL
+and otherwise returns YES.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentPageIndex" title="currentPageIndex"></a>
+	<h3 class="subsubtitle method-title">currentPageIndex</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The index of the current page.  The value returned by this method may need to be computed in some
+cases from the number of results and size per page depending on the values returned by the API.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSInteger)currentPageIndex</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The current page index.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The index of the current page.  The value returned by this method may need to be computed in some
+cases from the number of results and size per page depending on the values returned by the API.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithResponseObject:requestURN:requestData:recordClass:" title="initWithResponseObject:requestURN:requestData:recordClass:"></a>
+	<h3 class="subsubtitle method-title">initWithResponseObject:requestURN:requestData:recordClass:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes a page manager object to represent the current page of a request&rsquo;s response.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (instancetype)initWithResponseObject:(NSDictionary *)<em>dict</em> requestURN:(NSString *)<em>requestURN</em> requestData:(NSDictionary *)<em>requestData</em> recordClass:(Class)<em>recordClass</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dict</em></dt>
+			<dd><p>The response object dictionary.  This will be used to obtain the relevent pagination
+data.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestURN</em></dt>
+			<dd><p>The URN used to make the request.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>requestData</em></dt>
+			<dd><p>The data parameters used to make the request.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>recordClass</em></dt>
+			<dd><p>The <a href="../Classes/MMRecord.html">MMRecord</a> class which started the request.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The newly-initialized MMServerPageManager subclass instance.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Initializes a page manager object to represent the current page of a request&rsquo;s response.</p><div class="warning"><p><strong>Warning:</strong> You must be sure to call super of this initializer to make sure you set the server request
+properties correctly on initialization.</p></div><div class="warning"><p><strong>Warning:</strong> You must also override this initializer to implement any custom properties or other data
+structures that will support your implementation of this class.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/nextPageData" title="nextPageData"></a>
+	<h3 class="subsubtitle method-title">nextPageData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method should be implemented one of two ways.  If your API gives you the next page URN in the
+response then simply return nil.  Otherwise it may be easier to modify the original request&rsquo;s
+<a href="#//api/name/requestData">requestData</a> object to change the page index parameter to request the next page.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)nextPageData</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>the dictionary containing parameters for requesting the next page</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method should be implemented one of two ways.  If your API gives you the next page URN in the
+response then simply return nil.  Otherwise it may be easier to modify the original request&rsquo;s
+<a href="#//api/name/requestData">requestData</a> object to change the page index parameter to request the next page.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/nextPageURN" title="nextPageURN"></a>
+	<h3 class="subsubtitle method-title">nextPageURN</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method should be implemented one of two ways.  In the best case it will simply return the next
+page URN as returned by the server.  Alternatively, if you wish to use request parameters, then you
+should return the original request URN and then modify the <a href="#//api/name/requestData">requestData</a> object and return it in
+<a href="#//api/name/nextPageData">nextPageData</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)nextPageURN</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>the URN for the next page</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method should be implemented one of two ways.  In the best case it will simply return the next
+page URN as returned by the server.  Alternatively, if you wish to use request parameters, then you
+should return the original request URN and then modify the <a href="#//api/name/requestData">requestData</a> object and return it in
+<a href="#//api/name/nextPageData">nextPageData</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/resultsPerPage" title="resultsPerPage"></a>
+	<h3 class="subsubtitle method-title">resultsPerPage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The number of results per page.  This should also be the same regardless of which page you&rsquo;re on,
+except possibly for the last page.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSInteger)resultsPerPage</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The number of results per page.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The number of results per page.  This should also be the same regardless of which page you&rsquo;re on,
+except possibly for the last page.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startNextPageRequestWithContext:domain:resultBlock:failureBlock:" title="startNextPageRequestWithContext:domain:resultBlock:failureBlock:"></a>
+	<h3 class="subsubtitle method-title">startNextPageRequestWithContext:domain:resultBlock:failureBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method starts a request for the next page.  This is intended to be used in two ways.
+MMRecord&rsquo;s pagination support provides a convenience variable for starting the request for the next
+page after a given page&rsquo;s request has finished.  If that convenience variable is set then this
+method will be called.  The other common case is that the first page of results are used to
+populate a list and the list scrolls down and the next set of results need to be fetched.  If the
+caller of the original request holds a reference to this page manager object then it is then simple
+for them to lazily start the next page request to get the next set of data to populate the list.
+This method should be implemented by calling the startPagedRequest method on the <a href="../Classes/MMRecord.html">MMRecord</a> class
+property of the page manager.  The best case implementation would be to pass through the following
+parameters to the startPagedRequest method as well as the nextPageURN/<a href="#//api/name/nextPageData">nextPageData</a> from the page
+manager.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)startNextPageRequestWithContext:(NSManagedObjectContext *)<em>context</em> domain:(id)<em>domain</em> resultBlock:(void ( ^ ) ( NSArray *objects , id pageManager , BOOL *requestNextPage ))<em>resultBlock</em> failureBlock:(void ( ^ ) ( NSError *error ))<em>failureBlock</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The context with which to start the request.  This should be passed to MMRecord&rsquo;s
+startPagedRequest method.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>domain</em></dt>
+			<dd><p>The domain that this request should be associated with.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>resultBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes successfully.
+This should be passed to MMRecord&rsquo;s startPagedRequest method.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes unsuccessfully.
+This should be passed to MMRecord&rsquo;s startPagedRequest method.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method starts a request for the next page.  This is intended to be used in two ways.
+MMRecord&rsquo;s pagination support provides a convenience variable for starting the request for the next
+page after a given page&rsquo;s request has finished.  If that convenience variable is set then this
+method will be called.  The other common case is that the first page of results are used to
+populate a list and the list scrolls down and the next set of results need to be fetched.  If the
+caller of the original request holds a reference to this page manager object then it is then simple
+for them to lazily start the next page request to get the next set of data to populate the list.
+This method should be implemented by calling the startPagedRequest method on the <a href="../Classes/MMRecord.html">MMRecord</a> class
+property of the page manager.  The best case implementation would be to pass through the following
+parameters to the startPagedRequest method as well as the nextPageURN/<a href="#//api/name/nextPageData">nextPageData</a> from the page
+manager.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/totalResultsCount" title="totalResultsCount"></a>
+	<h3 class="subsubtitle method-title">totalResultsCount</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The total number of results.  This should be the same regardless of which page you&rsquo;re on for a
+given set of results.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSInteger)totalResultsCount</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The total number of results.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The total number of results.  This should be the same regardless of which page you&rsquo;re on for a
+given set of results.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServerPageManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Mutual Mobile. All rights reserved. (Last updated: 2013-03-24)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

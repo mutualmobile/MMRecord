@@ -1,13 +1,12 @@
 MMRecord
 ========
 
-MMRecord is a block-based seamless web service integration library for iOS and Mac OS X. It leverages the [CoreData](https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/CoreData_ObjC/_index.html) model configuration to automatically create and populate a complete object graph from an API response. It works with any networking library, is simple to setup, and includes many popular features that make working with web services even easier. Here's how to make a request to fetch and automatically create App.net Post records:
+MMRecord is a block-based seamless web service integration library for iOS and Mac OS X. It leverages the [CoreData](https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/CoreData_ObjC/_index.html) model configuration to automatically create and populate a complete object graph from an API response. It works with any networking library, is simple to setup, and includes many popular features that make working with web services even easier. Here's how to make a request for App.net Post records:
 
 
 ``` objective-c
-[Post registerServerClass:[ADNServer class]];
-
 NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
+
 [Post 
  startPagedRequestWithURN:@"stream/0/posts/stream/global"
  data:nil
@@ -27,7 +26,7 @@ Keep reading to learn more about how to start using MMRecord in your project!
 
 - [Download MMRecord](https://github.com/mutualmobile/MMRecord/archive/master.zip) and try out the included example apps
 - Continue reading the integration instructions below.
-- Check out the [documentation](http://afnetworking.github.com/AFNetworking/) for all the rest of the details.
+- Check out the [documentation](Documentation/) for all the rest of the details.
 
 ## Overview
 <p align="center">

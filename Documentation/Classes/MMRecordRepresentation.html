@@ -1,0 +1,1235 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MMRecordRepresentation Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MMRecord </a></h1>
+				<a id="developerHome" href="../index.html">Mutual Mobile</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MMRecordRepresentation Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/entity">&nbsp;&nbsp;&nbsp;&nbsp;entity</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/additionalKeyPathsForMappingPropertyDescription:">&nbsp;&nbsp;&nbsp;&nbsp;- additionalKeyPathsForMappingPropertyDescription:</option>
+	
+	<option value="//api/name/attributeDescriptions">&nbsp;&nbsp;&nbsp;&nbsp;- attributeDescriptions</option>
+	
+	<option value="//api/name/dateFormatter">&nbsp;&nbsp;&nbsp;&nbsp;- dateFormatter</option>
+	
+	<option value="//api/name/hasRelationshipPrimaryKey">&nbsp;&nbsp;&nbsp;&nbsp;- hasRelationshipPrimaryKey</option>
+	
+	<option value="//api/name/initWithEntity:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithEntity:</option>
+	
+	<option value="//api/name/keyPathsForMappingAttributeDescription:">&nbsp;&nbsp;&nbsp;&nbsp;- keyPathsForMappingAttributeDescription:</option>
+	
+	<option value="//api/name/keyPathsForMappingRelationshipDescription:">&nbsp;&nbsp;&nbsp;&nbsp;- keyPathsForMappingRelationshipDescription:</option>
+	
+	<option value="//api/name/marshalerClass">&nbsp;&nbsp;&nbsp;&nbsp;- marshalerClass</option>
+	
+	<option value="//api/name/primaryKeyPropertyName">&nbsp;&nbsp;&nbsp;&nbsp;- primaryKeyPropertyName</option>
+	
+	<option value="//api/name/primaryKeyValueFromDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- primaryKeyValueFromDictionary:</option>
+	
+	<option value="//api/name/primaryRelationshipDescription">&nbsp;&nbsp;&nbsp;&nbsp;- primaryRelationshipDescription</option>
+	
+	<option value="//api/name/relationshipDescriptions">&nbsp;&nbsp;&nbsp;&nbsp;- relationshipDescriptions</option>
+	
+	<option value="//api/name/setupMappingForProperty:">&nbsp;&nbsp;&nbsp;&nbsp;- setupMappingForProperty:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Designated Initializer">Designated Initializer</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Marshalling">Marshalling</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Date Formatting">Date Formatting</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Attribute Mapping Methods">Attribute Mapping Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Relationship Mapping Methods">Relationship Mapping Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Optional Mapping Configuration Methods">Optional Mapping Configuration Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Unique Identification Methods">Unique Identification Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/entity">entity</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/additionalKeyPathsForMappingPropertyDescription:">additionalKeyPathsForMappingPropertyDescription:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/attributeDescriptions">attributeDescriptions</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFormatter">dateFormatter</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasRelationshipPrimaryKey">hasRelationshipPrimaryKey</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithEntity:">initWithEntity:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyPathsForMappingAttributeDescription:">keyPathsForMappingAttributeDescription:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyPathsForMappingRelationshipDescription:">keyPathsForMappingRelationshipDescription:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/marshalerClass">marshalerClass</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryKeyPropertyName">primaryKeyPropertyName</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryKeyValueFromDictionary:">primaryKeyValueFromDictionary:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryRelationshipDescription">primaryRelationshipDescription</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/relationshipDescriptions">relationshipDescriptions</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setupMappingForProperty:">setupMappingForProperty:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MMRecordRepresentation Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MMRecordRepresentation Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MMRecordRepresentation.h<br />MMRecordRepresentation.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>This class encapsulates the representation an <a href="../Classes/MMRecord.html">MMRecord</a> <a href="#//api/name/entity">entity</a>.  A representation contains
+all of the information required to build a full record of this type of <a href="#//api/name/entity">entity</a>.
+MMRecordRepresentation is closely tied to CoreData&rsquo;s NSEntityDescription. The representation is
+composed of all of the attributes and relationships for the given <a href="#//api/name/entity">entity</a>.  It&rsquo;s job is to keep
+track of all the possible keys that could &lsquo;represent&rsquo; that attribute or relationship in a response
+dictionary.  If you&rsquo;re trying to figure out what keyPath might map to a record attribute, this
+class can help.</p>
+
+<h2>Default Representation</h2>
+
+<p>The default representation is, as described above, very closely tied to the core data model. An
+<a href="#//api/name/entity">entity</a> is composed of a list of properties &ndash; typically attributes and relationships. The default
+representation will attempt to relate each attribute on an <a href="#//api/name/entity">entity</a> to a given dictionary. It will
+use two means to relate them: name, and alternate name. The name of the attribute or relationship
+will be used as a key to search the dictionary for a value to populate it with. In addition, you
+can define a key on the attribute or relationship&rsquo;s user info dictionary that allows you to specify
+an alternate key path that will be used for searching the dictionary. More information about that
+can be found on the <a href="../Classes/MMRecord.html">MMRecord</a> header documentation on model configuration.</p>
+
+<h2>Marshalling</h2>
+
+<p>This class is closely related to the <a href="../Classes/MMRecordMarshaler.html">MMRecordMarshaler</a> class. Generally speaking, if you subclass
+this class, you will probably also want to subclass the marshaler, and vic versa. While this class
+controls the representation of an <a href="#//api/name/entity">entity</a>, the marshaler controls how it is populated. Those two
+things tend to go hand in hand, which is also why this class provides the subclass of Marshaler
+to be used when populating an <a href="#//api/name/entity">entity</a> using this representation.</p>
+
+<h2>Subclassing Notes</h2>
+
+<p>This class is designed to be subclassed. While you don&rsquo;t have to override the designated
+initializer, you must remember to call super if you do decide to override it. All of the other
+methods are optional. With many of them, you will want to call super. Most of the time, subclassers
+will probably only want to modify behavior slightly, such as to allow other ways to specify
+alternate attributes. You can, of course, choose to override every method, and provide a completely
+different form of representation. That will still work, but in that case, you MUST override every
+single method if you wish to drastically change the way the default representation works.</p>
+
+<p>Every method on the class except for one is part of the public interface and called by another
+piece of the default <a href="../Classes/MMRecord.html">MMRecord</a> implementation. The only method which is not is the
+<a href="#//api/name/setupMappingForProperty:">setupMappingForProperty:</a> method, which is documented below. In depth subclasses should choose to
+override EVERY method except that one.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/entity">&nbsp;&nbsp;entity</a></code>
+		<span class="tooltip"><p>The entity that this object is representing.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Designated Initializer" name="task_Designated Initializer"></a>
+						<h3 class="subsubtitle task-title">Designated Initializer</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithEntity:">&ndash;&nbsp;initWithEntity:</a></code>
+		<span class="tooltip"><p>This method is the <code>MMRecordRepresentation</code> designated initializer.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Marshalling" name="task_Marshalling"></a>
+						<h3 class="subsubtitle task-title">Marshalling</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/marshalerClass">&ndash;&nbsp;marshalerClass</a></code>
+		<span class="tooltip"><p>This is an optional method that a subclass can override to supply a different marshalling class. The
+marshalling class is responsible for populating a protorecord based on input from the representation.
+The default marshal class is <a href="../Classes/MMRecordMarshaler.html">MMRecordMarshaler</a>.  A subclass may want to use a different marshaler
+to provide custom behavior for how attributes and relationships are established.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Date Formatting" name="task_Date Formatting"></a>
+						<h3 class="subsubtitle task-title">Date Formatting</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFormatter">&ndash;&nbsp;dateFormatter</a></code>
+		<span class="tooltip"><p>This method returns the date formatter used for populating date objects for this <a href="#//api/name/entity">entity</a> type.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Attribute Mapping Methods" name="task_Attribute Mapping Methods"></a>
+						<h3 class="subsubtitle task-title">Attribute Mapping Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/attributeDescriptions">&ndash;&nbsp;attributeDescriptions</a></code>
+		<span class="tooltip"><p>This method returns all of the attribute descriptions for the <a href="#//api/name/entity">entity</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyPathsForMappingAttributeDescription:">&ndash;&nbsp;keyPathsForMappingAttributeDescription:</a></code>
+		<span class="tooltip"><p>This method returns the possible key paths to search for in order to populate the given attribute
+description.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Relationship Mapping Methods" name="task_Relationship Mapping Methods"></a>
+						<h3 class="subsubtitle task-title">Relationship Mapping Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/relationshipDescriptions">&ndash;&nbsp;relationshipDescriptions</a></code>
+		<span class="tooltip"><p>This method returns all of the relationship descriptions for the <a href="#//api/name/entity">entity</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyPathsForMappingRelationshipDescription:">&ndash;&nbsp;keyPathsForMappingRelationshipDescription:</a></code>
+		<span class="tooltip"><p>This method returns all of the possible key paths to search for in order to populate the given
+relationship description.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Optional Mapping Configuration Methods" name="task_Optional Mapping Configuration Methods"></a>
+						<h3 class="subsubtitle task-title">Optional Mapping Configuration Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/additionalKeyPathsForMappingPropertyDescription:">&ndash;&nbsp;additionalKeyPathsForMappingPropertyDescription:</a></code>
+		<span class="tooltip"><p>This is an optional method meant for overriding subclasses to define their own key path mappings
+for a property. A basic representation would only look for the name of a property when attempting
+to populate it. More advanced representations may use this to return alternate keys that they may
+wish to also use.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setupMappingForProperty:">&ndash;&nbsp;setupMappingForProperty:</a></code>
+		<span class="tooltip"><p>This method is called to set up the internal mapping system for the given property. This can be a
+convenient method to override if you wish to take additional action when configuring this property.
+For example, you may wish to add your own configuration for other methods to use when populating
+this property. Overriding this method allows you to do that.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Unique Identification Methods" name="task_Unique Identification Methods"></a>
+						<h3 class="subsubtitle task-title">Unique Identification Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/primaryKeyPropertyName">&ndash;&nbsp;primaryKeyPropertyName</a></code>
+		<span class="tooltip"><p>This method returns the name of the primary key property for this <a href="#//api/name/entity">entity</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/primaryKeyValueFromDictionary:">&ndash;&nbsp;primaryKeyValueFromDictionary:</a></code>
+		<span class="tooltip"><p>This method should return either a number or string that represents the primary key value as
+obtained from the given dictionary.  It should return nil if this <a href="#//api/name/entity">entity</a> is using a relationship as
+its primary key.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasRelationshipPrimaryKey">&ndash;&nbsp;hasRelationshipPrimaryKey</a></code>
+		<span class="tooltip"><p>This method is used to check if this <a href="#//api/name/entity">entity</a> has a relationship as it&rsquo;s primary key.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/primaryRelationshipDescription">&ndash;&nbsp;primaryRelationshipDescription</a></code>
+		<span class="tooltip"><p>This method returns the primary relationship representation if the <a href="#//api/name/entity">entity</a> uses a relationship as a
+primary key</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/entity" title="entity"></a>
+	<h3 class="subsubtitle method-title">entity</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The entity that this object is representing.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSEntityDescription *entity</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The entity that this object is representing.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/additionalKeyPathsForMappingPropertyDescription:" title="additionalKeyPathsForMappingPropertyDescription:"></a>
+	<h3 class="subsubtitle method-title">additionalKeyPathsForMappingPropertyDescription:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This is an optional method meant for overriding subclasses to define their own key path mappings
+for a property. A basic representation would only look for the name of a property when attempting
+to populate it. More advanced representations may use this to return alternate keys that they may
+wish to also use.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)additionalKeyPathsForMappingPropertyDescription:(NSPropertyDescription *)<em>propertyDescription</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>propertyDescription</em></dt>
+			<dd><p>The property description to be used to return additional key paths for.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Any additional key paths that should be used for mapping on the given property description.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This is an optional method meant for overriding subclasses to define their own key path mappings
+for a property. A basic representation would only look for the name of a property when attempting
+to populate it. More advanced representations may use this to return alternate keys that they may
+wish to also use.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/attributeDescriptions" title="attributeDescriptions"></a>
+	<h3 class="subsubtitle method-title">attributeDescriptions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method returns all of the attribute descriptions for the <a href="#//api/name/entity">entity</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)attributeDescriptions</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An NSArray containing every <code>NSAttributeDescription</code> for this <a href="#//api/name/entity">entity</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method returns all of the attribute descriptions for the <a href="#//api/name/entity">entity</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFormatter" title="dateFormatter"></a>
+	<h3 class="subsubtitle method-title">dateFormatter</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method returns the date formatter used for populating date objects for this <a href="#//api/name/entity">entity</a> type.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSDateFormatter *)dateFormatter</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method returns the date formatter used for populating date objects for this <a href="#//api/name/entity">entity</a> type.</p>
+
+<p>@discussion This date formatter will be used for populating attributes of type Date.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasRelationshipPrimaryKey" title="hasRelationshipPrimaryKey"></a>
+	<h3 class="subsubtitle method-title">hasRelationshipPrimaryKey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is used to check if this <a href="#//api/name/entity">entity</a> has a relationship as it&rsquo;s primary key.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasRelationshipPrimaryKey</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the entity&rsquo;s primary key is a relationship</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is used to check if this <a href="#//api/name/entity">entity</a> has a relationship as it&rsquo;s primary key.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithEntity:" title="initWithEntity:"></a>
+	<h3 class="subsubtitle method-title">initWithEntity:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is the <code>MMRecordRepresentation</code> designated initializer.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (instancetype)initWithEntity:(NSEntityDescription *)<em>entity</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>entity</em></dt>
+			<dd><p>The <a href="#//api/name/entity">entity</a> that this object is representing.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is the <code>MMRecordRepresentation</code> designated initializer.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/keyPathsForMappingAttributeDescription:" title="keyPathsForMappingAttributeDescription:"></a>
+	<h3 class="subsubtitle method-title">keyPathsForMappingAttributeDescription:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method returns the possible key paths to search for in order to populate the given attribute
+description.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)keyPathsForMappingAttributeDescription:(NSAttributeDescription *)<em>attributeDescription</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>attributeDescription</em></dt>
+			<dd><p>The attribute description we are mapping key paths for.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An NSArray containing the key paths for mapping this attribute description.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method returns the possible key paths to search for in order to populate the given attribute
+description.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/keyPathsForMappingRelationshipDescription:" title="keyPathsForMappingRelationshipDescription:"></a>
+	<h3 class="subsubtitle method-title">keyPathsForMappingRelationshipDescription:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method returns all of the possible key paths to search for in order to populate the given
+relationship description.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)keyPathsForMappingRelationshipDescription:(NSRelationshipDescription *)<em>relationshipDescription</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>relationshipDescription</em></dt>
+			<dd><p>The relationship description we are mapping key paths for.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An NSArray containing the key paths for mapping this relationship description.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method returns all of the possible key paths to search for in order to populate the given
+relationship description.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/marshalerClass" title="marshalerClass"></a>
+	<h3 class="subsubtitle method-title">marshalerClass</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This is an optional method that a subclass can override to supply a different marshalling class. The
+marshalling class is responsible for populating a protorecord based on input from the representation.
+The default marshal class is <a href="../Classes/MMRecordMarshaler.html">MMRecordMarshaler</a>.  A subclass may want to use a different marshaler
+to provide custom behavior for how attributes and relationships are established.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (Class)marshalerClass</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A subclass of <a href="../Classes/MMRecordMarshaler.html">MMRecordMarshaler</a> that implements all required methods of that class&rsquo;s interface.
+@discussion The default implementation of this class returns <a href="../Classes/MMRecordMarshaler.html">MMRecordMarshaler</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This is an optional method that a subclass can override to supply a different marshalling class. The
+marshalling class is responsible for populating a protorecord based on input from the representation.
+The default marshal class is <a href="../Classes/MMRecordMarshaler.html">MMRecordMarshaler</a>.  A subclass may want to use a different marshaler
+to provide custom behavior for how attributes and relationships are established.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/primaryKeyPropertyName" title="primaryKeyPropertyName"></a>
+	<h3 class="subsubtitle method-title">primaryKeyPropertyName</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method returns the name of the primary key property for this <a href="#//api/name/entity">entity</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)primaryKeyPropertyName</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method returns the name of the primary key property for this <a href="#//api/name/entity">entity</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/primaryKeyValueFromDictionary:" title="primaryKeyValueFromDictionary:"></a>
+	<h3 class="subsubtitle method-title">primaryKeyValueFromDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method should return either a number or string that represents the primary key value as
+obtained from the given dictionary.  It should return nil if this <a href="#//api/name/entity">entity</a> is using a relationship as
+its primary key.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)primaryKeyValueFromDictionary:(NSDictionary *)<em>dictionary</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dictionary</em></dt>
+			<dd><p>The dictionary that contains the primary key value.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The primary key value from the given dictionary.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method should return either a number or string that represents the primary key value as
+obtained from the given dictionary.  It should return nil if this <a href="#//api/name/entity">entity</a> is using a relationship as
+its primary key.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/primaryRelationshipDescription" title="primaryRelationshipDescription"></a>
+	<h3 class="subsubtitle method-title">primaryRelationshipDescription</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method returns the primary relationship representation if the <a href="#//api/name/entity">entity</a> uses a relationship as a
+primary key</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSRelationshipDescription *)primaryRelationshipDescription</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The `NSRelationshipDescription for the entity&rsquo;s primary key relationship.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method returns the primary relationship representation if the <a href="#//api/name/entity">entity</a> uses a relationship as a
+primary key</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/relationshipDescriptions" title="relationshipDescriptions"></a>
+	<h3 class="subsubtitle method-title">relationshipDescriptions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method returns all of the relationship descriptions for the <a href="#//api/name/entity">entity</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)relationshipDescriptions</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An NSArray containing every <code>NSRelationshipDescription</code> for this <a href="#//api/name/entity">entity</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method returns all of the relationship descriptions for the <a href="#//api/name/entity">entity</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setupMappingForProperty:" title="setupMappingForProperty:"></a>
+	<h3 class="subsubtitle method-title">setupMappingForProperty:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is called to set up the internal mapping system for the given property. This can be a
+convenient method to override if you wish to take additional action when configuring this property.
+For example, you may wish to add your own configuration for other methods to use when populating
+this property. Overriding this method allows you to do that.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setupMappingForProperty:(NSPropertyDescription *)<em>property</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>property</em></dt>
+			<dd><p>The property description.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is called to set up the internal mapping system for the given property. This can be a
+convenient method to override if you wish to take additional action when configuring this property.
+For example, you may wish to add your own configuration for other methods to use when populating
+this property. Overriding this method allows you to do that.</p><div class="warning"><p><strong>Warning:</strong> You MUST call super when overriding this method.
+@discussion This method is not part of the &ldquo;public interface&rdquo; of this class. It is called
+internally by the default implementation, and is meant as an override point for inserting logic.
+If you completely override every other method on this class, then you do not need to override this
+one.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Mutual Mobile. All rights reserved. (Last updated: 2013-03-24)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
