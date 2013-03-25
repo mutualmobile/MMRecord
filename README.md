@@ -183,7 +183,7 @@ Sometimes, you may need to define an alternate name for a property on one of you
 
 For reference, here's a truncated version of the App.net User object to illustrate how those configuration values were determined:
 
-```objective-c
+```json
 {
     "id": "1", // note this is a string
     "username": "johnappleseed",
