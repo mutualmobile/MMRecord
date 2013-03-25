@@ -4,7 +4,7 @@ MMRecord
 MMRecord is a block-based seamless web service integration library for iOS and Mac OS X. It leverages the [Core Data](https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/CoreData_ObjC/_index.html) model configuration to automatically create and populate a complete object graph from an API response. It works with any networking library, is simple to setup, and includes many popular features that make working with web services even easier. Here's how to make a request for App.net Post records:
 
 
-``` objective-c
+```objective-c
 NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
 
 [Post 
@@ -112,13 +112,13 @@ MMRecord requires a registered server class to make requests. The server class s
 
 Once you have defined your server class, you must register it with MMRecord:
 
-``` objective-c
+```objective-c
 [Post registerServerClass:[ADNServer class]];
 ```
 
 Note that you can register different server classes on different subclasses of MMRecord.
 
-``` objective-c
+```objective-c
 [Tweet registerServerClass:[TWSocialServer class]];
 [User registerServerClass:[MMJSONServer class]];
 ```
@@ -131,7 +131,7 @@ You are required to override one method on your subclass of MMRecord in order to
 
 In an App.net request, all returned objects are located in an object called "data", so our subclass of <tt>MMRecord</tt> will look like this:
 
-``` objective-c
+```objective-c
 @interface ADNRecord : MMRecord
 @end
 
@@ -183,7 +183,7 @@ Sometimes, you may need to define an alternate name for a property on one of you
 
 For reference, here's a truncated version of the App.net User object to illustrate how those configuration values were determined:
 
-``` objective-c
+```objective-c
 {
     "id": "1", // note this is a string
     "username": "johnappleseed",
@@ -213,7 +213,7 @@ For reference, here's a truncated version of the App.net User object to illustra
 
 ### Standard Request
 
-``` objective-c
+```objective-c
 + (void)favoriteTweetsWithContext:(NSManagedObjectContext *)context
                            domain:(id)domain
                       resultBlock:(void (^)(NSArray *tweets))resultBlock
@@ -229,7 +229,7 @@ For reference, here's a truncated version of the App.net User object to illustra
 
 ### Paginated Request
 
-``` objective-c
+```objective-c
 @interface Post : ADNRecord
 + (void)getStreamPostsWithContext:(NSManagedObjectContext *)context
                            domain:(id)domain
@@ -254,7 +254,7 @@ For reference, here's a truncated version of the App.net User object to illustra
 
 ### Batched Request
 
-``` objective-c
+```objective-c
 [Tweet startBatchedRequestsInExecutionBlock:^{
     [Tweet
      timelineTweetsWithContext:context
@@ -282,7 +282,7 @@ For reference, here's a truncated version of the App.net User object to illustra
 
 ### Fetch First Request
 
-``` objective-c
+```objective-c
 NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"User"];
 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@", name];
 NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
