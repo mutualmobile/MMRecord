@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:Source"
+      name = "Source">
+      <Group
+         location = "group:MMRecord"
+         name = "MMRecord">
+         <FileRef
+            location = "group:MMRecord.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecord.m">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordCache.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordCache.m">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordErrors.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordMarshaler.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordMarshaler.m">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordProtoRecord.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordProtoRecord.m">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordRepresentation.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordRepresentation.m">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordResponse.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordResponse.m">
+         </FileRef>
+         <FileRef
+            location = "group:MMServer.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMServer.m">
+         </FileRef>
+         <FileRef
+            location = "group:MMServerPageManager.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMServerPageManager.m">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:MMRecordAFServer"
+         name = "MMRecordAFServer">
+         <FileRef
+            location = "group:MMAFJSONServer.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMAFJSONServer.m">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:MMRecordDynamicModel"
+         name = "MMRecordDynamicModel">
+         <FileRef
+            location = "group:MMRecordDynamicMarshaler.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordDynamicMarshaler.m">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordDynamicRepresentation.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordDynamicRepresentation.m">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:MMRecordJSONServer"
+         name = "MMRecordJSONServer">
+         <FileRef
+            location = "group:MMJSONServer.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMJSONServer.m">
+         </FileRef>
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:Examples/MMRecordAppDotNet/MMRecordAppDotNet.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/MMRecordInstagram/MMRecordInstagram.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/MMRecordTwitter/MMRecordTwitter.xcodeproj">
+   </FileRef>
+</Workspace>
