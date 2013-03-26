@@ -457,3 +457,8 @@
 
 
 @end
+
+#undef MMRLogInfo
+#undef MMRLogWarn
+#undef MMRLogError
+#undef MMRLogVerbose

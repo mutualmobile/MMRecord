@@ -23,8 +23,3 @@
 #else
 #define MMRecordLumberjack 0
 #endif
-
-#define MMRecordLogUndefine #undefine MMRLogInfo\
-#undefine MMRLogWarn\
-#undef MMRLogError\
-#undef MMRLogVerbose\

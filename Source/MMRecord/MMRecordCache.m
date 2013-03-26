@@ -489,3 +489,8 @@ static MMRecordCacheDataManager *sharedInstance_ = nil;
 @dynamic cacheEntry;
 
 @end
+
+#undef MMRLogInfo
+#undef MMRLogWarn
+#undef MMRLogError
+#undef MMRLogVerbose

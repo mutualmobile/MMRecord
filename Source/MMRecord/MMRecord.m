@@ -1075,4 +1075,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 @implementation MMRecordOptions
 @end
 
-MMRecordLogUndefine
+#undef MMRLogInfo
+#undef MMRLogWarn
+#undef MMRLogError
+#undef MMRLogVerbose
