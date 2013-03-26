@@ -1002,6 +1002,16 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 }
 
 - (void)logMessageForCode:(MMRecordErrorCode)errorCode description:(NSString *)description isFatal:(BOOL)isFatal {
+#if MMRecordLumberjack
+    NSString *errorCodeDescription = [NSError descriptionForMSErrorCode:errorCode];
+    
+    if (isFatal) {
+        MMRLogError(@"%@. %@", errorCodeDescription, description);
+    }
+    else{
+        MMRLogWarn(@"%@. %@", errorCodeDescription, description);
+    }
+#else
     BOOL shouldLogMessage = NO;
     
     switch ([MMRecord loggingLevel]) {
@@ -1020,14 +1030,15 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     }
     
     if (shouldLogMessage) {
-        NSString *logPrefix = @"---Warning--- %@. %@";
+        NSString *logPrefix = @"--[MMRecord WARNING]-- %@. %@";
         
         if (isFatal) {
-            logPrefix = @"---ERROR--- %@. %@";
+            logPrefix = @"--[MMRecord ERROR]-- %@. %@";
         }
         
         NSLog(logPrefix, [NSError descriptionForMCErrorCode:errorCode], description);
     }
+#endif
 }
 
 @end
@@ -1063,3 +1074,5 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 
 @implementation MMRecordOptions
 @end
+
+MMRecordLogUndefine

@@ -9,8 +9,9 @@
 #import <CoreData/CoreData.h>
 
 #import "MMRecordErrors.h"
+#import "MMRecordLoggers.h"
 
-/** To provide custom parsing functionality for your records, such as the setting a custom key or 
+/** To provide custom parsing functionality for your records, such as the setting a custom key or
  establishing a relationship, use the keys below in the UserInfo dictionary of an attribute or 
  relationship:
  
@@ -35,7 +36,7 @@ extern NSString * const MMRecordAttributeAlternateNameKey;
 
 @class MMRecordOptions, MMServer, MMServerPageManager;
 
-/** Use the method below to set the MMRecord Logging Level.  The default logging level is none.
+/** Use the method below to set the MMRecord Logging Level.  The default logging level is none. Logging level is ignored when Cocoa Lumberjack is being used.
  */
 
 typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
@@ -292,12 +293,16 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  logged when certain events take place, such as parsing errors, missing data warnings, and 
  improperly configured data models.
  
+ @warning The loggingLevel is ignored when Cocoa Lumberjack is being used.
+ 
  @param loggingLevel The desired logging level
  */
 + (void)setLoggingLevel:(MMRecordLoggingLevel)loggingLevel;
 
 /**
- Access the set logging level for internal warning, error, and debug log statements. 
+ Access the set logging level for internal warning, error, and debug log statements.
+ 
+ @warning The loggingLevel is stored but ignored when Cocoa Lumberjack is being used.
  */
 + (MMRecordLoggingLevel)loggingLevel;
 
