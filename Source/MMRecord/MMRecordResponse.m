@@ -450,7 +450,7 @@
             Class recordClass = NSClassFromString(self.entity.managedObjectClassName);
             MMRecord *record = [[recordClass alloc] initWithEntity:self.entity insertIntoManagedObjectContext:context];
             protoRecord.record = record;
-            MMRLogInfo(@"Created proto record: %@ %@", protoRecord.entity.name, protoRecord.primaryKeyValue);
+            MMRLogVerbose(@"Created proto record \"%@\", value: \"%@\"", protoRecord.entity.name, protoRecord.primaryKeyValue);
         }
     }
 }
