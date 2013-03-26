@@ -1003,7 +1003,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 
 - (void)logMessageForCode:(MMRecordErrorCode)errorCode description:(NSString *)description isFatal:(BOOL)isFatal {
 #if MMRecordLumberjack
-    NSString *errorCodeDescription = [NSError descriptionForMSErrorCode:errorCode];
+    NSString *errorCodeDescription = [NSError descriptionForMCErrorCode:errorCode];
     
     if (isFatal) {
         MMRLogError(@"%@. %@", errorCodeDescription, description);
