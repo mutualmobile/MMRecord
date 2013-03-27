@@ -1,6 +1,3 @@
-MMRecord
-========
-
 <p align="center">
   <img src="Images/MMRecord-blog_banner.png") alt="MMRecord Blog Banner"/>
 </p>
