@@ -130,7 +130,7 @@
 		55F2674217034B3B004EEA41 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
 		55F2674317034B3B004EEA41 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		55F2674417034B3B004EEA41 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		55F951DB165C73460060851E /* MMRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		55F951DB165C73460060851E /* MMRecordAppDotNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMRecordAppDotNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55F951DF165C73460060851E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		55F951E1165C73460060851E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		55F951E3165C73460060851E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -297,7 +297,7 @@
 		55F951DC165C73460060851E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				55F951DB165C73460060851E /* MMRecord.app */,
+				55F951DB165C73460060851E /* MMRecordAppDotNet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -481,7 +481,7 @@
 			);
 			name = MMRecordAppDotNet;
 			productName = MMRecordAppDotNet;
-			productReference = 55F951DB165C73460060851E /* MMRecord.app */;
+			productReference = 55F951DB165C73460060851E /* MMRecordAppDotNet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -678,14 +678,14 @@
 		55F95201165C73460060851E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mutual Mobile";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mutual Mobile";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMRecordAppDotNet/MMRecordAppDotNet-Prefix.pch";
 				INFOPLIST_FILE = "MMRecordAppDotNet/MMRecordAppDotNet-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A160CDC5-3CCA-457F-82E4-22ECA9412E98";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A160CDC5-3CCA-457F-82E4-22ECA9412E98";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
