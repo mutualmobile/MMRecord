@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary  = 'A simple block based web service integration library.'
   s.homepage = 'https://github.com/MutualMobile/MMRecord'
   s.authors  = { 'Conrad Stoll' => 'conrad.stoll@mutualmobile.com' }
-  s.source   = { :git => 'https://github.com/MutualMobile/MMRecord.git', :tag => '1.0.0' }
+  s.source   = { :git => 'git@github.com:mutualmobile/MMRecord.git', :commit => '26f4032' }
   s.requires_arc = true
 
   s.ios.deployment_target = '5.0'
