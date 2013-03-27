@@ -1,7 +1,9 @@
 MMRecord
 ========
 
-![MMRecord Blog Banner](Images/MMRecord-blog_banner.png)
+<p align="center">
+  <img src="Images/MMRecord-blog_banner.png") alt="MMRecord Blog Banner"/>
+</p>
 
 MMRecord is a block-based seamless web service integration library for iOS and Mac OS X. It leverages the [Core Data](https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/CoreData_ObjC/_index.html) model configuration to automatically create and populate a complete object graph from an API response. It works with any networking library, is simple to setup, and includes many popular features that make working with web services even easier. Here's how to make a request for App.net Post records:
 
