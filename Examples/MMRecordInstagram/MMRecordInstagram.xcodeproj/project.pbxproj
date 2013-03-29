@@ -739,11 +739,15 @@
 		9FABD8DB16FA7DC700184BA5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMRecordInstagram/Source/MMRecordInstagram-Prefix.pch";
 				INFOPLIST_FILE = "MMRecordInstagram/SupportingFiles/MMRecordInstagram-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/MMRecord/** $(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
