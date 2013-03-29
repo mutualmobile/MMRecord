@@ -554,15 +554,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     state.records = [self recordsFromResponseObject:responseObject
                                             context:state.backgroundContext];
     
-    if ([[self currentErrorHandler] receivedFatalError] == NO) {
-        [self passRequestWithRequestState:state options:options];
-    } else {
-        [self failRequestWithRequestState:state options:options];
-    }
-}
-
-+ (void)passRequestWithRequestState:(MMRecordRequestState *)state
-                            options:(MMRecordOptions *)options {
     [self performCachingForRecords:state.records
                 fromResponseObject:state.responseObject
                       requestState:state
@@ -572,6 +563,15 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                                   onMainContext:state.context
                           fromBackgroundContext:state.backgroundContext];
     
+    if ([[self currentErrorHandler] receivedFatalError] == NO) {
+        [self passRequestWithRequestState:state options:options];
+    } else {
+        [self failRequestWithRequestState:state options:options];
+    }
+}
+
++ (void)passRequestWithRequestState:(MMRecordRequestState *)state
+                            options:(MMRecordOptions *)options {
     [self invokeResultBlockWithRequestState:state options:options];
 }
 
