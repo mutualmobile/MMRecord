@@ -7,6 +7,8 @@ Pod::Spec.new do |s|
   s.authors  = { 'Conrad Stoll' => 'conrad.stoll@mutualmobile.com' }
   s.source   = { :git => 'git@github.com:mutualmobile/MMRecord.git', :commit => 'fc80974' }
   s.requires_arc = true
+  
+  s.preferred_dependency = 'MMRecord/Core'
 
   s.ios.deployment_target = '5.0'
   s.ios.frameworks = 'CoreData'
