@@ -138,8 +138,12 @@
     MMRecordResponseGroup *responseGroup = responseGroups[entityDescriptionsKey];
     
     if (responseGroup == nil) {
-        responseGroup = [[MMRecordResponseGroup alloc] initWithEntity:entity];
-        responseGroups[entityDescriptionsKey] = responseGroup;
+        if ([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]) {
+            responseGroup = [[MMRecordResponseGroup alloc] initWithEntity:entity];
+            responseGroups[entityDescriptionsKey] = responseGroup;
+        } else {
+            return nil;
+        }
     }
     
     return responseGroup;
@@ -244,23 +248,27 @@
                          relationshipDescription:(NSRelationshipDescription *)relationshipDescription {
     NSDictionary *dictionary = protoRecord.dictionary;
     NSEntityDescription *entity = [relationshipDescription destinationEntity];
-    MMRecordResponseGroup *responseGroup = [self responseGroupForEntity:entity fromExistingResponseGroups:responseGroups];
-    NSArray *keyPaths = [representation keyPathsForMappingRelationshipDescription:relationshipDescription];
-    id relationshipObject = [self relationshipObjectFromDictionary:dictionary
-                                                      fromKeyPaths:keyPaths
-                                                     responseGroup:responseGroup];
+    MMRecordResponseGroup *responseGroup = [self responseGroupForEntity:entity
+                                             fromExistingResponseGroups:responseGroups];
     
-    if (relationshipObject) {
-        if ([relationshipObject isKindOfClass:[NSArray class]] == NO) {
-            relationshipObject = @[relationshipObject];
-        }
+    if (responseGroup != nil) {
+        NSArray *keyPaths = [representation keyPathsForMappingRelationshipDescription:relationshipDescription];
+        id relationshipObject = [self relationshipObjectFromDictionary:dictionary
+                                                          fromKeyPaths:keyPaths
+                                                         responseGroup:responseGroup];
         
-        for (id object in relationshipObject) {
-            MMRecordProtoRecord *relationshipProto = [self protoRecordWithRecordResponseObject:object
-                                                                                        entity:entity
-                                                                        existingResponseGroups:responseGroups];
+        if (relationshipObject) {
+            if ([relationshipObject isKindOfClass:[NSArray class]] == NO) {
+                relationshipObject = @[relationshipObject];
+            }
             
-            [protoRecord addRelationshipProto:relationshipProto  forRelationshipDescription:relationshipDescription];
+            for (id object in relationshipObject) {
+                MMRecordProtoRecord *relationshipProto = [self protoRecordWithRecordResponseObject:object
+                                                                                            entity:entity
+                                                                            existingResponseGroups:responseGroups];
+                
+                [protoRecord addRelationshipProto:relationshipProto  forRelationshipDescription:relationshipDescription];
+            }
         }
     }
 }
@@ -301,6 +309,7 @@
 
 - (id)initWithEntity:(NSEntityDescription *)entity {
     if (self = [super init]) {
+        NSParameterAssert([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]);
         _entity = entity;
         _protoRecords = [NSMutableArray array];
         

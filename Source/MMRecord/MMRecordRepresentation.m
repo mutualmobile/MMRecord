@@ -70,11 +70,12 @@
 
 - (instancetype)initWithEntity:(NSEntityDescription *)entity {
     if ((self = [self init])) {
+        NSParameterAssert([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]);
         _entity = entity;
         _representationDictionary = [NSMutableDictionary dictionary];
         _attributeRepresentations = [NSMutableArray array];
         _relationshipRepresentations = [NSMutableArray array];
-        _recordClassDateFormatter = [NSClassFromString([entity managedObjectClassName]) dateFormatter]; // TODO: verify class
+        _recordClassDateFormatter = [NSClassFromString([entity managedObjectClassName]) dateFormatter];
         
         NSDictionary *userInfo = [entity userInfo];
         _primaryKey = [userInfo valueForKey:MMRecordEntityPrimaryAttributeKey];

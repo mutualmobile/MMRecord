@@ -22,6 +22,7 @@
 
 #import "MMRecordProtoRecord.h"
 
+#import "MMRecord.h"
 #import "MMRecordRepresentation.h"
 
 @interface MMRecordProtoRecord ()
@@ -36,6 +37,7 @@
 + (MMRecordProtoRecord *)protoRecordWithDictionary:(NSDictionary *)dictionary
                                             entity:(NSEntityDescription *)entity
                                     representation:(MMRecordRepresentation *)representation {
+    NSParameterAssert([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]);
     MMRecordProtoRecord *protoRecord = [[MMRecordProtoRecord alloc] init];
     protoRecord.dictionary = dictionary;
     protoRecord.entity = entity;

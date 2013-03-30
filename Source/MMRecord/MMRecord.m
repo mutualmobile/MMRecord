@@ -714,6 +714,13 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 + (NSArray*)recordsFromResponseObject:(id)responseObject context:(NSManagedObjectContext *)context {
     NSArray *recordResponseArray = [self parsingArrayFromResponseObject:responseObject];
     NSEntityDescription *initialEntity = [context MMRecord_entityForClass:self];
+    
+    if ([NSClassFromString([initialEntity managedObjectClassName]) isSubclassOfClass:[MMRecord class]] == NO) {
+        MMRecordErrorHandler *errorHandler = [self currentErrorHandler];
+        [errorHandler handleFatalErrorCode:MMRecordErrorCodeInvalidEntityDescription
+                               description:@"Initial Entity is not a subclass of MMRecord"];
+        return nil;
+    }
     MMRecordResponse *response = [MMRecordResponse responseFromResponseObjectArray:recordResponseArray
                                                                      initialEntity:initialEntity
                                                                            context:context];

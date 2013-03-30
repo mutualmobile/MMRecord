@@ -29,8 +29,6 @@
 @implementation MMRecordMarshaler
 
 + (void)populateProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    // TODO: make sure entity class type is same as record class type
-
     for (NSAttributeDescription *attributeDescription in [protoRecord.representation attributeDescriptions]) {
         [self populateProtoRecord:protoRecord
              attributeDescription:attributeDescription
