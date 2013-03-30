@@ -1,5 +1,5 @@
 //
-//  PostCell.h
+//  TweetCell.h
 //  MMRecordTwitter
 //
 //  Created by Conrad Stoll on 11/20/12.

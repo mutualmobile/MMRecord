@@ -19,14 +19,19 @@
 		5528734616FD6371006AFD47 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5528734516FD6371006AFD47 /* Default-568h@2x.png */; };
 		5528734816FD6391006AFD47 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5528734716FD6391006AFD47 /* SystemConfiguration.framework */; };
 		5528734A16FD6395006AFD47 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5528734916FD6395006AFD47 /* MobileCoreServices.framework */; };
+		55C898B117068B00004E3C50 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B017068B00004E3C50 /* Icon.png */; };
+		55C898B317068B06004E3C50 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B217068B05004E3C50 /* Icon@2x.png */; };
+		55C898BF17068B2C004E3C50 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B517068B2C004E3C50 /* Icon-72.png */; };
+		55C898C017068B2C004E3C50 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B617068B2C004E3C50 /* Icon-72@2x.png */; };
+		55C898C117068B2C004E3C50 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B717068B2C004E3C50 /* Icon-Small-50.png */; };
+		55C898C217068B2C004E3C50 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B817068B2C004E3C50 /* Icon-Small-50@2x.png */; };
+		55C898C317068B2C004E3C50 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B917068B2C004E3C50 /* Icon-Small.png */; };
+		55C898C417068B2C004E3C50 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898BA17068B2C004E3C50 /* Icon-Small@2x.png */; };
+		55C898C717068B2C004E3C50 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898BD17068B2C004E3C50 /* iTunesArtwork.png */; };
+		55C898C817068B2C004E3C50 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898BE17068B2C004E3C50 /* iTunesArtwork@2x.png */; };
 		9FABD8A516FA7DC700184BA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FABD8A416FA7DC700184BA5 /* UIKit.framework */; };
 		9FABD8A716FA7DC700184BA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FABD8A616FA7DC700184BA5 /* Foundation.framework */; };
 		9FABD8A916FA7DC700184BA5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FABD8A816FA7DC700184BA5 /* CoreGraphics.framework */; };
-		9FABD8C916FA7DC700184BA5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FABD8C816FA7DC700184BA5 /* SenTestingKit.framework */; };
-		9FABD8CA16FA7DC700184BA5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FABD8A416FA7DC700184BA5 /* UIKit.framework */; };
-		9FABD8CB16FA7DC700184BA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FABD8A616FA7DC700184BA5 /* Foundation.framework */; };
-		9FABD8D316FA7DC700184BA5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FABD8D116FA7DC700184BA5 /* InfoPlist.strings */; };
-		9FABD8D616FA7DC700184BA5 /* MMRecordInstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABD8D516FA7DC700184BA5 /* MMRecordInstagramTests.m */; };
 		9FABD8F116FA7EA000184BA5 /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABD8EC16FA7EA000184BA5 /* MMAppDelegate.m */; };
 		9FABD8F216FA7EA000184BA5 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABD8EE16FA7EA000184BA5 /* MMViewController.m */; };
 		9FABD8F316FA7EA000184BA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FABD8EF16FA7EA000184BA5 /* main.m */; };
@@ -58,13 +63,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9FABD8CC16FA7DC700184BA5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9FABD89916FA7DC700184BA5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9FABD8A016FA7DC700184BA5;
-			remoteInfo = MMRecordInstagram;
-		};
 		9FABD8E316FA7DD900184BA5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9FABD8DF16FA7DD900184BA5 /* MMRecord.xcodeproj */;
@@ -95,16 +93,21 @@
 		5528734516FD6371006AFD47 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		5528734716FD6391006AFD47 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5528734916FD6395006AFD47 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		55C898B017068B00004E3C50 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../Icon.png; sourceTree = "<group>"; };
+		55C898B217068B05004E3C50 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../Icon@2x.png"; sourceTree = "<group>"; };
+		55C898B517068B2C004E3C50 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		55C898B617068B2C004E3C50 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		55C898B717068B2C004E3C50 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		55C898B817068B2C004E3C50 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
+		55C898B917068B2C004E3C50 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		55C898BA17068B2C004E3C50 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		55C898BD17068B2C004E3C50 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		55C898BE17068B2C004E3C50 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		9FABD8A116FA7DC700184BA5 /* MMRecordInstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMRecordInstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FABD8A416FA7DC700184BA5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9FABD8A616FA7DC700184BA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9FABD8A816FA7DC700184BA5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9FABD8C716FA7DC700184BA5 /* MMRecordInstagramTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MMRecordInstagramTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FABD8C816FA7DC700184BA5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		9FABD8D016FA7DC700184BA5 /* MMRecordInstagramTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MMRecordInstagramTests-Info.plist"; sourceTree = "<group>"; };
-		9FABD8D216FA7DC700184BA5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9FABD8D416FA7DC700184BA5 /* MMRecordInstagramTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMRecordInstagramTests.h; sourceTree = "<group>"; };
-		9FABD8D516FA7DC700184BA5 /* MMRecordInstagramTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMRecordInstagramTests.m; sourceTree = "<group>"; };
 		9FABD8DF16FA7DD900184BA5 /* MMRecord.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MMRecord.xcodeproj; path = ../../MMRecord/MMRecord.xcodeproj; sourceTree = "<group>"; };
 		9FABD8EB16FA7EA000184BA5 /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		9FABD8EC16FA7EA000184BA5 /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
@@ -179,16 +182,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FABD8C316FA7DC700184BA5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9FABD8C916FA7DC700184BA5 /* SenTestingKit.framework in Frameworks */,
-				9FABD8CA16FA7DC700184BA5 /* UIKit.framework in Frameworks */,
-				9FABD8CB16FA7DC700184BA5 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -260,11 +253,25 @@
 			path = ../../../../../../Source/MMRecordDynamicModel;
 			sourceTree = "<group>";
 		};
+		55C898B417068B2C004E3C50 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				55C898B517068B2C004E3C50 /* Icon-72.png */,
+				55C898B617068B2C004E3C50 /* Icon-72@2x.png */,
+				55C898B717068B2C004E3C50 /* Icon-Small-50.png */,
+				55C898B817068B2C004E3C50 /* Icon-Small-50@2x.png */,
+				55C898B917068B2C004E3C50 /* Icon-Small.png */,
+				55C898BA17068B2C004E3C50 /* Icon-Small@2x.png */,
+				55C898BD17068B2C004E3C50 /* iTunesArtwork.png */,
+				55C898BE17068B2C004E3C50 /* iTunesArtwork@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		9FABD89816FA7DC700184BA5 = {
 			isa = PBXGroup;
 			children = (
 				9FABD8AA16FA7DC700184BA5 /* MMRecordInstagram */,
-				9FABD8CE16FA7DC700184BA5 /* MMRecordInstagramTests */,
 				9FABD8E816FA7E0B00184BA5 /* Libraries */,
 				9FABD8A316FA7DC700184BA5 /* Frameworks */,
 				9FABD8A216FA7DC700184BA5 /* Products */,
@@ -275,7 +282,6 @@
 			isa = PBXGroup;
 			children = (
 				9FABD8A116FA7DC700184BA5 /* MMRecordInstagram.app */,
-				9FABD8C716FA7DC700184BA5 /* MMRecordInstagramTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,25 +309,6 @@
 				9FABD94A16FA801200184BA5 /* Resources */,
 			);
 			path = MMRecordInstagram;
-			sourceTree = "<group>";
-		};
-		9FABD8CE16FA7DC700184BA5 /* MMRecordInstagramTests */ = {
-			isa = PBXGroup;
-			children = (
-				9FABD8D416FA7DC700184BA5 /* MMRecordInstagramTests.h */,
-				9FABD8D516FA7DC700184BA5 /* MMRecordInstagramTests.m */,
-				9FABD8CF16FA7DC700184BA5 /* Supporting Files */,
-			);
-			path = MMRecordInstagramTests;
-			sourceTree = "<group>";
-		};
-		9FABD8CF16FA7DC700184BA5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9FABD8D016FA7DC700184BA5 /* MMRecordInstagramTests-Info.plist */,
-				9FABD8D116FA7DC700184BA5 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		9FABD8E016FA7DD900184BA5 /* Products */ = {
@@ -366,17 +353,12 @@
 		9FABD94A16FA801200184BA5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55C898B217068B05004E3C50 /* Icon@2x.png */,
+				55C898B017068B00004E3C50 /* Icon.png */,
+				55C898B417068B2C004E3C50 /* Images */,
 				5528734516FD6371006AFD47 /* Default-568h@2x.png */,
-				9FABD94B16FA801300184BA5 /* Model */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		9FABD94B16FA801300184BA5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		9FABD95116FA84F600184BA5 /* Model */ = {
@@ -494,25 +476,6 @@
 			productReference = 9FABD8A116FA7DC700184BA5 /* MMRecordInstagram.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9FABD8C616FA7DC700184BA5 /* MMRecordInstagramTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9FABD8DC16FA7DC700184BA5 /* Build configuration list for PBXNativeTarget "MMRecordInstagramTests" */;
-			buildPhases = (
-				9FABD8C216FA7DC700184BA5 /* Sources */,
-				9FABD8C316FA7DC700184BA5 /* Frameworks */,
-				9FABD8C416FA7DC700184BA5 /* Resources */,
-				9FABD8C516FA7DC700184BA5 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9FABD8CD16FA7DC700184BA5 /* PBXTargetDependency */,
-			);
-			name = MMRecordInstagramTests;
-			productName = MMRecordInstagramTests;
-			productReference = 9FABD8C716FA7DC700184BA5 /* MMRecordInstagramTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -542,7 +505,6 @@
 			projectRoot = "";
 			targets = (
 				9FABD8A016FA7DC700184BA5 /* MMRecordInstagram */,
-				9FABD8C616FA7DC700184BA5 /* MMRecordInstagramTests */,
 			);
 		};
 /* End PBXProject section */
@@ -564,34 +526,20 @@
 			files = (
 				5528734616FD6371006AFD47 /* Default-568h@2x.png in Resources */,
 				5509C0F216FE903F00310806 /* MediaCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9FABD8C416FA7DC700184BA5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9FABD8D316FA7DC700184BA5 /* InfoPlist.strings in Resources */,
+				55C898B117068B00004E3C50 /* Icon.png in Resources */,
+				55C898B317068B06004E3C50 /* Icon@2x.png in Resources */,
+				55C898BF17068B2C004E3C50 /* Icon-72.png in Resources */,
+				55C898C017068B2C004E3C50 /* Icon-72@2x.png in Resources */,
+				55C898C117068B2C004E3C50 /* Icon-Small-50.png in Resources */,
+				55C898C217068B2C004E3C50 /* Icon-Small-50@2x.png in Resources */,
+				55C898C317068B2C004E3C50 /* Icon-Small.png in Resources */,
+				55C898C417068B2C004E3C50 /* Icon-Small@2x.png in Resources */,
+				55C898C717068B2C004E3C50 /* iTunesArtwork.png in Resources */,
+				55C898C817068B2C004E3C50 /* iTunesArtwork@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9FABD8C516FA7DC700184BA5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9FABD89D16FA7DC700184BA5 /* Sources */ = {
@@ -636,34 +584,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FABD8C216FA7DC700184BA5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9FABD8D616FA7DC700184BA5 /* MMRecordInstagramTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9FABD8CD16FA7DC700184BA5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9FABD8A016FA7DC700184BA5 /* MMRecordInstagram */;
-			targetProxy = 9FABD8CC16FA7DC700184BA5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		9FABD8D116FA7DC700184BA5 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9FABD8D216FA7DC700184BA5 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9FABD8D716FA7DC700184BA5 /* Debug */ = {
@@ -754,40 +675,6 @@
 			};
 			name = Release;
 		};
-		9FABD8DD16FA7DC700184BA5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MMRecordInstagram.app/MMRecordInstagram";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MMRecordInstagram/MMRecordInstagram-Prefix.pch";
-				INFOPLIST_FILE = "MMRecordInstagramTests/MMRecordInstagramTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		9FABD8DE16FA7DC700184BA5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MMRecordInstagram.app/MMRecordInstagram";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MMRecordInstagram/MMRecordInstagram-Prefix.pch";
-				INFOPLIST_FILE = "MMRecordInstagramTests/MMRecordInstagramTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -805,15 +692,6 @@
 			buildConfigurations = (
 				9FABD8DA16FA7DC700184BA5 /* Debug */,
 				9FABD8DB16FA7DC700184BA5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9FABD8DC16FA7DC700184BA5 /* Build configuration list for PBXNativeTarget "MMRecordInstagramTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9FABD8DD16FA7DC700184BA5 /* Debug */,
-				9FABD8DE16FA7DC700184BA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

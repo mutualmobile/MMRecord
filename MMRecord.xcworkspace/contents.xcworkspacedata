@@ -61,9 +61,6 @@
          <FileRef
             location = "group:MMServerPageManager.m">
          </FileRef>
-         <FileRef
-            location = "group:MMRecordLoggers.h">
-         </FileRef>
       </Group>
       <Group
          location = "group:MMRecordAFServer"

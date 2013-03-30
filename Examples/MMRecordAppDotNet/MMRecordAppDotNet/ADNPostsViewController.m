@@ -1,5 +1,5 @@
 //
-//  MMViewController.m
+//  ADNPostsViewController.m
 //  MMRecordAppDotNet
 //
 //  Created by Conrad Stoll on 11/20/12.
