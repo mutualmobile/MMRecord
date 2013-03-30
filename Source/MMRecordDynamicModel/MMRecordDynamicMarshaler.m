@@ -42,10 +42,10 @@
 + (void)populateProtoRecord:(MMRecordProtoRecord *)protoRecord {
   [super populateProtoRecord:protoRecord];
   
-  MMRecordDynamicRepresentation *dynamicModelRepresentation =
+  MMRecordDynamicRepresentation *dynamicRepresentation =
       (MMRecordDynamicRepresentation *)protoRecord.representation;
   [self populateProtoRecord:protoRecord
-       attributeDescription:dynamicModelRepresentation.dynamicStorageAttribute
+       attributeDescription:dynamicRepresentation.dynamicStorageAttribute
              fromDictionary:protoRecord.dictionary];
 }
 

@@ -50,7 +50,9 @@ extern NSString * const MMRecordAttributeAlternateNameKey;
 
 @class MMRecordOptions, MMServer, MMServerPageManager;
 
-/** Use the method below to set the MMRecord Logging Level.  The default logging level is none. Logging level is ignored when Cocoa Lumberjack is being used.
+/** 
+ Use the method below to set the MMRecord Logging Level.  The default logging level is none.
+ MMRecord can support Cocoa Lumberjack. Logging level is ignored when Cocoa Lumberjack is used.
  */
 
 typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
@@ -67,32 +69,49 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  each type of record also corresponds to a certain type of Entity in a managed object model.
  
  ## Configuration - Primary Keys
- 
- // TODO: Update this section to account for the new MMRecordRepresentation class.
- 
+  
  You must configure your Core Data model correctly for MMRecord to work effectively.  There are two 
  main parts to consider in configuring your data model.  The first is that all record types should 
  have a primary key identified by the MMRecordEntityPrimaryAttributeKey key in the Entity's userInfo
  dictionary.  This will be used to uniquely identify records in the event of an update.  Typically 
- this will be an integer or a string attribute.  In the latest version of MMRecord this can also be 
- a relationship.  The way the relationship primary key works is by establishing the existence of the 
- parent relationship.  In order to do that, the root parent relationship must itself have a primary 
- key in order to be fetchable from Core Data.  If the root parent object exists, then MMRecord will 
- traverse the relationships of that existing object to see if the child which we are trying to 
- uniquely identify exists, and if so it will update that object rather than create a duplicate entry
- in the database.  While this is supported for to-many relationships, it is INTENDED for to-one 
- relationships.  It's much easier to reliably identify a unique to-one relationship than a to-many 
- relationship.  As such, while to-many relationships are supported, they are ONLY supported if the 
- fields in the Entity directly map to the fields in the response object.  If you cannot depend on 
- these fields matching exactly then you should ask for help, or look for ways to refactor the API or
- your data model, possibly through the use of value transformers or keyPaths.  The other way in 
- which you may wish to configure your data model is through the use of altername name keys.  There 
+ this will be an integer or a string attribute.  
+ 
+ ## Configuration - Primary Key Relationships
+ 
+ The primary key property can also be a relationship. The way the relationship primary key works 
+ is by establishing the existence of the parent relationship.  In order to do that, the root parent 
+ relationship must have a primary key itself in order to be fetchable from Core Data.  If the root 
+ parent object exists, then MMRecord will traverse the relationships of that existing object to see 
+ if the child which we are trying to uniquely identify exists, and if so it will update that object 
+ rather than create a duplicate entry in the database.  While this is supported for to-many 
+ relationships, it is INTENDED for to-one relationships. It's much easier to reliably identify a 
+ unique to-one relationship than a to-many relationship.  As such, while to-many relationships are 
+ supported, they are ONLY supported if the fields in the Entity directly map to the fields in the 
+ response object.  If you cannot depend on these fields matching exactly then you should look for 
+ ways to refactor the API or your data model, possibly through the use of value transformers or 
+ keyPaths.
+ 
+ ## Configuration - Alternate Name Keys
+
+ You can also configure your data model through the use of altername attribute name keys.  There 
  is more information on their use above, but these are generally used when the name of an object's 
  key in the response changes, or when the name is undesirable to use, such as if it is restricted by
- Core Data, or includes underscores.  The final way you can configure data model is through the use 
- of NSValueTransformers.  An entity can define an attribute as transformable and include a 
- NSValueTransformer subclass name in the Entity Description and MMRecord will honor that setting and 
- use that transformer to construct the object.
+ Core Data, or includes underscores.  
+ 
+ ## Configuration - NSValueTransformers
+
+ MMRecord will also respect the NSValueTransformer subclass defined on a transformable attribute. 
+ If a value transformer is set on an attribute description, then MMRecord will use that transformer 
+ to transform the value for that attribute. If no value transformer is set, then NSKeyedArchiver will
+ be used.
+ 
+ ## Configuration - Parsing and Population
+ 
+ The parsing and population system of MMRecord can be configured to handle special cases as well. 
+ The entry point for customizing this system is the MMRecordRepresentation class, and corresponding 
+ MMRecordMarshaler class - which is defined by the representation. You can declare a custom 
+ representation on a subclass of MMRecord. For more information about custom representations and 
+ marshalers please see those corresponding header files.
  
  ## Server
  
@@ -227,7 +246,7 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  This method should be used when a user of this class would like to use a different representation 
  class for populating instances of this record class.
  @return The MMRecordRepresentation subclass you would like to use for this type of record.
- @discussion The default representation class is MMRecordModelRepresentation. See it's header for 
+ @discussion The default representation class is MMRecordRepresentation. See it's header for 
  more details.
  */
 + (Class)representationClass;
