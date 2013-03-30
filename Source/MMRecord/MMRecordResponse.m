@@ -110,7 +110,7 @@
 
 - (void)logObjectGraph {
     if ([MMRecord loggingLevel] != MMRecordLoggingLevelNone) {
-        NSLog(@"%@", self.objectGraph);
+        MMRLogInfo(@"%@", self.objectGraph);
     }
 }
 
@@ -450,11 +450,15 @@
             Class recordClass = NSClassFromString(self.entity.managedObjectClassName);
             MMRecord *record = [[recordClass alloc] initWithEntity:self.entity insertIntoManagedObjectContext:context];
             protoRecord.record = record;
-            // TODO: Implement Cocoa Lumberjack
-            // NSLog(@"Created: %@ %@", protoRecord.entity.name, protoRecord.primaryKeyValue);
+            MMRLogVerbose(@"Created proto record \"%@\", value: \"%@\"", protoRecord.entity.name, protoRecord.primaryKeyValue);
         }
     }
 }
 
 
 @end
+
+#undef MMRLogInfo
+#undef MMRLogWarn
+#undef MMRLogError
+#undef MMRLogVerbose
