@@ -549,48 +549,90 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
 @interface MMRecordOptions : NSObject
 
 /** 
-  Starts requests and tethers the managed objects generated from the response to a child context of 
+ Starts requests and tethers the managed objects generated from the response to a child context of 
  the one that is passed in rather than saving the objects directly to the persistent store.  This 
- method should be used when you want finer-grained control over the context saving behavior of the 
+ option should be used when you want finer-grained control over the context saving behavior of the 
  request.  MMRecord will still call save on the underlying child context, as it assumes that the 
  context you pass in is where you want the objects to go.  It's important to note that calling save 
  on a child context only pushes the data up one layer, to the parent, unless the child has no 
  parent, in which case it saves directly to the persistent store.
+ 
+ @discussion This option defaults to YES.
  */
 @property (nonatomic, assign) BOOL automaticallyPersistsRecords;
 
 /** 
  The queue that will be used by MMRecord when calling the result and failure blocks.
+ 
+ @discussion The default callback queue is the main queue.
  */
 @property (nonatomic) dispatch_queue_t callbackQueue;
 
 /**
- Must return the key path where records are located within the response object.  This will only be 
- called if your response object is of type dictionary.
+ Must specify the key path where records are located within the response object. This will only be
+ used if your response object is of type dictionary. This option gives you the ability to specify a 
+ different key path for an entity than the one in your subclass. Use this option sparingly.
+ Generally speaking you should subclass and create a different entity to provide different 
+ functionality.
+ 
+ @discussion Default is whatever is returned by this method on the MMRecord subclass.
+ @warning This option is NOT supported for batch requests!
  */
 @property (nonatomic, copy) NSString *keyPathForResponseObject;
 
 /**
- This method indicates whether records returned are cacheable. The record level cache is keyed by 
- the request URL and will obey the HTTP cache control headers.
+ This option indicates whether records returned are cacheable. The record level cache is keyed by 
+ the request URL and will obey the HTTP cache control headers. For more information on caching 
+ please see above documentation.
+ 
+ @discussion Default value is NO.
+ @warning This method is supported for batching, but may result in unintended entities being cached.
  */
 @property (nonatomic, assign) BOOL isRecordLevelCachingEnabled;
 
 /**
- This method returns the key path where metadata for the records are located within the response 
- object.  This will only be called if your response object is of type dictionary.  Returning a 
+ This option specifies the key path where metadata for the records are located within the response 
+ object.  This will only be used if your response object is of type dictionary.  Returning a 
  non-nil value will short-circuit parsing the cached response body and build a subset of the 
- response using this key and the value from the actual response.  This method is provided purely for
+ response using this key and the value from the actual response.  This option is provided purely for
  performance considerations and is not required.
+ 
+ @discussion Default value is the value returned in the subclass method.
  */
 @property (nonatomic, copy) NSString *keyPathForMetaData;
 
 
 @end
 
+
+/**
+ This extenion to MMRecord enables the user to set various options to customize the behavior of a 
+ specific MMRecord request.
+ */
 @interface MMRecord (MMRecordOptions)
 
+/**
+ This method allows you to set a specific set of options for a single MMRecord request. 
+ MMRecordOptions follows the design paradigm set forth in Core Animation with the notion of an 
+ implicit transaction. Every MMRecord request starts with a default set of options. The defaults are 
+ specified above in the options class. Options are intended to be used sparingly and in special 
+ circumstances. As such, a set of options will only be applied to the first request started after 
+ -setOptions: is called. If you want those options to be used for every request, or for a specific 
+ request every time it's called, you should encapsulate that request inside of another method which 
+ sets a new set of options before starting the request on MMRecord.
+ 
+ @param options The options object to be set on MMRecord.
+ @warning Options are implicitly reset after a request is run
+ @discussion Tip: if you want multiple requests to use a specific set of options, you can group 
+ them in a batch block and they will all use the specified options that you set before starting the 
+ batch request.
+ */
 + (void)setOptions:(MMRecordOptions *)options;
+
+/**
+ Designated accessor for obtaining the default set of options for a given class of MMRecord.
+ */
++ (MMRecordOptions *)defaultOptions;
 
 @end
 

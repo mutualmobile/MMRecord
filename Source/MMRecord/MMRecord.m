@@ -207,14 +207,17 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 
 + (MMRecordOptions *)defaultOptions {
     MMRecordOptions *options = [[MMRecordOptions alloc] init];
-    options.callbackQueue = dispatch_get_main_queue();
     options.automaticallyPersistsRecords = YES;
+    options.callbackQueue = dispatch_get_main_queue();
+    options.isRecordLevelCachingEnabled = NO;
+    options.keyPathForResponseObject = [self keyPathForResponseObject];
+    options.keyPathForMetaData = [self keyPathForMetaData];
     return options;
 }
 
 + (void)restoreDefaultOptions {
     if ([self batchRequests] == NO) {
-        MM_recordOptions = [self defaultOptions];
+        MM_recordOptions = nil;
     }
 }
 
@@ -567,6 +570,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                 mainStoreCoordinator:state.coordinator];
     
     state.records = [self recordsFromResponseObject:responseObject
+                                            options:options
+                                              state:state
                                             context:state.backgroundContext];
     
     [self performCachingForRecords:state.records
@@ -711,8 +716,18 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 
 #pragma mark - Parsing Helper Methods
 
-+ (NSArray*)recordsFromResponseObject:(id)responseObject context:(NSManagedObjectContext *)context {
-    NSArray *recordResponseArray = [self parsingArrayFromResponseObject:responseObject];
++ (NSArray*)recordsFromResponseObject:(id)responseObject
+                              options:(MMRecordOptions *)options
+                                state:(MMRecordRequestState *)state
+                              context:(NSManagedObjectContext *)context {
+    NSString *keyPathForResponseObject = options.keyPathForResponseObject;
+    
+    if (state.batched) {
+        keyPathForResponseObject = [self keyPathForResponseObject];
+    }
+    
+    NSArray *recordResponseArray = [self parsingArrayFromResponseObject:responseObject
+                                               keyPathForResponseObject:keyPathForResponseObject];
     NSEntityDescription *initialEntity = [context MMRecord_entityForClass:self];
     
     if ([NSClassFromString([initialEntity managedObjectClassName]) isSubclassOfClass:[MMRecord class]] == NO) {
@@ -730,17 +745,20 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     return records;
 }
 
-+ (NSArray *)parsingArrayFromResponseObject:(id)responseObject {
++ (NSArray *)parsingArrayFromResponseObject:(id)responseObject
+                   keyPathForResponseObject:(NSString *)keyPathForResponseObject {
     if ([responseObject isKindOfClass:[NSArray class]]) {
         return responseObject;
     }
     
+    if (keyPathForResponseObject == nil) {
+        keyPathForResponseObject = [self keyPathForResponseObject];
+    }
+    
     id recordResponseObject = responseObject;
     
-    NSString *keyPath = [self keyPathForResponseObject];
-    
-    if (keyPath != nil) {
-        recordResponseObject = [responseObject valueForKeyPath:keyPath];
+    if (keyPathForResponseObject != nil) {
+        recordResponseObject = [responseObject valueForKeyPath:keyPathForResponseObject];
     }
     
     if ([recordResponseObject isKindOfClass:[NSArray class]] == NO) {
