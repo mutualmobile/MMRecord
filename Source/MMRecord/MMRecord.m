@@ -720,6 +720,12 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                               options:(MMRecordOptions *)options
                                 state:(MMRecordRequestState *)state
                               context:(NSManagedObjectContext *)context {
+    if (responseObject == nil) {
+        [[self currentErrorHandler] handleFatalErrorCode:MMRecordErrorCodeInvalidResponseFormat
+                                             description:@"The response object should not be nil"];
+        return nil;
+    }
+    
     NSString *keyPathForResponseObject = options.keyPathForResponseObject;
     
     if (state.batched) {
