@@ -27,7 +27,7 @@ Keep reading to learn more about how to start using MMRecord in your project!
 
 - [Download MMRecord](https://github.com/mutualmobile/MMRecord/archive/master.zip) and try out the included example apps.
 - Continue reading the integration instructions below.
-- Check out the [documentation](Documentation/) for all the rest of the details.
+- Check out the [documentation](http://mutualmobile.github.com/MMRecord/Documentation/) for all the rest of the details.
 
 ## Overview
 
@@ -38,7 +38,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
 <table>
   <tr><th colspan="2" style="text-align:center;">Core</th></tr>
   <tr>
-    <td><a href="Documentation/Classes/MMRecord.html">MMRecord</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecord.html">MMRecord</a></td>
     <td>
       A subclass of <tt>NSManagedObject</tt> that defines the <tt>MMRecord</tt> interface and initiates the object graph population process.
       
@@ -51,7 +51,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
     </td>
   </tr>
   <tr>
-    <td><a href="Documentation/Classes/MMServer.html">MMServer</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMServer.html">MMServer</a></td>
     <td>
 	  An abstract class that defines the request interface used by <tt>MMRecord</tt>.
 	  
@@ -70,31 +70,31 @@ The library is architected to be as simple and lightweight as possible. Here's a
 <table>
   <tr><th colspan="2" style="text-align:center;">Population</th></tr>
   <tr>
-    <td><a href="Documentation/Classes/MMRecord.html">MMRecordResponse</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecord.html">MMRecordResponse</a></td>
     <td>A class that handles the process of turning a response into native <tt>MMRecord</tt> objects.</td>
   </tr>
   <tr>
-    <td><a href="Documentation/Classes/MMRecord.html">MMRecordProtoRecord</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecord.html">MMRecordProtoRecord</a></td>
     <td>A container class used as a placeholder for the object graph during the population process.</td>
   </tr>
   <tr>
-    <td><a href="Documentation/Classes/MMRecordRepresentation.html">MMRecordRepresentation</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecordRepresentation.html">MMRecordRepresentation</a></td>
     <td>A class that defines the mapping between a dictionary and a Core Data <tt>NSEntityDescription</tt>.</td>
   </tr>
   <tr>
-    <td><a href="Documentation/Classes/MMRecordMarshaler.html">MMRecordMarshaler</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecordMarshaler.html">MMRecordMarshaler</a></td>
     <td>A class responsible for populating an instance of <tt>MMRecord</tt> based on the <tt>MMRecordRepresentation</tt>.</td>
   </tr>
 
   <tr><th colspan="2" style="text-align:center;">Pagination</th></tr>
   <tr>
-    <td><a href="Documentation/Classes/MMServerPageManager.html">MMServerPageManager</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMServerPageManager.html">MMServerPageManager</a></td>
     <td>An abstract class that defines the interface for handling pagination.</td>
   </tr>
   
   <tr><th colspan="2" style="text-align:center;">Caching</th></tr>
   <tr>
-    <td><a href="Documentation/Classes/MMRecord.html">MMRecordCache</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecord.html">MMRecordCache</a></td>
     <td>An class that maps <tt>NSManagedObject</tt> ObjectIDs to an <tt>NSCachedURLResponse</tt>	.</td>
   </tr>
 </table>
