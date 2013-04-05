@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Images/MMRecord-blog_banner.png") alt="MMRecord Blog Banner"/>
+  <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-blog_banner.png") alt="MMRecord Blog Banner"/>
 </p>
 
 MMRecord is a block-based seamless web service integration library for iOS and Mac OS X. It leverages the [Core Data](https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/CoreData_ObjC/_index.html) model configuration to automatically create and populate a complete object graph from an API response. It works with any networking library, is simple to setup, and includes many popular features that make working with web services even easier. Here's how to make a request for App.net Post records:
@@ -64,7 +64,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
 </table>
   
 <p align="center">
-  <img src="Images/MMRecord-architecture-diagram.png") alt="MMRecord Architecture Diagram"/>
+  <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-architecture-diagram.png") alt="MMRecord Architecture Diagram"/>
 </p>
 
 <table>
@@ -100,7 +100,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
 </table>
 
 <p align="center">
-  <img src="Images/MMRecord-parsing.png") alt="MMRecord Population Architecture"/>
+  <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-parsing.png") alt="MMRecord Population Architecture"/>
 </p>
 
 ## Integration Guide
@@ -170,17 +170,17 @@ MMRecord leverages the introspective properties of the Core Data model to decide
 
 MMRecord works best if there is a way to uniquely identify records of a given entity type. That allows it to fetch the existing record (if it exists) and update it, rather than create a duplicate one. To designate the primary key for an entity, we leverage the entity's user info dictionary. Specify the name of the primary key property as the value, and <b>MMRecordEntityPrimaryAttributeKey</b> as the key.
 
-![MMRecord Primary Key](Images/MMRecord-primary-key.png)
+![MMRecord Primary Key](https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-primary-key.png)
 
 Note that the primary key can be any property, which includes a relationship. If a relationship is used as the primary key, MMRecord will attempt to fetch the parent object and search for the associated object in the relationship.
 
-![MMRecord Relationship Primary Key](Images/MMRecord-relationship-primary-key.png)
+![MMRecord Relationship Primary Key](https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-relationship-primary-key.png)
 
 #### Alternate Property Names
 
 Sometimes, you may need to define an alternate name for a property on one of your entities. This could be for a variety of reasons. Perhaps you don't like your Core Data property names to include underscores? Perhaps the API response changed, and you don't want to change your NSManagedObject property names. Or maybe the value of a property is actually inside of a sub-object, and you need to bring it up to root level. Well, that's what the <b>MMRecordAttributeAlternateNameKey</b> is for. You can define this key on any attribute or relationship user info dictionary. The value of this key can be an alternate name, or alternate keyPath that will be used to locate the object for that property.
 
-![MMRecord Alternate Name Key](Images/MMRecord-alternate-name-key.png)
+![MMRecord Alternate Name Key](https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-alternate-name-key.png)
 
 For reference, here's a truncated version of the App.net User object to illustrate how those configuration values were determined:
 
