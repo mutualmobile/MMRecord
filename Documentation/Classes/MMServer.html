@@ -1,0 +1,725 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MMServer Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MMRecord </a></h1>
+				<a id="developerHome" href="../index.html">Mutual Mobile</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MMServer Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/cancelRequestsWithDomain:">&nbsp;&nbsp;&nbsp;&nbsp;+ cancelRequestsWithDomain:</option>
+	
+	<option value="//api/name/pageManagerClass">&nbsp;&nbsp;&nbsp;&nbsp;+ pageManagerClass</option>
+	
+	<option value="//api/name/registerSessionTimeoutBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerSessionTimeoutBlock:</option>
+	
+	<option value="//api/name/requestWithURN:data:">&nbsp;&nbsp;&nbsp;&nbsp;+ requestWithURN:data:</option>
+	
+	<option value="//api/name/sessionTimeoutBlock">&nbsp;&nbsp;&nbsp;&nbsp;+ sessionTimeoutBlock</option>
+	
+	<option value="//api/name/startRequestWithURN:data:paged:domain:batched:dispatchGroup:responseBlock:failureBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ startRequestWithURN:data:paged:domain:batched:dispatchGroup:responseBlock:failureBlock:</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Starting and Stopping Server Requests">Starting and Stopping Server Requests</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Handling API Request Response Pagination">Handling API Request Response Pagination</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Handling a Session Timeout Request Failure">Handling a Session Timeout Request Failure</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Support for URL-based Record Caching">Support for URL-based Record Caching</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelRequestsWithDomain:">cancelRequestsWithDomain:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageManagerClass">pageManagerClass</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerSessionTimeoutBlock:">registerSessionTimeoutBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestWithURN:data:">requestWithURN:data:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sessionTimeoutBlock">sessionTimeoutBlock</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startRequestWithURN:data:paged:domain:batched:dispatchGroup:responseBlock:failureBlock:">startRequestWithURN:data:paged:domain:batched:dispatchGroup:responseBlock:failureBlock:</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MMServer Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MMServer Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MMServer.h<br />MMServer.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p><code>MMServer</code> provides the primary interface for making a request to a server.  MMServer is designed
+to be subclassed.  One of the great things about MMServer is that it removes the depency of a
+project on any particular networking framework.  You can build all of your networking code around
+<a href="../Classes/MMRecord.html">MMRecord</a> and MMServer and freely interchange request frameworks under the hood as desired.
+The intent here is to also allow the ability to use a local server or a live server interchangably
+without needing to change any controller-level code.</p>
+
+<h2>Subclassing Notes</h2>
+
+<p>This class is designed and required to be subclassed.  Subclasses must implement the cancelRequests
+and startRequestWithURN methods.  The intent is that you will subclass this class for every server
+your app wishes to interact with, either local or live.  If you wish to support pagination you
+should also implement <a href="#//api/name/pageManagerClass">pageManagerClass</a>.  The session timeout methods should not need to be
+implemented by subclasses.</p>
+
+<h2>Methods to Override</h2>
+
+<p>To allow your server to support pagination you should override <a href="#//api/name/pageManagerClass">pageManagerClass</a> and return the
+class of your <a href="../Classes/MMServerPageManager.html">MMServerPageManager</a> subclass.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Starting and Stopping Server Requests" name="task_Starting and Stopping Server Requests"></a>
+						<h3 class="subsubtitle task-title">Starting and Stopping Server Requests</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelRequestsWithDomain:">+&nbsp;cancelRequestsWithDomain:</a></code>
+		<span class="tooltip"><p>Cancels any requests in progress.  This method must be implemented by the subclass of MMServer.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startRequestWithURN:data:paged:domain:batched:dispatchGroup:responseBlock:failureBlock:">+&nbsp;startRequestWithURN:data:paged:domain:batched:dispatchGroup:responseBlock:failureBlock:</a></code>
+		<span class="tooltip"><p>Starts a request.  This method must be implemented by the subclass of MMServer.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Handling API Request Response Pagination" name="task_Handling API Request Response Pagination"></a>
+						<h3 class="subsubtitle task-title">Handling API Request Response Pagination</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageManagerClass">+&nbsp;pageManagerClass</a></code>
+		<span class="tooltip"><p>Returns a subclass of <a href="../Classes/MMServerPageManager.html">MMServerPageManager</a> configured to support your server&rsquo;s implementation of
+pagination.  You should override this method if you want your server to support pagination.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Handling a Session Timeout Request Failure" name="task_Handling a Session Timeout Request Failure"></a>
+						<h3 class="subsubtitle task-title">Handling a Session Timeout Request Failure</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerSessionTimeoutBlock:">+&nbsp;registerSessionTimeoutBlock:</a></code>
+		<span class="tooltip"><p>Registers the session timeout block which will be called in the event of a session timeout.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sessionTimeoutBlock">+&nbsp;sessionTimeoutBlock</a></code>
+		<span class="tooltip"><p>Accessor for the session timeout block.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Support for URL-based Record Caching" name="task_Support for URL-based Record Caching"></a>
+						<h3 class="subsubtitle task-title">Support for URL-based Record Caching</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestWithURN:data:">+&nbsp;requestWithURN:data:</a></code>
+		<span class="tooltip"><p>Returns an NSURLRequest properly configured as it would be for a call to startRequestWithURN:.
+This method is required for an installation of MMRecord/MMServer that wishes to support caching.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cancelRequestsWithDomain:" title="cancelRequestsWithDomain:"></a>
+	<h3 class="subsubtitle method-title">cancelRequestsWithDomain:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cancels any requests in progress.  This method must be implemented by the subclass of MMServer.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)cancelRequestsWithDomain:(id)<em>domain</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>domain</em></dt>
+			<dd><p>A domain value used to know which requests to cancel.  It is left to the subclass to
+decide how to interpret this value.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Cancels any requests in progress.  This method must be implemented by the subclass of MMServer.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServer.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageManagerClass" title="pageManagerClass"></a>
+	<h3 class="subsubtitle method-title">pageManagerClass</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a subclass of <a href="../Classes/MMServerPageManager.html">MMServerPageManager</a> configured to support your server&rsquo;s implementation of
+pagination.  You should override this method if you want your server to support pagination.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (Class)pageManagerClass</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The page manager class.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns a subclass of <a href="../Classes/MMServerPageManager.html">MMServerPageManager</a> configured to support your server&rsquo;s implementation of
+pagination.  You should override this method if you want your server to support pagination.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServer.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerSessionTimeoutBlock:" title="registerSessionTimeoutBlock:"></a>
+	<h3 class="subsubtitle method-title">registerSessionTimeoutBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Registers the session timeout block which will be called in the event of a session timeout.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)registerSessionTimeoutBlock:(MMServerSessionTimeoutBlock)<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A block of type MMServerSessionTimeoutBlock.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Registers the session timeout block which will be called in the event of a session timeout.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServer.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestWithURN:data:" title="requestWithURN:data:"></a>
+	<h3 class="subsubtitle method-title">requestWithURN:data:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an NSURLRequest properly configured as it would be for a call to startRequestWithURN:.
+This method is required for an installation of MMRecord/MMServer that wishes to support caching.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSURLRequest *)requestWithURN:(NSString *)<em>URN</em> data:(NSDictionary *)<em>data</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>URN</em></dt>
+			<dd><p>The base URN for the request endpoint.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>A dictionary containing request parameters.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A configured NSURLRequest.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns an NSURLRequest properly configured as it would be for a call to startRequestWithURN:.
+This method is required for an installation of MMRecord/MMServer that wishes to support caching.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServer.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/sessionTimeoutBlock" title="sessionTimeoutBlock"></a>
+	<h3 class="subsubtitle method-title">sessionTimeoutBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Accessor for the session timeout block.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (MMServerSessionTimeoutBlock)sessionTimeoutBlock</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The registered session timeout block.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Accessor for the session timeout block.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServer.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startRequestWithURN:data:paged:domain:batched:dispatchGroup:responseBlock:failureBlock:" title="startRequestWithURN:data:paged:domain:batched:dispatchGroup:responseBlock:failureBlock:"></a>
+	<h3 class="subsubtitle method-title">startRequestWithURN:data:paged:domain:batched:dispatchGroup:responseBlock:failureBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Starts a request.  This method must be implemented by the subclass of MMServer.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)startRequestWithURN:(NSString *)<em>URN</em> data:(NSDictionary *)<em>data</em> paged:(BOOL)<em>paged</em> domain:(id)<em>domain</em> batched:(BOOL)<em>batched</em> dispatchGroup:(dispatch_group_t)<em>dispatchGroup</em> responseBlock:(void ( ^ ) ( id responseObject ))<em>responseBlock</em> failureBlock:(void ( ^ ) ( NSError *error ))<em>failureBlock</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>URN</em></dt>
+			<dd><p>The base URN for the request endpoint.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>A dictionary containing request parameters.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>paged</em></dt>
+			<dd><p>A boolean value indicating whether or not the request should be paged.  The paged
+request should request the first page by default.  You should only set a page size parameter if
+this value is YES.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>domain</em></dt>
+			<dd><p>A domain value used for request cancellation.  It is left to the subclass to decide
+how to use this value.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>batched</em></dt>
+			<dd><p>A boolean value indicating whether or not a request is intended to be batched.
+Depending on your networking implementation this may or may not matter to you.  The default
+implementation of MMRecord&rsquo;s batching support will use dispatch groups to fire a completion block
+after all of the responseBlocks (which by default use this group) finish.  This property may be
+useful to you in some cases, and if so, please contact the maintainers to tell them what this
+use-case is :)  It is easily possible that this parameter will be deprecated in the future,
+so plan accordingly.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dispatchGroup</em></dt>
+			<dd><p>A dispatch_group variable to be used for grouping batch requests.
+All dispatch_async blocks in <a href="../Classes/MMRecord.html">MMRecord</a> are issued with a dispatch_group.  This property is
+intended as a safe-guard should you need to dispatch any other blocks asynchronously.  In order to
+gaurantee that batching will still work, you should use this dispatch group if you ever find
+yourself in that situation.  Using this is not required in order for batching to work.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>responseBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes successfully.
+The block is called with the response object as a parameter.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes unsuccessfully.
+The block contains an error object that describes a request failure or a record parsing failure.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Starts a request.  This method must be implemented by the subclass of MMServer.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMServer.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Mutual Mobile. All rights reserved. (Last updated: 2013-03-24)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

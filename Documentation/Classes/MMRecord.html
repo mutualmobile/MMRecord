@@ -1,0 +1,1860 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MMRecord Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MMRecord </a></h1>
+				<a id="developerHome" href="../index.html">Mutual Mobile</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MMRecord Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/cancelRequestsWithDomain:">&nbsp;&nbsp;&nbsp;&nbsp;+ cancelRequestsWithDomain:</option>
+	
+	<option value="//api/name/dateFormatter">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFormatter</option>
+	
+	<option value="//api/name/errorWithMMRecordCode:description:">&nbsp;&nbsp;&nbsp;&nbsp;+ errorWithMMRecordCode:description:</option>
+	
+	<option value="//api/name/isRecordLevelCachingEnabled">&nbsp;&nbsp;&nbsp;&nbsp;+ isRecordLevelCachingEnabled</option>
+	
+	<option value="//api/name/keyPathForMetaData">&nbsp;&nbsp;&nbsp;&nbsp;+ keyPathForMetaData</option>
+	
+	<option value="//api/name/keyPathForResponseObject">&nbsp;&nbsp;&nbsp;&nbsp;+ keyPathForResponseObject</option>
+	
+	<option value="//api/name/loggingLevel">&nbsp;&nbsp;&nbsp;&nbsp;+ loggingLevel</option>
+	
+	<option value="//api/name/registerServerClass:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerServerClass:</option>
+	
+	<option value="//api/name/representationClass">&nbsp;&nbsp;&nbsp;&nbsp;+ representationClass</option>
+	
+	<option value="//api/name/server">&nbsp;&nbsp;&nbsp;&nbsp;+ server</option>
+	
+	<option value="//api/name/setLoggingLevel:">&nbsp;&nbsp;&nbsp;&nbsp;+ setLoggingLevel:</option>
+	
+	<option value="//api/name/shouldUseSubEntityRecordClassToRepresentData:">&nbsp;&nbsp;&nbsp;&nbsp;+ shouldUseSubEntityRecordClassToRepresentData:</option>
+	
+	<option value="//api/name/startBatchedRequestsInExecutionBlock:withCompletionBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ startBatchedRequestsInExecutionBlock:withCompletionBlock:</option>
+	
+	<option value="//api/name/startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:</option>
+	
+	<option value="//api/name/startRequestWithURN:data:context:domain:customResponseBlock:resultBlock:failureBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ startRequestWithURN:data:context:domain:customResponseBlock:resultBlock:failureBlock:</option>
+	
+	<option value="//api/name/startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:</option>
+	
+	<option value="//api/name/startRequestWithURN:data:context:domain:resultBlock:failureBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ startRequestWithURN:data:context:domain:resultBlock:failureBlock:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/recordDetailURN">&nbsp;&nbsp;&nbsp;&nbsp;- recordDetailURN</option>
+	
+	<option value="//api/name/startDetailRequestWithDomain:resultBlock:failureBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- startDetailRequestWithDomain:resultBlock:failureBlock:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Required Subclass Methods">Required Subclass Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Optional Subclass Methods">Optional Subclass Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Setting and Accessing the MMServer Class">Setting and Accessing the MMServer Class</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Configuring the Output and Error Logging Level">Configuring the Output and Error Logging Level</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Starting and Stopping Server Requests">Starting and Stopping Server Requests</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Error Handling Convenience Methods">Error Handling Convenience Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_MMRecordFetchRequests Methods">MMRecordFetchRequests Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_MMServerPageManager Methods">MMServerPageManager Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelRequestsWithDomain:">cancelRequestsWithDomain:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFormatter">dateFormatter</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/errorWithMMRecordCode:description:">errorWithMMRecordCode:description:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isRecordLevelCachingEnabled">isRecordLevelCachingEnabled</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyPathForMetaData">keyPathForMetaData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyPathForResponseObject">keyPathForResponseObject</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loggingLevel">loggingLevel</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerServerClass:">registerServerClass:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/representationClass">representationClass</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/server">server</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLoggingLevel:">setLoggingLevel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldUseSubEntityRecordClassToRepresentData:">shouldUseSubEntityRecordClassToRepresentData:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startBatchedRequestsInExecutionBlock:withCompletionBlock:">startBatchedRequestsInExecutionBlock:withCompletionBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:">startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startRequestWithURN:data:context:domain:customResponseBlock:resultBlock:failureBlock:">startRequestWithURN:data:context:domain:customResponseBlock:resultBlock:failureBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:">startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startRequestWithURN:data:context:domain:resultBlock:failureBlock:">startRequestWithURN:data:context:domain:resultBlock:failureBlock:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/recordDetailURN">recordDetailURN</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startDetailRequestWithDomain:resultBlock:failureBlock:">startDetailRequestWithDomain:resultBlock:failureBlock:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MMRecord Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MMRecord Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSManagedObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MMRecord.h<br />MMRecord.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p><code>MMRecord</code> provides a pattern for interfacing with a <a href="#//api/name/server">server</a> to retrieve records.  A record is
+an object that lives on a <a href="#//api/name/server">server</a>.  MMRecord depends on the interface from <a href="../Classes/MMServer.html">MMServer</a> for making
+requests of various types.  MMRecord also inherits from NSManagedObject and it is assumed that
+each type of record also corresponds to a certain type of Entity in a managed object model.</p>
+
+<h2>Configuration &ndash; Primary Keys</h2>
+
+<p>// TODO: Update this section to account for the new <a href="../Classes/MMRecordRepresentation.html">MMRecordRepresentation</a> class.</p>
+
+<p>You must configure your Core Data model correctly for MMRecord to work effectively.  There are two
+main parts to consider in configuring your data model.  The first is that all record types should
+have a primary key identified by the MMRecordEntityPrimaryAttributeKey key in the Entity&rsquo;s userInfo
+dictionary.  This will be used to uniquely identify records in the event of an update.  Typically
+this will be an integer or a string attribute.  In the latest version of MMRecord this can also be
+a relationship.  The way the relationship primary key works is by establishing the existence of the
+parent relationship.  In order to do that, the root parent relationship must itself have a primary
+key in order to be fetchable from Core Data.  If the root parent object exists, then MMRecord will
+traverse the relationships of that existing object to see if the child which we are trying to
+uniquely identify exists, and if so it will update that object rather than create a duplicate entry
+in the database.  While this is supported for to-many relationships, it is INTENDED for to-one
+relationships.  It&rsquo;s much easier to reliably identify a unique to-one relationship than a to-many
+relationship.  As such, while to-many relationships are supported, they are ONLY supported if the
+fields in the Entity directly map to the fields in the response object.  If you cannot depend on
+these fields matching exactly then you should ask for help, or look for ways to refactor the API or
+your data model, possibly through the use of value transformers or keyPaths.  The other way in
+which you may wish to configure your data model is through the use of altername name keys.  There
+is more information on their use above, but these are generally used when the name of an object&rsquo;s
+key in the response changes, or when the name is undesirable to use, such as if it is restricted by
+Core Data, or includes underscores.  The final way you can configure data model is through the use
+of NSValueTransformers.  An entity can define an attribute as transformable and include a
+NSValueTransformer subclass name in the Entity Description and MMRecord will honor that setting and
+use that transformer to construct the object.</p>
+
+<h2>Server</h2>
+
+<p>You must create your own version of <a href="../Classes/MMServer.html">MMServer</a> that implements the methods in it&rsquo;s interface.  Your
+<a href="#//api/name/server">server</a> class must make a request and call the response/failure blocks with a response object or
+error.  You must also associate a <a href="../Classes/MMServer.html">MMServer</a> subclass with MMRecord or your base subclass of MMRecord
+that all of your individual records inherit from.</p>
+
+<h2>Requests</h2>
+
+<p>Each MMRecord subclass has access to methods to start a request.  The most basic version of these
+methods simply takes a URN, data, a context, and a result/failure block.  There are other methods
+for initiating a paged request, and for asking an instance of a record to obtain it&rsquo;s detail object
+from the <a href="#//api/name/server">server</a>.  All of these methods handle the parsing of the response for you.  They use data
+contained in the object model to know how to create record instances from the response.  This is
+explained in more detail below.</p>
+
+<h2>Subclassing Notes</h2>
+
+<p>You must create a subclass of MMRecord for every entity in your data model that you wish to support
+this pattern.  There is only one method that you must override: <a href="#//api/name/keyPathForResponseObject">keyPathForResponseObject</a>.  One
+strategy for subclassing is to implement this method, and <a href="#//api/name/dateFormatter">dateFormatter</a>, in a base subclass for
+common API responses.  You may override additional methods such as recordWithDictionary if you need
+to, but the idea is that you shouldn&rsquo;t have to.  You should override <a href="#//api/name/recordDetailURN">recordDetailURN</a> if you wish to
+support detail requests.</p>
+
+<h2>Methods to Override</h2>
+
+<p>To allow date attribute parsing you must override the <a href="#//api/name/dateFormatter">dateFormatter</a> method and return a date
+formatter configured for your server&rsquo;s date format.  To support detail requests you must override
+<a href="#//api/name/recordDetailURN">recordDetailURN</a>.</p>
+
+<h2>Object Construction</h2>
+
+<p>Everything needed to populate your records should be defined in your Managed Object Model.
+By default MMRecord will iterate through the record&rsquo;s entity&rsquo;s properties and look for response
+items with matching names.  You can customize the names it searches for using various keys in the
+entity&rsquo;s UserInfo dictionary.  This method works just as well for relationships and transformable
+attributes as for normal attributes.  If an entity&rsquo;s inverse relationship entity is also of type
+MMRecord then instances of that record will be created for a relationship property.  Transformable
+attributes will be created by using the NSValueTransformer class specified in the data model.</p>
+
+<h2>Custom Requests</h2>
+
+<p>The intended use of this class is that you will create methods on your own record subclasses such
+as +tweetsForUser: which will call super&rsquo;s startRequestWithURN method and pass through a context,
+resultBlock and failureBlock parameters to super.  The only parameters that would be determined
+inside of tweetsForUser would be the request URN and the data parameters required to make that
+request.  This accomplishes the goal of encapsulating request-making logic inside of the data model
+in a way where it only needs to be defined once for an entire project, as well as taking advantage
+of the data parsing functionality of MMRecord so that every <a href="#//api/name/server">server</a> call doesn&rsquo;t need to roll it&rsquo;s
+own parsing code.</p>
+
+<h2>Custom Request Handlers</h2>
+
+<p>You may wish to create and use request methods that include more information than just the
+generated objects that are supplied by the request&rsquo;s response.  Support for this is supplied
+through the Custom Request Handler block, which is a block passed into an advanced version of the
+-startRequestWithURN: method.  This block will be called with the full response object in a decoded
+JSON form to allow you to glean additional information and return it in the form of an object.
+This works best with data which is not intended to be stored in the database.  That object will
+then be passed to the actual resultBlock for you to use there as well.  As a best practice,
+I recommend creating a custom NSObject subclass to encapsulate whatever piece of information you
+intend on taking from that response and passing on to the resultBlock.  One example of where this
+may be useful is for driving a list request.  You may need to be able to tell how many objects are
+in the list even if you only received back a few of them.  If the request has that information in
+the meta, or somewhere else, then grab it out, put it in an object and return it.  The total result
+count isn&rsquo;t something you need stored access to, because it&rsquo;s really only relevant in that one UI
+use-case.  As such it&rsquo;s a perfect candidate for this type of system.  Another example is
+<a href="../Classes/MMServerPageManager.html">MMServerPageManager</a> support.  There&rsquo;s a category on MMRecord for supporting pagination which
+includes a method called -startPagedRequestWithURN: that uses a Custom Request Handler in it&rsquo;s
+implementation.  Please look at that as a starting point for implementing this functionality for
+yourself.</p>
+
+<h2>Caching</h2>
+
+<p>In general, the best way to implement caching is through the use of NSURLCache and the server&rsquo;s
+implementation of the HTTP Cache Control headers.  In the event that this is not enough, MMRecord
+does provide an additional level of caching support.  The caching provided by MMRecord is in
+accordance with the cache control headers and augments the system provided by NSURLCache.
+If caching is enabled then MMRecord will store the object IDs for each request/response pair that
+were parsed as part of the last response in a separate SQLite persistent store.  It&rsquo;s important to
+note that these are stored UNENCRYPTED.  IF DATA SECURITY IS A REQUIREMENT CACHING SHOULD NOT BE
+USED!  The methods required to support caching are listed below in the optional subclass methods.
+The primary one is <a href="#//api/name/isRecordLevelCachingEnabled">isRecordLevelCachingEnabled</a>, which should return YES if caching is desired.
+In addition, the optional method +requestWithURN:data: on <a href="../Classes/MMServer.html">MMServer</a> must be implemented as a
+NSURLRequest object is required for accessing information in NSURLCache.</p>
+
+<h2>Queues</h2>
+
+<p>All MMRecord resultBlocks and failureBlocks are called on the Main Queue.  Support for specific
+callback queues will be added in a future version.</p>
+
+<p>This category adds support for running a fetch request alongside the URL request.  It is meant for
+when data is likely to exist in some form, stale or otherwise, in the persistent store and it would
+be useful to return the existing data as quickly as possible and then follow up soon thereafter
+with the latest data from a web service.</p>
+
+<p>This category adds improved support for custom handling of pagination within requests.  It uses the
+customResponseBlock functionality documented above to achieve this goal, and is intended both as a
+great tool for implementing paginated HTTP requests, as well as a reference implementation for how
+to use the customResponseBlock feature.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Required Subclass Methods" name="task_Required Subclass Methods"></a>
+						<h3 class="subsubtitle task-title">Required Subclass Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyPathForResponseObject">+&nbsp;keyPathForResponseObject</a></code>
+		<span class="tooltip"><p>Must return the key path where records are located within the response object.  This will only be
+called if your response object is of type dictionary.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Optional Subclass Methods" name="task_Optional Subclass Methods"></a>
+						<h3 class="subsubtitle task-title">Optional Subclass Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldUseSubEntityRecordClassToRepresentData:">+&nbsp;shouldUseSubEntityRecordClassToRepresentData:</a></code>
+		<span class="tooltip"><p>This method can be implemented to determine if a sub entity record class should be used to
+represent the data for a particular record.  The dictionary representation of the record is passed
+as a parameter, and the implementation should return YES or NO if that dictionary is a valid
+representation for a record of this type.  This method is NOT intended to be used for validation,
+but for population when a record class has sub entities associated with it&rsquo;s entity description.
+The typical use case would be for when you are requesting records of a given class, but depending
+on the response values, some (or all) of the records contained in the response should result in a
+sub entity record type being created or updated.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/representationClass">+&nbsp;representationClass</a></code>
+		<span class="tooltip"><p>This method should be used when a user of this class would like to use a different representation
+class for populating instances of this record class.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/recordDetailURN">&ndash;&nbsp;recordDetailURN</a></code>
+		<span class="tooltip"><p>This method is used by the -startDetailRequestWithDomain: method to locate and obtain the resource
+data for a specific record.  This URN should be everything after the base URL that is necesary to
+provide a unique location for obtaining the specified resource.  A common implementation of this
+method will be to return a resource URI obtained via a previous <a href="#//api/name/server">server</a> call.  For APIs that do not
+support this you will need to construct this URN yourself.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dateFormatter">+&nbsp;dateFormatter</a></code>
+		<span class="tooltip"><p>This method is used by all of the parsing method base implementations to obtain a date formatter
+configured for handling the server&rsquo;s specified date format.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isRecordLevelCachingEnabled">+&nbsp;isRecordLevelCachingEnabled</a></code>
+		<span class="tooltip"><p>This method indicates whether records returned are cacheable. The record level cache is keyed by
+the request URL and will obey the HTTP cache control headers.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyPathForMetaData">+&nbsp;keyPathForMetaData</a></code>
+		<span class="tooltip"><p>This method returns the key path where metadata for the records are located within the response
+object.  This will only be called if your response object is of type dictionary.  Returning a
+non-nil value will short-circuit parsing the cached response body and build a subset of the
+response using this key and the value from the actual response.  This method is provided purely
+for performance considerations and is not required.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Setting and Accessing the MMServer Class" name="task_Setting and Accessing the MMServer Class"></a>
+						<h3 class="subsubtitle task-title">Setting and Accessing the MMServer Class</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/server">+&nbsp;server</a></code>
+		<span class="tooltip"><p>Access to the registered server class.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerServerClass:">+&nbsp;registerServerClass:</a></code>
+		<span class="tooltip"><p>Register a <a href="#//api/name/server">server</a> class with MMRecord.  This will be the class used for starting all requests from
+MMRecord.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Configuring the Output and Error Logging Level" name="task_Configuring the Output and Error Logging Level"></a>
+						<h3 class="subsubtitle task-title">Configuring the Output and Error Logging Level</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLoggingLevel:">+&nbsp;setLoggingLevel:</a></code>
+		<span class="tooltip"><p>Set the desired logging level for internal warning, error, and debug log statements. Messages are
+logged when certain events take place, such as parsing errors, missing data warnings, and
+improperly configured data models.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loggingLevel">+&nbsp;loggingLevel</a></code>
+		<span class="tooltip"><p>Access the set logging level for internal warning, error, and debug log statements.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Starting and Stopping Server Requests" name="task_Starting and Stopping Server Requests"></a>
+						<h3 class="subsubtitle task-title">Starting and Stopping Server Requests</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelRequestsWithDomain:">+&nbsp;cancelRequestsWithDomain:</a></code>
+		<span class="tooltip"><p>Calls the registered <a href="#//api/name/server">server</a> class&rsquo;s cancel requests method.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startRequestWithURN:data:context:domain:resultBlock:failureBlock:">+&nbsp;startRequestWithURN:data:context:domain:resultBlock:failureBlock:</a></code>
+		<span class="tooltip"><p>Starts a request on the registered <a href="#//api/name/server">server</a> class.  This is the default implementation of this
+method.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startRequestWithURN:data:context:domain:customResponseBlock:resultBlock:failureBlock:">+&nbsp;startRequestWithURN:data:context:domain:customResponseBlock:resultBlock:failureBlock:</a></code>
+		<span class="tooltip"><p>Starts a request on the registered <a href="#//api/name/server">server</a> class.  This is an advanced implementation of this method
+with additional functionality.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startDetailRequestWithDomain:resultBlock:failureBlock:">&ndash;&nbsp;startDetailRequestWithDomain:resultBlock:failureBlock:</a></code>
+		<span class="tooltip"><p>Starts a detail request for an instance of a record.  This method calls the <a href="#//api/name/recordDetailURN">recordDetailURN</a> method,
+which should be implemented by a record needing to use this method.  The record detail URN will be
+used as the location for fetching the detail resource for the record.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startBatchedRequestsInExecutionBlock:withCompletionBlock:">+&nbsp;startBatchedRequestsInExecutionBlock:withCompletionBlock:</a></code>
+		<span class="tooltip"><p>Starts batched requests.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Error Handling Convenience Methods" name="task_Error Handling Convenience Methods"></a>
+						<h3 class="subsubtitle task-title">Error Handling Convenience Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/errorWithMMRecordCode:description:">+&nbsp;errorWithMMRecordCode:description:</a></code>
+		<span class="tooltip"><p>This helper method returns a custom error and description that describes error conditions in
+MMRecord.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="MMRecordFetchRequests Methods" name="task_MMRecordFetchRequests Methods"></a>
+						<h3 class="subsubtitle task-title">MMRecordFetchRequests Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:">+&nbsp;startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:</a></code>
+		<span class="tooltip"><p>Starts a dual fetch and web request to retrieve information as quickly and as efficiently as
+possible.  This method IS MEANT to be wrapped in a subclass&rsquo;s implementation which hides the fetch
+request, URN, etc. from the caller.  The caller (presumably a view controller) should not need to
+know about how to build the fetch request, it should only care about the data being received in the
+result block.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="MMServerPageManager Methods" name="task_MMServerPageManager Methods"></a>
+						<h3 class="subsubtitle task-title">MMServerPageManager Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:">+&nbsp;startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:</a></code>
+		<span class="tooltip"><p>Starts a paged request on the registered <a href="#//api/name/server">server</a> class.  This is achieved by passing YES as the
+paging parameter.  The <a href="#//api/name/server">server</a> class is responsible for handling this accordingly, if paging
+functionality is desired.  The purpose of this method is to enable the caller to receive a first
+page for a given resource and to subsequently request further pages.  The signature of the result
+block is therefore changed to account for this functionality.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cancelRequestsWithDomain:" title="cancelRequestsWithDomain:"></a>
+	<h3 class="subsubtitle method-title">cancelRequestsWithDomain:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Calls the registered <a href="#//api/name/server">server</a> class&rsquo;s cancel requests method.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)cancelRequestsWithDomain:(id)<em>domain</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>domain</em></dt>
+			<dd><p>The domain value for which requests should be cancelled.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Calls the registered <a href="#//api/name/server">server</a> class&rsquo;s cancel requests method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dateFormatter" title="dateFormatter"></a>
+	<h3 class="subsubtitle method-title">dateFormatter</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is used by all of the parsing method base implementations to obtain a date formatter
+configured for handling the server&rsquo;s specified date format.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSDateFormatter *)dateFormatter</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A NSDateFormatter configured to handle the server&rsquo;s date format.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is used by all of the parsing method base implementations to obtain a date formatter
+configured for handling the server&rsquo;s specified date format.</p><div class="warning"><p><strong>Warning:</strong> If you do not implement this method and attempt to populate properties of type Date
+you will receive a parsing error.</p></div><div class="warning"><p><strong>Warning:</strong> You should store the date formatter you create as a static variable so that it&rsquo;s not
+recreated by every request.  Don&rsquo;t be surprised if this functionality is changed later so that
+the user isn&rsquo;t responsible for handling this.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/errorWithMMRecordCode:description:" title="errorWithMMRecordCode:description:"></a>
+	<h3 class="subsubtitle method-title">errorWithMMRecordCode:description:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This helper method returns a custom error and description that describes error conditions in
+MMRecord.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSError *)errorWithMMRecordCode:(MMRecordErrorCode)<em>errorCode</em> description:(NSString *)<em>description</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>errorCode</em></dt>
+			<dd><p>MMRecordErrorCode value for this error.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>description</em></dt>
+			<dd><p>String to be contained in this error&rsquo;s UserInfo dictionary.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This helper method returns a custom error and description that describes error conditions in
+MMRecord.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isRecordLevelCachingEnabled" title="isRecordLevelCachingEnabled"></a>
+	<h3 class="subsubtitle method-title">isRecordLevelCachingEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method indicates whether records returned are cacheable. The record level cache is keyed by
+the request URL and will obey the HTTP cache control headers.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (BOOL)isRecordLevelCachingEnabled</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method indicates whether records returned are cacheable. The record level cache is keyed by
+the request URL and will obey the HTTP cache control headers.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/keyPathForMetaData" title="keyPathForMetaData"></a>
+	<h3 class="subsubtitle method-title">keyPathForMetaData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method returns the key path where metadata for the records are located within the response
+object.  This will only be called if your response object is of type dictionary.  Returning a
+non-nil value will short-circuit parsing the cached response body and build a subset of the
+response using this key and the value from the actual response.  This method is provided purely
+for performance considerations and is not required.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSString *)keyPathForMetaData</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method returns the key path where metadata for the records are located within the response
+object.  This will only be called if your response object is of type dictionary.  Returning a
+non-nil value will short-circuit parsing the cached response body and build a subset of the
+response using this key and the value from the actual response.  This method is provided purely
+for performance considerations and is not required.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/keyPathForResponseObject" title="keyPathForResponseObject"></a>
+	<h3 class="subsubtitle method-title">keyPathForResponseObject</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Must return the key path where records are located within the response object.  This will only be
+called if your response object is of type dictionary.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSString *)keyPathForResponseObject</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Must return the key path where records are located within the response object.  This will only be
+called if your response object is of type dictionary.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loggingLevel" title="loggingLevel"></a>
+	<h3 class="subsubtitle method-title">loggingLevel</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Access the set logging level for internal warning, error, and debug log statements.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (MMRecordLoggingLevel)loggingLevel</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Access the set logging level for internal warning, error, and debug log statements.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerServerClass:" title="registerServerClass:"></a>
+	<h3 class="subsubtitle method-title">registerServerClass:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register a <a href="#//api/name/server">server</a> class with MMRecord.  This will be the class used for starting all requests from
+MMRecord.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (BOOL)registerServerClass:(Class)<em>server</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>server</em></dt>
+			<dd><p>A class to be used for making requests.  Must be a subclass of <a href="../Classes/MMServer.html">MMServer</a>.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Yes if registration was successful, NO otherwise.
+@discussion Pass nil to unregister a previously registered <a href="#//api/name/server">server</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Register a <a href="#//api/name/server">server</a> class with MMRecord.  This will be the class used for starting all requests from
+MMRecord.</p><div class="warning"><p><strong>Warning:</strong> Must be a subclass of <a href="../Classes/MMServer.html">MMServer</a>.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/representationClass" title="representationClass"></a>
+	<h3 class="subsubtitle method-title">representationClass</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method should be used when a user of this class would like to use a different representation
+class for populating instances of this record class.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (Class)representationClass</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The <a href="../Classes/MMRecordRepresentation.html">MMRecordRepresentation</a> subclass you would like to use for this type of record.
+@discussion The default representation class is MMRecordModelRepresentation. See it&rsquo;s header for
+more details.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method should be used when a user of this class would like to use a different representation
+class for populating instances of this record class.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/server" title="server"></a>
+	<h3 class="subsubtitle method-title">server</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Access to the registered server class.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (Class)server</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The server class that has been registered with MMRecord.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Access to the registered server class.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setLoggingLevel:" title="setLoggingLevel:"></a>
+	<h3 class="subsubtitle method-title">setLoggingLevel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the desired logging level for internal warning, error, and debug log statements. Messages are
+logged when certain events take place, such as parsing errors, missing data warnings, and
+improperly configured data models.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)setLoggingLevel:(MMRecordLoggingLevel)<em>loggingLevel</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>loggingLevel</em></dt>
+			<dd><p>The desired logging level</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Set the desired logging level for internal warning, error, and debug log statements. Messages are
+logged when certain events take place, such as parsing errors, missing data warnings, and
+improperly configured data models.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shouldUseSubEntityRecordClassToRepresentData:" title="shouldUseSubEntityRecordClassToRepresentData:"></a>
+	<h3 class="subsubtitle method-title">shouldUseSubEntityRecordClassToRepresentData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method can be implemented to determine if a sub entity record class should be used to
+represent the data for a particular record.  The dictionary representation of the record is passed
+as a parameter, and the implementation should return YES or NO if that dictionary is a valid
+representation for a record of this type.  This method is NOT intended to be used for validation,
+but for population when a record class has sub entities associated with it&rsquo;s entity description.
+The typical use case would be for when you are requesting records of a given class, but depending
+on the response values, some (or all) of the records contained in the response should result in a
+sub entity record type being created or updated.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (BOOL)shouldUseSubEntityRecordClassToRepresentData:(NSDictionary *)<em>dict</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dict</em></dt>
+			<dd><p>The dictionary representation of a record.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the dictionary represents a record of this type, NO otherwise.
+@discussion This method will be called when startRequestForURN is called on a MMRecord class whose
+entity description contains sub entities.  This method will be called on each of those in no
+particular order and will use the class for the first record class that returns YES.  If no record
+classes return YES, the called MMRecord class will be used.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method can be implemented to determine if a sub entity record class should be used to
+represent the data for a particular record.  The dictionary representation of the record is passed
+as a parameter, and the implementation should return YES or NO if that dictionary is a valid
+representation for a record of this type.  This method is NOT intended to be used for validation,
+but for population when a record class has sub entities associated with it&rsquo;s entity description.
+The typical use case would be for when you are requesting records of a given class, but depending
+on the response values, some (or all) of the records contained in the response should result in a
+sub entity record type being created or updated.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startBatchedRequestsInExecutionBlock:withCompletionBlock:" title="startBatchedRequestsInExecutionBlock:withCompletionBlock:"></a>
+	<h3 class="subsubtitle method-title">startBatchedRequestsInExecutionBlock:withCompletionBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Starts batched requests.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)startBatchedRequestsInExecutionBlock:(void ( ^ ) ( ))<em>batchExecutionBlock</em> withCompletionBlock:(void ( ^ ) ( ))<em>completionBlock</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>batchExecutionBlock</em></dt>
+			<dd><p>A block in which all batched requests should be started.  This block
+will be executed immediately and all requests started inside of it will be associated with the
+same dispatch group and started with the batched property set to YES.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>completionBlock</em></dt>
+			<dd><p>A block to be executed when the dispatch group notify occurs signaling that
+the group has finished executing.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Starts batched requests.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:" title="startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:"></a>
+	<h3 class="subsubtitle method-title">startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Starts a paged request on the registered <a href="#//api/name/server">server</a> class.  This is achieved by passing YES as the
+paging parameter.  The <a href="#//api/name/server">server</a> class is responsible for handling this accordingly, if paging
+functionality is desired.  The purpose of this method is to enable the caller to receive a first
+page for a given resource and to subsequently request further pages.  The signature of the result
+block is therefore changed to account for this functionality.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)startPagedRequestWithURN:(NSString *)<em>URN</em> data:(NSDictionary *)<em>parameters</em> context:(NSManagedObjectContext *)<em>context</em> domain:(id)<em>domain</em> resultBlock:(void ( ^ ) ( NSArray *records , id pageManager , BOOL *requestNextPage ))<em>resultBlock</em> failureBlock:(void ( ^ ) ( NSError *error ))<em>failureBlock</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>URN</em></dt>
+			<dd><p>The base URN for the request endpoint.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>parameters</em></dt>
+			<dd><p>A dictionary containing request parameters.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The managed object context that will be used for creating the records that are
+returned in the response.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>domain</em></dt>
+			<dd><p>The domain that this request should be associated with.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>resultBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes successfully.  Before
+the block is called the response will be parsed and records will be created.  An instance of the
+<a href="../Classes/MMServerPageManager.html">MMServerPageManager</a> class designated by MMRecord&rsquo;s registered <a href="#//api/name/server">server</a> is also initialized.  This
+class should be a subclass for your specific <a href="#//api/name/server">server</a> that is implemented to handle that server&rsquo;s
+paging functionality.  The page manager object will know the URN for the next and previous pages.
+The block is called with the records and page manager object as parameters.  There is also a
+reference to a boolean for requestNextPage.  This is defaulted to NO.  If the block changes this
+parameter to YES then a subsequent request will be started to retrieve the next page.
+The subsequent request will use the original result and failure blocks to handle it&rsquo;s response.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes unsuccessfully.
+The block contains an error object that describes a request failure or a record parsing failure.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Starts a paged request on the registered <a href="#//api/name/server">server</a> class.  This is achieved by passing YES as the
+paging parameter.  The <a href="#//api/name/server">server</a> class is responsible for handling this accordingly, if paging
+functionality is desired.  The purpose of this method is to enable the caller to receive a first
+page for a given resource and to subsequently request further pages.  The signature of the result
+block is therefore changed to account for this functionality.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startRequestWithURN:data:context:domain:customResponseBlock:resultBlock:failureBlock:" title="startRequestWithURN:data:context:domain:customResponseBlock:resultBlock:failureBlock:"></a>
+	<h3 class="subsubtitle method-title">startRequestWithURN:data:context:domain:customResponseBlock:resultBlock:failureBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Starts a request on the registered <a href="#//api/name/server">server</a> class.  This is an advanced implementation of this method
+with additional functionality.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)startRequestWithURN:(NSString *)<em>URN</em> data:(NSDictionary *)<em>parameters</em> context:(NSManagedObjectContext *)<em>context</em> domain:(id)<em>domain</em> customResponseBlock:(id ( ^ ) ( id JSON ))<em>customResponseBlock</em> resultBlock:(void ( ^ ) ( NSArray *records , id customResponseObject ))<em>resultBlock</em> failureBlock:(void ( ^ ) ( NSError *error ))<em>failureBlock</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>URN</em></dt>
+			<dd><p>The base URN for the request endpoint.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>parameters</em></dt>
+			<dd><p>A dictionary containing request parameters.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The managed object context that will be used for creating the records that are
+returned in the response.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>domain</em></dt>
+			<dd><p>The domain that this request should be associated with.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>customResponseBlock</em></dt>
+			<dd><p>This block allows the user raw access to the parsed response from the
+request. Users can then extract other information from the response, such as meta information,
+result totals and indexes, etc. The user is expected to store that information in an object and
+have this block return that object. That object will then be passed as a parameter to the result
+block, giving the user access to that information. If this block returns nil, customResponseObject
+will be nil in the result block.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>resultBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes successfully.  Before
+the block is called the response will be parsed and records will be created.  The block is called
+with those records as a parameter. Before this block is called the customResponseBlock will be
+called, and the second parameter will be the return of that block. If the customResponseBlock is
+nil, the customResponseObject parameter will be nil.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes unsuccessfully.
+The block contains an error object that describes a request failure or a record parsing failure.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Starts a request on the registered <a href="#//api/name/server">server</a> class.  This is an advanced implementation of this method
+with additional functionality.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:" title="startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:"></a>
+	<h3 class="subsubtitle method-title">startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Starts a dual fetch and web request to retrieve information as quickly and as efficiently as
+possible.  This method IS MEANT to be wrapped in a subclass&rsquo;s implementation which hides the fetch
+request, URN, etc. from the caller.  The caller (presumably a view controller) should not need to
+know about how to build the fetch request, it should only care about the data being received in the
+result block.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)startRequestWithURN:(NSString *)<em>URN</em> data:(NSDictionary *)<em>parameters</em> context:(NSManagedObjectContext *)<em>context</em> domain:(id)<em>domain</em> fetchRequest:(NSFetchRequest *)<em>fetchRequest</em> customResponseBlock:(id ( ^ ) ( id JSON ))<em>customResponseBlock</em> resultBlock:(void ( ^ ) ( NSArray *records , id customResponseObject , BOOL requestComplete ))<em>resultBlock</em> failureBlock:(void ( ^ ) ( NSError *error ))<em>failureBlock</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>URN</em></dt>
+			<dd><p>The base URN for the request endpoint.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>parameters</em></dt>
+			<dd><p>A dictionary containing request parameters.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The managed object context that will be used for creating the records that are
+returned in the response.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>domain</em></dt>
+			<dd><p>The domain that this request should be associated with.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>fetchRequest</em></dt>
+			<dd><p>An NSFetchRequest configured to fetch data of the same type as the request is
+meant to receive from Core Data.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>customResponseBlock</em></dt>
+			<dd><p>This block allows the user raw access to the parsed response from the
+request. Users can then extract other information from the response, such as meta information,
+result totals and indexes, etc. The user is expected to store that information in an object and
+have this block return that object. That object will then be passed as a parameter to the result
+block, giving the user access to that information. If this block returns nil, customResponseObject
+will be nil in the result block.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>resultBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes successfully.  Before
+the block is called the response will be parsed and records will be created.  The block is called
+with those records as a parameter. Before this block is called the customResponseBlock will be
+called, and the second parameter will be the return of that block. If the customResponseBlock is
+nil, the customResponseObject parameter will be nil.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes unsuccessfully.
+The block contains an error object that describes a request failure or a record parsing failure.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Starts a dual fetch and web request to retrieve information as quickly and as efficiently as
+possible.  This method IS MEANT to be wrapped in a subclass&rsquo;s implementation which hides the fetch
+request, URN, etc. from the caller.  The caller (presumably a view controller) should not need to
+know about how to build the fetch request, it should only care about the data being received in the
+result block.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startRequestWithURN:data:context:domain:resultBlock:failureBlock:" title="startRequestWithURN:data:context:domain:resultBlock:failureBlock:"></a>
+	<h3 class="subsubtitle method-title">startRequestWithURN:data:context:domain:resultBlock:failureBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Starts a request on the registered <a href="#//api/name/server">server</a> class.  This is the default implementation of this
+method.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)startRequestWithURN:(NSString *)<em>URN</em> data:(NSDictionary *)<em>parameters</em> context:(NSManagedObjectContext *)<em>context</em> domain:(id)<em>domain</em> resultBlock:(void ( ^ ) ( NSArray *records ))<em>resultBlock</em> failureBlock:(void ( ^ ) ( NSError *error ))<em>failureBlock</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>URN</em></dt>
+			<dd><p>The base URN for the request endpoint.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>parameters</em></dt>
+			<dd><p>A dictionary containing request parameters.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The managed object context that will be used for creating the records that are
+returned in the response.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>domain</em></dt>
+			<dd><p>The domain that this request should be associated with.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>resultBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes successfully.  Before
+the block is called the response will be parsed and records will be created.  The block is called
+with those records as a parameter.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes unsuccessfully.
+The block contains an error object that describes a request failure or a record parsing failure.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Starts a request on the registered <a href="#//api/name/server">server</a> class.  This is the default implementation of this
+method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/recordDetailURN" title="recordDetailURN"></a>
+	<h3 class="subsubtitle method-title">recordDetailURN</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is used by the -startDetailRequestWithDomain: method to locate and obtain the resource
+data for a specific record.  This URN should be everything after the base URL that is necesary to
+provide a unique location for obtaining the specified resource.  A common implementation of this
+method will be to return a resource URI obtained via a previous <a href="#//api/name/server">server</a> call.  For APIs that do not
+support this you will need to construct this URN yourself.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)recordDetailURN</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>A NSString containing the detail URN for the record.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is used by the -startDetailRequestWithDomain: method to locate and obtain the resource
+data for a specific record.  This URN should be everything after the base URL that is necesary to
+provide a unique location for obtaining the specified resource.  A common implementation of this
+method will be to return a resource URI obtained via a previous <a href="#//api/name/server">server</a> call.  For APIs that do not
+support this you will need to construct this URN yourself.</p><div class="warning"><p><strong>Warning:</strong> If you do not implement this method then the startDetailRequest method
+will implicitly fail.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startDetailRequestWithDomain:resultBlock:failureBlock:" title="startDetailRequestWithDomain:resultBlock:failureBlock:"></a>
+	<h3 class="subsubtitle method-title">startDetailRequestWithDomain:resultBlock:failureBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Starts a detail request for an instance of a record.  This method calls the <a href="#//api/name/recordDetailURN">recordDetailURN</a> method,
+which should be implemented by a record needing to use this method.  The record detail URN will be
+used as the location for fetching the detail resource for the record.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)startDetailRequestWithDomain:(id)<em>domain</em> resultBlock:(void ( ^ ) ( MMRecord *record ))<em>resultBlock</em> failureBlock:(void ( ^ ) ( NSError *error ))<em>failureBlock</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>domain</em></dt>
+			<dd><p>The domain that this request should be associated with.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>resultBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes successfully.  The block
+contains a reference to the calling record which will have been updated with the returned data from
+the detail request.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failureBlock</em></dt>
+			<dd><p>A block object to be executed when the request finishes unsuccessfully.
+The block contains an error object that describes a request failure or a record parsing failure.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Starts a detail request for an instance of a record.  This method calls the <a href="#//api/name/recordDetailURN">recordDetailURN</a> method,
+which should be implemented by a record needing to use this method.  The record detail URN will be
+used as the location for fetching the detail resource for the record.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Mutual Mobile. All rights reserved. (Last updated: 2013-03-24)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

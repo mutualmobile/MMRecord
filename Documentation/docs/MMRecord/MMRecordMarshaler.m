@@ -1,0 +1,308 @@
+//
+//  MMRecordMarshaler.m
+//  MMRecord
+//
+//  TODO: Replace with License Header
+//
+
+#import "MMRecordMarshaler.h"
+
+#import "MMRecord.h"
+#import "MMRecordProtoRecord.h"
+#import "MMRecordRepresentation.h"
+
+@implementation MMRecordMarshaler
+
++ (void)populateProtoRecord:(MMRecordProtoRecord *)protoRecord {
+    // TODO: make sure entity class type is same as record class type
+
+    for (NSAttributeDescription *attributeDescription in [protoRecord.representation attributeDescriptions]) {
+        [self populateProtoRecord:protoRecord
+             attributeDescription:attributeDescription
+                   fromDictionary:protoRecord.dictionary];
+    }
+}
+
++ (void)populateProtoRecord:(MMRecordProtoRecord *)protoRecord
+       attributeDescription:(NSAttributeDescription *)attributeDescription
+             fromDictionary:(NSDictionary *)dictionary {
+    NSArray *possibleKeyPaths = [protoRecord.representation keyPathsForMappingAttributeDescription:attributeDescription];
+    
+    for (NSString *possibleKeyPath in possibleKeyPaths) {
+        id value = [protoRecord.dictionary valueForKeyPath:possibleKeyPath];
+        
+        if (value == [NSNull null]) {
+            value = nil;
+        }
+        
+        if (value == nil) {
+            break;
+        }
+        
+        [self setValue:value
+              onRecord:protoRecord.record
+             attribute:attributeDescription
+         dateFormatter:protoRecord.representation.dateFormatter];
+    }
+}
+
++ (void)setValue:(id)value
+        onRecord:(MMRecord *)record
+       attribute:(NSAttributeDescription *)attribute
+   dateFormatter:(NSDateFormatter *)dateFormatter {
+    NSAttributeType attributeType = [attribute attributeType];
+    
+    if (value == nil) {
+        return;
+    }
+    
+    if (attributeType == NSDateAttributeType) {
+        value = [self dateValueForAttribute:attribute value:value dateFormatter:dateFormatter];
+    } else if (attributeType == NSTransformableAttributeType) {
+        value = [self transformedValueForAttribute:attribute
+                                             value:value];
+    } else if (attributeType == NSInteger32AttributeType ||
+               attributeType == NSInteger16AttributeType ||
+               attributeType == NSInteger64AttributeType) {
+        value = [self numberValueForAttribute:attribute value:value];
+    } else if (attributeType == NSBooleanAttributeType) {
+        value = [self boolValueForAttribute:attribute value:value];
+    } else if (attributeType == NSStringAttributeType) {
+        value = [self stringValueForAttribute:attribute value:value];
+    }
+    
+    if (value != nil) {
+        [record setValue:value forKey:attribute.name];
+    }
+}
+
++ (NSDate *)dateValueForAttribute:(NSAttributeDescription *)attribute
+                            value:(id)value
+                    dateFormatter:(NSDateFormatter *)dateFormatter {
+    if (dateFormatter != nil) {
+        return [dateFormatter dateFromString:value];
+    }
+    
+    return nil;
+}
+
++ (id)transformedValueForAttribute:(NSAttributeDescription *)attribute value:(id)value {
+    NSValueTransformer *transformer = [[NSClassFromString(attribute.valueTransformerName) alloc] init];
+    
+    if (transformer != nil) {
+        return [transformer transformedValue:value];
+    }
+    
+    return value;
+}
+
++ (NSNumber *)numberValueForAttribute:(NSAttributeDescription *)attribute value:(id)value {
+    if ([value isKindOfClass:[NSString class]]) {
+        return @([value intValue]);
+    }
+    
+    return value;
+}
+
++ (NSNumber *)boolValueForAttribute:(NSAttributeDescription *)attribute value:(id)value {
+    if ([value isKindOfClass:[NSString class]]) {
+        return @([value boolValue]);
+    }
+    
+    return value;
+}
+
++ (NSString *)stringValueForAttribute:(NSAttributeDescription *)attribute value:(id)value {
+    if (value != nil && ![value isKindOfClass:[NSString class]]) {
+        return [value stringValue];
+    }
+    
+    return value;
+}
+
++ (void)establishRelationshipsOnProtoRecord:(MMRecordProtoRecord *)protoRecord {
+    for (int i = 0; i < [protoRecord.relationshipProtos count]; ++i) {
+        MMRecord *fromRecord = protoRecord.record;
+        MMRecordProtoRecord *relationshipProtoRecord = [protoRecord.relationshipProtos objectAtIndex:i];
+        MMRecord *toRecord = relationshipProtoRecord.record;
+        NSRelationshipDescription *relationshipDescription = [protoRecord.relationshipDescriptions objectAtIndex:i];
+        
+        [self establishRelationship:relationshipDescription fromRecord:fromRecord toRecord:toRecord];
+    }
+}
+
++ (void)establishRelationship:(NSRelationshipDescription *)relationship
+                   fromRecord:(MMRecord *)fromRecord
+                     toRecord:(MMRecord *)toRecord {
+    if (fromRecord != nil && toRecord != nil) {
+        if ([relationship isToMany]) {
+            [self establishToManyRelationship:relationship fromRecord:fromRecord toRecord:toRecord];
+        } else {
+            [fromRecord setValue:toRecord forKey:[relationship name]];
+        }
+    }
+}
+
++ (void)establishToManyRelationship:(NSRelationshipDescription *)relationship
+                         fromRecord:(MMRecord *)fromRecord
+                           toRecord:(MMRecord *)toRecord {
+    id relationshipSet;
+    
+    BOOL useOrderedSet = NO;
+    
+    if ([relationship respondsToSelector:@selector(isOrdered)]) {
+        useOrderedSet = relationship.isOrdered ? YES : NO;
+    }
+    if (useOrderedSet) {
+        relationshipSet = [fromRecord mutableOrderedSetValueForKey:[relationship name]];
+    } else {
+        relationshipSet = [fromRecord mutableSetValueForKey:[relationship name]];
+    }
+    
+    [relationshipSet addObject:toRecord];
+    [fromRecord setValue:relationshipSet forKey:[relationship name]];
+}
+
++ (void)establishPrimaryKeyRelationshipFromProtoRecord:(MMRecordProtoRecord *)protoRecord
+             toParentRelationshipPrimaryKeyProtoRecord:(MMRecordProtoRecord *)parentRelationshipPrimaryKeyProto {
+    protoRecord.relationshipPrimaryKeyProto = parentRelationshipPrimaryKeyProto;
+    
+    NSRelationshipDescription *primaryRelationshipDescription = [protoRecord.representation primaryRelationshipDescription];
+    MMRecord *parentRecord = parentRelationshipPrimaryKeyProto.record;
+    NSRelationshipDescription *parentRecordRelationshipDescription = [primaryRelationshipDescription inverseRelationship];
+    NSString *key = [parentRecordRelationshipDescription name];
+    id existingRecordOrCollectionFromRelationship = [parentRecord valueForKey:key];
+    MMRecord *existingRecordFromParent = nil;
+    
+    //sometimes will get a _NSFaultingMutableSet here
+    //need to iterate through set to find out which managed object
+    //is the correct one to assign
+    if ([existingRecordOrCollectionFromRelationship respondsToSelector:@selector(count)]) {
+        
+        BOOL existingRecord = NO;
+        //is a faulted set; iterate through to find
+        for (MMRecord *faultedObject in (NSSet *)existingRecordOrCollectionFromRelationship) {
+            if ([self verifyObject:faultedObject containsValuesForKeysInDict:protoRecord.dictionary representation:protoRecord.representation] == YES) {
+                existingRecordFromParent = faultedObject;
+                
+                existingRecord = YES;
+                break;
+            }
+        }
+    }
+    
+    if (!existingRecordFromParent) {
+        if ([existingRecordOrCollectionFromRelationship isKindOfClass:[MMRecord class]]) {
+            existingRecordFromParent = existingRecordOrCollectionFromRelationship;
+        }
+    }
+    
+    // Perhaps we don't want to nil out self.record if existingRecordFromParent is nil...
+    // If we do this then we may overwrite a created object from earlier.  We should only be
+    // setting self.record if we do find an existing record from the parent.
+    if (existingRecordFromParent != nil) {
+        protoRecord.record = existingRecordFromParent;
+    }
+}
+
+#pragma mark - To Many Relationship Test
+
+// TODO: Simplify this method by refactor/extract
++ (BOOL)verifyObject:(id)object containsValuesForKeysInDict:(id)dict representation:(MMRecordRepresentation *)representation {
+    if ([[dict class] isSubclassOfClass:[NSDictionary class]] &&
+        [[object class] isSubclassOfClass:[NSManagedObject class]]) {
+        NSArray *allKeys = [dict allKeys];
+        NSArray *allAttributeKeys = [[[object entity] attributesByName] allKeys];
+        
+        BOOL containsAllKeys = YES;
+        
+        for (NSString *objectKey in allKeys) {
+            BOOL containsKey = NO;
+            
+            for (NSString *key in allAttributeKeys) {
+                containsKey |= [objectKey isEqualToString:key];
+            }
+            
+            containsAllKeys &= containsKey;
+        }
+        
+        if (containsAllKeys == NO) {
+            return NO;
+        }
+        
+        __block BOOL validated = YES;
+        
+        for (NSString *validatorKeyPath in allKeys) {
+            
+            id subObject = [object valueForKeyPath:validatorKeyPath];
+            
+            if (subObject) {
+                if([[subObject class] isSubclassOfClass:[NSArray class]]){
+                    
+                    [subObject enumerateObjectsUsingBlock:^(id arrayObject, NSUInteger idx, BOOL *stop) {
+                        
+                        id testValue = [[dict objectForKey:validatorKeyPath] objectAtIndex:idx];
+                        
+                        validated &= [self verifyObject:arrayObject
+                            containsValuesForKeysInDict:testValue
+                                         representation:representation];
+                        
+                        *stop = !validated;
+                    }];
+                }
+                else if([[subObject class] isSubclassOfClass:[NSSet class]]){
+                    
+                    for (id objectDict in [dict objectForKey:validatorKeyPath]) {
+                        BOOL containsObject = NO;
+                        
+                        for (id setObject in subObject) {
+                            containsObject |= [self verifyObject:setObject
+                                     containsValuesForKeysInDict:objectDict
+                                                  representation:representation];
+                            
+                            if(containsObject == YES){
+                                break;
+                            }
+                        }
+                        
+                        validated &= containsObject;
+                        
+                        if (validated == NO) {
+                            break;
+                        }
+                    }
+                }
+                else{
+                    NSDictionary *subDict = [dict objectForKey:validatorKeyPath];
+                    
+                    validated &= [self verifyObject:subObject
+                        containsValuesForKeysInDict:subDict
+                                     representation:representation];
+                    
+                    if (validated == NO) {
+                        return NO;
+                    }
+                }
+            }
+            else {
+                validated = NO;
+            }
+        }
+        
+        return validated;
+    }
+    else {
+        BOOL equals = NO;
+        if ([object isKindOfClass:[NSDate class]]) {
+            NSDate *date = [[representation dateFormatter] dateFromString:dict];
+            equals = [object isEqual:date];
+        }
+        else{
+            equals = [object isEqual:dict];
+        }
+        
+        return equals;
+    }
+}
+
+@end
