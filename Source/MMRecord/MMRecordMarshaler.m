@@ -92,6 +92,10 @@
 + (NSDate *)dateValueForAttribute:(NSAttributeDescription *)attribute
                             value:(id)value
                     dateFormatter:(NSDateFormatter *)dateFormatter {
+    if ([value isKindOfClass:[NSNumber class]]) {
+        return [NSDate dateWithTimeIntervalSince1970:[value integerValue]];
+    }
+    
     if (dateFormatter != nil) {
         return [dateFormatter dateFromString:value];
     }
