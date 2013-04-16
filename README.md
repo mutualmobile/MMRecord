@@ -156,7 +156,7 @@ static NSDateFormatter *ADNRecordDateFormatter;
 
 @end
 ```
-There are also some optional methods you may wish to implement on <tt>MMRecord</tt>. One such method returns a date formatter configured for populating attributes of type Date.
+There are also some optional methods you may wish to implement on <tt>MMRecord</tt>. One such method returns a date formatter configured for populating attributes of type Date. You can override this method to populate date attributes using a formatted date string. Unix number time stamp dates are supported by default.
 
 Note that these methods were implemented on a class called <tt>ADNRecord</tt>, which is a subclass of <tt>MMRecord</tt>. Additional entities are subclasses of <tt>ADNRecord</tt>, and do not need to implement these methods themselves.
 
