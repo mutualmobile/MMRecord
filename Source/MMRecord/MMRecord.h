@@ -113,6 +113,16 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  representation on a subclass of MMRecord. For more information about custom representations and 
  marshalers please see those corresponding header files.
  
+ ## Configuration - Dates
+ 
+ The parsing and population can support dates in either date format string form, or unix time stamp 
+ number form. If the date from your request is a unix time stamp that is returned in the form of a 
+ number, then the date attribute will be populated with a date created from that unix time stamp. No 
+ action is required by you.If the value returned is a date format string, then you must override the
+ dateFormatter method in your MMRecord subclass to provide a dateFormatter that can parse that given
+ date format string. That formatter will then be used to populate date attributes for that class of
+ record.
+ 
  ## Server
  
  You must create your own version of MMServer that implements the methods in it's interface.  Your 
@@ -269,8 +279,10 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  configured for handling the server's specified date format.
  
  @return A NSDateFormatter configured to handle the server's date format.
+ @discussion You do not have to implement this method if your request returns unix date time stamps 
+ as numbers.
  @warning If you do not implement this method and attempt to populate properties of type Date 
- you will receive a parsing error.
+ with a string value you will receive a parsing error.
  @warning You should store the date formatter you create as a static variable so that it's not 
  recreated by every request.  Don't be surprised if this functionality is changed later so that 
  the user isn't responsible for handling this.
