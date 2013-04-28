@@ -858,7 +858,9 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
          if(resultBlock){
              BOOL requestNextPage = NO;
              
-             resultBlock(records,pageManager,&requestNextPage);
+             if (resultBlock != nil) {
+                 resultBlock(records,pageManager,&requestNextPage);
+             }
              
              if (requestNextPage) {
                  [pageManager startNextPageRequestWithContext:context
@@ -891,9 +893,11 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     [context performBlock:^{
         NSArray *results = [context executeFetchRequest:fetchRequest error:NULL];
         
-        dispatch_async(options.callbackQueue, ^{
-            resultBlock(results, nil, NO);
-        });
+        if (resultBlock != nil) {
+            dispatch_async(options.callbackQueue, ^{
+                resultBlock(results, nil, NO);
+            });
+        }
         
         [self
          startRequestWithURN:URN
