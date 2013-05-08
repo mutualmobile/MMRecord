@@ -550,6 +550,14 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
          if (state.failureBlock != nil) {
              state.failureBlock(error);
          }
+         
+         if ([state isBatched]) {
+             dispatch_group_leave(state.dispatchGroup);
+         }
+         
+#if NEEDS_DISPATCH_RETAIN_RELEASE
+         dispatch_release(state.dispatchGroup);
+#endif
      }];
     
     [self restoreDefaultOptions];

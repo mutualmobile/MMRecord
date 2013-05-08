@@ -114,7 +114,7 @@
         id value = nil;
         
         for (NSString *key in [primaryKeyRepresentation keyPaths]) {
-            value = [dictionary valueForKey:key];
+            value = [dictionary valueForKeyPath:key];
             
             if (value != nil) {
                 return value;
