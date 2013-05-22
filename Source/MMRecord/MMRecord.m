@@ -775,6 +775,10 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
         recordResponseObject = [responseObject valueForKeyPath:keyPathForResponseObject];
     }
     
+    if (recordResponseObject == nil || [recordResponseObject isKindOfClass:[NSNull class]]) {
+        recordResponseObject = [NSArray array];
+    }
+    
     if ([recordResponseObject isKindOfClass:[NSArray class]] == NO) {
         recordResponseObject = [NSArray arrayWithObject:recordResponseObject];
     }
