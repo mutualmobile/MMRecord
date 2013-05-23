@@ -1,0 +1,19 @@
+#MMRecord Changelog
+
+##[1.0.2](https://github.com/mutualmobile/MMRecord/issues?milestone=2&state=closed) (Wednesday, May 22nd, 2013)
+
+###Fixed
+* **FIXED** an issue([#12](https://github.com/mutualmobile/MMRecord/pull/12)) where a model misconfiguration could result in a crash. (John Thomas)
+* **FIXED** an issue([#11](https://github.com/mutualmobile/MMRecord/pull/11)) where a retain cycle could cause a substantial leak in the parsing process. (Conrad Stoll)
+
+##[1.0.1](https://github.com/mutualmobile/MMRecord/issues?milestone=1&state=closed) (Wednesday, May 8th, 2013)
+###New
+* Support for Unix Time Stamps. (Matt Weathers)
+* Cocoa Lumberjack Support (Lars Anderson)
+
+###Fixed
+* **FIXED** an issue([#10](https://github.com/mutualmobile/MMRecord/pull/10)) where batch request failure blocks were not working as intended. (Swapnil Jadhav)
+* **FIXED** an issue([#9](https://github.com/mutualmobile/MMRecord/pull/9)) where the primary key could not be a key path (John McIntosh)
+
+##1.0.0 (Friday, April 5th, 2013)
+ * Initial Library Release
