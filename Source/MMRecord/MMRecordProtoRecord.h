@@ -53,7 +53,7 @@
 
 // Uniquing
 @property (nonatomic, strong) id primaryKeyValue;
-@property (nonatomic, strong) MMRecordProtoRecord *relationshipPrimaryKeyProto;
+@property (nonatomic, weak) MMRecordProtoRecord *relationshipPrimaryKeyProto;
 @property (nonatomic) BOOL hasRelationshipPrimarykey;
 
 // Designated Initializer
