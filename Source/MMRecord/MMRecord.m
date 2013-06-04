@@ -90,6 +90,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 
 @interface MMRecordRequestState : NSObject
 
+@property (nonatomic, strong) MMRecordOptions *options;
+
 @property (nonatomic, getter = isBatched) BOOL batched;
 @property (nonatomic) dispatch_queue_t parsingQueue;
 @property (nonatomic) dispatch_group_t dispatchGroup;
@@ -407,6 +409,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 }
 
 + (void)configureState:(MMRecordRequestState *)state forCurrentRequestWithOptions:(MMRecordOptions *)options {
+    state.options = options;
     state.batched = [self batchRequests];
     state.coordinator = state.context.persistentStoreCoordinator;
     state.dispatchGroup = [self dispatchGroup];
@@ -735,10 +738,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     }
     
     NSString *keyPathForResponseObject = options.keyPathForResponseObject;
-    
-    if (state.batched) {
-        keyPathForResponseObject = [self keyPathForResponseObject];
-    }
     
     NSArray *recordResponseArray = [self parsingArrayFromResponseObject:responseObject
                                                keyPathForResponseObject:keyPathForResponseObject];
