@@ -193,7 +193,6 @@
                                                         existingResponseGroups:responseGroups];
         
         [objectGraph addObject:proto];
-        [self uniquelyAddNewProtoRecord:proto toExistingResponseGroups:responseGroups];
     }
     
     self.objectGraph = objectGraph;
@@ -217,8 +216,9 @@
     
     if (proto == nil) {
         proto = [MMRecordProtoRecord protoRecordWithDictionary:recordResponseObject entity:entity representation:representation];
-        [self uniquelyAddNewProtoRecord:proto toExistingResponseGroups:responseGroups];
     }
+    
+    [self uniquelyAddNewProtoRecord:proto toExistingResponseGroups:responseGroups];
     
     if (proto) {
         [self completeRelationshipProtoRecordMappingToProtoRecord:proto
