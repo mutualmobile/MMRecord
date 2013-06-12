@@ -8,19 +8,15 @@
 
 #import "MMAppDelegate.h"
 
-#import "ADNHTTPClient.h"
 #import "ADNRecord.h"
-#import "ADNServer.h"
+#import "MMJSONPerformanceTestingServer.h"
 #import "MMJSONServer.h"
 
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [ADNServer registerAFHTTPClient:[ADNHTTPClient sharedClient]];
-    [ADNRecord registerServerClass:[ADNServer class]];
-    
-    //[MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
-    //[ADNRecord registerServerClass:[MMJSONServer class]];
+    [MMJSONPerformanceTestingServer setResultSetSize:1000];
+    [ADNRecord registerServerClass:[MMJSONPerformanceTestingServer class]];
     
     return YES;
 }

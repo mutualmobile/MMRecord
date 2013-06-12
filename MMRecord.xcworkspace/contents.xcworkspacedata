@@ -108,4 +108,7 @@
    <FileRef
       location = "group:Examples/MMRecordTwitter/MMRecordTwitter.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Examples/MMRecordPerformance/MMRecordPerformance.xcodeproj">
+   </FileRef>
 </Workspace>

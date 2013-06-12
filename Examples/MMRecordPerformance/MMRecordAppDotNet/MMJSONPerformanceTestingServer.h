@@ -10,4 +10,6 @@
 
 @interface MMJSONPerformanceTestingServer : MMJSONServer
 
++ (void)setResultSetSize:(NSUInteger)resultSetSize;
+
 @end

@@ -8,17 +8,13 @@
 
 #import "ADNPostsViewController.h"
 
-#import "ADNPageManager.h"
 #import "MMDataManager.h"
 #import "Post.h"
 #import "PostCell.h"
-#import "ADNPostManager.h"
 
 @interface ADNPostsViewController ()
 
-@property (nonatomic, strong) ADNPostManager *postManager;
 @property (nonatomic, copy) NSArray *posts;
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -26,10 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(getMoreRecentPosts) forControlEvents:UIControlEventValueChanged];
-    [self setRefreshControl:self.refreshControl];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"PostCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"PostCell"];
         
@@ -45,33 +37,12 @@
     [Post
      getStreamPostsWithContext:context
      domain:self
-     resultBlock:^(NSArray *posts, ADNPageManager *pageManager, BOOL *requestNextPage) {
+     resultBlock:^(NSArray *posts) {
          [self populatePostsTableWithPosts:posts];
-         
-         if (pageManager != nil) {
-             self.postManager = [[ADNPostManager alloc] initWithPosts:posts pageManager:pageManager];
-         }
      }
      failureBlock:^(NSError *error) {
          [self endRequestingPosts];
      }];
-}
-
-- (void)getPreviousPosts {
-    [self.postManager getPreviousPosts:^(NSArray *posts) {
-        [self populatePostsTableWithPosts:posts];
-    }];
-}
-
-- (void)getMoreRecentPosts {
-    if (self.postManager) {
-        [self.postManager getMoreRecentPosts:^(NSArray *posts) {
-            [self populatePostsTableWithPosts:posts];
-            [self endRequestingPosts];
-        }];
-    } else {
-        [self endRequestingPosts];
-    }
 }
 
 
@@ -98,19 +69,6 @@
     [cell populateWithPost:post];
     
     return cell;
-}
-
-
-#pragma mark - UIScrollView Delegate Methods
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSArray *indexPaths = [self.tableView indexPathsForVisibleRows];
-    NSIndexPath *indexPath = [indexPaths lastObject];
-    NSInteger numberOfRows = [self.tableView numberOfRowsInSection:0];
-    
-    if (indexPath.row >= (numberOfRows - 3)) {
-        [self getPreviousPosts];
-    }
 }
 
 

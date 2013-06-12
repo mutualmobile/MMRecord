@@ -28,13 +28,7 @@
 // Please see the ADNPageManager for methods to update the stream of posts.
 + (void)getStreamPostsWithContext:(NSManagedObjectContext *)context
                            domain:(id)domain
-                      resultBlock:(void (^)(NSArray *posts, ADNPageManager *pageManager, BOOL *requestNextPage))resultBlock
+                      resultBlock:(void (^)(NSArray *posts))resultBlock
                      failureBlock:(void (^)(NSError *error))failureBlock;
-
-+ (void)getPostsForUser:(User *)user
-                context:(NSManagedObjectContext *)context
-                 domain:(id)domain
-            resultBlock:(void (^)(NSArray *posts, ADNPageManager *pageManager, BOOL *requestNextPage))resultBlock
-           failureBlock:(void (^)(NSError *error))failureBlock;
 
 @end

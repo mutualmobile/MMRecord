@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "55F951DA165C73460060851E"
-            BuildableName = "MMRecordAppDotNet.app"
-            BlueprintName = "MMRecordAppDotNet"
-            ReferencedContainer = "container:MMRecordAppDotNet.xcodeproj">
+            BuildableName = "MMRecordPerformance.app"
+            BlueprintName = "MMRecordPerformance"
+            ReferencedContainer = "container:MMRecordPerformance.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

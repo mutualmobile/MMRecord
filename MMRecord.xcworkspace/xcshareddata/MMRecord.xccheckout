@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CCC61E50-9D89-4F12-8F43-BE80D205C24F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MMRecord</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BFE844F6-4A51-4AEB-98B6-7D8A9C5D232D</key>
+		<string>ssh://github.com/mutualmobile/MMRecord.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MMRecord.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BFE844F6-4A51-4AEB-98B6-7D8A9C5D232D</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/mutualmobile/MMRecord.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BFE844F6-4A51-4AEB-98B6-7D8A9C5D232D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BFE844F6-4A51-4AEB-98B6-7D8A9C5D232D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MMRecord-Git</string>
+		</dict>
+	</array>
+</dict>
+</plist>

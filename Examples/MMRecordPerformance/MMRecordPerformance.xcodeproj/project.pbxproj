@@ -15,19 +15,17 @@
 		55063A2C16FD626B009263E2 /* MMAFJSONServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55063A2A16FD6249009263E2 /* MMAFJSONServer.m */; };
 		5509C0D416FE5CFD00310806 /* Counts.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C0D316FE5CFD00310806 /* Counts.m */; };
 		5509C0D716FE634E00310806 /* ADNUserSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C0D616FE634E00310806 /* ADNUserSearchViewController.m */; };
-		5509C0DA16FE707600310806 /* ADNPostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C0D916FE707600310806 /* ADNPostManager.m */; };
 		5509C0DF16FE812B00310806 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 5509C0DB16FE812B00310806 /* person.png */; };
 		5509C0E016FE812B00310806 /* person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5509C0DC16FE812B00310806 /* person@2x.png */; };
 		5509C0E116FE812B00310806 /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5509C0DD16FE812B00310806 /* globe.png */; };
 		5509C0E216FE812B00310806 /* globe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5509C0DE16FE812B00310806 /* globe@2x.png */; };
 		5509C0E616FE84B900310806 /* MMJSONServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C0E516FE84B900310806 /* MMJSONServer.m */; };
+		55134E871769282F00ABFFF6 /* MMJSONPerformanceTestingServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55134E861769282F00ABFFF6 /* MMJSONPerformanceTestingServer.m */; };
 		55211F6A16F179E300729C51 /* MMRecordRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55211F6916F179E300729C51 /* MMRecordRepresentation.m */; };
 		5528733B16FD62E0006AFD47 /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F951EF165C73460060851E /* MMAppDelegate.m */; };
 		5569077B16FA750D0040D191 /* MMRecordMarshaler.h in Resources */ = {isa = PBXBuildFile; fileRef = 5569077916FA750D0040D191 /* MMRecordMarshaler.h */; };
 		5573C68C16FA874600B82CE5 /* MMRecordMarshaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5569077A16FA750D0040D191 /* MMRecordMarshaler.m */; };
 		55E6987E16A247A400F25C9A /* Source.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E6987D16A247A400F25C9A /* Source.m */; };
-		55E712BB16FE15C900EC1159 /* ADNServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E712BA16FE15C900EC1159 /* ADNServer.m */; };
-		55E712BE16FE15E300EC1159 /* ADNPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E712BD16FE15E300EC1159 /* ADNPageManager.m */; };
 		55E712C216FE4A4000EC1159 /* ADNUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E712C116FE4A4000EC1159 /* ADNUsersViewController.m */; };
 		55E712C416FE4A5500EC1159 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E712C316FE4A5500EC1159 /* UserCell.xib */; };
 		55E712C716FE4A6D00EC1159 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E712C616FE4A6D00EC1159 /* UserCell.m */; };
@@ -70,7 +68,6 @@
 		55F95249165C77380060851E /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F9523E165C77380060851E /* AFURLConnectionOperation.m */; };
 		55F9524A165C77380060851E /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F95240165C77380060851E /* AFXMLRequestOperation.m */; };
 		55F9524B165C77380060851E /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F95242165C77380060851E /* UIImageView+AFNetworking.m */; };
-		55F9524E165C774C0060851E /* ADNHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F9524D165C774C0060851E /* ADNHTTPClient.m */; };
 		55F95256165C78930060851E /* MMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F95255165C78920060851E /* MMDataManager.m */; };
 		55F95258165C78CC0060851E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F95257165C78CC0060851E /* CoreData.framework */; };
 		55F9525A165C7F520060851E /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F95259165C7F520060851E /* PostCell.xib */; };
@@ -93,24 +90,20 @@
 		5509C0D316FE5CFD00310806 /* Counts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Counts.m; sourceTree = "<group>"; };
 		5509C0D516FE634E00310806 /* ADNUserSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNUserSearchViewController.h; sourceTree = "<group>"; };
 		5509C0D616FE634E00310806 /* ADNUserSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNUserSearchViewController.m; sourceTree = "<group>"; };
-		5509C0D816FE707600310806 /* ADNPostManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNPostManager.h; sourceTree = "<group>"; };
-		5509C0D916FE707600310806 /* ADNPostManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNPostManager.m; sourceTree = "<group>"; };
 		5509C0DB16FE812B00310806 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
 		5509C0DC16FE812B00310806 /* person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "person@2x.png"; sourceTree = "<group>"; };
 		5509C0DD16FE812B00310806 /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe.png; sourceTree = "<group>"; };
 		5509C0DE16FE812B00310806 /* globe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "globe@2x.png"; sourceTree = "<group>"; };
 		5509C0E416FE84B900310806 /* MMJSONServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMJSONServer.h; sourceTree = "<group>"; };
 		5509C0E516FE84B900310806 /* MMJSONServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMJSONServer.m; sourceTree = "<group>"; };
+		55134E851769282F00ABFFF6 /* MMJSONPerformanceTestingServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMJSONPerformanceTestingServer.h; sourceTree = "<group>"; };
+		55134E861769282F00ABFFF6 /* MMJSONPerformanceTestingServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMJSONPerformanceTestingServer.m; sourceTree = "<group>"; };
 		55211F6816F179E300729C51 /* MMRecordRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordRepresentation.h; sourceTree = "<group>"; };
 		55211F6916F179E300729C51 /* MMRecordRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordRepresentation.m; sourceTree = "<group>"; };
 		5569077916FA750D0040D191 /* MMRecordMarshaler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMRecordMarshaler.h; sourceTree = "<group>"; };
 		5569077A16FA750D0040D191 /* MMRecordMarshaler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMRecordMarshaler.m; sourceTree = "<group>"; };
 		55E6987C16A247A400F25C9A /* Source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Source.h; sourceTree = "<group>"; };
 		55E6987D16A247A400F25C9A /* Source.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Source.m; sourceTree = "<group>"; };
-		55E712B916FE15C900EC1159 /* ADNServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNServer.h; sourceTree = "<group>"; };
-		55E712BA16FE15C900EC1159 /* ADNServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNServer.m; sourceTree = "<group>"; };
-		55E712BC16FE15E300EC1159 /* ADNPageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNPageManager.h; sourceTree = "<group>"; };
-		55E712BD16FE15E300EC1159 /* ADNPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNPageManager.m; sourceTree = "<group>"; };
 		55E712C016FE4A4000EC1159 /* ADNUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNUsersViewController.h; sourceTree = "<group>"; };
 		55E712C116FE4A4000EC1159 /* ADNUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNUsersViewController.m; sourceTree = "<group>"; };
 		55E712C316FE4A5500EC1159 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
@@ -180,8 +173,6 @@
 		55F95240165C77380060851E /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		55F95241165C77380060851E /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		55F95242165C77380060851E /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		55F9524C165C774C0060851E /* ADNHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNHTTPClient.h; sourceTree = "<group>"; };
-		55F9524D165C774C0060851E /* ADNHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNHTTPClient.m; sourceTree = "<group>"; };
 		55F95254165C78920060851E /* MMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDataManager.h; sourceTree = "<group>"; };
 		55F95255165C78920060851E /* MMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDataManager.m; sourceTree = "<group>"; };
 		55F95257165C78CC0060851E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -276,8 +267,6 @@
 			children = (
 				55F95254165C78920060851E /* MMDataManager.h */,
 				55F95255165C78920060851E /* MMDataManager.m */,
-				5509C0D816FE707600310806 /* ADNPostManager.h */,
-				5509C0D916FE707600310806 /* ADNPostManager.m */,
 				55E712CA16FE4B4D00EC1159 /* ADNUserManager.h */,
 				55E712CB16FE4B4D00EC1159 /* ADNUserManager.m */,
 			);
@@ -406,12 +395,8 @@
 		55F9522B165C76CC0060851E /* Communication */ = {
 			isa = PBXGroup;
 			children = (
-				55F9524C165C774C0060851E /* ADNHTTPClient.h */,
-				55F9524D165C774C0060851E /* ADNHTTPClient.m */,
-				55E712B916FE15C900EC1159 /* ADNServer.h */,
-				55E712BA16FE15C900EC1159 /* ADNServer.m */,
-				55E712BC16FE15E300EC1159 /* ADNPageManager.h */,
-				55E712BD16FE15E300EC1159 /* ADNPageManager.m */,
+				55134E851769282F00ABFFF6 /* MMJSONPerformanceTestingServer.h */,
+				55134E861769282F00ABFFF6 /* MMJSONPerformanceTestingServer.m */,
 			);
 			name = Communication;
 			sourceTree = "<group>";
@@ -562,13 +547,13 @@
 				55F95243165C77380060851E /* AFHTTPClient.m in Sources */,
 				55F95244165C77380060851E /* AFHTTPRequestOperation.m in Sources */,
 				55F95245165C77380060851E /* AFImageRequestOperation.m in Sources */,
+				55134E871769282F00ABFFF6 /* MMJSONPerformanceTestingServer.m in Sources */,
 				55F95246165C77380060851E /* AFJSONRequestOperation.m in Sources */,
 				55F95247165C77380060851E /* AFNetworkActivityIndicatorManager.m in Sources */,
 				55F95248165C77380060851E /* AFPropertyListRequestOperation.m in Sources */,
 				55F95249165C77380060851E /* AFURLConnectionOperation.m in Sources */,
 				55F9524A165C77380060851E /* AFXMLRequestOperation.m in Sources */,
 				55F9524B165C77380060851E /* UIImageView+AFNetworking.m in Sources */,
-				55F9524E165C774C0060851E /* ADNHTTPClient.m in Sources */,
 				55F95256165C78930060851E /* MMDataManager.m in Sources */,
 				55F95260165C82B90060851E /* PostCell.m in Sources */,
 				267469E516A1C128006A6A81 /* MMRecordResponse.m in Sources */,
@@ -579,15 +564,12 @@
 				5573C68C16FA874600B82CE5 /* MMRecordMarshaler.m in Sources */,
 				55063A2C16FD626B009263E2 /* MMAFJSONServer.m in Sources */,
 				5528733B16FD62E0006AFD47 /* MMAppDelegate.m in Sources */,
-				55E712BB16FE15C900EC1159 /* ADNServer.m in Sources */,
-				55E712BE16FE15E300EC1159 /* ADNPageManager.m in Sources */,
 				55E712C216FE4A4000EC1159 /* ADNUsersViewController.m in Sources */,
 				55E712C716FE4A6D00EC1159 /* UserCell.m in Sources */,
 				55E712CC16FE4B4D00EC1159 /* ADNUserManager.m in Sources */,
 				55E712CF16FE4EF800EC1159 /* ADNUserPostsViewController.m in Sources */,
 				5509C0D416FE5CFD00310806 /* Counts.m in Sources */,
 				5509C0D716FE634E00310806 /* ADNUserSearchViewController.m in Sources */,
-				5509C0DA16FE707600310806 /* ADNPostManager.m in Sources */,
 				5509C0E616FE84B900310806 /* MMJSONServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

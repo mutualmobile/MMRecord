@@ -8,8 +8,6 @@
 
 #import "ADNUserPostsViewController.h"
 
-#import "ADNPageManager.h"
-#import "ADNPostManager.h"
 #import "ADNUserManager.h"
 #import "AFNetworking.h"
 #import "Counts.h"
@@ -23,7 +21,6 @@
 @property (nonatomic, strong) IBOutlet UIImageView *coverImageView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) ADNPostManager *postManager;
 @property (nonatomic, strong) ADNUserManager *userManager;
 @property (nonatomic, strong) NSFetchedResultsController *resultsController;
 
@@ -43,25 +40,6 @@
     self.title = self.user.name;
 
     [self.tableView registerNib:[UINib nibWithNibName:@"PostCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"PostCell"];
-    
-    NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
-    
-    [Post
-     getPostsForUser:self.user
-     context:context
-     domain:self
-     resultBlock:^(NSArray *posts, ADNPageManager *pageManager, BOOL *requestNextPage) {
-         if ([self.user.counts.posts intValue] <= 100) {
-             *requestNextPage = YES;
-         } else {
-             self.postManager = [[ADNPostManager alloc] initWithPosts:posts pageManager:pageManager];
-         }
-         
-         if (![pageManager canRequestNextPage]) {
-             self.postManager = [[ADNPostManager alloc] initWithPosts:posts pageManager:pageManager];
-         }
-     }
-     failureBlock:nil];
 }
 
 
@@ -71,9 +49,6 @@
     return [self.resultsController objectAtIndexPath:indexPath];
 }
 
-- (void)getPreviousPosts {
-    [self.postManager getPreviousPosts:nil];
-}
 
 
 #pragma mark - UITableViewDelegate and DataSource Methods
@@ -99,19 +74,6 @@
     [cell populateWithPost:post];
     
     return cell;
-}
-
-
-#pragma mark - UIScrollView Delegate Methods
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSArray *indexPaths = [self.tableView indexPathsForVisibleRows];
-    NSIndexPath *indexPath = [indexPaths lastObject];
-    NSInteger numberOfRows = [self.tableView numberOfRowsInSection:0];
-    
-    if (indexPath.row >= (numberOfRows - 3)) {
-        [self getPreviousPosts];
-    }
 }
 
 
