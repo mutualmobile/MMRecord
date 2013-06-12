@@ -38,12 +38,15 @@
 
 @property (nonatomic, strong) NSEntityDescription *entity;
 @property (nonatomic, strong) NSMutableArray *protoRecords;
+@property (nonatomic, strong) NSMutableDictionary *prototypeDictionary;
 @property (nonatomic, strong) MMRecordRepresentation *representation;
 @property (nonatomic) BOOL hasRelationshipPrimaryKey;
 
 - (instancetype)initWithEntity:(NSEntityDescription *)entity;
 
 - (void)addProtoRecord:(MMRecordProtoRecord *)protoRecord;
+
+- (void)addProtoRecordToDictionary:(MMRecordProtoRecord *)protoRecord;
 
 - (MMRecordProtoRecord *)protoRecordForPrimaryKeyValue:(id)primaryKeyValue;
 
@@ -224,6 +227,8 @@
         [self completeRelationshipProtoRecordMappingToProtoRecord:proto
                                            existingResponseGroups:responseGroups
                                                    representation:representation];
+        
+        [recordResponseGroup addProtoRecordToDictionary:proto];
     }
     
     return proto;
@@ -318,25 +323,28 @@
         
         _representation = [[MMRecordRepresentationClass alloc] initWithEntity:entity];
         _hasRelationshipPrimaryKey = [_representation hasRelationshipPrimaryKey];
+        _prototypeDictionary = [@{ } mutableCopy];
     }
     return self;
 }
 
 - (void)addProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    [self.protoRecords addObject:protoRecord];
+    if (![self.prototypeDictionary objectForKey:protoRecord.primaryKeyValue]) {
+        [self.protoRecords addObject:protoRecord];
+    }
+}
+
+- (void)addProtoRecordToDictionary:(MMRecordProtoRecord *)protoRecord {
+    if (protoRecord.primaryKeyValue) {
+        [self.prototypeDictionary setObject:protoRecord forKey:protoRecord.primaryKeyValue];
+    }
 }
 
 
 #pragma mark - Accessors
 
 - (MMRecordProtoRecord *)protoRecordForPrimaryKeyValue:(id)primaryKeyValue {
-    for (MMRecordProtoRecord *proto in self.protoRecords) {
-        if ([proto.primaryKeyValue isEqual:primaryKeyValue]) {
-            return proto;
-        }
-    }
-    
-    return nil;
+    return [self.prototypeDictionary objectForKey:primaryKeyValue];
 }
 
 
@@ -396,23 +404,15 @@
     NSArray *existingRecords = [self fetchRecordsWithPrimaryKeys:allPrimaryKeys forEntity:self.entity context:context];
     NSArray *sortedProtoRecords = [self sortedProtoRecordsByPrimaryKeyValueInAscendingOrder:self.protoRecords];
     
-    for (MMRecord *record in existingRecords) {
-        id recordPrimaryKeyValue = [record primaryKeyValue];
+    NSMutableDictionary *existingRecordDictionary = [[NSMutableDictionary alloc] init];
+    [existingRecords enumerateObjectsUsingBlock:^(MMRecord *record, NSUInteger idx, BOOL *stop) {
+        [existingRecordDictionary setObject:record forKey:record.primaryKeyValue];
+    }];
+    
+    for (MMRecordProtoRecord *protoRecord in sortedProtoRecords) {
+        id protoRecordPrimaryKeyValue = protoRecord.primaryKeyValue;
         
-        for (MMRecordProtoRecord *protoRecord in sortedProtoRecords) {
-            id protoRecordPrimaryKeyValue = protoRecord.primaryKeyValue;
-            NSComparisonResult comparisonResult = [self comparePrimaryKeyValues:recordPrimaryKeyValue
-                                                     protoRecordPrimaryKeyValue:protoRecordPrimaryKeyValue];
-            
-            if (comparisonResult == NSOrderedSame) {
-                protoRecord.record = record;
-                break;
-            } else if (comparisonResult == NSOrderedAscending) {
-                break;
-            } else if (comparisonResult == NSOrderedDescending) {
-                // Continue
-            }
-        }
+        protoRecord.record = [existingRecordDictionary objectForKey:protoRecordPrimaryKeyValue];
     }
 }
 
