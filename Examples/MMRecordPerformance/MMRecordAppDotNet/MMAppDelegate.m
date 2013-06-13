@@ -17,6 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MMJSONPerformanceTestingServer setResultSetSize:1000];
     [ADNRecord registerServerClass:[MMJSONPerformanceTestingServer class]];
+    //[MMRecord setLoggingLevel:MMRecordLoggingLevelAll];
     
     return YES;
 }

@@ -36,7 +36,7 @@ NSUInteger _resultSetSize = 1;
          
          for (NSUInteger item = 0; item < _resultSetSize; ++item) {
              NSDictionary *dict = [firstObject mutableCopy];
-             [dict setValue:@(item) forKey:@"id"];
+             [dict setValue:[@(item) stringValue] forKey:@"id"];
              [newDataArray addObject:dict];
          }
          
