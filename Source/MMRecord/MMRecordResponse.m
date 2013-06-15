@@ -157,7 +157,7 @@
     MMRecordResponseGroup *responseGroup = [self responseGroupForEntity:protoRecord.entity
                                              fromExistingResponseGroups:responseGroups];
     
-    NSLog(@"%@", protoRecord);
+    //NSLog(@"%@", protoRecord);
     [responseGroup addProtoRecord:protoRecord];
     
     for (MMRecordProtoRecord *relationshipProtoRecord in protoRecord.relationshipProtos) {

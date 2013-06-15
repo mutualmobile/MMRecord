@@ -26,8 +26,8 @@
 #import "MMRecordRepresentation.h"
 
 @interface MMRecordProtoRecord ()
-@property (nonatomic, strong, readwrite) NSMutableArray *relationshipProtos;
-@property (nonatomic, strong, readwrite) NSMutableArray *relationshipDescriptions;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *relationshipProtosDictionary;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *relationshipDescriptionsDictionary;
 @property (nonatomic, strong) MMRecordRepresentation *representation;
 @property (nonatomic, strong) NSEntityDescription *entity;
 @end
@@ -42,25 +42,35 @@
     protoRecord.dictionary = dictionary;
     protoRecord.entity = entity;
     protoRecord.primaryKeyValue = [representation primaryKeyValueFromDictionary:dictionary];
-    protoRecord.relationshipProtos = [NSMutableArray array];
-    protoRecord.relationshipDescriptions = [NSMutableArray array];
+    protoRecord.relationshipProtosDictionary = [NSMutableDictionary dictionary];
+    protoRecord.relationshipDescriptionsDictionary = [NSMutableDictionary dictionary];
     protoRecord.hasRelationshipPrimarykey = [representation hasRelationshipPrimaryKey];
     protoRecord.representation = representation;
     
     return protoRecord;
 }
 
+- (NSArray *)relationshipProtos {
+    return [self.relationshipProtosDictionary allValues];
+}
 
-#pragma mark - Population
-
+- (NSArray *)relationshipDescriptions {
+    return [self.relationshipDescriptionsDictionary allValues];
+}
 
 
 #pragma mark - Relationships
 
 - (void)addRelationshipProto:(MMRecordProtoRecord *)relationshipProto
   forRelationshipDescription:(NSRelationshipDescription *)relationshipDescription {
-    [(NSMutableArray *)self.relationshipProtos addObject:relationshipProto];
-    [(NSMutableArray *)self.relationshipDescriptions addObject:relationshipDescription];
+    NSString *relationshipName = [relationshipDescription name];
+    
+    if (relationshipName != nil) {
+        if ([self.relationshipDescriptionsDictionary objectForKey:[relationshipDescription name]]) {
+            [(NSMutableArray *)self.relationshipProtosDictionary setValue:relationshipProto forKey:relationshipName];
+            [(NSMutableArray *)self.relationshipDescriptionsDictionary setValue:relationshipProto forKey:relationshipName];
+        }
+    }
 }
 
 
