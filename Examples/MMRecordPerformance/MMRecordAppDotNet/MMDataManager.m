@@ -79,7 +79,7 @@ static MMDataManager* MM_sharedDataManager;
 	if (MM_persistentStoreCoordinator != nil) {
 		return MM_persistentStoreCoordinator;
 	}
-	
+    
     BOOL memory = NO;
     
     if (memory) {
