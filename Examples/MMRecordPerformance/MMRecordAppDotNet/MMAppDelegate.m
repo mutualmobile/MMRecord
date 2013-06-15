@@ -15,7 +15,7 @@
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [MMJSONPerformanceTestingServer setResultSetSize:1000];
+    [MMJSONPerformanceTestingServer setResultSetSize:10000];
     [ADNRecord registerServerClass:[MMJSONPerformanceTestingServer class]];
     //[MMRecord setLoggingLevel:MMRecordLoggingLevelAll];
     

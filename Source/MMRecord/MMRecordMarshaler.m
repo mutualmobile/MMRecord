@@ -87,6 +87,8 @@
     if (value != nil) {
         [record setValue:value forKey:attribute.name];
     }
+    
+    //NSLog(@"%@", record.primaryKeyValue);
 }
 
 + (NSDate *)dateValueForAttribute:(NSAttributeDescription *)attribute
