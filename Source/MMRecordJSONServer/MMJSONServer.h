@@ -105,6 +105,12 @@
  */
 + (NSTimeInterval)simulatedServerDelayTime;
 
+/**
+ This method allows you to load a specified JSON file with a given resource name.
+ @param resourceName The name of the JSON file you want to load.
+ @param responseBlock The response block to be executed with the contents of the file.
+ @param failureBlock The failure block to be called in the event of an error.
+ */
 + (void)loadJSONResource:(NSString *)resourceName
            responseBlock:(void(^)(NSDictionary *responseData))responseBlock
             failureBlock:(void(^)(NSError *error))failureBlock;
