@@ -330,7 +330,6 @@
 #pragma mark - Accessors
 
 - (MMRecordProtoRecord *)protoRecordForPrimaryKeyValue:(id)primaryKeyValue {
-    NSLog(@"%d", [[self protoRecords] count]);
     for (MMRecordProtoRecord *proto in self.protoRecords) {
         if ([proto.primaryKeyValue isEqual:primaryKeyValue]) {
             return proto;
