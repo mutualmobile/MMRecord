@@ -48,7 +48,8 @@
 @property (nonatomic, strong, readonly) MMRecordRepresentation *representation;
 
 // Relationships
- @property (nonatomic, strong, readonly) NSArray *relationshipDescriptions;
+@property (nonatomic, strong, readonly) NSArray *relationshipProtos;
+@property (nonatomic, strong, readonly) NSArray *relationshipDescriptions;
 
 // Uniquing
 @property (nonatomic, strong) id primaryKeyValue;
