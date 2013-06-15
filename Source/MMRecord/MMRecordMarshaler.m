@@ -86,7 +86,7 @@
     
     if (value != nil) {
         [record setValue:value forKey:attribute.name];
-    }    
+    }
 }
 
 + (NSDate *)dateValueForAttribute:(NSAttributeDescription *)attribute
