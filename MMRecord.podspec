@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name     = 'MMRecord'
-  s.version  = '1.0.2'
+  s.version  = '1.0.3'
   s.license  = 'MIT'
   s.summary  = 'A simple block based web service integration library.'
   s.homepage = 'https://github.com/MutualMobile/MMRecord'
   s.authors  = { 'Conrad Stoll' => 'conrad.stoll@mutualmobile.com' }
-  s.source   = { :git => 'https://github.com/mutualmobile/MMRecord.git', :tag => '1.0.2' }
+  s.source   = { :git => 'https://github.com/mutualmobile/MMRecord.git', :tag => '1.0.3' }
   s.requires_arc = true
   
   s.preferred_dependency = 'Core'

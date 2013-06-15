@@ -329,7 +329,7 @@
 
 #pragma mark - Accessors
 
-- (MMRecordProtoRecord *)protoRecordForPrimaryKeyValue:(id)primaryKeyValue {    
+- (MMRecordProtoRecord *)protoRecordForPrimaryKeyValue:(id)primaryKeyValue {
     for (MMRecordProtoRecord *proto in self.protoRecords) {
         if ([proto.primaryKeyValue isEqual:primaryKeyValue]) {
             return proto;

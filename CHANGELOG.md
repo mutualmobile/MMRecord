@@ -1,5 +1,11 @@
 #MMRecord Changelog
 
+##[1.0.3](https://github.com/mutualmobile/MMRecord/issues?milestone=3&state=closed) (Thursday, June 6th, 2013)
+
+###Fixed
+* **FIXED** an issue([#19](https://github.com/mutualmobile/MMRecord/pull/19)) where request options were not thread safe in batch requests. (Conrad Stoll)
+* **FIXED** an issue where a logging function was not respecting the set logging level. (Conrad Stoll)
+
 ##[1.0.2](https://github.com/mutualmobile/MMRecord/issues?milestone=2&state=closed) (Wednesday, May 22nd, 2013)
 
 ###Fixed

@@ -105,4 +105,8 @@
  */
 + (NSTimeInterval)simulatedServerDelayTime;
 
++ (void)loadJSONResource:(NSString *)resourceName
+           responseBlock:(void(^)(NSDictionary *responseData))responseBlock
+            failureBlock:(void(^)(NSError *error))failureBlock;
+
 @end
