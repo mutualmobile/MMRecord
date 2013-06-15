@@ -39,6 +39,15 @@
      domain:self
      resultBlock:^(NSArray *posts) {
          [self populatePostsTableWithPosts:posts];
+         [Post
+          getStreamPostsWithContext:context
+          domain:self
+          resultBlock:^(NSArray *posts) {
+              [self populatePostsTableWithPosts:posts];
+          }
+          failureBlock:^(NSError *error) {
+              [self endRequestingPosts];
+          }];
      }
      failureBlock:^(NSError *error) {
          [self endRequestingPosts];

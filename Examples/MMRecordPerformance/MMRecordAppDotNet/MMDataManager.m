@@ -66,22 +66,47 @@ static MMDataManager* MM_sharedDataManager;
 	
 	return MM_managedObjectContext;
 }
+
+- (NSURL*)databaseURL {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *homeDirectory = [paths objectAtIndex:0];
+    
+    NSString* databaseFilename = [homeDirectory stringByAppendingPathComponent:@"Test"];
+    return [NSURL fileURLWithPath:databaseFilename];
+}
+
 - (NSPersistentStoreCoordinator*)persistentStoreCoordinator {
 	if (MM_persistentStoreCoordinator != nil) {
 		return MM_persistentStoreCoordinator;
 	}
 	
-	MM_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+    BOOL memory = NO;
     
-	NSError* error = nil;
-	if (![MM_persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType
-                                                     configuration:nil
-                                                               URL:nil
-                                                           options:nil error:&error])
-    {
-		[self handleFatalCoreDataError:error];
-		return nil;
-	}
+    if (memory) {
+        MM_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+        
+        NSError* error = nil;
+        if (![MM_persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType
+                                                         configuration:nil
+                                                                   URL:nil
+                                                               options:nil error:&error])
+        {
+            [self handleFatalCoreDataError:error];
+            return nil;
+        }
+    } else {
+        MM_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+        
+        NSError* error = nil;
+        if (![MM_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                         configuration:nil
+                                                                   URL:[self databaseURL]
+                                                               options:nil error:&error])
+        {
+            [self handleFatalCoreDataError:error];
+            return nil;
+        }
+    }
     
 	return MM_persistentStoreCoordinator;
 }
