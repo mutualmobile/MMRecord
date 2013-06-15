@@ -68,11 +68,11 @@ static MMDataManager* MM_sharedDataManager;
 }
 
 - (NSURL*)databaseURL {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *homeDirectory = [paths objectAtIndex:0];
-    
-    NSString* databaseFilename = [homeDirectory stringByAppendingPathComponent:@"Test"];
-    return [NSURL fileURLWithPath:databaseFilename];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *homeDirectory = [paths objectAtIndex:0];
+	
+	NSString* databaseFilename = [homeDirectory stringByAppendingPathComponent:@"Test"];
+	return [NSURL fileURLWithPath:databaseFilename];
 }
 
 - (NSPersistentStoreCoordinator*)persistentStoreCoordinator {
