@@ -66,10 +66,8 @@
     NSString *relationshipName = [relationshipDescription name];
     
     if (relationshipName != nil) {
-        if ([self.relationshipDescriptionsDictionary objectForKey:[relationshipDescription name]]) {
-            [self.relationshipProtosDictionary setValue:relationshipProto forKey:relationshipName];
-            [self.relationshipDescriptionsDictionary setValue:relationshipProto forKey:relationshipName];
-        }
+        [self.relationshipProtosDictionary setValue:relationshipProto forKey:relationshipName];
+        [self.relationshipDescriptionsDictionary setValue:relationshipDescription forKey:relationshipName];
     }
 }
 
