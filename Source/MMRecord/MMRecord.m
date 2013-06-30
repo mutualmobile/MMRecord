@@ -215,6 +215,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     options.keyPathForResponseObject = [self keyPathForResponseObject];
     options.keyPathForMetaData = [self keyPathForMetaData];
     options.pageManagerClass = [[self server] pageManagerClass];
+    options.deleteOrphanedRecordBlock = nil;
     return options;
 }
 
@@ -586,6 +587,12 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                                               state:state
                                             context:state.backgroundContext];
     
+    [self conditionallyDeleteRecordsOphanedByResponse:responseObject
+                                     populatedRecords:state.records
+                                              options:options
+                                                state:state
+                                              context:state.backgroundContext];
+    
     [self performCachingForRecords:state.records
                 fromResponseObject:state.responseObject
                       requestState:state
@@ -808,7 +815,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     return objectIDs;
 }
 
-+ (NSArray *)mainContextRecordsFromObjectIDs:(NSArray *)objectIDs mainContext:(NSManagedObjectContext *)mainContext {
++ (NSArray *)mainContextRecordsFromObjectIDs:(NSArray *)objectIDs
+                                 mainContext:(NSManagedObjectContext *)mainContext {
     NSMutableArray *mainContextRecords = [NSMutableArray array];
     
     for (NSManagedObjectID *objectID in objectIDs) {
@@ -816,6 +824,66 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     }
     
     return mainContextRecords;
+}
+
+
+#pragma mark - Orphan Deletion Methods
+
++ (void)conditionallyDeleteRecordsOphanedByResponse:(id)responseObject
+                                   populatedRecords:(NSArray *)populatedRecords
+                                            options:(MMRecordOptions *)options
+                                              state:(MMRecordRequestState *)state
+                                            context:(NSManagedObjectContext *)context {
+    if (options.deleteOrphanedRecordBlock != nil) {
+        NSArray *orphanedRecords = [self orphanedRecordsFromContext:context populatedRecords:populatedRecords];
+        
+        BOOL stop = NO;
+        
+        for (MMRecord *orphanedRecord in orphanedRecords) {
+            BOOL deleteOrphan = options.deleteOrphanedRecordBlock(orphanedRecord, populatedRecords, responseObject, &stop);
+            
+            if (deleteOrphan) {
+                [context deleteObject:orphanedRecord];
+            }
+            
+            if (stop) {
+                break;
+            }
+        }
+    }
+}
+
++ (NSArray *)orphanedRecordsFromContext:(NSManagedObjectContext *)context
+                       populatedRecords:(NSArray *)populatedRecords  {
+    NSMutableArray *populatedObjectIDs = [NSMutableArray array];
+    NSMutableSet *orphanedObjectIDs = [NSMutableSet set];
+    
+    for (MMRecord *record in populatedRecords) {
+        [populatedObjectIDs addObject:[record objectID]];
+    }
+    
+    NSString *entityName = [[context MMRecord_entityForClass:self] name];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    fetchRequest.fetchBatchSize = 20;
+    
+    NSArray *allRecords = [context executeFetchRequest:fetchRequest error:NULL];
+    
+    for (MMRecord *record in allRecords) {
+        [orphanedObjectIDs addObject:[record objectID]];
+    }
+    
+    for (NSManagedObjectID *objectID in populatedObjectIDs) {
+        [orphanedObjectIDs removeObject:objectID];
+    }
+    
+    NSMutableArray *orphanedRecords = [NSMutableArray array];
+    
+    for (NSManagedObjectID *orphanedObjectID in orphanedObjectIDs) {
+        [orphanedRecords addObject:[context objectWithID:orphanedObjectID]];
+    }
+    
+    return orphanedRecords;
 }
 
 

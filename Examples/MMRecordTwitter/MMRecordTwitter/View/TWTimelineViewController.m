@@ -45,6 +45,16 @@
 - (void)getLatestTweets {
     NSManagedObjectContext *context = [self managedObjectContext];
     
+    MMRecordOptions *options = [Tweet defaultOptions];
+    options.deleteOrphanedRecordBlock = ^(MMRecord *orphan,
+                                          NSArray *populatedRecords,
+                                          id responseObject,
+                                          BOOL *stop) {
+        NSLog(@"%@%@%@", orphan, populatedRecords, responseObject);
+        return NO;
+    };
+    [Tweet setOptions:options];
+    
     [Tweet
      timelineTweetsWithContext:context
      domain:self
