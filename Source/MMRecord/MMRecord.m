@@ -214,6 +214,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     options.isRecordLevelCachingEnabled = NO;
     options.keyPathForResponseObject = [self keyPathForResponseObject];
     options.keyPathForMetaData = [self keyPathForMetaData];
+    options.pageManagerClass = [[self server] pageManagerClass];
     return options;
 }
 
@@ -851,6 +852,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                           domain:(id)domain
                      resultBlock:(void (^)(NSArray *records, id pageManager, BOOL *requestNextPage))resultBlock
                     failureBlock:(void (^)(NSError *error))failureBlock {
+    MMRecordOptions *options = [self currentOptions];
     
     [self
      startRequestWithURN:URN
@@ -858,10 +860,10 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
      context:context
      domain:domain
      customResponseBlock:^id(id JSON) {
-         MMServerPageManager *pageManager = [[[[self server] pageManagerClass] alloc] initWithResponseObject:JSON
-                                                                                                  requestURN:URN
-                                                                                                 requestData:data
-                                                                                                 recordClass:self];
+         MMServerPageManager *pageManager = [[[options pageManagerClass] alloc] initWithResponseObject:JSON
+                                                                                            requestURN:URN
+                                                                                           requestData:data
+                                                                                           recordClass:self];
          
          return pageManager;
      }
