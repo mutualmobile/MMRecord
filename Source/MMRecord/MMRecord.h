@@ -613,6 +613,15 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  */
 @property (nonatomic, copy) NSString *keyPathForMetaData;
 
+/**
+ This option allows you to specify a page manager that will be used for the next request if it is
+ paginated. This gives you the flexibility to use a different page manager class than is specified
+ on your registered server class for a given entity. This may be useful if your API has different
+ pagination behavior in certain situations.
+ 
+ @discussion Default value is the page manager for the registered server class for the given entity.
+ */
+@property (nonatomic, strong) Class pageManagerClass;
 
 @end
 
