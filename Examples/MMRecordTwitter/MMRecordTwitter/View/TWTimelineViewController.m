@@ -50,8 +50,7 @@
                                           NSArray *populatedRecords,
                                           id responseObject,
                                           BOOL *stop) {
-        NSLog(@"%@%@%@", orphan, populatedRecords, responseObject);
-        return NO;
+        return YES;
     };
     [Tweet setOptions:options];
     
