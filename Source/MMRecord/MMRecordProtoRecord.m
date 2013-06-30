@@ -67,8 +67,8 @@
     
     if (relationshipName != nil) {
         if ([self.relationshipDescriptionsDictionary objectForKey:[relationshipDescription name]]) {
-            [(NSMutableArray *)self.relationshipProtosDictionary setValue:relationshipProto forKey:relationshipName];
-            [(NSMutableArray *)self.relationshipDescriptionsDictionary setValue:relationshipProto forKey:relationshipName];
+            [self.relationshipProtosDictionary setValue:relationshipProto forKey:relationshipName];
+            [self.relationshipDescriptionsDictionary setValue:relationshipProto forKey:relationshipName];
         }
     }
 }

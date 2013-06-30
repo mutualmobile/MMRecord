@@ -326,7 +326,7 @@
         
         _representation = [[MMRecordRepresentationClass alloc] initWithEntity:entity];
         _hasRelationshipPrimaryKey = [_representation hasRelationshipPrimaryKey];
-        _prototypeDictionary = [@{ } mutableCopy];
+        _prototypeDictionary = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -408,9 +408,10 @@
     NSArray *sortedProtoRecords = [self sortedProtoRecordsByPrimaryKeyValueInAscendingOrder:[self.protoRecords allObjects]];
     
     NSMutableDictionary *existingRecordDictionary = [[NSMutableDictionary alloc] init];
-    [existingRecords enumerateObjectsUsingBlock:^(MMRecord *record, NSUInteger idx, BOOL *stop) {
+
+    for (MMRecord *record in existingRecords) {
         [existingRecordDictionary setObject:record forKey:record.primaryKeyValue];
-    }];
+    }
     
     for (MMRecordProtoRecord *protoRecord in sortedProtoRecords) {
         id protoRecordPrimaryKeyValue = protoRecord.primaryKeyValue;
