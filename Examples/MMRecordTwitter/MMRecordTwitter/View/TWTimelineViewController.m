@@ -50,6 +50,12 @@
                                           NSArray *populatedRecords,
                                           id responseObject,
                                           BOOL *stop) {
+        Tweet *tweet = (Tweet *)orphan;
+        
+        if ([tweet isFavorite]) {
+            return NO;
+        }
+        
         return YES;
     };
     [Tweet setOptions:options];
@@ -63,7 +69,7 @@
          [self.refreshControl endRefreshing];
      }
      failureBlock:^(NSError *error) {
-         
+         [self.refreshControl endRefreshing];
      }];
 }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Tweet" representedClassName="Tweet" syncable="YES">
+        <attribute name="favorited" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tweets" inverseEntity="User" syncable="YES"/>
@@ -22,7 +23,7 @@
         </userInfo>
     </entity>
     <elements>
-        <element name="Tweet" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Tweet" positionX="160" positionY="192" width="128" height="105"/>
         <element name="User" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

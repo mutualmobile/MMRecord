@@ -16,4 +16,8 @@
 @dynamic text;
 @dynamic user;
 
+- (BOOL)isFavorite {
+    return [[self primitiveValueForKey:@"favorited"] boolValue];
+}
+
 @end
