@@ -158,14 +158,6 @@
                                              fromExistingResponseGroups:responseGroups];
     
     [responseGroup addProtoRecord:protoRecord];
-    
-    for (MMRecordProtoRecord *relationshipProtoRecord in protoRecord.relationshipProtos) {
-        MMRecordResponseGroup *relationshipProtoRecordResponseGroup = [self responseGroupForEntity:relationshipProtoRecord.entity
-                                                                        fromExistingResponseGroups:responseGroups];
-        
-        [relationshipProtoRecordResponseGroup addProtoRecord:relationshipProtoRecord];
-        [self uniquelyAddNewProtoRecord:relationshipProtoRecord toExistingResponseGroups:responseGroups];
-    }
 }
 
 

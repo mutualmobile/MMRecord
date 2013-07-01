@@ -26,7 +26,10 @@
 #import "MMRecordRepresentation.h"
 
 @interface MMRecordProtoRecord ()
+ // Dictionary where key = relationship name and value = an NSMutableOrderedSet of proto records
 @property (nonatomic, strong, readwrite) NSMutableDictionary *relationshipProtosDictionary;
+
+ // Dictionary where key = relationship name and value = relationship description
 @property (nonatomic, strong, readwrite) NSMutableDictionary *relationshipDescriptionsDictionary;
 @property (nonatomic, strong) MMRecordRepresentation *representation;
 @property (nonatomic, strong) NSEntityDescription *entity;
@@ -51,11 +54,30 @@
 }
 
 - (NSArray *)relationshipProtos {
-    return [self.relationshipProtosDictionary allValues];
+    NSMutableArray *allRelationshipProtos = [NSMutableArray array];
+    
+    for (NSOrderedSet *protoSet in [self.relationshipProtosDictionary allValues]) {
+        [allRelationshipProtos addObjectsFromArray:[protoSet array]];
+    }
+    
+    return allRelationshipProtos;
 }
 
 - (NSArray *)relationshipDescriptions {
     return [self.relationshipDescriptionsDictionary allValues];
+}
+
+- (NSArray *)relationshipProtoRecordsForRelationshipDescription:(NSRelationshipDescription *)relationshipDescription {
+    NSString *relationshipName = [relationshipDescription name];
+
+    NSArray *relationshipProtoRecords = nil;
+    
+    if (relationshipName != nil) {
+        NSOrderedSet *protoSet = [self.relationshipProtosDictionary valueForKey:relationshipName];
+        relationshipProtoRecords = [protoSet array];
+    }
+    
+    return relationshipProtoRecords;
 }
 
 
@@ -66,8 +88,18 @@
     NSString *relationshipName = [relationshipDescription name];
     
     if (relationshipName != nil) {
-        [self.relationshipProtosDictionary setValue:relationshipProto forKey:relationshipName];
         [self.relationshipDescriptionsDictionary setValue:relationshipDescription forKey:relationshipName];
+
+        
+        NSMutableOrderedSet *protoSet = [self.relationshipProtosDictionary objectForKey:relationshipName];
+        
+        if (protoSet == nil) {
+            protoSet = [NSMutableOrderedSet orderedSet];
+        }
+        
+        [protoSet addObject:relationshipProto];
+        
+        [self.relationshipProtosDictionary setValue:protoSet forKey:relationshipName];
     }
 }
 

@@ -48,6 +48,7 @@
 @property (nonatomic, strong, readonly) MMRecordRepresentation *representation;
 
 // Relationships
+// Relationship protos and descriptions are returned in no particular order.
 @property (nonatomic, strong, readonly) NSArray *relationshipProtos;
 @property (nonatomic, strong, readonly) NSArray *relationshipDescriptions;
 
@@ -64,5 +65,8 @@
 // Associate another proto as having a relationship to this one
 - (void)addRelationshipProto:(MMRecordProtoRecord *)relationshipProto
   forRelationshipDescription:(NSRelationshipDescription *)relationshipDescription;
+
+// Returns the proto records for a given relationship description
+- (NSArray *)relationshipProtoRecordsForRelationshipDescription:(NSRelationshipDescription *)relationshipDescription;
 
 @end
