@@ -138,13 +138,15 @@
 }
 
 + (void)establishRelationshipsOnProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    for (int i = 0; i < [protoRecord.relationshipProtos count]; ++i) {
-        MMRecord *fromRecord = protoRecord.record;
-        MMRecordProtoRecord *relationshipProtoRecord = [protoRecord.relationshipProtos objectAtIndex:i];
-        MMRecord *toRecord = relationshipProtoRecord.record;
-        NSRelationshipDescription *relationshipDescription = [protoRecord.relationshipDescriptions objectAtIndex:i];
+    for (NSRelationshipDescription *relationshipDescription in protoRecord.relationshipDescriptions) {
+        NSArray *relationshipProtoRecords = [protoRecord relationshipProtoRecordsForRelationshipDescription:relationshipDescription];
         
-        [self establishRelationship:relationshipDescription fromRecord:fromRecord toRecord:toRecord];
+        for (MMRecordProtoRecord *relationshipProtoRecord in relationshipProtoRecords) {
+            MMRecord *fromRecord = protoRecord.record;
+            MMRecord *toRecord = relationshipProtoRecord.record;
+            
+            [self establishRelationship:relationshipDescription fromRecord:fromRecord toRecord:toRecord];
+        }
     }
 }
 

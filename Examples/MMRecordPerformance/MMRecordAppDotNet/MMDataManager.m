@@ -80,7 +80,7 @@ static MMDataManager* MM_sharedDataManager;
 		return MM_persistentStoreCoordinator;
 	}
     
-    BOOL memory = NO;
+    BOOL memory = YES;
     
     if (memory) {
         MM_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];

@@ -37,13 +37,16 @@
 @interface MMRecordResponseGroup : NSObject
 
 @property (nonatomic, strong) NSEntityDescription *entity;
-@property (nonatomic, strong) NSMutableArray *protoRecords;
+@property (nonatomic, strong) NSMutableSet *protoRecords;
+@property (nonatomic, strong) NSMutableDictionary *prototypeDictionary;
 @property (nonatomic, strong) MMRecordRepresentation *representation;
 @property (nonatomic) BOOL hasRelationshipPrimaryKey;
 
 - (instancetype)initWithEntity:(NSEntityDescription *)entity;
 
 - (void)addProtoRecord:(MMRecordProtoRecord *)protoRecord;
+
+- (void)addProtoRecordToDictionary:(MMRecordProtoRecord *)protoRecord;
 
 - (MMRecordProtoRecord *)protoRecordForPrimaryKeyValue:(id)primaryKeyValue;
 
@@ -155,14 +158,6 @@
                                              fromExistingResponseGroups:responseGroups];
     
     [responseGroup addProtoRecord:protoRecord];
-    
-    for (MMRecordProtoRecord *relationshipProtoRecord in protoRecord.relationshipProtos) {
-        MMRecordResponseGroup *relationshipProtoRecordResponseGroup = [self responseGroupForEntity:relationshipProtoRecord.entity
-                                                                        fromExistingResponseGroups:responseGroups];
-        
-        [relationshipProtoRecordResponseGroup addProtoRecord:relationshipProtoRecord];
-        [self uniquelyAddNewProtoRecord:relationshipProtoRecord toExistingResponseGroups:responseGroups];
-    }
 }
 
 
@@ -193,7 +188,6 @@
                                                         existingResponseGroups:responseGroups];
         
         [objectGraph addObject:proto];
-        [self uniquelyAddNewProtoRecord:proto toExistingResponseGroups:responseGroups];
     }
     
     self.objectGraph = objectGraph;
@@ -205,7 +199,8 @@
 - (MMRecordProtoRecord *)protoRecordWithRecordResponseObject:(id)recordResponseObject
                                                       entity:(NSEntityDescription *)entity
                                       existingResponseGroups:(NSMutableDictionary *)responseGroups {
-    MMRecordResponseGroup *recordResponseGroup = [self responseGroupForEntity:entity fromExistingResponseGroups:responseGroups];
+    MMRecordResponseGroup *recordResponseGroup = [self responseGroupForEntity:entity
+                                                   fromExistingResponseGroups:responseGroups];
     MMRecordRepresentation *representation = recordResponseGroup.representation;
     
     if ([recordResponseObject isKindOfClass:[NSDictionary class]] == NO) {
@@ -216,14 +211,19 @@
     MMRecordProtoRecord *proto = [recordResponseGroup protoRecordForPrimaryKeyValue:primaryValue];
     
     if (proto == nil) {
-        proto = [MMRecordProtoRecord protoRecordWithDictionary:recordResponseObject entity:entity representation:representation];
-        [self uniquelyAddNewProtoRecord:proto toExistingResponseGroups:responseGroups];
+        proto = [MMRecordProtoRecord protoRecordWithDictionary:recordResponseObject
+                                                        entity:entity
+                                                representation:representation];
     }
+    
+    [self uniquelyAddNewProtoRecord:proto toExistingResponseGroups:responseGroups];
     
     if (proto) {
         [self completeRelationshipProtoRecordMappingToProtoRecord:proto
                                            existingResponseGroups:responseGroups
                                                    representation:representation];
+        
+        [recordResponseGroup addProtoRecordToDictionary:proto];
     }
     
     return proto;
@@ -267,7 +267,7 @@
                                                                                             entity:entity
                                                                             existingResponseGroups:responseGroups];
                 
-                [protoRecord addRelationshipProto:relationshipProto  forRelationshipDescription:relationshipDescription];
+                [protoRecord addRelationshipProto:relationshipProto forRelationshipDescription:relationshipDescription];
             }
         }
     }
@@ -311,32 +311,35 @@
     if (self = [super init]) {
         NSParameterAssert([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]);
         _entity = entity;
-        _protoRecords = [NSMutableArray array];
+        _protoRecords = [NSMutableSet set];
         
         Class MMRecordClass = NSClassFromString([entity managedObjectClassName]);
         Class MMRecordRepresentationClass = [MMRecordClass representationClass];
         
         _representation = [[MMRecordRepresentationClass alloc] initWithEntity:entity];
         _hasRelationshipPrimaryKey = [_representation hasRelationshipPrimaryKey];
+        _prototypeDictionary = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 - (void)addProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    [self.protoRecords addObject:protoRecord];
+    if ([self.prototypeDictionary objectForKey:protoRecord.primaryKeyValue] == nil) {
+        [self.protoRecords addObject:protoRecord];
+    }
+}
+
+- (void)addProtoRecordToDictionary:(MMRecordProtoRecord *)protoRecord {
+    if (protoRecord.primaryKeyValue) {
+        self.prototypeDictionary[protoRecord.primaryKeyValue] = protoRecord;
+    }
 }
 
 
 #pragma mark - Accessors
 
 - (MMRecordProtoRecord *)protoRecordForPrimaryKeyValue:(id)primaryKeyValue {
-    for (MMRecordProtoRecord *proto in self.protoRecords) {
-        if ([proto.primaryKeyValue isEqual:primaryKeyValue]) {
-            return proto;
-        }
-    }
-    
-    return nil;
+    return [self.prototypeDictionary objectForKey:primaryKeyValue];
 }
 
 
@@ -394,25 +397,18 @@
     }
     
     NSArray *existingRecords = [self fetchRecordsWithPrimaryKeys:allPrimaryKeys forEntity:self.entity context:context];
-    NSArray *sortedProtoRecords = [self sortedProtoRecordsByPrimaryKeyValueInAscendingOrder:self.protoRecords];
+    NSArray *sortedProtoRecords = [self sortedProtoRecordsByPrimaryKeyValueInAscendingOrder:[self.protoRecords allObjects]];
     
+    NSMutableDictionary *existingRecordDictionary = [[NSMutableDictionary alloc] init];
+
     for (MMRecord *record in existingRecords) {
-        id recordPrimaryKeyValue = [record primaryKeyValue];
+        [existingRecordDictionary setObject:record forKey:record.primaryKeyValue];
+    }
+    
+    for (MMRecordProtoRecord *protoRecord in sortedProtoRecords) {
+        id protoRecordPrimaryKeyValue = protoRecord.primaryKeyValue;
         
-        for (MMRecordProtoRecord *protoRecord in sortedProtoRecords) {
-            id protoRecordPrimaryKeyValue = protoRecord.primaryKeyValue;
-            NSComparisonResult comparisonResult = [self comparePrimaryKeyValues:recordPrimaryKeyValue
-                                                     protoRecordPrimaryKeyValue:protoRecordPrimaryKeyValue];
-            
-            if (comparisonResult == NSOrderedSame) {
-                protoRecord.record = record;
-                break;
-            } else if (comparisonResult == NSOrderedAscending) {
-                break;
-            } else if (comparisonResult == NSOrderedDescending) {
-                // Continue
-            }
-        }
+        protoRecord.record = [existingRecordDictionary objectForKey:protoRecordPrimaryKeyValue];
     }
 }
 
@@ -454,6 +450,7 @@
             return nil;
         
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:[entity name]];
+        [fetchRequest setFetchBatchSize:20];
         fetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:primaryAttributeKey ascending:YES]];
         fetchRequest.predicate = [NSPredicate predicateWithFormat: @"SELF.%@ IN %@", primaryAttributeKey, primaryKeys];
         
