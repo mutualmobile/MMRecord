@@ -324,14 +324,14 @@
 }
 
 - (void)addProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    if (![self.prototypeDictionary objectForKey:protoRecord.primaryKeyValue]) {
+    if ([self.prototypeDictionary objectForKey:protoRecord.primaryKeyValue] == nil) {
         [self.protoRecords addObject:protoRecord];
     }
 }
 
 - (void)addProtoRecordToDictionary:(MMRecordProtoRecord *)protoRecord {
     if (protoRecord.primaryKeyValue) {
-        [self.prototypeDictionary setObject:protoRecord forKey:protoRecord.primaryKeyValue];
+        self.prototypeDictionary[protoRecord.primaryKeyValue] = protoRecord;
     }
 }
 

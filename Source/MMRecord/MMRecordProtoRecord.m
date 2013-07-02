@@ -73,7 +73,7 @@
     NSArray *relationshipProtoRecords = nil;
     
     if (relationshipName != nil) {
-        NSOrderedSet *protoSet = [self.relationshipProtosDictionary valueForKey:relationshipName];
+        NSOrderedSet *protoSet = [self.relationshipProtosDictionary objectForKey:relationshipName];
         relationshipProtoRecords = [protoSet array];
     }
     
