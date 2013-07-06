@@ -280,7 +280,10 @@
     
     for (NSString *keyPath in keyPaths) {
         relationshipObject = [dictionary valueForKeyPath:keyPath];
-        
+        if (relationshipObject == [NSNull null]) {
+          relationshipObject = nil;
+        }
+
         if (relationshipObject) {
             if (([relationshipObject isKindOfClass:[NSDictionary class]] == NO) &&
                 ([relationshipObject isKindOfClass:[NSArray class]] == NO)) {
