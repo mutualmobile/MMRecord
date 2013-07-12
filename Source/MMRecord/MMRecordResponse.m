@@ -27,12 +27,12 @@
 #import "MMRecordRepresentation.h"
 #import "MMRecordProtoRecord.h"
 
-/* This class contains the proto records from the response which are of a given entity type.  This 
+/* This class contains the proto records from the response which are of a given entity type.  This
  class is used to contain all of the proto records that represent all the actual records in a response
  for that type.  If a MMRecordResponse only contains records of a given type, it should only create
- one instance of MMRecordResponseGroup, and place all of those proto records into that group.  The 
+ one instance of MMRecordResponseGroup, and place all of those proto records into that group.  The
  group class also has methods for adding new protos to the group, retreiving protos.  It is also the
- starting point for populating proto records contained by the group. 
+ starting point for populating proto records contained by the group.
  */
 @interface MMRecordResponseGroup : NSObject
 
@@ -281,9 +281,9 @@
     for (NSString *keyPath in keyPaths) {
         relationshipObject = [dictionary valueForKeyPath:keyPath];
         if (relationshipObject == [NSNull null]) {
-          relationshipObject = nil;
+            relationshipObject = nil;
         }
-
+        
         if (relationshipObject) {
             if (([relationshipObject isKindOfClass:[NSDictionary class]] == NO) &&
                 ([relationshipObject isKindOfClass:[NSArray class]] == NO)) {
@@ -403,9 +403,13 @@
     NSArray *sortedProtoRecords = [self sortedProtoRecordsByPrimaryKeyValueInAscendingOrder:[self.protoRecords allObjects]];
     
     NSMutableDictionary *existingRecordDictionary = [[NSMutableDictionary alloc] init];
-
+    
     for (MMRecord *record in existingRecords) {
-        [existingRecordDictionary setObject:record forKey:record.primaryKeyValue];
+        if (record.primaryKeyValue != nil) {
+            [existingRecordDictionary setObject:record forKey:record.primaryKeyValue];
+        } else {
+            MMRLogVerbose(@"Fetched record with no primary key value \"%@\"", record);
+        }
     }
     
     for (MMRecordProtoRecord *protoRecord in sortedProtoRecords) {
