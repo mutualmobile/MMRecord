@@ -98,9 +98,22 @@
             location = "group:MMJSONServer.m">
          </FileRef>
       </Group>
+      <Group
+         location = "group:MMRecordResponseSerializer"
+         name = "MMRecordResponseSerializer">
+         <FileRef
+            location = "group:MMRecordResponseSerializer.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordResponseSerializer.m">
+         </FileRef>
+      </Group>
    </Group>
    <FileRef
       location = "group:Examples/MMRecordAppDotNet/MMRecordAppDotNet.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/MMRecordFoursquare/MMRecordFoursquare/MMRecordFoursquare.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Examples/MMRecordInstagram/MMRecordInstagram.xcodeproj">

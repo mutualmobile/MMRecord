@@ -5,20 +5,20 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>622E5BBA-04D2-4782-A315-1E72F9D48E19</string>
+	<string>4D23ED0E-120A-4B18-BD33-362D7AFB88A4</string>
 	<key>IDESourceControlProjectName</key>
-	<string>MMRecord</string>
+	<string>MMRecordFoursquare</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>CB25DA3D-F041-4D47-9A33-778F083FC8C6</key>
 		<string>ssh://github.com/mutualmobile/MMRecord.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MMRecord.xcworkspace</string>
+	<string>Examples/MMRecordFoursquare/MMRecordFoursquare/MMRecordFoursquare.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>CB25DA3D-F041-4D47-9A33-778F083FC8C6</key>
-		<string>..</string>
+		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/mutualmobile/MMRecord.git</string>
