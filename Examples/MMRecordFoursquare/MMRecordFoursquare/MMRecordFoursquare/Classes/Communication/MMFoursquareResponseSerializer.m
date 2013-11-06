@@ -10,9 +10,8 @@
 
 @implementation MMFoursquareResponseSerializer
 
-- (NSEntityDescription *)recordResponseSerializer:(MMRecordResponseSerializer *)serializer
-                                entityForResponse:(NSURLResponse *)response
-                                   responseObject:(id)responseObject {
+- (NSEntityDescription *)entityForResponse:(NSURLResponse *)response
+                            responseObject:(id)responseObject {
     return [NSEntityDescription entityForName:@"Venue" inManagedObjectContext:self.context];
 }
 

@@ -53,35 +53,13 @@
     return backgroundContext;
 }
 
-#pragma mark - AFURLResponseSerialization
-
-- (id)responseObjectForResponse:(NSURLResponse *)response
-                           data:(NSData *)data
-                          error:(NSError *__autoreleasing *)error {
-    NSError *serializationError = nil;
-    
-    id responseObject = [self.HTTPResponseSerializer responseObjectForResponse:response
-                                                                          data:data
-                                                                         error:&serializationError];
-    
-    NSEntityDescription *initialEntity = [self recordResponseSerializer:self
-                                                      entityForResponse:response
-                                                         responseObject:responseObject];
-    
-    NSArray *responseArray = [self responseArrayFromResponseObject:responseObject
-                                                     initialEntity:initialEntity];
-    
-    NSManagedObjectContext *context = [self backgroundContext];
-    
-    MMRecordResponse *recordResponse = [MMRecordResponse responseFromResponseObjectArray:responseArray
-                                                                     initialEntity:initialEntity
-                                                                           context:self.context];
-    
+- (NSArray *)recordsFromMMRecordResponse:(MMRecordResponse *)recordResponse
+                       backgroundContext:(NSManagedObjectContext *)backgroundContext {
     __block NSMutableArray *objectIDs = [NSMutableArray array];
-
-    [context performBlockAndWait:^{
+    
+    [backgroundContext performBlockAndWait:^{
         NSArray *records = [recordResponse records];
-
+        
         for (MMRecord *record in records) {
             [objectIDs addObject:[record objectID]];
         }
@@ -96,12 +74,40 @@
     return records;
 }
 
+#pragma mark - AFURLResponseSerialization
+
+- (id)responseObjectForResponse:(NSURLResponse *)response
+                           data:(NSData *)data
+                          error:(NSError *__autoreleasing *)error {
+    NSError *serializationError = nil;
+    
+    id responseObject = [self.HTTPResponseSerializer responseObjectForResponse:response
+                                                                          data:data
+                                                                         error:&serializationError];
+    
+    NSEntityDescription *initialEntity = [self entityForResponse:response
+                                                  responseObject:responseObject];
+    
+    NSArray *responseArray = [self responseArrayFromResponseObject:responseObject
+                                                     initialEntity:initialEntity];
+    
+    NSManagedObjectContext *backgroundContext = [self backgroundContext];
+    
+    MMRecordResponse *recordResponse = [MMRecordResponse responseFromResponseObjectArray:responseArray
+                                                                     initialEntity:initialEntity
+                                                                           context:self.context];
+    
+    NSArray *records = [self recordsFromMMRecordResponse:recordResponse
+                                       backgroundContext:backgroundContext];
+    
+    return records;
+}
+
 
 #pragma mark - MMRecordResponseSeralizer
 
-- (NSEntityDescription *)recordResponseSerializer:(MMRecordResponseSerializer *)serializer
-                                entityForResponse:(NSURLResponse *)response
-                                   responseObject:(id)responseObject {
+- (NSEntityDescription *)entityForResponse:(NSURLResponse *)response
+                            responseObject:(id)responseObject {
     return nil;
 }
 
@@ -126,6 +132,7 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     MMRecordResponseSerializer *serializer = [[MMRecordResponseSerializer alloc] init];
+    serializer.context = self.context;
     serializer.HTTPResponseSerializer = self.HTTPResponseSerializer;
     return serializer;
 }
