@@ -1,13 +1,97 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Contact" representedClassName="Contact" syncable="YES">
+        <attribute name="formattedPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="contact" inverseEntity="Venue" syncable="YES"/>
+        <userInfo>
+            <entry key="MMRecordEntityPrimaryAttributeKey" value="venue"/>
+        </userInfo>
+    </entity>
+    <entity name="FSCategory" representedClassName="FSCategory" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="categories" inverseEntity="Venue" syncable="YES"/>
+        <userInfo>
+            <entry key="MMRecordEntityPrimaryAttributeKey" value="id"/>
+        </userInfo>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="crossStreet" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lng" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="location" inverseEntity="Venue" syncable="YES"/>
+        <userInfo>
+            <entry key="MMRecordEntityPrimaryAttributeKey" value="venue"/>
+        </userInfo>
+    </entity>
+    <entity name="Menu" representedClassName="Menu" syncable="YES">
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="menu" inverseEntity="Venue" syncable="YES">
+            <userInfo>
+                <entry key="MMRecordEntityPrimaryAttributeKey" value="venue"/>
+            </userInfo>
+        </relationship>
+        <userInfo>
+            <entry key="MMRecordEntityPrimaryAttributeKey" value="venue"/>
+        </userInfo>
+    </entity>
+    <entity name="PhotoGroup" representedClassName="PhotoGroup" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="MMRecordEntityPrimaryAttributeKey" value="name"/>
+            </userInfo>
+        </attribute>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PhotoItem" inverseName="group" inverseEntity="PhotoItem" syncable="YES"/>
+        <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="photoGroups" inverseEntity="Venue" syncable="YES"/>
+        <userInfo>
+            <entry key="MMRecordEntityPrimaryAttributeKey" value="venue"/>
+        </userInfo>
+    </entity>
+    <entity name="PhotoItem" representedClassName="PhotoItem" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="MMRecordEntityPrimaryAttributeKey" value="id"/>
+            </userInfo>
+        </attribute>
+        <attribute name="prefix" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="suffix" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoGroup" inverseName="items" inverseEntity="PhotoGroup" syncable="YES"/>
+        <userInfo>
+            <entry key="MMRecordEntityPrimaryAttributeKey" value="id"/>
+        </userInfo>
+    </entity>
     <entity name="Venue" representedClassName="Venue" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FSCategory" inverseName="venue" inverseEntity="FSCategory" syncable="YES"/>
+        <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="venue" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="venue" inverseEntity="Location" syncable="YES"/>
+        <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Menu" inverseName="venue" inverseEntity="Menu" syncable="YES"/>
+        <relationship name="photoGroups" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PhotoGroup" inverseName="venue" inverseEntity="PhotoGroup" syncable="YES">
+            <userInfo>
+                <entry key="MMRecordAttributeAlternateNameKey" value="photos.groups"/>
+            </userInfo>
+        </relationship>
         <userInfo>
             <entry key="MMRecordEntityPrimaryAttributeKey" value="id"/>
         </userInfo>
     </entity>
     <elements>
         <element name="Venue" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Contact" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Location" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FSCategory" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Menu" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PhotoGroup" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PhotoItem" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

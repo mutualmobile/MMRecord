@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550DFA981846AF2200E76A6B /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFA971846AF2200E76A6B /* Location.m */; };
+		550DFA9B1846AF2300E76A6B /* PhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFA9A1846AF2300E76A6B /* PhotoItem.m */; };
+		550DFA9E1846AF2300E76A6B /* FSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFA9D1846AF2300E76A6B /* FSCategory.m */; };
+		550DFAA41846AF2300E76A6B /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFAA31846AF2300E76A6B /* Menu.m */; };
+		550DFAA71846AF2300E76A6B /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFAA61846AF2300E76A6B /* Contact.m */; };
+		550DFAAA1846AF2300E76A6B /* PhotoGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFAA91846AF2300E76A6B /* PhotoGroup.m */; };
 		55D2780B1829765E008CB6B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D2780A1829765E008CB6B4 /* Foundation.framework */; };
 		55D2780D1829765E008CB6B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D2780C1829765E008CB6B4 /* CoreGraphics.framework */; };
 		55D2780F1829765E008CB6B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D2780E1829765E008CB6B4 /* UIKit.framework */; };
@@ -62,6 +68,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		550DFA961846AF2200E76A6B /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		550DFA971846AF2200E76A6B /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		550DFA991846AF2300E76A6B /* PhotoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoItem.h; sourceTree = "<group>"; };
+		550DFA9A1846AF2300E76A6B /* PhotoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoItem.m; sourceTree = "<group>"; };
+		550DFA9C1846AF2300E76A6B /* FSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCategory.h; sourceTree = "<group>"; };
+		550DFA9D1846AF2300E76A6B /* FSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCategory.m; sourceTree = "<group>"; };
+		550DFAA21846AF2300E76A6B /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		550DFAA31846AF2300E76A6B /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
+		550DFAA51846AF2300E76A6B /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		550DFAA61846AF2300E76A6B /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		550DFAA81846AF2300E76A6B /* PhotoGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoGroup.h; sourceTree = "<group>"; };
+		550DFAA91846AF2300E76A6B /* PhotoGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoGroup.m; sourceTree = "<group>"; };
 		55D278071829765E008CB6B4 /* MMRecordFoursquare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMRecordFoursquare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D2780A1829765E008CB6B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		55D2780C1829765E008CB6B4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -316,6 +334,18 @@
 			children = (
 				55D2786718297C9E008CB6B4 /* Venue.h */,
 				55D2786818297C9E008CB6B4 /* Venue.m */,
+				550DFAA81846AF2300E76A6B /* PhotoGroup.h */,
+				550DFAA91846AF2300E76A6B /* PhotoGroup.m */,
+				550DFAA51846AF2300E76A6B /* Contact.h */,
+				550DFAA61846AF2300E76A6B /* Contact.m */,
+				550DFAA21846AF2300E76A6B /* Menu.h */,
+				550DFAA31846AF2300E76A6B /* Menu.m */,
+				550DFA9C1846AF2300E76A6B /* FSCategory.h */,
+				550DFA9D1846AF2300E76A6B /* FSCategory.m */,
+				550DFA991846AF2300E76A6B /* PhotoItem.h */,
+				550DFA9A1846AF2300E76A6B /* PhotoItem.m */,
+				550DFA961846AF2200E76A6B /* Location.h */,
+				550DFA971846AF2200E76A6B /* Location.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -482,6 +512,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				550DFA9E1846AF2300E76A6B /* FSCategory.m in Sources */,
 				55D278561829769B008CB6B4 /* AFHTTPRequestOperation.m in Sources */,
 				55D2781B1829765E008CB6B4 /* MMAppDelegate.m in Sources */,
 				55D278571829769B008CB6B4 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -494,6 +525,8 @@
 				55D278AD18297E01008CB6B4 /* MMServerPageManager.m in Sources */,
 				55D278581829769B008CB6B4 /* AFHTTPSessionManager.m in Sources */,
 				55D2786C18297CB7008CB6B4 /* MMDataManager.m in Sources */,
+				550DFAAA1846AF2300E76A6B /* PhotoGroup.m in Sources */,
+				550DFAA41846AF2300E76A6B /* Menu.m in Sources */,
 				55D278AA18297E01008CB6B4 /* MMRecordRepresentation.m in Sources */,
 				55D278B2182980BC008CB6B4 /* FSRecord.m in Sources */,
 				55D278A618297E01008CB6B4 /* MMRecord.m in Sources */,
@@ -507,8 +540,11 @@
 				55D278A918297E01008CB6B4 /* MMRecordProtoRecord.m in Sources */,
 				55D278AE18297E01008CB6B4 /* MMRecordResponseSerializer.m in Sources */,
 				55D278A718297E01008CB6B4 /* MMRecordCache.m in Sources */,
+				550DFA9B1846AF2300E76A6B /* PhotoItem.m in Sources */,
 				55D278211829765E008CB6B4 /* MMViewController.m in Sources */,
+				550DFAA71846AF2300E76A6B /* Contact.m in Sources */,
 				55D278171829765E008CB6B4 /* main.m in Sources */,
+				550DFA981846AF2200E76A6B /* Location.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
