@@ -1,4 +1,4 @@
-// MMRecordResponseSerializer.m
+// AFMMRecordResponseSerializer.m
 //
 // Copyright (c) 2013 Mutual Mobile (http://www.mutualmobile.com/)
 //
@@ -20,26 +20,32 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "MMRecordResponseSerializer.h"
+#import "AFMMRecordResponseSerializer.h"
 
 #import "MMRecord.h"
 #import "MMRecordResponse.h"
 
-@interface MMRecordResponseSerializer ()
+@interface AFMMRecordResponseSerializer ()
 
-@property (nonatomic, strong, readwrite) NSManagedObjectContext *context;
-@property (nonatomic, strong, readwrite) AFHTTPResponseSerializer *HTTPResponseSerializer;
+@property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) AFHTTPResponseSerializer *HTTPResponseSerializer;
+@property (nonatomic, strong) id<AFMMRecordResponseSerializationEntityMapping> entityMapper;
 
 @end
 
-@implementation MMRecordResponseSerializer
+@implementation AFMMRecordResponseSerializer
 
 + (instancetype)serializerWithManagedObjectContext:(NSManagedObjectContext *)context
-                            HTTPResponseSerializer:(AFHTTPResponseSerializer *)HTTPResponseSerializer{
-    MMRecordResponseSerializer *serializer = [[self alloc] init];
+                          responseObjectSerializer:(AFHTTPResponseSerializer *)HTTPResponseSerializer
+                                      entityMapper:(id<AFMMRecordResponseSerializationEntityMapping>)entityMapper {
+    NSParameterAssert(context != nil);
+    NSParameterAssert(HTTPResponseSerializer != nil);
+    NSParameterAssert(entityMapper != nil);
+    
+    AFMMRecordResponseSerializer *serializer = [[self alloc] init];
     serializer.context = context;
     serializer.HTTPResponseSerializer = HTTPResponseSerializer;
-
+    serializer.entityMapper = entityMapper;
     return serializer;
 }
 
@@ -62,7 +68,8 @@
 }
 
 - (NSManagedObjectContext *)backgroundContext {
-    NSManagedObjectContext *backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    NSManagedObjectContext *backgroundContext =
+        [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [backgroundContext setPersistentStoreCoordinator:self.context.persistentStoreCoordinator];
     return backgroundContext;
 }
@@ -99,8 +106,15 @@
                                                                           data:data
                                                                          error:&serializationError];
     
-    NSEntityDescription *initialEntity = [self entityForResponse:response
-                                                  responseObject:responseObject];
+    NSAssert(([responseObject isKindOfClass:[NSDictionary class]] ||
+              [responseObject isKindOfClass:[NSArray class]]),
+             @"Response object should be of type array or dictionary.");
+
+    
+    NSEntityDescription *initialEntity = [self.entityMapper recordResponseSerializer:self
+                                                                   entityForResponse:response
+                                                                      responseObject:responseObject
+                                                                             context:self.context];
     
     NSArray *responseArray = [self responseArrayFromResponseObject:responseObject
                                                      initialEntity:initialEntity];
@@ -115,14 +129,6 @@
                                        backgroundContext:backgroundContext];
     
     return records;
-}
-
-
-#pragma mark - MMRecordResponseSeralizer
-
-- (NSEntityDescription *)entityForResponse:(NSURLResponse *)response
-                            responseObject:(id)responseObject {
-    return nil;
 }
 
 
@@ -145,7 +151,7 @@
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-    MMRecordResponseSerializer *serializer = [[MMRecordResponseSerializer alloc] init];
+    AFMMRecordResponseSerializer *serializer = [[AFMMRecordResponseSerializer alloc] init];
     serializer.context = self.context;
     serializer.HTTPResponseSerializer = self.HTTPResponseSerializer;
     return serializer;

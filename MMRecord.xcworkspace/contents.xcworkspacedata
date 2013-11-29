@@ -99,13 +99,13 @@
          </FileRef>
       </Group>
       <Group
-         location = "group:MMRecordResponseSerializer"
-         name = "MMRecordResponseSerializer">
+         location = "group:AFMMRecordResponseSerializer"
+         name = "AFMMRecordResponseSerializer">
          <FileRef
-            location = "group:MMRecordResponseSerializer.h">
+            location = "group:AFMMRecordResponseSerializer.h">
          </FileRef>
          <FileRef
-            location = "group:MMRecordResponseSerializer.m">
+            location = "group:AFMMRecordResponseSerializer.m">
          </FileRef>
       </Group>
    </Group>

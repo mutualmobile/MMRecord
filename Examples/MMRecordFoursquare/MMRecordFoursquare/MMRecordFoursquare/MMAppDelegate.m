@@ -10,7 +10,7 @@
 
 #import "MMDataManager.h"
 #import "MMFoursquareSessionManager.h"
-#import "MMFoursquareResponseSerializer.h"
+#import "MMFoursquareSerializationMapper.h"
 
 @implementation MMAppDelegate
 
@@ -19,10 +19,12 @@
     
     NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
     AFHTTPResponseSerializer *HTTPResponseSerializer = [AFJSONResponseSerializer serializer];
+    MMFoursquareSerializationMapper *mapper = [[MMFoursquareSerializationMapper alloc] init];
     
-    MMFoursquareResponseSerializer *serializer =
-        [MMFoursquareResponseSerializer serializerWithManagedObjectContext:context
-                                                    HTTPResponseSerializer:HTTPResponseSerializer];
+    AFMMRecordResponseSerializer *serializer =
+        [AFMMRecordResponseSerializer serializerWithManagedObjectContext:context
+                                                responseObjectSerializer:HTTPResponseSerializer
+                                                            entityMapper:mapper];
     
     sessionManager.responseSerializer = serializer;
     
