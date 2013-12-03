@@ -26,7 +26,7 @@
     NSString *oAuthToken = @"RMRLHPHOTZBIHKAX2G1XMZ33XQYDYKVCAUTM5GCTAA03X04F";
     
     [[MMFoursquareSessionManager sharedClient]
-     GET:@"venues/40a55d80f964a52020f31ee3"
+     GET:@"venues/search?ll=30.25,-97.75"
      parameters:@{@"oauth_token": oAuthToken, @"v": @"20131105"}
      success:^(NSURLSessionDataTask *task, id responseObject) {
          NSArray *venues = responseObject;

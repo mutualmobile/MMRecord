@@ -1,0 +1,1294 @@
+{
+    "meta": {
+        "code": 200
+    },
+    "notifications": [
+                      {
+                      "type": "notificationTray",
+                      "item": {
+                      "unreadCount": 6
+                      }
+                      }
+                      ],
+    "response": {
+        "neighborhoods": [],
+        "venues": [
+                   {
+                   "id": "42377700f964a52024201fe3",
+                   "name": "Brooklyn Heights Promenade",
+                   "contact": {},
+                   "location": {
+                   "address": "Columbia Heights",
+                   "crossStreet": "btwn Remsen & Orange",
+                   "lat": 40.69829137715981,
+                   "lng": -73.99663209915161,
+                   "distance": 342,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d163941735",
+                                  "name": "Park",
+                                  "pluralName": "Parks",
+                                  "shortName": "Park",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/parks_outdoors/park_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 16545,
+                   "usersCount": 7763,
+                   "tipCount": 106
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "503de4dce4b0857b003af5f7",
+                   "name": "monkeyHut",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.7,
+                   "lng": -74,
+                   "distance": 0,
+                   "postalCode": "10004",
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d1e1931735",
+                                  "name": "Arcade",
+                                  "pluralName": "Arcades",
+                                  "shortName": "Arcade",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/arts_entertainment/arcade_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 7,
+                   "usersCount": 7,
+                   "tipCount": 4
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "525e022711d2f114af4e7a49",
+                   "name": "pt. lingga indoteknik utama",
+                   "contact": {
+                   "phone": "(021) 88881155",
+                   "formattedPhone": "(021) 88881155"
+                   },
+                   "location": {
+                   "address": "ruko harapan indah blok EL No. 25 Pejuang Medan satria",
+                   "crossStreet": "btwn yokabento & alfamart",
+                   "lat": 40.7,
+                   "lng": -74,
+                   "distance": 0,
+                   "postalCode": "17131",
+                   "cc": "US",
+                   "city": "Bekasi",
+                   "state": "Jawa Barat",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d127941735",
+                                  "name": "Conference Room",
+                                  "pluralName": "Conference Rooms",
+                                  "shortName": "Conference room",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/building/office_conferenceroom_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 0,
+                   "usersCount": 0,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4ebac60a0cd6904066e4108f",
+                   "name": "Brookyn Bridge Park Greenway",
+                   "contact": {},
+                   "location": {
+                   "address": "Fulton Ferry Landing to Atlantic Ave.",
+                   "lat": 40.70025980212479,
+                   "lng": -73.99698615074158,
+                   "distance": 255,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d163941735",
+                                  "name": "Park",
+                                  "pluralName": "Parks",
+                                  "shortName": "Park",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/parks_outdoors/park_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 465,
+                   "usersCount": 300,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4d1b6de99aa55481bd14cee0",
+                   "name": "Hot Dog Vendor on corner of John and Front",
+                   "contact": {},
+                   "location": {
+                   "address": "John Street",
+                   "crossStreet": "Front Street",
+                   "lat": 40.7001719,
+                   "lng": -74.000928,
+                   "distance": 80,
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d16f941735",
+                                  "name": "Hot Dog Joint",
+                                  "pluralName": "Hot Dog Joints",
+                                  "shortName": "Hot Dogs",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/food/hotdog_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 10,
+                   "usersCount": 8,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "500d8171e4b02ee07c2b90d8",
+                   "name": "Chinese Mirch",
+                   "contact": {},
+                   "location": {
+                   "address": "Front Street and Wall Street",
+                   "lat": 40.700843811035156,
+                   "lng": -74.00211334228516,
+                   "distance": 201,
+                   "postalCode": "10005",
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d1cb941735",
+                                  "name": "Food Truck",
+                                  "pluralName": "Food Trucks",
+                                  "shortName": "Food Truck",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/food/streetfood_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 322,
+                   "usersCount": 75,
+                   "tipCount": 2
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4ff6de22e4b02ca33c0a04fb",
+                   "name": "Brooklyn Bridge Park Pop Up Pool",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.699938955308454,
+                   "lng": -73.99669317897325,
+                   "distance": 279,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d15e941735",
+                                  "name": "Pool",
+                                  "pluralName": "Pools",
+                                  "shortName": "Pool",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/parks_outdoors/pool_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 743,
+                   "usersCount": 450,
+                   "tipCount": 10
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "5201291a498ed94863b152ab",
+                   "name": "Starbucks",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.70055333656734,
+                   "lng": -73.99891405712795,
+                   "distance": 110,
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 2,
+                   "usersCount": 2,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "5054eb43e4b04ed4f0dd1b30",
+                   "name": "La cabana",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.69875,
+                   "lng": -73.99953,
+                   "distance": 144,
+                   "cc": "US",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d154941735",
+                                  "name": "Cuban Restaurant",
+                                  "pluralName": "Cuban Restaurants",
+                                  "shortName": "Cuban",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/food/default_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 3,
+                   "usersCount": 3,
+                   "tipCount": 1
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "51eabef6498e10cf3aea7942",
+                   "name": "Brooklyn Bridge Park - Pier 2",
+                   "contact": {},
+                   "location": {
+                   "address": "Furman St",
+                   "crossStreet": "Brooklyn Bridge Park Greenway",
+                   "lat": 40.69963900343702,
+                   "lng": -73.99685960225945,
+                   "distance": 268,
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d163941735",
+                                  "name": "Park",
+                                  "pluralName": "Parks",
+                                  "shortName": "Park",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/parks_outdoors/park_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 45,
+                   "usersCount": 41,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4ff764c3e4b01ead023da588",
+                   "name": "Brooklyn Beach Shack",
+                   "contact": {},
+                   "location": {
+                   "address": "334 Furman St",
+                   "crossStreet": "Brooklyn Bridge Park",
+                   "lat": 40.700051,
+                   "lng": -73.996479,
+                   "distance": 297,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d16c941735",
+                                  "name": "Burger Joint",
+                                  "pluralName": "Burger Joints",
+                                  "shortName": "Burgers",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/food/burger_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": true,
+                   "stats": {
+                   "checkinsCount": 101,
+                   "usersCount": 50,
+                   "tipCount": 6
+                   },
+                   "url": "http://brooklynbeachshack.com",
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "venuePage": {
+                   "id": "33421350"
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4b7c8bedf964a5202c9a2fe3",
+                   "name": "160 Columbia Heights",
+                   "contact": {},
+                   "location": {
+                   "address": "160 Columbia Hts",
+                   "lat": 40.69817619576914,
+                   "lng": -73.99641198067849,
+                   "distance": 364,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4d954b06a243a5684965b473",
+                                  "name": "Residential Building (Apartment / Condo)",
+                                  "pluralName": "Residential Buildings (Apartments / Condos)",
+                                  "shortName": "Residential",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/building/apartment_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 202,
+                   "usersCount": 30,
+                   "tipCount": 1
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4c48dc0520ab1b8d6118fd15",
+                   "name": "Movies With A View",
+                   "contact": {},
+                   "location": {
+                   "address": "1 Brooklyn Bridge Park Pier 1",
+                   "lat": 40.701676,
+                   "lng": -73.99734,
+                   "distance": 291,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d162941735",
+                                  "name": "Other Great Outdoors",
+                                  "pluralName": "Other Great Outdoors",
+                                  "shortName": "Other Outdoors",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/parks_outdoors/outdoors_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 617,
+                   "usersCount": 530,
+                   "tipCount": 3
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "51d9fe5f498ef1b3afa23174",
+                   "name": "Lizzmonade",
+                   "contact": {
+                   "phone": "7188558930",
+                   "formattedPhone": "(718) 855-8930",
+                   "twitter": "lizzmonade"
+                   },
+                   "location": {
+                   "address": "Brooklyn Bridge Park Pier 2 pop-up pool",
+                   "lat": 40.70003786913231,
+                   "lng": -73.99657266546886,
+                   "distance": 289,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d1c7941735",
+                                  "name": "Snack Place",
+                                  "pluralName": "Snack Places",
+                                  "shortName": "Snacks",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/food/snacks_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 257,
+                   "usersCount": 211,
+                   "tipCount": 9
+                   },
+                   "url": "http://www.lizzmonade.com",
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4f2c1bbae4b0ccfb1d99b510",
+                   "name": "kk hair salon",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.69956588745117,
+                   "lng": -74.00108337402344,
+                   "distance": 103,
+                   "cc": "US",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d110951735",
+                                  "name": "Salon / Barbershop",
+                                  "pluralName": "Salons / Barbershops",
+                                  "shortName": "Salon / Barbershop",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/shops/salon_barber_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 1,
+                   "usersCount": 1,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4c3a5ad83849c92880e0c2b1",
+                   "name": "Blue Marble Ice Cream",
+                   "contact": {},
+                   "location": {
+                   "address": "Brooklyn Bridge Park - Pier 1",
+                   "lat": 40.70136599888968,
+                   "lng": -73.99794101715088,
+                   "distance": 230,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d1c9941735",
+                                  "name": "Ice Cream Shop",
+                                  "pluralName": "Ice Cream Shops",
+                                  "shortName": "Ice Cream",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/food/icecream_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": true,
+                   "stats": {
+                   "checkinsCount": 140,
+                   "usersCount": 115,
+                   "tipCount": 17
+                   },
+                   "url": "http://www.bluemarbleicecream.com",
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4e1e2225ae60ef672d8572d0",
+                   "name": "Metropolitan Opera In The Park",
+                   "contact": {},
+                   "location": {
+                   "address": "Brooklyn Bridge Park",
+                   "lat": 40.701736,
+                   "lng": -73.997377,
+                   "distance": 293,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "5032792091d4c4b30a586d5c",
+                                  "name": "Concert Hall",
+                                  "pluralName": "Concert Halls",
+                                  "shortName": "Concert Hall",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/arts_entertainment/musicvenue_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 66,
+                   "usersCount": 63,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4bf0066151f2c9b6c917f192",
+                   "name": "Granite Prospect",
+                   "contact": {},
+                   "location": {
+                   "address": "Brooklyn Bridge Park",
+                   "lat": 40.70198416160947,
+                   "lng": -73.99747364554779,
+                   "distance": 306,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d165941735",
+                                  "name": "Scenic Lookout",
+                                  "pluralName": "Scenic Lookouts",
+                                  "shortName": "Scenic Lookout",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/parks_outdoors/sceniclookout_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 64,
+                   "usersCount": 55,
+                   "tipCount": 1
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4d2cb2c677a2a1cd02c387b7",
+                   "name": "QBE",
+                   "contact": {},
+                   "location": {
+                   "address": "80 Pine St",
+                   "crossStreet": "Water St",
+                   "lat": 40.698978,
+                   "lng": -74.00043,
+                   "distance": 119,
+                   "postalCode": "10005",
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 1,
+                   "usersCount": 1,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4d9788e5daec224b4642333e",
+                   "name": "Dr Shur",
+                   "contact": {},
+                   "location": {
+                   "address": "140 Elgar Place",
+                   "lat": 40.698978,
+                   "lng": -74.00043,
+                   "distance": 119,
+                   "cc": "US",
+                   "city": "Bronx",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 1,
+                   "usersCount": 1,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4dac4c974df01c19b1b0fc82",
+                   "name": "Internal Medicine Associates",
+                   "contact": {},
+                   "location": {
+                   "address": "530 1st Ave",
+                   "crossStreet": "30th street",
+                   "lat": 40.698978,
+                   "lng": -74.00043,
+                   "distance": 119,
+                   "postalCode": "10016",
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d177941735",
+                                  "name": "Doctor's Office",
+                                  "pluralName": "Doctor's Offices",
+                                  "shortName": "Doctor's Office",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/building/medical_doctorsoffice_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 4,
+                   "usersCount": 3,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4cb92bdc7148f04d9336d5ab",
+                   "name": "Livys apartment !",
+                   "contact": {},
+                   "location": {
+                   "address": "95 Wall St",
+                   "crossStreet": "Water st",
+                   "lat": 40.700249,
+                   "lng": -74.001442,
+                   "distance": 124,
+                   "postalCode": "10005",
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d1a3941735",
+                                  "name": "College Residence Hall",
+                                  "pluralName": "College Residence Halls",
+                                  "shortName": "Residence Hall",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/education/residencehall_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 1,
+                   "usersCount": 1,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "50f42c19e4b0966177888196",
+                   "name": "Columbia Hts at Clark St",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.698482,
+                   "lng": -73.996421,
+                   "distance": 346,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4f2a25ac4b909258e854f55f",
+                                  "name": "Neighborhood",
+                                  "pluralName": "Neighborhoods",
+                                  "shortName": "Neighborhood",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/parks_outdoors/neighborhood_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 2,
+                   "usersCount": 2,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "51ec27ce498e6aba2b159f3a",
+                   "name": "China Max",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.70149150976206,
+                   "lng": -73.99980928755299,
+                   "distance": 166,
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d145941735",
+                                  "name": "Chinese Restaurant",
+                                  "pluralName": "Chinese Restaurants",
+                                  "shortName": "Chinese",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/food/chinese_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 6,
+                   "usersCount": 3,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "5284fe6811d2114d599b3e15",
+                   "name": "Brooklyn Bridge Park - Pier 3",
+                   "contact": {},
+                   "location": {
+                   "address": "334 Furman St",
+                   "crossStreet": "Clark St.",
+                   "lat": 40.69907224691624,
+                   "lng": -73.99854183197021,
+                   "distance": 160,
+                   "postalCode": "11201",
+                   "cc": "US",
+                   "city": "Brooklyn",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d163941735",
+                                  "name": "Park",
+                                  "pluralName": "Parks",
+                                  "shortName": "Park",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/parks_outdoors/park_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 7,
+                   "usersCount": 7,
+                   "tipCount": 0
+                   },
+                   "url": "http://www.brooklynbridgepark.org/the-park/future-park/pier-3",
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4fd91ce8e4b0a8dbd1eddc69",
+                   "name": "SS Gawker",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.69900610889219,
+                   "lng": -74.00171450760502,
+                   "distance": 182,
+                   "cc": "US",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d12d951735",
+                                  "name": "Boat or Ferry",
+                                  "pluralName": "Boats or Ferries",
+                                  "shortName": "Boat / Ferry",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/travel/boat_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 15,
+                   "usersCount": 8,
+                   "tipCount": 1
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "50397c85e4b0b7a03bc9f5d5",
+                   "name": "swallow",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.7007111,
+                   "lng": -74.0019946,
+                   "distance": 186,
+                   "cc": "US",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d1db931735",
+                                  "name": "Tapas Restaurant",
+                                  "pluralName": "Tapas Restaurants",
+                                  "shortName": "Tapas",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/food/tapas_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 3,
+                   "usersCount": 2,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4fa7fa1ae4b089a95c20b508",
+                   "name": "EmblemHealth Fitness Center",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.701604842269646,
+                   "lng": -74.00157678148989,
+                   "distance": 222,
+                   "postalCode": "10004",
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d176941735",
+                                  "name": "Gym",
+                                  "pluralName": "Gyms",
+                                  "shortName": "Gym",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/building/gym_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 14,
+                   "usersCount": 2,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4d5dca375c39b1f73a39e449",
+                   "name": "Blackout @ BJ's on Wall",
+                   "contact": {},
+                   "location": {
+                   "address": "45 Wall",
+                   "lat": 40.701609,
+                   "lng": -73.998774,
+                   "distance": 206,
+                   "cc": "US",
+                   "city": "New York",
+                   "state": "NY",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d118941735",
+                                  "name": "Dive Bar",
+                                  "pluralName": "Dive Bars",
+                                  "shortName": "Dive Bar",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/nightlife/divebar_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 1,
+                   "usersCount": 1,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   },
+                   {
+                   "id": "4fd9ede2e4b0f6aceea6029b",
+                   "name": "Blue chair",
+                   "contact": {},
+                   "location": {
+                   "lat": 40.70171156542048,
+                   "lng": -74.00130706756083,
+                   "distance": 220,
+                   "cc": "US",
+                   "country": "United States"
+                   },
+                   "categories": [
+                                  {
+                                  "id": "4bf58dd8d48988d1f1931735",
+                                  "name": "General Entertainment",
+                                  "pluralName": "General Entertainment",
+                                  "shortName": "Entertainment",
+                                  "icon": {
+                                  "prefix": "https://ss1.4sqi.net/img/categories_v2/arts_entertainment/default_",
+                                  "suffix": ".png"
+                                  },
+                                  "primary": true
+                                  }
+                                  ],
+                   "verified": false,
+                   "stats": {
+                   "checkinsCount": 5,
+                   "usersCount": 1,
+                   "tipCount": 0
+                   },
+                   "specials": {
+                   "count": 0,
+                   "items": []
+                   },
+                   "hereNow": {
+                   "count": 0,
+                   "groups": []
+                   },
+                   "referralId": "v-1386098424"
+                   }
+                   ],
+        "confident": false
+    }
+}

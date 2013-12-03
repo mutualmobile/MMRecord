@@ -53,6 +53,8 @@
 		55D278B71829836C008CB6B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D278B61829836C008CB6B4 /* SystemConfiguration.framework */; };
 		55D278B918298372008CB6B4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D278B818298372008CB6B4 /* MobileCoreServices.framework */; };
 		55D278BB18298377008CB6B4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D278BA18298377008CB6B4 /* CoreLocation.framework */; };
+		55DB69CA184E66AA00677CEA /* Venues.json in Resources */ = {isa = PBXBuildFile; fileRef = 55DB69C9184E66AA00677CEA /* Venues.json */; };
+		55DB69CC184E66F400677CEA /* Venue.json in Resources */ = {isa = PBXBuildFile; fileRef = 55DB69CB184E66F400677CEA /* Venue.json */; };
 		55F8C4BB1848F8E000037D45 /* AFMMRecordResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C4BA1848F8E000037D45 /* AFMMRecordResponseSerializer.m */; };
 		55F8C4BE184902CF00037D45 /* MMFoursquareSerializationMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C4BD184902CF00037D45 /* MMFoursquareSerializationMapper.m */; };
 /* End PBXBuildFile section */
@@ -150,6 +152,8 @@
 		55D278B61829836C008CB6B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		55D278B818298372008CB6B4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		55D278BA18298377008CB6B4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		55DB69C9184E66AA00677CEA /* Venues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Venues.json; sourceTree = "<group>"; };
+		55DB69CB184E66F400677CEA /* Venue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Venue.json; sourceTree = "<group>"; };
 		55F8C4B91848F8E000037D45 /* AFMMRecordResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMMRecordResponseSerializer.h; sourceTree = "<group>"; };
 		55F8C4BA1848F8E000037D45 /* AFMMRecordResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMMRecordResponseSerializer.m; sourceTree = "<group>"; };
 		55F8C4BC184902CF00037D45 /* MMFoursquareSerializationMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMFoursquareSerializationMapper.h; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 				55D27861182977AA008CB6B4 /* Entities */,
 				55D27862182977AA008CB6B4 /* Managers */,
 				55D2786D18297CC6008CB6B4 /* Foursquare.xcdatamodeld */,
+				55DB69C9184E66AA00677CEA /* Venues.json */,
+				55DB69CB184E66F400677CEA /* Venue.json */,
 				55D278B0182980BC008CB6B4 /* FSRecord.h */,
 				55D278B1182980BC008CB6B4 /* FSRecord.m */,
 			);
@@ -492,6 +498,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D278231829765E008CB6B4 /* Images.xcassets in Resources */,
+				55DB69CC184E66F400677CEA /* Venue.json in Resources */,
+				55DB69CA184E66AA00677CEA /* Venues.json in Resources */,
 				55D278151829765E008CB6B4 /* InfoPlist.strings in Resources */,
 				55D2781E1829765E008CB6B4 /* Main.storyboard in Resources */,
 			);

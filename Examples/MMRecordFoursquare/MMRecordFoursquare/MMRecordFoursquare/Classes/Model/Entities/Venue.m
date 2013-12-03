@@ -25,7 +25,7 @@
 @dynamic categories;
 
 + (NSString *)keyPathForResponseObject {
-    return @"response.venue";
+    return @"response.venues";
 }
 
 @end
