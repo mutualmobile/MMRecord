@@ -13,8 +13,8 @@
 #import "Venue.h"
 
 @interface MMViewController ()
-
-@property (nonatomic, weak) IBOutlet UILabel *venueLabel;
+    
+@property (nonatomic, copy) NSArray *venues;
 
 @end
 
@@ -31,12 +31,30 @@
      success:^(NSURLSessionDataTask *task, id responseObject) {
          NSArray *venues = responseObject;
          
-         Venue *venue = [venues firstObject];
+         self.venues = venues;
          
-         self.venueLabel.text = venue.name;
+         [self.tableView reloadData];
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
          
      }];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.venues count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    
+    Venue *venue = self.venues[indexPath.row];
+    
+    cell.textLabel.text = venue.name;
+    
+    return cell;
 }
 
 @end

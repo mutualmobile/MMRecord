@@ -368,6 +368,7 @@
 		55D27863182977AA008CB6B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				55D2781C1829765E008CB6B4 /* Main.storyboard */,
 				55D2781F1829765E008CB6B4 /* MMViewController.h */,
 				55D278201829765E008CB6B4 /* MMViewController.m */,
 			);
@@ -404,7 +405,6 @@
 			isa = PBXGroup;
 			children = (
 				55D2787018297D73008CB6B4 /* *.foursquare.com.cer */,
-				55D2781C1829765E008CB6B4 /* Main.storyboard */,
 				55D278221829765E008CB6B4 /* Images.xcassets */,
 			);
 			name = Resources;
@@ -589,6 +589,7 @@
 				55D2781D1829765E008CB6B4 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		55D278321829765E008CB6B4 /* InfoPlist.strings */ = {
