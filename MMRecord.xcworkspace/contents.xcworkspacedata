@@ -107,6 +107,12 @@
          <FileRef
             location = "group:AFMMRecordResponseSerializer.m">
          </FileRef>
+         <FileRef
+            location = "group:AFMMRecordResponseSerializationMapper.h">
+         </FileRef>
+         <FileRef
+            location = "group:AFMMRecordResponseSerializationMapper.m">
+         </FileRef>
       </Group>
    </Group>
    <FileRef

@@ -8,9 +8,10 @@
 
 #import "MMAppDelegate.h"
 
+#import "AFMMRecordResponseSerializer.h"
+#import "AFMMRecordResponseSerializationMapper.h"
 #import "MMDataManager.h"
 #import "MMFoursquareSessionManager.h"
-#import "MMFoursquareSerializationMapper.h"
 
 @implementation MMAppDelegate
 
@@ -19,7 +20,9 @@
     
     NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
     AFHTTPResponseSerializer *HTTPResponseSerializer = [AFJSONResponseSerializer serializer];
-    MMFoursquareSerializationMapper *mapper = [[MMFoursquareSerializationMapper alloc] init];
+    
+    AFMMRecordResponseSerializationMapper *mapper = [[AFMMRecordResponseSerializationMapper alloc] init];
+    [mapper registerEntityName:@"Venue" forEndpointPathComponent:@"venues/search?"];
     
     AFMMRecordResponseSerializer *serializer =
         [AFMMRecordResponseSerializer serializerWithManagedObjectContext:context

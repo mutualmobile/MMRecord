@@ -47,7 +47,10 @@
  You must also provide a mapping from a response to a type of record. Use the response and response
  object to decide which entity you want to populate and return in the AFNetworking success block. 
  Implementation of this mapping is required and is done by conforming to the
- AFMMRecordResponseSerializationEntityMapping protocol.
+ AFMMRecordResponseSerializationEntityMapping protocol. The AFMMRecordResponseSerializer library
+ extension does provide a concrete implementation of this protocol in the form of the 
+ AFMMRecordResponseSerializationMapper that you may use, or you can implement your own mapper to
+ provide different or more complex mapping functionality.
  */
 @interface AFMMRecordResponseSerializer : AFHTTPResponseSerializer <AFURLResponseSerialization>
 
