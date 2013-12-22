@@ -10,7 +10,7 @@
 
 @class Venue;
 
-@interface MMVenueViewController : UIViewController
+@interface MMVenueViewController : UITableViewController
 
 @property (nonatomic, strong) Venue *venue;
 
