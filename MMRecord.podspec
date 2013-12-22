@@ -35,5 +35,10 @@ Pod::Spec.new do |s|
   	json.source_files = 'Source/MMRecordJSONServer/*.{h,m}'
 	json.dependency 'MMRecord/Core'
   end
+
+  s.subspec 'ResponseSerializer' do |ser|
+    ser.source_files = 'Source/AFMMRecordResponseSerializer/*.{h,m}'
+  ser.dependency 'MMRecord/Core'
+  end
   
 end
