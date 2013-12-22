@@ -11,6 +11,9 @@
 #import "MMFoursquareSessionManager.h"
 
 #import "Venue.h"
+#import "Location.h"
+
+#import "MMVenueViewController.h"
 
 @interface MMViewController ()
     
@@ -22,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     NSString *oAuthToken = @"RMRLHPHOTZBIHKAX2G1XMZ33XQYDYKVCAUTM5GCTAA03X04F";
     
     [[MMFoursquareSessionManager sharedClient]
@@ -52,9 +55,51 @@
     
     Venue *venue = self.venues[indexPath.row];
     
-    cell.textLabel.text = venue.name;
+    UILabel *venueNameLabel = [self venueNameLabelInCell:cell];
+    venueNameLabel.text = venue.name;
+    
+    UILabel *addressLabel = [self addressLabelInCell:cell];
+    addressLabel.text = venue.location.address;
     
     return cell;
+}
+
+
+#pragma mark - Segue Methods
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    Venue *venue = self.venues[indexPath.row];
+    
+    MMVenueViewController *venueViewController = segue.destinationViewController;
+    venueViewController.venue = venue;
+}
+
+
+#pragma mark - Private Cell Methods
+
+- (UILabel *)venueNameLabelInCell:(UITableViewCell *)cell {
+    for (UIView *view in [cell.contentView subviews]) {
+        if (view.tag == 10) {
+            if ([view isKindOfClass:[UILabel class]]) {
+                return (UILabel *)view;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+- (UILabel *)addressLabelInCell:(UITableViewCell *)cell {
+    for (UIView *view in [cell.contentView subviews]) {
+        if (view.tag == 11) {
+            if ([view isKindOfClass:[UILabel class]]) {
+                return (UILabel *)view;
+            }
+        }
+    }
+    
+    return nil;
 }
 
 @end

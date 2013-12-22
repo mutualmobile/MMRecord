@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26F9870918666C03000CAF96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F9870518666C03000CAF96 /* Main.storyboard */; };
+		26F9870A18666C03000CAF96 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F9870818666C03000CAF96 /* MMViewController.m */; };
+		26F9870D18667076000CAF96 /* MMVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F9870C18667076000CAF96 /* MMVenueViewController.m */; };
 		550DFA981846AF2200E76A6B /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFA971846AF2200E76A6B /* Location.m */; };
 		550DFA9B1846AF2300E76A6B /* PhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFA9A1846AF2300E76A6B /* PhotoItem.m */; };
 		550DFA9E1846AF2300E76A6B /* FSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFA9D1846AF2300E76A6B /* FSCategory.m */; };
@@ -20,8 +23,6 @@
 		55D278151829765E008CB6B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55D278131829765E008CB6B4 /* InfoPlist.strings */; };
 		55D278171829765E008CB6B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D278161829765E008CB6B4 /* main.m */; };
 		55D2781B1829765E008CB6B4 /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D2781A1829765E008CB6B4 /* MMAppDelegate.m */; };
-		55D2781E1829765E008CB6B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D2781C1829765E008CB6B4 /* Main.storyboard */; };
-		55D278211829765E008CB6B4 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D278201829765E008CB6B4 /* MMViewController.m */; };
 		55D278231829765E008CB6B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D278221829765E008CB6B4 /* Images.xcassets */; };
 		55D2782A1829765E008CB6B4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D278291829765E008CB6B4 /* XCTest.framework */; };
 		55D2782B1829765E008CB6B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D2780A1829765E008CB6B4 /* Foundation.framework */; };
@@ -70,6 +71,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26F9870618666C03000CAF96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MMRecordFoursquare/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		26F9870718666C03000CAF96 /* MMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMViewController.h; path = MMRecordFoursquare/MMViewController.h; sourceTree = SOURCE_ROOT; };
+		26F9870818666C03000CAF96 /* MMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMViewController.m; path = MMRecordFoursquare/MMViewController.m; sourceTree = SOURCE_ROOT; };
+		26F9870B18667076000CAF96 /* MMVenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMVenueViewController.h; path = MMRecordFoursquare/MMVenueViewController.h; sourceTree = SOURCE_ROOT; };
+		26F9870C18667076000CAF96 /* MMVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMVenueViewController.m; path = MMRecordFoursquare/MMVenueViewController.m; sourceTree = SOURCE_ROOT; };
 		550DFA961846AF2200E76A6B /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		550DFA971846AF2200E76A6B /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		550DFA991846AF2300E76A6B /* PhotoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoItem.h; sourceTree = "<group>"; };
@@ -94,9 +100,6 @@
 		55D278181829765E008CB6B4 /* MMRecordFoursquare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMRecordFoursquare-Prefix.pch"; sourceTree = "<group>"; };
 		55D278191829765E008CB6B4 /* MMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MMAppDelegate.h; path = ../MMAppDelegate.h; sourceTree = "<group>"; };
 		55D2781A1829765E008CB6B4 /* MMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MMAppDelegate.m; path = ../MMAppDelegate.m; sourceTree = "<group>"; };
-		55D2781D1829765E008CB6B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		55D2781F1829765E008CB6B4 /* MMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MMViewController.h; path = ../../MMViewController.h; sourceTree = "<group>"; };
-		55D278201829765E008CB6B4 /* MMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MMViewController.m; path = ../../MMViewController.m; sourceTree = "<group>"; };
 		55D278221829765E008CB6B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55D278281829765E008CB6B4 /* MMRecordFoursquareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MMRecordFoursquareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D278291829765E008CB6B4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -366,9 +369,11 @@
 		55D27863182977AA008CB6B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				55D2781C1829765E008CB6B4 /* Main.storyboard */,
-				55D2781F1829765E008CB6B4 /* MMViewController.h */,
-				55D278201829765E008CB6B4 /* MMViewController.m */,
+				26F9870518666C03000CAF96 /* Main.storyboard */,
+				26F9870718666C03000CAF96 /* MMViewController.h */,
+				26F9870818666C03000CAF96 /* MMViewController.m */,
+				26F9870B18667076000CAF96 /* MMVenueViewController.h */,
+				26F9870C18667076000CAF96 /* MMVenueViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -498,10 +503,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D278231829765E008CB6B4 /* Images.xcassets in Resources */,
+				26F9870918666C03000CAF96 /* Main.storyboard in Resources */,
 				55DB69CC184E66F400677CEA /* Venue.json in Resources */,
 				55DB69CA184E66AA00677CEA /* Venues.json in Resources */,
 				55D278151829765E008CB6B4 /* InfoPlist.strings in Resources */,
-				55D2781E1829765E008CB6B4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +527,7 @@
 			files = (
 				55F8C4BB1848F8E000037D45 /* AFMMRecordResponseSerializer.m in Sources */,
 				550DFA9E1846AF2300E76A6B /* FSCategory.m in Sources */,
+				26F9870D18667076000CAF96 /* MMVenueViewController.m in Sources */,
 				55D278561829769B008CB6B4 /* AFHTTPRequestOperation.m in Sources */,
 				55D2781B1829765E008CB6B4 /* MMAppDelegate.m in Sources */,
 				55D278571829769B008CB6B4 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -536,6 +542,7 @@
 				55D2786C18297CB7008CB6B4 /* MMDataManager.m in Sources */,
 				550DFAAA1846AF2300E76A6B /* PhotoGroup.m in Sources */,
 				550DFAA41846AF2300E76A6B /* Menu.m in Sources */,
+				26F9870A18666C03000CAF96 /* MMViewController.m in Sources */,
 				55D278AA18297E01008CB6B4 /* MMRecordRepresentation.m in Sources */,
 				55D278B2182980BC008CB6B4 /* FSRecord.m in Sources */,
 				55D278A618297E01008CB6B4 /* MMRecord.m in Sources */,
@@ -549,7 +556,6 @@
 				55D278A918297E01008CB6B4 /* MMRecordProtoRecord.m in Sources */,
 				55D278A718297E01008CB6B4 /* MMRecordCache.m in Sources */,
 				550DFA9B1846AF2300E76A6B /* PhotoItem.m in Sources */,
-				55D278211829765E008CB6B4 /* MMViewController.m in Sources */,
 				550DFAA71846AF2300E76A6B /* Contact.m in Sources */,
 				55D278171829765E008CB6B4 /* main.m in Sources */,
 				550DFA981846AF2200E76A6B /* Location.m in Sources */,
@@ -575,21 +581,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		26F9870518666C03000CAF96 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26F9870618666C03000CAF96 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		55D278131829765E008CB6B4 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				55D278141829765E008CB6B4 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		55D2781C1829765E008CB6B4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55D2781D1829765E008CB6B4 /* Base */,
-			);
-			name = Main.storyboard;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		55D278321829765E008CB6B4 /* InfoPlist.strings */ = {
