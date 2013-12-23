@@ -152,6 +152,30 @@
    dateFormatter:(NSDateFormatter *)dateFormatter;
 
 /**
+ This method is designed to be subclassed. It is used to supply the properly formatted value for the
+ setValue: method above. The term "formatted" can mean different things for different types of
+ attributes. For date attributes that may mean applying a date formatter, or for transformed
+ attributes applying a value transformer. Or it may mean something entirely different based on the
+ needs of your application. Thats why its a public method - to allow you to subclass and provide
+ custom behavior as necessary.
+ 
+ A best practice when using this method is to treat the passed in raw value as the default. If you
+ have nothing to do to that value, then just return it directly. Generally speaking you will not
+ want to return nil from this method. The rawValue passed will never be nil.
+ 
+ Another best practice is to call super if you are only customizing the logic for one type of
+ attribute. Create a condition on that attribute type, and if its not met, simply return the result
+ of super's implementation.
+ 
+ @param attribute The attribute to return a formatted value for.
+ @param rawValue The raw value as determined by the populateProtoRecord: method for this record.
+ @param dateFormatter The date formatter to use for formatting a Date attribute.
+ */
++ (id)valueForAttribute:(NSAttributeDescription *)attribute
+               rawValue:(id)rawValue
+          dateFormatter:(NSDateFormatter *)dateFormatter;
+
+/**
  This method is designed to be subclassed. It should be used to establish a given relationship from 
  one record to another. Subclassing this method allows you to change the means by which a 
  relationship is established, and possibly inject other logic to come before or after the 
