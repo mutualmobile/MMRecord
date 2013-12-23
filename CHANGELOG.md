@@ -1,5 +1,16 @@
 #MMRecord Changelog
 
+##[1.2.0](https://github.com/mutualmobile/MMRecord/issues?milestone=5&state=closed) (Monday, December 23th, 2013)
+###New
+* Added a new sub spec called AFMMRecordResponseSerializer that returns MMRecord objects in an AFNetworking 2.0 success block. (Conrad Stoll)
+* Added a new sample project called MMRecordFoursquare that implements the Foursquare Venue API and the AFMMRecordResponseSerializer. (Conrad Stoll)
+* Added a new way to conditionally delete orphans that did not come back in a response. (Conrad Stoll)
+* Improved the experience for customizing the marshalling behavior to allow transformed property setting. (Rene Cacheaux and Conrad Stoll)
+
+###Fixed
+* **FIXED** an issue([#34](https://github.com/mutualmobile/MMRecord/issues/34)) where MMRecord's future with AFNetworking 2.0 was uncertain. (Conrad Stoll)
+* **FIXED** an issue([#4](https://github.com/mutualmobile/MMRecord/issues/4)) where MMRecord had difficulty deleting orphans if you wanted to. (Conrad Stoll)
+
 ##[1.1.0](https://github.com/mutualmobile/MMRecord/issues?milestone=4&state=closed) (Monday, July 8th, 2013)
 ###New
 * You can now specify a specific page manager for any request. (Conrad Stoll)
