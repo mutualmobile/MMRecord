@@ -555,6 +555,22 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
 
 
 /**
+ This block should be used to conditionally delete orphaned records if they are not returned in a
+ request's response.
+ 
+ @param orphan The record which has now become an orphan.
+ @param populatedRecords An array of records that were populated from the response.
+ @param responseObject The JSON response object from the request.
+ @param stop A boolean reference you can set to YES to short circuit the orphan deletion process.
+ @return BOOL You should return YES if you want to delete the orphan and NO otherwise.
+ */
+typedef BOOL (^MMRecordOptionsDeleteOrphanedRecordBlock)(MMRecord *orphan,
+                                                         NSArray *populatedRecords,
+                                                         id responseObject,
+                                                         BOOL *stop);
+
+
+/**
  This class represents various user settable options that MMRecord will use when starting requests.
  */
 
@@ -622,6 +638,15 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  @discussion Default value is the page manager for the registered server class for the given entity.
  */
 @property (nonatomic, strong) Class pageManagerClass;
+
+/**
+ This option allows you to specify a block that will be executed once per record which was orphaned
+ by this request's response until either it has been called n times for n number of orphans or until
+ you pass YES for the stop parameter.
+ 
+ @discussion Default value is nil which means orphans will be ignored.
+ */
+@property (nonatomic, copy) MMRecordOptionsDeleteOrphanedRecordBlock deleteOrphanedRecordBlock;
 
 @end
 

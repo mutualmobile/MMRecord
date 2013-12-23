@@ -19,4 +19,6 @@
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) User *user;
 
+@property (nonatomic, readonly) BOOL isFavorite;
+
 @end
