@@ -63,30 +63,42 @@
         onRecord:(MMRecord *)record
        attribute:(NSAttributeDescription *)attribute
    dateFormatter:(NSDateFormatter *)dateFormatter {
-    NSAttributeType attributeType = [attribute attributeType];
-    
     if (value == nil) {
         return;
     }
     
+    id newValue = [self valueForAttribute:attribute rawValue:value dateFormatter:dateFormatter];
+    
+    if (newValue != nil) {
+        [record setValue:newValue forKey:attribute.name];
+    }
+}
+
++ (id)valueForAttribute:(NSAttributeDescription *)attribute
+               rawValue:(id)rawValue
+          dateFormatter:(NSDateFormatter *)dateFormatter {
+    NSAttributeType attributeType = [attribute attributeType];
+    
+    id value = rawValue;
+    
     if (attributeType == NSDateAttributeType) {
-        value = [self dateValueForAttribute:attribute value:value dateFormatter:dateFormatter];
+        value = [self dateValueForAttribute:attribute
+                                      value:rawValue
+                              dateFormatter:dateFormatter];
     } else if (attributeType == NSTransformableAttributeType) {
         value = [self transformedValueForAttribute:attribute
-                                             value:value];
+                                             value:rawValue];
     } else if (attributeType == NSInteger32AttributeType ||
                attributeType == NSInteger16AttributeType ||
                attributeType == NSInteger64AttributeType) {
-        value = [self numberValueForAttribute:attribute value:value];
+        value = [self numberValueForAttribute:attribute value:rawValue];
     } else if (attributeType == NSBooleanAttributeType) {
-        value = [self boolValueForAttribute:attribute value:value];
+        value = [self boolValueForAttribute:attribute value:rawValue];
     } else if (attributeType == NSStringAttributeType) {
-        value = [self stringValueForAttribute:attribute value:value];
+        value = [self stringValueForAttribute:attribute value:rawValue];
     }
     
-    if (value != nil) {
-        [record setValue:value forKey:attribute.name];
-    }
+    return value;
 }
 
 + (NSDate *)dateValueForAttribute:(NSAttributeDescription *)attribute
