@@ -58,8 +58,11 @@
     return NO;
 }
 
-- (NSEntityDescription *)entityName:(NSString *)entityName mapsToResponse:(NSURLResponse *)response context:(NSManagedObjectContext *)context {
-    if ([self response:response containsPathComponentString:@"venues/search?"]) {
+- (NSEntityDescription *)entityName:(NSString *)entityName
+                     mapsToEndPoint:(NSString *)endpoint
+                       withResponse:(NSURLResponse *)response
+                            context:(NSManagedObjectContext *)context {
+    if ([self response:response containsPathComponentString:endpoint]) {
         return [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
     }
     
@@ -76,7 +79,10 @@
     for (NSString *endpoint in self.mapping.allKeys) {
         NSString *entityName = [self.mapping objectForKey:endpoint];
         
-        NSEntityDescription *entity = [self entityName:entityName mapsToResponse:response context:context];
+        NSEntityDescription *entity = [self entityName:entityName
+                                        mapsToEndPoint:endpoint
+                                          withResponse:response
+                                               context:context];
         
         if (entity != nil) {
             return entity;
