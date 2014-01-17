@@ -29,6 +29,15 @@ Keep reading to learn more about how to start using MMRecord in your project!
 - Continue reading the integration instructions below.
 - Check out the [documentation](http://mutualmobile.github.com/MMRecord/Documentation/) for all the rest of the details.
 
+---
+##Installing MMRecord
+<img src="https://cocoapod-badges.herokuapp.com/v/MMRecord/badge.png"/><br/>
+You can install MMRecord in your project by using [CocoaPods](https://github.com/cocoapods/cocoapods):
+
+```Ruby
+pod 'MMRecord', '~> 1.2.0'
+```
+
 ## Overview
 
 MMRecord is designed to make it as easy and fast as possible to obtain native objects from a new web service request. It handles all of the fetching, creation, and population of NSManagedObjects for you in the background so that when you make a request, all you get back is the native objects that you can use immediately. No parsing required.
