@@ -28,31 +28,6 @@
 #import "MMRecordResponse.h"
 #import "MMServer.h"
 
-/*
- * Does ARC support support GCD objects?
- * It does if the minimum deployment target is iOS 6+ or Mac OS X 8+
- */
-#if TARGET_OS_IPHONE
-
-// Compiling for iOS
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000 // iOS 6.0 or later
-#define NEEDS_DISPATCH_RETAIN_RELEASE 0
-#else                                         // iOS 5.X or earlier
-#define NEEDS_DISPATCH_RETAIN_RELEASE 1
-#endif
-
-#else
-
-// Compiling for Mac OS X
-
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1080     // Mac OS X 10.8 or later
-#define NEEDS_DISPATCH_RETAIN_RELEASE 0
-#else
-#define NEEDS_DISPATCH_RETAIN_RELEASE 1     // Mac OS X 10.7 or earlier
-#endif
-
-#endif
 
 @class MMRecordErrorHandler;
 
@@ -348,16 +323,10 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     dispatch_semaphore_wait(_mmrecord_request_semaphore, DISPATCH_TIME_FOREVER);
     if (dispatchGroup != _mmrecord_request_group) {
         if (_mmrecord_request_group) {
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-            dispatch_release(_mmrecord_request_group);
-#endif
             _mmrecord_request_group = nil;
         }
         
         if (dispatchGroup) {
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-            dispatch_retain(dispatchGroup);
-#endif
             _mmrecord_request_group = dispatchGroup;
         }
     }
@@ -494,8 +463,9 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 + (void)startBatchedRequestsInExecutionBlock:(void(^)())batchExecutionBlock
                          withCompletionBlock:(void(^)())completionBlock {
     [self setBatchDispatchGroup:YES];
+    dispatch_group_t dispatchGroup = [self dispatchGroup];
     batchExecutionBlock();
-    dispatch_group_notify([self dispatchGroup], dispatch_get_main_queue(), completionBlock);
+    dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), completionBlock);
     [self setBatchDispatchGroup:NO];
     [self restoreDefaultOptions];
 }
@@ -521,10 +491,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 + (void)performRequestWithRequestState:(MMRecordRequestState *)state {
     MMRecordOptions *options = [self currentOptions];
     
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-    dispatch_retain(state.dispatchGroup);
-#endif
-    
     if ([state isBatched]) {
         dispatch_group_enter(state.dispatchGroup);
     }
@@ -546,10 +512,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
              if ([state isBatched]) {
                  dispatch_group_leave(state.dispatchGroup);
              }
-             
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-             dispatch_release(state.dispatchGroup);
-#endif
          });
      } failureBlock:^(NSError *error) {
          if (state.failureBlock != nil) {
@@ -559,10 +521,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
          if ([state isBatched]) {
              dispatch_group_leave(state.dispatchGroup);
          }
-         
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-         dispatch_release(state.dispatchGroup);
-#endif
      }];
     
     [self restoreDefaultOptions];
@@ -607,6 +565,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     } else {
         [self failRequestWithRequestState:state options:options];
     }
+    
+    [self setDispatchGroup:nil];
 }
 
 + (void)passRequestWithRequestState:(MMRecordRequestState *)state
