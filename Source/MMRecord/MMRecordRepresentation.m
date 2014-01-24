@@ -34,7 +34,6 @@
 @interface MMRecordRelationshipRepresentation : NSObject
 
 @property (nonatomic, copy) NSString *relationshipKey;
-@property (nonatomic, strong) MMRecordRepresentation *entityRepresentation;
 @property (nonatomic, strong) NSRelationshipDescription *relationshipDescription;
 @property (nonatomic, copy) NSArray *keyPaths;
 
@@ -257,7 +256,6 @@
     representation.relationshipDescription = relationshipDescription;
     representation.keyPaths = keyPaths;
     representation.relationshipKey = relationshipKey;
-    representation.entityRepresentation = self;
     
     [self.representationDictionary setValue:representation forKey:relationshipKey];
     [self.relationshipRepresentations addObject:representation];
