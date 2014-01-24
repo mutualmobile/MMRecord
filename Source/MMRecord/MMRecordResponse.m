@@ -203,7 +203,7 @@
                                                    fromExistingResponseGroups:responseGroups];
     MMRecordRepresentation *representation = recordResponseGroup.representation;
     
-    if ([recordResponseObject isKindOfClass:[NSDictionary class]] == NO) {
+    if ([recordResponseObject isKindOfClass:[NSDictionary class]] == NO && representation.primaryKeyPropertyName != nil) {
         recordResponseObject = @{representation.primaryKeyPropertyName : recordResponseObject};
     }
     
