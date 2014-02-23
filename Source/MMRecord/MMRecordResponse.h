@@ -23,6 +23,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "MMRecord.h"
+
 /* This class describes the response from a request started by MMRecord.  It contains the array of objects
    obtained from the response object which should be converted into MMRecords.  It also contains the initial
    entity, which all of the objects in the response object array should be a type of.  This class has only
@@ -32,6 +34,12 @@
  */
 
 @interface MMRecordResponse : NSObject
+
+// Optional record primary key injection block
+@property (nonatomic, copy) MMRecordOptionsEntityPrimaryKeyInjectionBlock entityPrimaryKeyInjectionBlock;
+
+// Optional pre-population block.
+@property (nonatomic, copy) MMRecordOptionsRecordPrePopulationBlock recordPrePopulationBlock;
 
 // Designated Initializer
 + (MMRecordResponse *)responseFromResponseObjectArray:(NSArray *)responseObjectArray

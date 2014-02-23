@@ -23,7 +23,6 @@
 #import "MMRecord.h"
 
 #import "MMRecordCache.h"
-#import "MMRecordProtoRecord.h"
 #import "MMRecordRepresentation.h"
 #import "MMRecordResponse.h"
 #import "MMServer.h"
@@ -216,6 +215,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     options.keyPathForMetaData = [self keyPathForMetaData];
     options.pageManagerClass = [[self server] pageManagerClass];
     options.deleteOrphanedRecordBlock = nil;
+    options.entityPrimaryKeyInjectionBlock = nil;
+    options.recordPrePopulationBlock = nil;
     return options;
 }
 
@@ -760,6 +761,9 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     MMRecordResponse *response = [MMRecordResponse responseFromResponseObjectArray:recordResponseArray
                                                                      initialEntity:initialEntity
                                                                            context:context];
+    
+    response.entityPrimaryKeyInjectionBlock = options.entityPrimaryKeyInjectionBlock;
+    response.recordPrePopulationBlock = options.recordPrePopulationBlock;
     
     NSArray *records = [response records];
     

@@ -22,7 +22,6 @@
 
 #import "MMRecordResponse.h"
 
-#import "MMRecord.h"
 #import "MMRecordMarshaler.h"
 #import "MMRecordRepresentation.h"
 #import "MMRecordProtoRecord.h"
@@ -41,6 +40,7 @@
 @property (nonatomic, strong) NSMutableDictionary *prototypeDictionary;
 @property (nonatomic, strong) MMRecordRepresentation *representation;
 @property (nonatomic) BOOL hasRelationshipPrimaryKey;
+@property (nonatomic, copy) MMRecordOptionsRecordPrePopulationBlock recordPrePopulationBlock;
 
 - (instancetype)initWithEntity:(NSEntityDescription *)entity;
 
@@ -143,6 +143,7 @@
     if (responseGroup == nil) {
         if ([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]) {
             responseGroup = [[MMRecordResponseGroup alloc] initWithEntity:entity];
+            responseGroup.recordPrePopulationBlock = self.recordPrePopulationBlock;
             responseGroups[entityDescriptionsKey] = responseGroup;
         } else {
             return nil;
@@ -214,6 +215,12 @@
         proto = [MMRecordProtoRecord protoRecordWithDictionary:recordResponseObject
                                                         entity:entity
                                                 representation:representation];
+        
+        if (proto.primaryKeyValue == nil) {
+            if (self.entityPrimaryKeyInjectionBlock != nil) {
+                proto.primaryKeyValue = self.entityPrimaryKeyInjectionBlock(proto.entity, proto.dictionary);
+            }
+        }
     }
     
     [self uniquelyAddNewProtoRecord:proto toExistingResponseGroups:responseGroups];
@@ -367,6 +374,10 @@
 
 - (void)populateAllRecords {
     for (MMRecordProtoRecord *protoRecord in self.protoRecords) {
+        if (self.recordPrePopulationBlock != nil) {
+            self.recordPrePopulationBlock(protoRecord);
+        }
+        
         [self.representation.marshalerClass populateProtoRecord:protoRecord];
     }
 }

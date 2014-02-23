@@ -41,6 +41,12 @@
 
 - (void)getPosts {
     NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
+    
+    MMRecordOptions *options = [Post defaultOptions];
+    options.recordPrePopulationBlock = ^(MMRecordProtoRecord *protoRecord){
+        
+    };
+    [Post setOptions:options];
 
     [Post
      getStreamPostsWithContext:context

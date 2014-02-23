@@ -29,6 +29,13 @@
 @implementation MMRecordMarshaler
 
 + (void)populateProtoRecord:(MMRecordProtoRecord *)protoRecord {
+    if (protoRecord.primaryAttributeDescription != nil) {
+        [self setValue:protoRecord.primaryKeyValue
+              onRecord:protoRecord.record
+             attribute:protoRecord.primaryAttributeDescription
+         dateFormatter:protoRecord.representation.dateFormatter];
+    }
+    
     for (NSAttributeDescription *attributeDescription in [protoRecord.representation attributeDescriptions]) {
         [self populateProtoRecord:protoRecord
              attributeDescription:attributeDescription

@@ -49,6 +49,7 @@
     protoRecord.relationshipDescriptionsDictionary = [NSMutableDictionary dictionary];
     protoRecord.hasRelationshipPrimarykey = [representation hasRelationshipPrimaryKey];
     protoRecord.representation = representation;
+    protoRecord.primaryAttributeDescription = [representation primaryAttributeDescription];
     
     return protoRecord;
 }

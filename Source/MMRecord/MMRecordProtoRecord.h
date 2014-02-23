@@ -54,6 +54,7 @@
 
 // Uniquing
 @property (nonatomic, strong) id primaryKeyValue;
+@property (nonatomic, strong) NSAttributeDescription *primaryAttributeDescription;
 @property (nonatomic, weak) MMRecordProtoRecord *relationshipPrimaryKeyProto;
 @property (nonatomic) BOOL hasRelationshipPrimarykey;
 

@@ -197,6 +197,12 @@
 - (NSString *)primaryKeyPropertyName;
 
 /**
+ This method returns the primary key attribute description for this entity. This method will return
+ nil if the entity uses a relationship for its primary key.
+ */
+- (NSAttributeDescription *)primaryAttributeDescription;
+
+/**
  This method should return either a number or string that represents the primary key value as
  obtained from the given dictionary.  It should return nil if this entity is using a relationship as
  its primary key.

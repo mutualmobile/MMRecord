@@ -106,6 +106,16 @@
     return self.primaryKey;
 }
 
+- (NSAttributeDescription *)primaryAttributeDescription {
+    id primaryKeyRepresentation = self.representationDictionary[self.primaryKey];
+    
+    if ([primaryKeyRepresentation isKindOfClass:[MMRecordAttributeRepresentation class]]) {
+        return [(MMRecordAttributeRepresentation *)primaryKeyRepresentation attributeDescription];
+    }
+
+    return nil;
+}
+
 - (id)primaryKeyValueFromDictionary:(NSDictionary *)dictionary {
     id primaryKeyRepresentation = self.representationDictionary[self.primaryKey];
     

@@ -24,6 +24,7 @@
 
 #import "MMRecordErrors.h"
 #import "MMRecordLoggers.h"
+#import "MMRecordProtoRecord.h"
 
 /** To provide custom parsing functionality for your records, such as the setting a custom key or
  establishing a relationship, use the keys below in the UserInfo dictionary of an attribute or 
@@ -569,6 +570,39 @@ typedef BOOL (^MMRecordOptionsDeleteOrphanedRecordBlock)(MMRecord *orphan,
                                                          id responseObject,
                                                          BOOL *stop);
 
+/**
+ This block should be used to optionally inject a primary key that will be used to uniquely identify
+ a record of a given type. The most common use case for this block should be when an API's JSON 
+ response does not contain a record primary key, but the caller who makes the request already has 
+ that key. Generally this will be the root level initial entity that the request to MMRecord is
+ going to return. This could be used to return primary keys for sub-entities, but this is generally
+ not recommended.
+ 
+ This block will only be executed if the primary key for a record cannot be obtained from the record
+ dictionary.
+ 
+ This method can return nil.
+ 
+ @param entity The entity type to evaluate and return a primary key for.
+ @param dictionary The dictionary being used to populate the given record.
+ @return id The primary key to associate with the record.
+ */
+typedef id (^MMRecordOptionsEntityPrimaryKeyInjectionBlock)(NSEntityDescription *entity,
+                                                            NSDictionary *dictionary);
+
+/**
+ This block may be used for inserting custom logic into the record population workflow. This block, 
+ if defined, will be executed prior to the MMRecordMarshaler's -populateProtoRecord: method.
+ 
+ @warning This block should only be used in relatively rare cases. It is not a substitute for proper
+ model configuration or for marshaler/representation subclassing. It is meant for rare cases where
+ injecting data into the population flow is required for accurate record population. Because this
+ block will be executed for each proto record for a given request, performance issues may arrise.
+ Please use caution.
+ @param protoRecord The proto record which is about to be populated.
+ */
+typedef void (^MMRecordOptionsRecordPrePopulationBlock)(MMRecordProtoRecord *protoRecord);
+
 
 /**
  This class represents various user settable options that MMRecord will use when starting requests.
@@ -647,6 +681,24 @@ typedef BOOL (^MMRecordOptionsDeleteOrphanedRecordBlock)(MMRecord *orphan,
  @discussion Default value is nil which means orphans will be ignored.
  */
 @property (nonatomic, copy) MMRecordOptionsDeleteOrphanedRecordBlock deleteOrphanedRecordBlock;
+
+/**
+ This option allows you to specify a block that will be executed when a record is populated and no
+ primary key to identify it is found in the populating record dictionary. This allows you to return
+ your own primary key that will be used to uniquely identify the record.
+ 
+ @discussion This block should return nil if you have no way to uniquely identify a record for the
+ given type of entity. The default value of this option is nil.
+ */
+@property (nonatomic, copy) MMRecordOptionsEntityPrimaryKeyInjectionBlock entityPrimaryKeyInjectionBlock;
+
+/**
+ This option allows you to specify a block that will be executed immediately before record
+ population in order to perform some task like inserting data into the population process.
+ 
+ @discussion Default value is nil which means population will be performed normally.
+ */
+@property (nonatomic, copy) MMRecordOptionsRecordPrePopulationBlock recordPrePopulationBlock;
 
 @end
 
