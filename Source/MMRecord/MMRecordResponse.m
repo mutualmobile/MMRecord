@@ -186,7 +186,8 @@
         
         MMRecordProtoRecord *proto = [self protoRecordWithRecordResponseObject:recordResponseObject
                                                                         entity:entity
-                                                        existingResponseGroups:responseGroups];
+                                                        existingResponseGroups:responseGroups
+                                                             parentProtoRecord:nil];
         
         [objectGraph addObject:proto];
     }
@@ -199,7 +200,8 @@
 
 - (MMRecordProtoRecord *)protoRecordWithRecordResponseObject:(id)recordResponseObject
                                                       entity:(NSEntityDescription *)entity
-                                      existingResponseGroups:(NSMutableDictionary *)responseGroups {
+                                      existingResponseGroups:(NSMutableDictionary *)responseGroups
+                                           parentProtoRecord:(MMRecordProtoRecord *)parentProtoRecord {
     MMRecordResponseGroup *recordResponseGroup = [self responseGroupForEntity:entity
                                                    fromExistingResponseGroups:responseGroups];
     MMRecordRepresentation *representation = recordResponseGroup.representation;
@@ -220,7 +222,8 @@
             if (proto.primaryKeyValue == nil) {
                 if (self.entityPrimaryKeyInjectionBlock != nil) {
                     proto.primaryKeyValue = self.entityPrimaryKeyInjectionBlock(proto.entity,
-                                                                                proto.dictionary);
+                                                                                proto.dictionary,
+                                                                                parentProtoRecord);
                 }
             }
         }
@@ -273,11 +276,15 @@
             }
             
             for (id object in relationshipObject) {
-                MMRecordProtoRecord *relationshipProto = [self protoRecordWithRecordResponseObject:object
-                                                                                            entity:entity
-                                                                            existingResponseGroups:responseGroups];
-                
-                [protoRecord addRelationshipProto:relationshipProto forRelationshipDescription:relationshipDescription];
+                if ([protoRecord canAccomodateAdditionalProtoRecordForRelationshipDescription:relationshipDescription]) {
+                    MMRecordProtoRecord *relationshipProto = [self protoRecordWithRecordResponseObject:object
+                                                                                                entity:entity
+                                                                                existingResponseGroups:responseGroups
+                                                                                     parentProtoRecord:protoRecord];
+                    
+                    [protoRecord addRelationshipProto:relationshipProto
+                           forRelationshipDescription:relationshipDescription];
+                }
             }
         }
     }

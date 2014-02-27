@@ -67,6 +67,9 @@
 - (void)addRelationshipProto:(MMRecordProtoRecord *)relationshipProto
   forRelationshipDescription:(NSRelationshipDescription *)relationshipDescription;
 
+// Returns YES if there is already a valid relationshipProtoRecord for a given relationshipDescription
+- (BOOL)canAccomodateAdditionalProtoRecordForRelationshipDescription:(NSRelationshipDescription *)relationshipDescription;
+
 // Returns the proto records for a given relationship description
 - (NSArray *)relationshipProtoRecordsForRelationshipDescription:(NSRelationshipDescription *)relationshipDescription;
 

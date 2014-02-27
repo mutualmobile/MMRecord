@@ -585,10 +585,13 @@ typedef BOOL (^MMRecordOptionsDeleteOrphanedRecordBlock)(MMRecord *orphan,
  
  @param entity The entity type to evaluate and return a primary key for.
  @param dictionary The dictionary being used to populate the given record.
+ @param parentProtoRecord The parent proto record of the one whose primary key is being evaluated
+ here. This may be nil if the entity is the initial entity being populated by MMRecord.
  @return id The primary key to associate with the record.
  */
 typedef id<NSCopying> (^MMRecordOptionsEntityPrimaryKeyInjectionBlock)(NSEntityDescription *entity,
-                                                                       NSDictionary *dictionary);
+                                                                       NSDictionary *dictionary,
+                                                                       MMRecordProtoRecord *parentProtoRecord);
 
 /**
  This block may be used for inserting custom logic into the record population workflow. This block, 

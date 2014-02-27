@@ -81,6 +81,17 @@
     return relationshipProtoRecords;
 }
 
+- (BOOL)canAccomodateAdditionalProtoRecordForRelationshipDescription:(NSRelationshipDescription *)relationshipDescription {
+    NSString *relationshipName = [relationshipDescription name];
+    NSMutableOrderedSet *protoSet = [self.relationshipProtosDictionary objectForKey:relationshipName];
+    
+    if ([relationshipDescription isToMany] == NO && [protoSet count] >= 1) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 #pragma mark - Relationships
 
@@ -98,9 +109,7 @@
             protoSet = [NSMutableOrderedSet orderedSet];
         }
         
-        if ([relationshipDescription isToMany] == NO && [protoSet count] >= 1) {
-            // Ignore this relationshipProto because its a duplicate
-        } else {
+        if ([self canAccomodateAdditionalProtoRecordForRelationshipDescription:relationshipDescription]) {
             [protoSet addObject:relationshipProto];
         }
         
