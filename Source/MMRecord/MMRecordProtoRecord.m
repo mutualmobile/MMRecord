@@ -98,7 +98,11 @@
             protoSet = [NSMutableOrderedSet orderedSet];
         }
         
-        [protoSet addObject:relationshipProto];
+        if ([relationshipDescription isToMany] == NO && [protoSet count] >= 1) {
+            // Ignore this relationshipProto because its a duplicate
+        } else {
+            [protoSet addObject:relationshipProto];
+        }
         
         [self.relationshipProtosDictionary setValue:protoSet forKey:relationshipName];
     }
