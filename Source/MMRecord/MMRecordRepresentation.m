@@ -107,7 +107,8 @@
 }
 
 - (NSAttributeDescription *)primaryAttributeDescription {
-    id primaryKeyRepresentation = self.representationDictionary[self.primaryKey];
+    NSString *primaryKeyPropertyName = [self primaryKeyPropertyName];
+    id primaryKeyRepresentation = self.representationDictionary[primaryKeyPropertyName];
     
     if ([primaryKeyRepresentation isKindOfClass:[MMRecordAttributeRepresentation class]]) {
         return [(MMRecordAttributeRepresentation *)primaryKeyRepresentation attributeDescription];

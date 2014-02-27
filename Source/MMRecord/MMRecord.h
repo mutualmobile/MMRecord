@@ -587,8 +587,8 @@ typedef BOOL (^MMRecordOptionsDeleteOrphanedRecordBlock)(MMRecord *orphan,
  @param dictionary The dictionary being used to populate the given record.
  @return id The primary key to associate with the record.
  */
-typedef id (^MMRecordOptionsEntityPrimaryKeyInjectionBlock)(NSEntityDescription *entity,
-                                                            NSDictionary *dictionary);
+typedef id<NSCopying> (^MMRecordOptionsEntityPrimaryKeyInjectionBlock)(NSEntityDescription *entity,
+                                                                       NSDictionary *dictionary);
 
 /**
  This block may be used for inserting custom logic into the record population workflow. This block, 

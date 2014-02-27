@@ -216,9 +216,12 @@
                                                         entity:entity
                                                 representation:representation];
         
-        if (proto.primaryKeyValue == nil) {
-            if (self.entityPrimaryKeyInjectionBlock != nil) {
-                proto.primaryKeyValue = self.entityPrimaryKeyInjectionBlock(proto.entity, proto.dictionary);
+        if (proto.hasRelationshipPrimarykey == NO) {
+            if (proto.primaryKeyValue == nil) {
+                if (self.entityPrimaryKeyInjectionBlock != nil) {
+                    proto.primaryKeyValue = self.entityPrimaryKeyInjectionBlock(proto.entity,
+                                                                                proto.dictionary);
+                }
             }
         }
     }

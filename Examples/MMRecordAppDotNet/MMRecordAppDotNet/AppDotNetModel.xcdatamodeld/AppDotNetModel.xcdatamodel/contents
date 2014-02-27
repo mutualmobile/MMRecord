@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Counts" representedClassName="Counts" syncable="YES">
         <attribute name="followers" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="following" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -8,6 +8,16 @@
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="counts" inverseEntity="User" syncable="YES"/>
         <userInfo>
             <entry key="MMRecordEntityPrimaryAttributeKey" value="user"/>
+        </userInfo>
+    </entity>
+    <entity name="CoverImage" representedClassName="CoverImage" syncable="YES">
+        <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="width" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="coverImage" inverseEntity="User" syncable="YES"/>
+        <userInfo>
+            <entry key="MMRecordEntityPrimaryAttributeKey" value="id"/>
         </userInfo>
     </entity>
     <entity name="Post" representedClassName="Post" syncable="YES">
@@ -52,15 +62,21 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="counts" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Counts" inverseName="user" inverseEntity="Counts" syncable="YES"/>
+        <relationship name="coverImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoverImage" inverseName="user" inverseEntity="CoverImage" syncable="YES">
+            <userInfo>
+                <entry key="MMRecordAttributeAlternateNameKey" value="cover_image"/>
+            </userInfo>
+        </relationship>
         <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="user" inverseEntity="Post" syncable="YES"/>
         <userInfo>
             <entry key="MMRecordEntityPrimaryAttributeKey" value="id"/>
         </userInfo>
     </entity>
     <elements>
-        <element name="Post" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Source" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="Counts" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Counts" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Post" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Source" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="CoverImage" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

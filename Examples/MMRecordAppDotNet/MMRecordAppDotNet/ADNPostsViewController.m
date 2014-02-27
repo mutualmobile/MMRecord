@@ -43,6 +43,9 @@
     NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
     
     MMRecordOptions *options = [Post defaultOptions];
+    options.entityPrimaryKeyInjectionBlock = ^id(NSEntityDescription *entity, NSDictionary *dictionary){
+      return [dictionary valueForKey:@"url"];
+    };
     options.recordPrePopulationBlock = ^(MMRecordProtoRecord *protoRecord){
         
     };
