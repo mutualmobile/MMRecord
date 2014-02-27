@@ -22,7 +22,7 @@
     //[MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
     //[ADNRecord registerServerClass:[MMJSONServer class]];
     
-    [MMRecord setLoggingLevel:MMRecordLoggingLevelDebug];
+    //[MMRecord setLoggingLevel:MMRecordLoggingLevelDebug];
     
     return YES;
 }
