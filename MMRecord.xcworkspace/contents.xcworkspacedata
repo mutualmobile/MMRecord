@@ -102,10 +102,10 @@
          location = "group:AFMMRecordServer"
          name = "AFMMRecordServer">
          <FileRef
-            location = "group:AFServer.h">
+            location = "group:/Users/conrad.stoll/Documents/Repos/MMRecord-Git/Source/AFMMRecordServer/AFMMRecordServer.h">
          </FileRef>
          <FileRef
-            location = "group:AFServer.m">
+            location = "group:/Users/conrad.stoll/Documents/Repos/MMRecord-Git/Source/AFMMRecordServer/AFMMRecordServer.m">
          </FileRef>
       </Group>
       <Group

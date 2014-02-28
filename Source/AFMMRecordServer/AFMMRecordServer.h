@@ -64,7 +64,7 @@
  */
 
 
-@interface AFServer : MMServer
+@interface AFMMRecordServer : MMServer
 
 /**
  This method can be used to register an instance of an AFHTTPSessionManager.

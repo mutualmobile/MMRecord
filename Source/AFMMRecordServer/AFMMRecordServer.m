@@ -20,14 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFServer.h"
+#import "AFMMRecordServer.h"
 
 #import <objc/runtime.h>
 #import "AFHTTPSessionManager.h"
 
 static id AFServer_registeredAFSessionManager;
 
-@implementation AFServer
+@implementation AFMMRecordServer
 
 + (BOOL)registerAFHTTPSessionManager:(id)sessionManager {
     if ([sessionManager isKindOfClass:[AFHTTPSessionManager class]] ||
