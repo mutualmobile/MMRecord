@@ -319,7 +319,7 @@ fetchRequest.sortDescriptors = @[sortDescriptor];
  failureBlock:failureBlock];
 ```
 
-### Request Options and Primary Key Injection
+### MMRecordOptions and Primary Key Injection
 
 ```objective-c
 MMRecordOptions *options = [Post defaultOptions];
@@ -349,6 +349,37 @@ options.entityPrimaryKeyInjectionBlock = ^id(NSEntityDescription *entity,
  failureBlock:^(NSError *error) {
     [self endRequestingPosts];
  }];
+```
+
+### AFMMRecordResponseSerializer
+
+```objective-c
+MMFoursquareSessionManager *sessionManager = [MMFoursquareSessionManager sharedClient];
+    
+NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
+AFHTTPResponseSerializer *HTTPResponseSerializer = [AFJSONResponseSerializer serializer];
+    
+AFMMRecordResponseSerializationMapper *mapper = [[AFMMRecordResponseSerializationMapper alloc] init];
+[mapper registerEntityName:@"Venue" forEndpointPathComponent:@"venues/search?"];
+    
+AFMMRecordResponseSerializer *serializer =
+    [AFMMRecordResponseSerializer serializerWithManagedObjectContext:context
+                                            responseObjectSerializer:HTTPResponseSerializer
+                                                        entityMapper:mapper];
+    
+sessionManager.responseSerializer = serializer;
+
+[[MMFoursquareSessionManager sharedClient]
+ GET:@"venues/search?ll=30.25,-97.75"
+ parameters:requestParameters
+ success:^(NSURLSessionDataTask *task, id responseObject) {
+     NSArray *venues = responseObject;
+         
+     self.venues = venues;
+         
+     [self.tableView reloadData];
+ } 
+ failure:failureBlock];
 ```
 
 ## Requirements
