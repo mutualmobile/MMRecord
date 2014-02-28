@@ -113,7 +113,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
 </p>
 
 <table>
-  <tr><th colspan="2" style="text-align:center;">Sub Specs</th></tr>
+  <tr><th colspan="2" style="text-align:center;">Subspecs</th></tr>
   <tr>
     <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordAFServer">AFServer</a></td>
     <td>An example <tt>MMServer</tt> subclass that implements <tt>AFNetworking</tt> 1.0.</td>
@@ -142,7 +142,7 @@ MMRecord does require some basic setup before you can use it to make requests. T
 
 ### Server Class Configuration
 
-MMRecord requires a registered server class to make requests. The server class should know how to make a request to the API you are integrating with. The only requirement of a server implementation is that it return a response object (array or dictionary) that contains the objects you are requesting. A server might use [AFNetworking](https://github.com/AFNetworking/AFNetworking) to perform a GET request to a specific API. Or it might load and return local JSON files. There are two sub specs which provide pre-built servers that use AFNetworking and local JSON files. Generally speaking though, you are encouraged to implement your own server to talk to the API you are using.
+MMRecord requires a registered server class to make requests. The server class should know how to make a request to the API you are integrating with. The only requirement of a server implementation is that it return a response object (array or dictionary) that contains the objects you are requesting. A server might use [AFNetworking](https://github.com/AFNetworking/AFNetworking) to perform a GET request to a specific API. Or it might load and return local JSON files. There are two subspecs which provide pre-built servers that use AFNetworking and local JSON files. Generally speaking though, you are encouraged to implement your own server to talk to the API you are using.
 
 Once you have defined your server class, you must register it with MMRecord:
 

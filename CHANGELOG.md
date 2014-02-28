@@ -2,7 +2,7 @@
 
 ##[1.3.0](https://github.com/mutualmobile/MMRecord/issues?milestone=6&state=closed) (Friday, March 7th, 2014)
 ###New
-* Added a new sub spec called AFMMRecordServer that provides an example server for using AFNetworking 2.0. (Conrad Stoll)
+* Added a new subspec called AFMMRecordServer that provides an example server for using AFNetworking 2.0. (Conrad Stoll)
 * Added a new way to inject a primary key into the population system. (Conrad Stoll)
 * Added a new option for performing pre-population steps in the population system. (Conrad Stoll)
 * Added new safeguards against creating duplicate records when using relationship primary keys. (Conrad Stoll)
@@ -12,7 +12,7 @@
 
 ##[1.2.0](https://github.com/mutualmobile/MMRecord/issues?milestone=5&state=closed) (Monday, December 23th, 2013)
 ###New
-* Added a new sub spec called AFMMRecordResponseSerializer that returns MMRecord objects in an AFNetworking 2.0 success block. (Conrad Stoll)
+* Added a new subspec called AFMMRecordResponseSerializer that returns MMRecord objects in an AFNetworking 2.0 success block. (Conrad Stoll)
 * Added a new sample project called MMRecordFoursquare that implements the Foursquare Venue API and the AFMMRecordResponseSerializer. (Conrad Stoll)
 * Added a new way to conditionally delete orphans that did not come back in a response. (Conrad Stoll)
 * Improved the experience for customizing the marshalling behavior to allow transformed property setting. (Rene Cacheaux and Conrad Stoll)
