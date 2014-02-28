@@ -11,5 +11,6 @@
 @interface MMFoursquareSessionManager : AFHTTPSessionManager
 
 + (instancetype)sharedClient;
++ (instancetype)serverClient;
 
 @end

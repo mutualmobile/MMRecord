@@ -99,6 +99,16 @@
          </FileRef>
       </Group>
       <Group
+         location = "group:AFMMRecordServer"
+         name = "AFMMRecordServer">
+         <FileRef
+            location = "group:AFServer.h">
+         </FileRef>
+         <FileRef
+            location = "group:AFServer.m">
+         </FileRef>
+      </Group>
+      <Group
          location = "group:AFMMRecordResponseSerializer"
          name = "AFMMRecordResponseSerializer">
          <FileRef

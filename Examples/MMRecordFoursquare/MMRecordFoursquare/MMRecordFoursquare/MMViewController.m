@@ -14,6 +14,7 @@
 #import "Location.h"
 
 #import "MMVenueViewController.h"
+#import "MMDataManager.h"
 
 @interface MMViewController ()
     
@@ -25,6 +26,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshVenues)
+                  forControlEvents:UIControlEventValueChanged];
+    [self setRefreshControl:self.refreshControl];
     
     NSString *oAuthToken = @"RMRLHPHOTZBIHKAX2G1XMZ33XQYDYKVCAUTM5GCTAA03X04F";
     
@@ -39,6 +46,30 @@
          [self.tableView reloadData];
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
          
+     }];
+}
+
+- (void)refreshVenues {
+    NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
+    
+    NSString *oAuthToken = @"RMRLHPHOTZBIHKAX2G1XMZ33XQYDYKVCAUTM5GCTAA03X04F";
+
+    [Venue
+     startRequestWithURN:@"venues/search?ll=30.25,-97.75"
+     data:@{@"oauth_token": oAuthToken, @"v": @"20131105"}
+     context:context
+     domain:nil
+     resultBlock:^(NSArray *records) {
+         NSArray *venues = records;
+         
+         self.venues = venues;
+         
+         [self.tableView reloadData];
+         
+         [self.refreshControl endRefreshing];
+     }
+     failureBlock:^(NSError *error) {
+         [self.refreshControl endRefreshing];
      }];
 }
 

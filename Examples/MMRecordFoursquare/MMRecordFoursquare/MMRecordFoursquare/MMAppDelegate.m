@@ -10,14 +10,21 @@
 
 #import "AFMMRecordResponseSerializer.h"
 #import "AFMMRecordResponseSerializationMapper.h"
+#import "AFServer.h"
+#import "FSRecord.h"
 #import "MMDataManager.h"
 #import "MMFoursquareSessionManager.h"
 
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    MMFoursquareSessionManager *sessionManager = [MMFoursquareSessionManager sharedClient];
+    MMFoursquareSessionManager *serverClientManager = [MMFoursquareSessionManager serverClient];
+
+    [AFServer registerAFHTTPSessionManager:serverClientManager];
+    [FSRecord registerServerClass:[AFServer class]];
     
+    MMFoursquareSessionManager *sessionManager = [MMFoursquareSessionManager sharedClient];
+
     NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
     AFHTTPResponseSerializer *HTTPResponseSerializer = [AFJSONResponseSerializer serializer];
     
