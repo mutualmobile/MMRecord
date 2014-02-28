@@ -112,6 +112,30 @@ The library is architected to be as simple and lightweight as possible. Here's a
   <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-parsing.png") alt="MMRecord Population Architecture"/>
 </p>
 
+<table>
+  <tr><th colspan="2" style="text-align:center;">Sub Specs</th></tr>
+  <tr>
+    <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordAFServer">AFServer</a></td>
+    <td>An example <tt>MMServer</tt> subclass that implements AFNetworking 1.0.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordAFServer">AFMMRecordServer</a></td>
+    <td>An example <tt>MMServer</tt> subclass that implements AFNetworking 2.0.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordJSONServer">JSONServer</a></td>
+    <td>An example <tt>MMServer</tt> subclass that can read local JSON files.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordDynamicModel">DynamicModel</a></td>
+    <td>A different representation and marshaler pair that stores the original object dictionary as a transformable attribute.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/AFMMRecordResponseSerializer">ResponseSerializer</a></td>
+    <td>A custom AFHTTPResponseSerializer that creates and returns MMRecord instances in an AFNetworking 2.0 success block.</td>
+  </tr>
+</table>
+
 ## Integration Guide
 
 MMRecord does require some basic setup before you can use it to make requests. This guide will go take you through the steps in that configuration process.
@@ -139,7 +163,7 @@ This is helpful if one endpoint you are working with is complete, but another is
 
 While you are encouraged to create your own specific server subclass for your own integration, MMRecord does provide a subspec example for AFNetworking 1.0 and AFNetworking 2.0. You can consult the MMRecordAFServer subspec for AFNetworking 1.0, or the AFMMRecordServer subspec for AFNetworking 2.0 support.
 
-In addition, we provide the AFMMRecordResponseSerializer subspec specifically for AFNetworking 2.0. This response serializer can be used for AFNetworking 2.0 in order to provide parsed and populated MMRecord instances to you in an AFNetworking success block. For more information please check out this [blog post](http://mutualmobile.github.io/blog/2014/01/14/afnetworking-response-serialization-with-mmrecord-1-dot-2/).
+In addition, we provide the AFMMRecordResponseSerializer subspec specifically for AFNetworking 2.0. This response serializer can be used for AFNetworking 2.0 in order to provide parsed and populated MMRecord instances to you in an AFNetworking success block. For more information please check out this [blog post](http://mutualmobile.github.io/blog/2014/01/14/afnetworking-response-serialization-with-mmrecord-1-dot-2/) or view the example [below](https://github.com/mutualmobile/MMRecord/#afmmrecordresponseserializer).
 
 ### MMRecord Subclass Implementation
 
@@ -190,6 +214,8 @@ MMRecord works best if there is a way to uniquely identify records of a given en
 Note that the primary key can be any property, which includes a relationship. If a relationship is used as the primary key, MMRecord will attempt to fetch the parent object and search for the associated object in the relationship.
 
 ![MMRecord Relationship Primary Key](https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-relationship-primary-key.png)
+
+You can also inject a primary key at population time if you know the key for a record which does not exist in the API response dictionary being used to populate the record. An example of this being used is [below](https://github.com/mutualmobile/MMRecord/#mmrecordoptions-and-primary-key-injection). This option is not intended to replace proper model configuration, but can be used for additional flexibility. One way you can consider using this option is by parsing the contents of the dictionary to create your own unique identifier for a given record.
 
 #### Alternate Property Names
 
