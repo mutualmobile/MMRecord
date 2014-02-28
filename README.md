@@ -116,11 +116,11 @@ The library is architected to be as simple and lightweight as possible. Here's a
   <tr><th colspan="2" style="text-align:center;">Sub Specs</th></tr>
   <tr>
     <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordAFServer">AFServer</a></td>
-    <td>An example <tt>MMServer</tt> subclass that implements AFNetworking 1.0.</td>
+    <td>An example <tt>MMServer</tt> subclass that implements <tt>AFNetworking</tt> 1.0.</td>
   </tr>
   <tr>
     <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordAFServer">AFMMRecordServer</a></td>
-    <td>An example <tt>MMServer</tt> subclass that implements AFNetworking 2.0.</td>
+    <td>An example <tt>MMServer</tt> subclass that implements <tt>AFNetworking</tt> 2.0.</td>
   </tr>
   <tr>
     <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordJSONServer">JSONServer</a></td>
@@ -128,11 +128,11 @@ The library is architected to be as simple and lightweight as possible. Here's a
   </tr>
   <tr>
     <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordDynamicModel">DynamicModel</a></td>
-    <td>A different representation and marshaler pair that stores the original object dictionary as a transformable attribute.</td>
+    <td>A custom <tt>MMRecordRepresentation</tt> and <tt>MMRecordMarshaler</tt> pair that stores the original object dictionary as a transformable attribute.</td>
   </tr>
   <tr>
     <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/AFMMRecordResponseSerializer">ResponseSerializer</a></td>
-    <td>A custom AFHTTPResponseSerializer that creates and returns MMRecord instances in an AFNetworking 2.0 success block.</td>
+    <td>A custom <tt>AFHTTPResponseSerializer</tt> that creates and returns <tt>MMRecord</tt> instances in an <tt>AFNetworking</tt> 2.0 success block.</td>
   </tr>
 </table>
 
