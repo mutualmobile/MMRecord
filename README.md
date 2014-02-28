@@ -35,7 +35,7 @@ Keep reading to learn more about how to start using MMRecord in your project!
 You can install MMRecord in your project by using [CocoaPods](https://github.com/cocoapods/cocoapods):
 
 ```Ruby
-pod 'MMRecord', '~> 1.2.0'
+pod 'MMRecord', '~> 1.3.0'
 ```
 
 ## Overview
@@ -134,6 +134,12 @@ Note that you can register different server classes on different subclasses of M
 ```
 
 This is helpful if one endpoint you are working with is complete, but another is not, or is located on another API.
+
+#### AFNetworking 2.0
+
+While you are encouraged to create your own specific server subclass for your own integration, MMRecord does provide a subspec example for AFNetworking 1.0 and AFNetworking 2.0. You can consult the MMRecordAFServer subspec for AFNetworking 1.0, or the AFMMRecordServer subspec for AFNetworking 2.0 support.
+
+In addition, we provide the AFMMRecordResponseSerializer subspec specifically for AFNetworking 2.0. This response serializer can be used for AFNetworking 2.0 in order to provide parsed and populated MMRecord instances to you in an AFNetworking success block. For more information please check out this [blog post](http://mutualmobile.github.io/blog/2014/01/14/afnetworking-response-serialization-with-mmrecord-1-dot-2/).
 
 ### MMRecord Subclass Implementation
 
@@ -313,9 +319,41 @@ fetchRequest.sortDescriptors = @[sortDescriptor];
  failureBlock:failureBlock];
 ```
 
+### Request Options and Primary Key Injection
+
+```objective-c
+MMRecordOptions *options = [Post defaultOptions];
+    
+options.entityPrimaryKeyInjectionBlock = ^id(NSEntityDescription *entity,
+                                             NSDictionary *dictionary,
+                                             MMRecordProtoRecord *parentProtoRecord) {
+    if ([[entity name] isEqualToString:@"CoverImage"]) {
+        if ([[parentProtoRecord.entity name] isEqualToString:@"User"]) {
+            if (parentProtoRecord.primaryKeyValue != nil) {
+                return parentProtoRecord.primaryKeyValue;
+            }
+        }
+    }
+    
+    return nil;
+};
+    
+[Post setOptions:options];
+
+[Post
+ getStreamPostsWithContext:context
+ domain:self
+ resultBlock:^(NSArray *posts, ADNPageManager *pageManager, BOOL *requestNextPage) {
+    [self populatePostsTableWithPosts:posts];
+ }
+ failureBlock:^(NSError *error) {
+    [self endRequestingPosts];
+ }];
+```
+
 ## Requirements
 
-MMRecord 1.0 and higher requires either [iOS 5.0](http://developer.apple.com/library/ios/#releasenotes/General/WhatsNewIniPhoneOS/Articles/iPhoneOS4.html) and above, or [Mac OS 10.7](http://developer.apple.com/library/mac/#releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_6.html#//apple_ref/doc/uid/TP40008898-SW7) ([64-bit with modern Cocoa runtime](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtVersionsPlatforms.html)) and above.
+MMRecord 1.3.0 and higher requires either [iOS 6.0](https://developer.apple.com/library/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS6.html) and above, or [Mac OS 10.8](https://developer.apple.com/library/mac/releasenotes/macosx/whatsnewinosx/Articles/MacOSX10_8.html) ([64-bit with modern Cocoa runtime](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtVersionsPlatforms.html)) and above.
 
 ### ARC
 

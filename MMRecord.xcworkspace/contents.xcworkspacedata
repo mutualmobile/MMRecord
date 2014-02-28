@@ -2,6 +2,19 @@
 <Workspace
    version = "1.0">
    <Group
+      location = "container:"
+      name = "GitHub">
+      <FileRef
+         location = "group:CHANGELOG.md">
+      </FileRef>
+      <FileRef
+         location = "group:MMRecord.podspec">
+      </FileRef>
+      <FileRef
+         location = "group:README.md">
+      </FileRef>
+   </Group>
+   <Group
       location = "group:Source"
       name = "Source">
       <Group

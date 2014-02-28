@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'MMRecord'
-  s.version  = '1.2.0'
+  s.version  = '1.3.0'
   s.license  = 'MIT'
   s.summary  = 'A simple block based web service integration library.'
   s.homepage = 'https://github.com/MutualMobile/MMRecord'
@@ -40,6 +40,12 @@ Pod::Spec.new do |s|
     ser.source_files = 'Source/AFMMRecordResponseSerializer/*.{h,m}'
     ser.dependency 'AFNetworking', '>= 2.0'
     ser.dependency 'MMRecord/Core'
+  end
+  
+  s.subspec 'AFMMRecordServer' do |afserv|
+    afserv.source_files = 'Source/AFMMRecordServer/*.{h,m}'
+    afserv.dependency 'AFNetworking', '>= 2.0'
+    afserv.dependency 'MMRecord/Core'
   end
   
 end

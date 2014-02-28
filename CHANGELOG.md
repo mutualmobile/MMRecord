@@ -1,5 +1,15 @@
 #MMRecord Changelog
 
+##[1.3.0](https://github.com/mutualmobile/MMRecord/issues?milestone=6&state=closed) (Friday, March 7th, 2014)
+###New
+* Added a new sub spec called AFMMRecordServer that provides an example server for using AFNetworking 2.0. (Conrad Stoll)
+* Added a new way to inject a primary key into the population system. (Conrad Stoll)
+* Added a new option for performing pre-population steps in the population system. (Conrad Stoll)
+* Added new safeguards against creating duplicate records when using relationship primary keys. (Conrad Stoll)
+* Updated the MMRecordFoursquare example to also use the AFMMRecordServer subspec. (Conrad Stoll)
+* **FIXED** an issue([#39](https://github.com/mutualmobile/MMRecord/issues/39)) where the AFMMRecordResponseSerializationMapper was not generic. (Rodrigo Aguilar)
+* **FIXED** an issue([#40](https://github.com/mutualmobile/MMRecord/issues/39)) where there was a retain cycle in the parsing system. (Jim Stewart)
+
 ##[1.2.0](https://github.com/mutualmobile/MMRecord/issues?milestone=5&state=closed) (Monday, December 23th, 2013)
 ###New
 * Added a new sub spec called AFMMRecordResponseSerializer that returns MMRecord objects in an AFNetworking 2.0 success block. (Conrad Stoll)
