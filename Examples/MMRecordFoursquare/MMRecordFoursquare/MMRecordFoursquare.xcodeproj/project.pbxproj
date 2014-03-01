@@ -57,6 +57,7 @@
 		55D278BB18298377008CB6B4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D278BA18298377008CB6B4 /* CoreLocation.framework */; };
 		55DB69CA184E66AA00677CEA /* Venues.json in Resources */ = {isa = PBXBuildFile; fileRef = 55DB69C9184E66AA00677CEA /* Venues.json */; };
 		55DB69CC184E66F400677CEA /* Venue.json in Resources */ = {isa = PBXBuildFile; fileRef = 55DB69CB184E66F400677CEA /* Venue.json */; };
+		55DD2B1D18C136DF00CF044B /* AFMMRecordServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DD2B1C18C136DF00CF044B /* AFMMRecordServer.m */; };
 		55F8C4BB1848F8E000037D45 /* AFMMRecordResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C4BA1848F8E000037D45 /* AFMMRecordResponseSerializer.m */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +160,8 @@
 		55D278BA18298377008CB6B4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		55DB69C9184E66AA00677CEA /* Venues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Venues.json; sourceTree = "<group>"; };
 		55DB69CB184E66F400677CEA /* Venue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Venue.json; sourceTree = "<group>"; };
+		55DD2B1B18C136DF00CF044B /* AFMMRecordServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMMRecordServer.h; sourceTree = "<group>"; };
+		55DD2B1C18C136DF00CF044B /* AFMMRecordServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMMRecordServer.m; sourceTree = "<group>"; };
 		55F8C4B91848F8E000037D45 /* AFMMRecordResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMMRecordResponseSerializer.h; sourceTree = "<group>"; };
 		55F8C4BA1848F8E000037D45 /* AFMMRecordResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMMRecordResponseSerializer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -280,6 +283,7 @@
 		55D278411829769B008CB6B4 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				55DD2B1A18C136DF00CF044B /* AFMMRecordServer */,
 				55D278421829769B008CB6B4 /* AFNetworking */,
 				55F8C4B81848F8E000037D45 /* AFMMRecordResponseSerializer */,
 				55D2789018297E01008CB6B4 /* MMRecord */,
@@ -413,6 +417,16 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		55DD2B1A18C136DF00CF044B /* AFMMRecordServer */ = {
+			isa = PBXGroup;
+			children = (
+				55DD2B1B18C136DF00CF044B /* AFMMRecordServer.h */,
+				55DD2B1C18C136DF00CF044B /* AFMMRecordServer.m */,
+			);
+			name = AFMMRecordServer;
+			path = ../../../../../Source/AFMMRecordServer;
+			sourceTree = "<group>";
+		};
 		55F8C4B81848F8E000037D45 /* AFMMRecordResponseSerializer */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,6 +550,7 @@
 				55D2785D1829769B008CB6B4 /* AFURLResponseSerialization.m in Sources */,
 				55D2785B1829769B008CB6B4 /* AFURLConnectionOperation.m in Sources */,
 				55D27866182977F5008CB6B4 /* MMFoursquareSessionManager.m in Sources */,
+				55DD2B1D18C136DF00CF044B /* AFMMRecordServer.m in Sources */,
 				55D2785A1829769B008CB6B4 /* AFSecurityPolicy.m in Sources */,
 				55D278AD18297E01008CB6B4 /* MMServerPageManager.m in Sources */,
 				55D278581829769B008CB6B4 /* AFHTTPSessionManager.m in Sources */,
