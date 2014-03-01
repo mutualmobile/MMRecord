@@ -10,7 +10,7 @@
 
 #import "AFMMRecordResponseSerializer.h"
 #import "AFMMRecordResponseSerializationMapper.h"
-#import "AFMMRecordServer.h"
+#import "AFMMRecordSessionManagerServer.h"
 #import "FSRecord.h"
 #import "MMDataManager.h"
 #import "MMFoursquareSessionManager.h"
@@ -20,8 +20,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     MMFoursquareSessionManager *serverClientManager = [MMFoursquareSessionManager serverClient];
 
-    [AFMMRecordServer registerAFHTTPSessionManager:serverClientManager];
-    [FSRecord registerServerClass:[AFMMRecordServer class]];
+    [AFMMRecordSessionManagerServer registerAFHTTPSessionManager:serverClientManager];
+    [FSRecord registerServerClass:[AFMMRecordSessionManagerServer class]];
     
     MMFoursquareSessionManager *sessionManager = [MMFoursquareSessionManager sharedClient];
 

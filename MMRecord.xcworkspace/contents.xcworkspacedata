@@ -112,13 +112,13 @@
          </FileRef>
       </Group>
       <Group
-         location = "group:AFMMRecordServer"
-         name = "AFMMRecordServer">
+         location = "group:AFMMRecordSessionManagerServer"
+         name = "AFMMRecordSessionManagerServer">
          <FileRef
-            location = "group:/Users/conrad.stoll/Documents/Repos/MMRecord-Git/Source/AFMMRecordServer/AFMMRecordServer.h">
+            location = "group:AFMMRecordSessionManagerServer.h">
          </FileRef>
          <FileRef
-            location = "group:/Users/conrad.stoll/Documents/Repos/MMRecord-Git/Source/AFMMRecordServer/AFMMRecordServer.m">
+            location = "group:AFMMRecordSessionManagerServer.m">
          </FileRef>
       </Group>
       <Group

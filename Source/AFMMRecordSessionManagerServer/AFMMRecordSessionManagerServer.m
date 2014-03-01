@@ -1,4 +1,4 @@
-//  AFServer.m
+// AFMMRecordSessionManagerServer.m
 //
 // Copyright (c) 2014 Mutual Mobile (http://www.mutualmobile.com/)
 //
@@ -20,14 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFMMRecordServer.h"
+#import "AFMMRecordSessionManagerServer.h"
 
 #import <objc/runtime.h>
 #import "AFHTTPSessionManager.h"
 
 static id AFServer_registeredAFSessionManager;
 
-@implementation AFMMRecordServer
+@implementation AFMMRecordSessionManagerServer
 
 + (BOOL)registerAFHTTPSessionManager:(id)sessionManager {
     if ([sessionManager isKindOfClass:[AFHTTPSessionManager class]] ||

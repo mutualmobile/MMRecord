@@ -119,7 +119,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
     <td>An example <tt>MMServer</tt> subclass that implements <tt>AFNetworking</tt> 1.0.</td>
   </tr>
   <tr>
-    <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordAFServer">AFMMRecordServer</a></td>
+    <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/AFMMRecordSessionManagerServer">SessionManagerServer</a></td>
     <td>An example <tt>MMServer</tt> subclass that implements <tt>AFNetworking</tt> 2.0.</td>
   </tr>
   <tr>
@@ -128,7 +128,7 @@ The library is architected to be as simple and lightweight as possible. Here's a
   </tr>
   <tr>
     <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/MMRecordDynamicModel">DynamicModel</a></td>
-    <td>A custom <tt>MMRecordRepresentation</tt> and <tt>MMRecordMarshaler</tt> pair that stores the original object dictionary as a transformable attribute.</td>
+    <td>A custom <tt>MMRecordRepresentation</tt> and <tt>MMRecordMarshaler</tt> subclass pair that stores the original object dictionary as a transformable attribute.</td>
   </tr>
   <tr>
     <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/AFMMRecordResponseSerializer">ResponseSerializer</a></td>
@@ -159,11 +159,11 @@ Note that you can register different server classes on different subclasses of M
 
 This is helpful if one endpoint you are working with is complete, but another is not, or is located on another API.
 
-#### AFNetworking 2.0
+#### AFNetworking
 
-While you are encouraged to create your own specific server subclass for your own integration, MMRecord does provide a subspec example for AFNetworking 1.0 and AFNetworking 2.0. You can consult the MMRecordAFServer subspec for AFNetworking 1.0, or the AFMMRecordServer subspec for AFNetworking 2.0 support.
+While you are encouraged to create your own specific server subclass for your own integration, MMRecord does provide base server implementations as subspec examples for AFNetworking 1.0 and AFNetworking 2.0. You can consult the AFServer subspec for AFNetworking 1.0, or the AFMMRecordSessionManagerServer subspec for AFNetworking 2.0. You can check out the new AFNetworking 2.0 server in the [Foursquare example app](https://github.com/mutualmobile/MMRecord/tree/master/Examples/MMRecordFoursquare/MMRecordFoursquare).
 
-In addition, we provide the AFMMRecordResponseSerializer subspec specifically for AFNetworking 2.0. This response serializer can be used for AFNetworking 2.0 in order to provide parsed and populated MMRecord instances to you in an AFNetworking success block. For more information please check out this [blog post](http://mutualmobile.github.io/blog/2014/01/14/afnetworking-response-serialization-with-mmrecord-1-dot-2/) or view the example [below](https://github.com/mutualmobile/MMRecord/#afmmrecordresponseserializer).
+In addition, we provide the AFMMRecordResponseSerializer subspec specially for AFNetworking 2.0. This response serializer can be used for AFNetworking 2.0 in order to provide parsed and populated MMRecord instances to you in an AFNetworking success block. For more information please check out this [blog post](http://mutualmobile.github.io/blog/2014/01/14/afnetworking-response-serialization-with-mmrecord-1-dot-2/) or view the example [below](https://github.com/mutualmobile/MMRecord/#afmmrecordresponseserializer).
 
 ### MMRecord Subclass Implementation
 
@@ -345,7 +345,9 @@ fetchRequest.sortDescriptors = @[sortDescriptor];
  failureBlock:failureBlock];
 ```
 
-### MMRecordOptions and Primary Key Injection
+## MMRecordOptions Examples
+
+### Primary Key Injection
 
 ```objective-c
 MMRecordOptions *options = [Post defaultOptions];
@@ -372,9 +374,37 @@ options.entityPrimaryKeyInjectionBlock = ^id(NSEntityDescription *entity,
  resultBlock:^(NSArray *posts, ADNPageManager *pageManager, BOOL *requestNextPage) {
     [self populatePostsTableWithPosts:posts];
  }
- failureBlock:^(NSError *error) {
-    [self endRequestingPosts];
- }];
+ failureBlock:failureBlock];
+```
+
+### Orphan Deletion
+
+```objective-c
+MMRecordOptions *options = [Tweet defaultOptions];
+
+options.deleteOrphanedRecordBlock = ^(MMRecord *orphan,
+                                      NSArray *populatedRecords,
+                                      id responseObject,
+                                      BOOL *stop) {
+    Tweet *tweet = (Tweet *)orphan;
+        
+    if ([tweet isFavorite]) {
+        return NO;
+    }
+        
+    return YES;
+};
+
+[Tweet setOptions:options];
+    
+[Tweet
+ timelineTweetsWithContext:context
+ domain:self
+ resultBlock:^(NSArray *tweets, MMServerPageManager *pageManager, BOOL *requestNextPage) {
+     self.tweets = tweets;
+     [self.tableView reloadData];
+ }
+ failureBlock:failureBlock];
 ```
 
 ### AFMMRecordResponseSerializer

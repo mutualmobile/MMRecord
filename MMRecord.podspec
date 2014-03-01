@@ -42,10 +42,10 @@ Pod::Spec.new do |s|
     ser.dependency 'MMRecord/Core'
   end
   
-  s.subspec 'AFMMRecordServer' do |afserv|
-    afserv.source_files = 'Source/AFMMRecordServer/*.{h,m}'
-    afserv.dependency 'AFNetworking', '>= 2.0'
-    afserv.dependency 'MMRecord/Core'
+  s.subspec 'SessionManagerServer' do |sms|
+    sms.source_files = 'Source/AFMMRecordSessionManagerServer/*.{h,m}'
+    sms.dependency 'AFNetworking', '>= 2.0'
+    sms.dependency 'MMRecord/Core'
   end
   
 end

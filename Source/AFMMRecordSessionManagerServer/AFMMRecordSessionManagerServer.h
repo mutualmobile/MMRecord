@@ -1,4 +1,4 @@
-//  AFServer.h
+// AFMMRecordSessionManagerServer.h
 //
 // Copyright (c) 2014 Mutual Mobile (http://www.mutualmobile.com/)
 //
@@ -64,7 +64,7 @@
  */
 
 
-@interface AFMMRecordServer : MMServer
+@interface AFMMRecordSessionManagerServer : MMServer
 
 /**
  This method can be used to register an instance of an AFHTTPSessionManager.
