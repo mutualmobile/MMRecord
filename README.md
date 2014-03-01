@@ -345,6 +345,37 @@ fetchRequest.sortDescriptors = @[sortDescriptor];
  failureBlock:failureBlock];
 ```
 
+### AFMMRecordResponseSerializer
+
+```objective-c
+MMFoursquareSessionManager *sessionManager = [MMFoursquareSessionManager sharedClient];
+    
+NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
+AFHTTPResponseSerializer *HTTPResponseSerializer = [AFJSONResponseSerializer serializer];
+    
+AFMMRecordResponseSerializationMapper *mapper = [[AFMMRecordResponseSerializationMapper alloc] init];
+[mapper registerEntityName:@"Venue" forEndpointPathComponent:@"venues/search?"];
+    
+AFMMRecordResponseSerializer *serializer =
+    [AFMMRecordResponseSerializer serializerWithManagedObjectContext:context
+                                            responseObjectSerializer:HTTPResponseSerializer
+                                                        entityMapper:mapper];
+    
+sessionManager.responseSerializer = serializer;
+
+[[MMFoursquareSessionManager sharedClient]
+ GET:@"venues/search?ll=30.25,-97.75"
+ parameters:requestParameters
+ success:^(NSURLSessionDataTask *task, id responseObject) {
+     NSArray *venues = responseObject;
+         
+     self.venues = venues;
+         
+     [self.tableView reloadData];
+ } 
+ failure:failureBlock];
+```
+
 ## MMRecordOptions Examples
 
 ### Primary Key Injection
@@ -405,37 +436,6 @@ options.deleteOrphanedRecordBlock = ^(MMRecord *orphan,
      [self.tableView reloadData];
  }
  failureBlock:failureBlock];
-```
-
-### AFMMRecordResponseSerializer
-
-```objective-c
-MMFoursquareSessionManager *sessionManager = [MMFoursquareSessionManager sharedClient];
-    
-NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
-AFHTTPResponseSerializer *HTTPResponseSerializer = [AFJSONResponseSerializer serializer];
-    
-AFMMRecordResponseSerializationMapper *mapper = [[AFMMRecordResponseSerializationMapper alloc] init];
-[mapper registerEntityName:@"Venue" forEndpointPathComponent:@"venues/search?"];
-    
-AFMMRecordResponseSerializer *serializer =
-    [AFMMRecordResponseSerializer serializerWithManagedObjectContext:context
-                                            responseObjectSerializer:HTTPResponseSerializer
-                                                        entityMapper:mapper];
-    
-sessionManager.responseSerializer = serializer;
-
-[[MMFoursquareSessionManager sharedClient]
- GET:@"venues/search?ll=30.25,-97.75"
- parameters:requestParameters
- success:^(NSURLSessionDataTask *task, id responseObject) {
-     NSArray *venues = responseObject;
-         
-     self.venues = venues;
-         
-     [self.tableView reloadData];
- } 
- failure:failureBlock];
 ```
 
 ## Requirements
