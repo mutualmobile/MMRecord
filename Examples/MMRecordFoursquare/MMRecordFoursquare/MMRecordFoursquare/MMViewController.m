@@ -53,24 +53,83 @@
     NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
     
     NSString *oAuthToken = @"RMRLHPHOTZBIHKAX2G1XMZ33XQYDYKVCAUTM5GCTAA03X04F";
-
-    [Venue
-     startRequestWithURN:@"venues/search?ll=30.25,-97.75"
-     data:@{@"oauth_token": oAuthToken, @"v": @"20131105"}
-     context:context
-     domain:nil
-     resultBlock:^(NSArray *records) {
-         NSArray *venues = records;
-         
-         self.venues = venues;
-         
-         [self.tableView reloadData];
-         
-         [self.refreshControl endRefreshing];
-     }
-     failureBlock:^(NSError *error) {
-         [self.refreshControl endRefreshing];
-     }];
+    
+    [Venue startBatchedRequestsInExecutionBlock:^{
+        [Venue
+         startRequestWithURN:@"venues/search?ll=30.25,-97.75"
+         data:@{@"oauth_token": oAuthToken, @"v": @"20131105"}
+         context:context
+         domain:nil
+         resultBlock:^(NSArray *records) {
+             NSArray *venues = records;
+             
+             self.venues = venues;
+             
+             [self.tableView reloadData];
+             
+             [self.refreshControl endRefreshing];
+             
+             NSLog(@"0");
+         }
+         failureBlock:^(NSError *error) {
+         }];
+        
+        [Venue
+         startRequestWithURN:@"venues/search?ll=30.25,-97.75"
+         data:@{@"oauth_token": oAuthToken, @"v": @"20131105"}
+         context:context
+         domain:nil
+         resultBlock:^(NSArray *records) {
+             NSLog(@"1");
+         }
+         failureBlock:^(NSError *error) {
+         }];
+        
+        [Venue
+         startRequestWithURN:@"venues/search?ll=30.25,-97.75"
+         data:@{@"oauth_token": oAuthToken, @"v": @"20131105"}
+         context:context
+         domain:nil
+         resultBlock:^(NSArray *records) {
+             NSLog(@"2");
+         }
+         failureBlock:^(NSError *error) {
+         }];
+        
+        [Venue
+         startRequestWithURN:@"venues/search?ll=30.25,-97.75"
+         data:@{@"oauth_token": oAuthToken, @"v": @"20131105"}
+         context:context
+         domain:nil
+         resultBlock:^(NSArray *records) {
+             NSLog(@"3");
+         }
+         failureBlock:^(NSError *error) {
+         }];
+        [Venue
+         startRequestWithURN:@"venues/search?ll=30.25,-97.75"
+         data:@{@"oauth_token": oAuthToken, @"v": @"20131105"}
+         context:context
+         domain:nil
+         resultBlock:^(NSArray *records) {
+             NSLog(@"4");
+         }
+         failureBlock:^(NSError *error) {
+         }];
+        [Venue
+         startRequestWithURN:@"venues/search?ll=30.25,-97.75"
+         data:@{@"oauth_token": oAuthToken, @"v": @"20131105"}
+         context:context
+         domain:nil
+         resultBlock:^(NSArray *records) {
+             NSLog(@"5");
+         }
+         failureBlock:^(NSError *error) {
+         }];
+    } withCompletionBlock:^{
+        [self.refreshControl endRefreshing];
+        NSLog(@"Done");
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
