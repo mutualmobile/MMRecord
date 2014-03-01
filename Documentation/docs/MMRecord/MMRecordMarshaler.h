@@ -1,9 +1,24 @@
+// MMRecordMarshaler.h
 //
-//  MMRecordMarshaler.h
-//  MMRecord
+// Copyright (c) 2013 Mutual Mobile (http://www.mutualmobile.com/)
 //
-//  TODO: Replace with License Header
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 #import <CoreData/CoreData.h>
 
@@ -135,6 +150,30 @@
         onRecord:(MMRecord *)record
        attribute:(NSAttributeDescription *)attribute
    dateFormatter:(NSDateFormatter *)dateFormatter;
+
+/**
+ This method is designed to be subclassed. It is used to supply the properly formatted value for the
+ setValue: method above. The term "formatted" can mean different things for different types of
+ attributes. For date attributes that may mean applying a date formatter, or for transformed
+ attributes applying a value transformer. Or it may mean something entirely different based on the
+ needs of your application. Thats why its a public method - to allow you to subclass and provide
+ custom behavior as necessary.
+ 
+ A best practice when using this method is to treat the passed in raw value as the default. If you
+ have nothing to do to that value, then just return it directly. Generally speaking you will not
+ want to return nil from this method. The rawValue passed will never be nil.
+ 
+ Another best practice is to call super if you are only customizing the logic for one type of
+ attribute. Create a condition on that attribute type, and if its not met, simply return the result
+ of super's implementation.
+ 
+ @param attribute The attribute to return a formatted value for.
+ @param rawValue The raw value as determined by the populateProtoRecord: method for this record.
+ @param dateFormatter The date formatter to use for formatting a Date attribute.
+ */
++ (id)valueForAttribute:(NSAttributeDescription *)attribute
+               rawValue:(id)rawValue
+          dateFormatter:(NSDateFormatter *)dateFormatter;
 
 /**
  This method is designed to be subclassed. It should be used to establish a given relationship from 

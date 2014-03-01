@@ -1,9 +1,24 @@
+// MMRecordRepresentation.m
 //
-//  MMRecordRepresentation.m
-//  MMRecord
+// Copyright (c) 2013 Mutual Mobile (http://www.mutualmobile.com/)
 //
-//  TODO: Replace with License Header
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 #import "MMRecordRepresentation.h"
 
@@ -19,7 +34,6 @@
 @interface MMRecordRelationshipRepresentation : NSObject
 
 @property (nonatomic, copy) NSString *relationshipKey;
-@property (nonatomic, strong) MMRecordRepresentation *entityRepresentation;
 @property (nonatomic, strong) NSRelationshipDescription *relationshipDescription;
 @property (nonatomic, copy) NSArray *keyPaths;
 
@@ -55,11 +69,12 @@
 
 - (instancetype)initWithEntity:(NSEntityDescription *)entity {
     if ((self = [self init])) {
+        NSParameterAssert([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]);
         _entity = entity;
         _representationDictionary = [NSMutableDictionary dictionary];
         _attributeRepresentations = [NSMutableArray array];
         _relationshipRepresentations = [NSMutableArray array];
-        _recordClassDateFormatter = [NSClassFromString([entity managedObjectClassName]) dateFormatter]; // TODO: verify class
+        _recordClassDateFormatter = [NSClassFromString([entity managedObjectClassName]) dateFormatter];
         
         NSDictionary *userInfo = [entity userInfo];
         _primaryKey = [userInfo valueForKey:MMRecordEntityPrimaryAttributeKey];
@@ -91,6 +106,17 @@
     return self.primaryKey;
 }
 
+- (NSAttributeDescription *)primaryAttributeDescription {
+    NSString *primaryKeyPropertyName = [self primaryKeyPropertyName];
+    id primaryKeyRepresentation = self.representationDictionary[primaryKeyPropertyName];
+    
+    if ([primaryKeyRepresentation isKindOfClass:[MMRecordAttributeRepresentation class]]) {
+        return [(MMRecordAttributeRepresentation *)primaryKeyRepresentation attributeDescription];
+    }
+
+    return nil;
+}
+
 - (id)primaryKeyValueFromDictionary:(NSDictionary *)dictionary {
     id primaryKeyRepresentation = self.representationDictionary[self.primaryKey];
     
@@ -98,7 +124,7 @@
         id value = nil;
         
         for (NSString *key in [primaryKeyRepresentation keyPaths]) {
-            value = [dictionary valueForKey:key];
+            value = [dictionary valueForKeyPath:key];
             
             if (value != nil) {
                 return value;
@@ -241,7 +267,6 @@
     representation.relationshipDescription = relationshipDescription;
     representation.keyPaths = keyPaths;
     representation.relationshipKey = relationshipKey;
-    representation.entityRepresentation = self;
     
     [self.representationDictionary setValue:representation forKey:relationshipKey];
     [self.relationshipRepresentations addObject:representation];

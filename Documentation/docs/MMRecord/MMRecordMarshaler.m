@@ -1,9 +1,24 @@
+// MMRecordMarshaler.m
 //
-//  MMRecordMarshaler.m
-//  MMRecord
+// Copyright (c) 2013 Mutual Mobile (http://www.mutualmobile.com/)
 //
-//  TODO: Replace with License Header
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 #import "MMRecordMarshaler.h"
 
@@ -14,8 +29,13 @@
 @implementation MMRecordMarshaler
 
 + (void)populateProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    // TODO: make sure entity class type is same as record class type
-
+    if (protoRecord.primaryAttributeDescription != nil) {
+        [self setValue:protoRecord.primaryKeyValue
+              onRecord:protoRecord.record
+             attribute:protoRecord.primaryAttributeDescription
+         dateFormatter:protoRecord.representation.dateFormatter];
+    }
+    
     for (NSAttributeDescription *attributeDescription in [protoRecord.representation attributeDescriptions]) {
         [self populateProtoRecord:protoRecord
              attributeDescription:attributeDescription
@@ -50,35 +70,51 @@
         onRecord:(MMRecord *)record
        attribute:(NSAttributeDescription *)attribute
    dateFormatter:(NSDateFormatter *)dateFormatter {
-    NSAttributeType attributeType = [attribute attributeType];
-    
     if (value == nil) {
         return;
     }
     
+    id newValue = [self valueForAttribute:attribute rawValue:value dateFormatter:dateFormatter];
+    
+    if (newValue != nil) {
+        [record setValue:newValue forKey:attribute.name];
+    }
+}
+
++ (id)valueForAttribute:(NSAttributeDescription *)attribute
+               rawValue:(id)rawValue
+          dateFormatter:(NSDateFormatter *)dateFormatter {
+    NSAttributeType attributeType = [attribute attributeType];
+    
+    id value = rawValue;
+    
     if (attributeType == NSDateAttributeType) {
-        value = [self dateValueForAttribute:attribute value:value dateFormatter:dateFormatter];
+        value = [self dateValueForAttribute:attribute
+                                      value:rawValue
+                              dateFormatter:dateFormatter];
     } else if (attributeType == NSTransformableAttributeType) {
         value = [self transformedValueForAttribute:attribute
-                                             value:value];
+                                             value:rawValue];
     } else if (attributeType == NSInteger32AttributeType ||
                attributeType == NSInteger16AttributeType ||
                attributeType == NSInteger64AttributeType) {
-        value = [self numberValueForAttribute:attribute value:value];
+        value = [self numberValueForAttribute:attribute value:rawValue];
     } else if (attributeType == NSBooleanAttributeType) {
-        value = [self boolValueForAttribute:attribute value:value];
+        value = [self boolValueForAttribute:attribute value:rawValue];
     } else if (attributeType == NSStringAttributeType) {
-        value = [self stringValueForAttribute:attribute value:value];
+        value = [self stringValueForAttribute:attribute value:rawValue];
     }
     
-    if (value != nil) {
-        [record setValue:value forKey:attribute.name];
-    }
+    return value;
 }
 
 + (NSDate *)dateValueForAttribute:(NSAttributeDescription *)attribute
                             value:(id)value
                     dateFormatter:(NSDateFormatter *)dateFormatter {
+    if ([value isKindOfClass:[NSNumber class]]) {
+        return [NSDate dateWithTimeIntervalSince1970:[value integerValue]];
+    }
+    
     if (dateFormatter != nil) {
         return [dateFormatter dateFromString:value];
     }
@@ -121,13 +157,15 @@
 }
 
 + (void)establishRelationshipsOnProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    for (int i = 0; i < [protoRecord.relationshipProtos count]; ++i) {
-        MMRecord *fromRecord = protoRecord.record;
-        MMRecordProtoRecord *relationshipProtoRecord = [protoRecord.relationshipProtos objectAtIndex:i];
-        MMRecord *toRecord = relationshipProtoRecord.record;
-        NSRelationshipDescription *relationshipDescription = [protoRecord.relationshipDescriptions objectAtIndex:i];
+    for (NSRelationshipDescription *relationshipDescription in protoRecord.relationshipDescriptions) {
+        NSArray *relationshipProtoRecords = [protoRecord relationshipProtoRecordsForRelationshipDescription:relationshipDescription];
         
-        [self establishRelationship:relationshipDescription fromRecord:fromRecord toRecord:toRecord];
+        for (MMRecordProtoRecord *relationshipProtoRecord in relationshipProtoRecords) {
+            MMRecord *fromRecord = protoRecord.record;
+            MMRecord *toRecord = relationshipProtoRecord.record;
+            
+            [self establishRelationship:relationshipDescription fromRecord:fromRecord toRecord:toRecord];
+        }
     }
 }
 
@@ -179,13 +217,11 @@
     //is the correct one to assign
     if ([existingRecordOrCollectionFromRelationship respondsToSelector:@selector(count)]) {
         
-        BOOL existingRecord = NO;
         //is a faulted set; iterate through to find
         for (MMRecord *faultedObject in (NSSet *)existingRecordOrCollectionFromRelationship) {
             if ([self verifyObject:faultedObject containsValuesForKeysInDict:protoRecord.dictionary representation:protoRecord.representation] == YES) {
                 existingRecordFromParent = faultedObject;
                 
-                existingRecord = YES;
                 break;
             }
         }

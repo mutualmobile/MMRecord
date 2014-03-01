@@ -1,43 +1,32 @@
+// MMRecord.m
 //
-//  MMRecord.m
-//  MMRecord
+// Copyright (c) 2013 Mutual Mobile (http://www.mutualmobile.com/)
 //
-//  TODO: Replace with License Header
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 #import "MMRecord.h"
 
 #import "MMRecordCache.h"
-#import "MMRecordProtoRecord.h"
 #import "MMRecordRepresentation.h"
 #import "MMRecordResponse.h"
 #import "MMServer.h"
 
-/*
- * Does ARC support support GCD objects?
- * It does if the minimum deployment target is iOS 6+ or Mac OS X 8+
- */
-#if TARGET_OS_IPHONE
-
-// Compiling for iOS
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000 // iOS 6.0 or later
-#define NEEDS_DISPATCH_RETAIN_RELEASE 0
-#else                                         // iOS 5.X or earlier
-#define NEEDS_DISPATCH_RETAIN_RELEASE 1
-#endif
-
-#else
-
-// Compiling for Mac OS X
-
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1080     // Mac OS X 10.8 or later
-#define NEEDS_DISPATCH_RETAIN_RELEASE 0
-#else
-#define NEEDS_DISPATCH_RETAIN_RELEASE 1     // Mac OS X 10.7 or earlier
-#endif
-
-#endif
 
 @class MMRecordErrorHandler;
 
@@ -74,6 +63,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 @end
 
 @interface MMRecordRequestState : NSObject
+
+@property (nonatomic, strong) MMRecordOptions *options;
 
 @property (nonatomic, getter = isBatched) BOOL batched;
 @property (nonatomic) dispatch_queue_t parsingQueue;
@@ -192,14 +183,21 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 
 + (MMRecordOptions *)defaultOptions {
     MMRecordOptions *options = [[MMRecordOptions alloc] init];
-    options.callbackQueue = dispatch_get_main_queue();
     options.automaticallyPersistsRecords = YES;
+    options.callbackQueue = dispatch_get_main_queue();
+    options.isRecordLevelCachingEnabled = NO;
+    options.keyPathForResponseObject = [self keyPathForResponseObject];
+    options.keyPathForMetaData = [self keyPathForMetaData];
+    options.pageManagerClass = [[self server] pageManagerClass];
+    options.deleteOrphanedRecordBlock = nil;
+    options.entityPrimaryKeyInjectionBlock = nil;
+    options.recordPrePopulationBlock = nil;
     return options;
 }
 
 + (void)restoreDefaultOptions {
     if ([self batchRequests] == NO) {
-        MM_recordOptions = [self defaultOptions];
+        MM_recordOptions = nil;
     }
 }
 
@@ -326,16 +324,10 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     dispatch_semaphore_wait(_mmrecord_request_semaphore, DISPATCH_TIME_FOREVER);
     if (dispatchGroup != _mmrecord_request_group) {
         if (_mmrecord_request_group) {
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-            dispatch_release(_mmrecord_request_group);
-#endif
             _mmrecord_request_group = nil;
         }
         
         if (dispatchGroup) {
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-            dispatch_retain(dispatchGroup);
-#endif
             _mmrecord_request_group = dispatchGroup;
         }
     }
@@ -389,6 +381,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 }
 
 + (void)configureState:(MMRecordRequestState *)state forCurrentRequestWithOptions:(MMRecordOptions *)options {
+    state.options = options;
     state.batched = [self batchRequests];
     state.coordinator = state.context.persistentStoreCoordinator;
     state.dispatchGroup = [self dispatchGroup];
@@ -471,8 +464,9 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 + (void)startBatchedRequestsInExecutionBlock:(void(^)())batchExecutionBlock
                          withCompletionBlock:(void(^)())completionBlock {
     [self setBatchDispatchGroup:YES];
+    dispatch_group_t dispatchGroup = [self dispatchGroup];
     batchExecutionBlock();
-    dispatch_group_notify([self dispatchGroup], dispatch_get_main_queue(), completionBlock);
+    dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), completionBlock);
     [self setBatchDispatchGroup:NO];
     [self restoreDefaultOptions];
 }
@@ -498,10 +492,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 + (void)performRequestWithRequestState:(MMRecordRequestState *)state {
     MMRecordOptions *options = [self currentOptions];
     
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-    dispatch_retain(state.dispatchGroup);
-#endif
-    
     if ([state isBatched]) {
         dispatch_group_enter(state.dispatchGroup);
     }
@@ -523,14 +513,14 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
              if ([state isBatched]) {
                  dispatch_group_leave(state.dispatchGroup);
              }
-             
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-             dispatch_release(state.dispatchGroup);
-#endif
          });
      } failureBlock:^(NSError *error) {
          if (state.failureBlock != nil) {
              state.failureBlock(error);
+         }
+         
+         if ([state isBatched]) {
+             dispatch_group_leave(state.dispatchGroup);
          }
      }];
     
@@ -552,17 +542,16 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                 mainStoreCoordinator:state.coordinator];
     
     state.records = [self recordsFromResponseObject:responseObject
+                                            options:options
+                                              state:state
                                             context:state.backgroundContext];
     
-    if ([[self currentErrorHandler] receivedFatalError] == NO) {
-        [self passRequestWithRequestState:state options:options];
-    } else {
-        [self failRequestWithRequestState:state options:options];
-    }
-}
-
-+ (void)passRequestWithRequestState:(MMRecordRequestState *)state
-                            options:(MMRecordOptions *)options {
+    [self conditionallyDeleteRecordsOphanedByResponse:responseObject
+                                     populatedRecords:state.records
+                                              options:options
+                                                state:state
+                                              context:state.backgroundContext];
+    
     [self performCachingForRecords:state.records
                 fromResponseObject:state.responseObject
                       requestState:state
@@ -572,6 +561,17 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                                   onMainContext:state.context
                           fromBackgroundContext:state.backgroundContext];
     
+    if ([[self currentErrorHandler] receivedFatalError] == NO) {
+        [self passRequestWithRequestState:state options:options];
+    } else {
+        [self failRequestWithRequestState:state options:options];
+    }
+    
+    [self setDispatchGroup:nil];
+}
+
++ (void)passRequestWithRequestState:(MMRecordRequestState *)state
+                            options:(MMRecordOptions *)options {
     [self invokeResultBlockWithRequestState:state options:options];
 }
 
@@ -696,29 +696,58 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 
 #pragma mark - Parsing Helper Methods
 
-+ (NSArray*)recordsFromResponseObject:(id)responseObject context:(NSManagedObjectContext *)context {
-    NSArray *recordResponseArray = [self parsingArrayFromResponseObject:responseObject];
++ (NSArray*)recordsFromResponseObject:(id)responseObject
+                              options:(MMRecordOptions *)options
+                                state:(MMRecordRequestState *)state
+                              context:(NSManagedObjectContext *)context {
+    if (responseObject == nil) {
+        [[self currentErrorHandler] handleFatalErrorCode:MMRecordErrorCodeInvalidResponseFormat
+                                             description:@"The response object should not be nil"];
+        return nil;
+    }
+    
+    NSString *keyPathForResponseObject = options.keyPathForResponseObject;
+    
+    NSArray *recordResponseArray = [self parsingArrayFromResponseObject:responseObject
+                                               keyPathForResponseObject:keyPathForResponseObject];
     NSEntityDescription *initialEntity = [context MMRecord_entityForClass:self];
+    
+    if ([NSClassFromString([initialEntity managedObjectClassName]) isSubclassOfClass:[MMRecord class]] == NO) {
+        MMRecordErrorHandler *errorHandler = [self currentErrorHandler];
+        [errorHandler handleFatalErrorCode:MMRecordErrorCodeInvalidEntityDescription
+                               description:@"Initial Entity is not a subclass of MMRecord"];
+        return nil;
+    }
     MMRecordResponse *response = [MMRecordResponse responseFromResponseObjectArray:recordResponseArray
                                                                      initialEntity:initialEntity
                                                                            context:context];
+    
+    response.entityPrimaryKeyInjectionBlock = options.entityPrimaryKeyInjectionBlock;
+    response.recordPrePopulationBlock = options.recordPrePopulationBlock;
     
     NSArray *records = [response records];
     
     return records;
 }
 
-+ (NSArray *)parsingArrayFromResponseObject:(id)responseObject {
++ (NSArray *)parsingArrayFromResponseObject:(id)responseObject
+                   keyPathForResponseObject:(NSString *)keyPathForResponseObject {
     if ([responseObject isKindOfClass:[NSArray class]]) {
         return responseObject;
     }
     
+    if (keyPathForResponseObject == nil) {
+        keyPathForResponseObject = [self keyPathForResponseObject];
+    }
+    
     id recordResponseObject = responseObject;
     
-    NSString *keyPath = [self keyPathForResponseObject];
+    if (keyPathForResponseObject != nil) {
+        recordResponseObject = [responseObject valueForKeyPath:keyPathForResponseObject];
+    }
     
-    if (keyPath != nil) {
-        recordResponseObject = [responseObject valueForKeyPath:keyPath];
+    if (recordResponseObject == nil || [recordResponseObject isKindOfClass:[NSNull class]]) {
+        recordResponseObject = [NSArray array];
     }
     
     if ([recordResponseObject isKindOfClass:[NSArray class]] == NO) {
@@ -750,7 +779,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     return objectIDs;
 }
 
-+ (NSArray *)mainContextRecordsFromObjectIDs:(NSArray *)objectIDs mainContext:(NSManagedObjectContext *)mainContext {
++ (NSArray *)mainContextRecordsFromObjectIDs:(NSArray *)objectIDs
+                                 mainContext:(NSManagedObjectContext *)mainContext {
     NSMutableArray *mainContextRecords = [NSMutableArray array];
     
     for (NSManagedObjectID *objectID in objectIDs) {
@@ -758,6 +788,66 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     }
     
     return mainContextRecords;
+}
+
+
+#pragma mark - Orphan Deletion Methods
+
++ (void)conditionallyDeleteRecordsOphanedByResponse:(id)responseObject
+                                   populatedRecords:(NSArray *)populatedRecords
+                                            options:(MMRecordOptions *)options
+                                              state:(MMRecordRequestState *)state
+                                            context:(NSManagedObjectContext *)context {
+    if (options.deleteOrphanedRecordBlock != nil) {
+        NSArray *orphanedRecords = [self orphanedRecordsFromContext:context populatedRecords:populatedRecords];
+        
+        BOOL stop = NO;
+        
+        for (MMRecord *orphanedRecord in orphanedRecords) {
+            BOOL deleteOrphan = options.deleteOrphanedRecordBlock(orphanedRecord, populatedRecords, responseObject, &stop);
+            
+            if (deleteOrphan) {
+                [context deleteObject:orphanedRecord];
+            }
+            
+            if (stop) {
+                break;
+            }
+        }
+    }
+}
+
++ (NSArray *)orphanedRecordsFromContext:(NSManagedObjectContext *)context
+                       populatedRecords:(NSArray *)populatedRecords  {
+    NSMutableArray *populatedObjectIDs = [NSMutableArray array];
+    NSMutableSet *orphanedObjectIDs = [NSMutableSet set];
+    
+    for (MMRecord *record in populatedRecords) {
+        [populatedObjectIDs addObject:[record objectID]];
+    }
+    
+    NSString *entityName = [[context MMRecord_entityForClass:self] name];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    fetchRequest.fetchBatchSize = 20;
+    
+    NSArray *allRecords = [context executeFetchRequest:fetchRequest error:NULL];
+    
+    for (MMRecord *record in allRecords) {
+        [orphanedObjectIDs addObject:[record objectID]];
+    }
+    
+    for (NSManagedObjectID *objectID in populatedObjectIDs) {
+        [orphanedObjectIDs removeObject:objectID];
+    }
+    
+    NSMutableArray *orphanedRecords = [NSMutableArray array];
+    
+    for (NSManagedObjectID *orphanedObjectID in orphanedObjectIDs) {
+        [orphanedRecords addObject:[context objectWithID:orphanedObjectID]];
+    }
+    
+    return orphanedRecords;
 }
 
 
@@ -794,6 +884,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                           domain:(id)domain
                      resultBlock:(void (^)(NSArray *records, id pageManager, BOOL *requestNextPage))resultBlock
                     failureBlock:(void (^)(NSError *error))failureBlock {
+    MMRecordOptions *options = [self currentOptions];
     
     [self
      startRequestWithURN:URN
@@ -801,10 +892,10 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
      context:context
      domain:domain
      customResponseBlock:^id(id JSON) {
-         MMServerPageManager *pageManager = [[[[self server] pageManagerClass] alloc] initWithResponseObject:JSON
-                                                                                                  requestURN:URN
-                                                                                                 requestData:data
-                                                                                                 recordClass:self];
+         MMServerPageManager *pageManager = [[[options pageManagerClass] alloc] initWithResponseObject:JSON
+                                                                                            requestURN:URN
+                                                                                           requestData:data
+                                                                                           recordClass:self];
          
          return pageManager;
      }
@@ -812,7 +903,9 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
          if(resultBlock){
              BOOL requestNextPage = NO;
              
-             resultBlock(records,pageManager,&requestNextPage);
+             if (resultBlock != nil) {
+                 resultBlock(records,pageManager,&requestNextPage);
+             }
              
              if (requestNextPage) {
                  [pageManager startNextPageRequestWithContext:context
@@ -845,9 +938,11 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     [context performBlock:^{
         NSArray *results = [context executeFetchRequest:fetchRequest error:NULL];
         
-        dispatch_async(options.callbackQueue, ^{
-            resultBlock(results, nil, NO);
-        });
+        if (resultBlock != nil) {
+            dispatch_async(options.callbackQueue, ^{
+                resultBlock(results, nil, NO);
+            });
+        }
         
         [self
          startRequestWithURN:URN
@@ -1002,6 +1097,16 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 }
 
 - (void)logMessageForCode:(MMRecordErrorCode)errorCode description:(NSString *)description isFatal:(BOOL)isFatal {
+#if MMRecordLumberjack
+    NSString *errorCodeDescription = [NSError descriptionForMCErrorCode:errorCode];
+    
+    if (isFatal) {
+        MMRLogError(@"%@. %@", errorCodeDescription, description);
+    }
+    else{
+        MMRLogWarn(@"%@. %@", errorCodeDescription, description);
+    }
+#else
     BOOL shouldLogMessage = NO;
     
     switch ([MMRecord loggingLevel]) {
@@ -1020,14 +1125,15 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     }
     
     if (shouldLogMessage) {
-        NSString *logPrefix = @"---Warning--- %@. %@";
+        NSString *logPrefix = @"--[MMRecord WARNING]-- %@. %@";
         
         if (isFatal) {
-            logPrefix = @"---ERROR--- %@. %@";
+            logPrefix = @"--[MMRecord ERROR]-- %@. %@";
         }
         
         NSLog(logPrefix, [NSError descriptionForMCErrorCode:errorCode], description);
     }
+#endif
 }
 
 @end
@@ -1063,3 +1169,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 
 @implementation MMRecordOptions
 @end
+
+#undef MMRLogInfo
+#undef MMRLogWarn
+#undef MMRLogError
+#undef MMRLogVerbose

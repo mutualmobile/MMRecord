@@ -46,6 +46,8 @@
 	
 	<option value="//api/name/dateFormatter">&nbsp;&nbsp;&nbsp;&nbsp;+ dateFormatter</option>
 	
+	<option value="//api/name/defaultOptions">&nbsp;&nbsp;&nbsp;&nbsp;+ defaultOptions</option>
+	
 	<option value="//api/name/errorWithMMRecordCode:description:">&nbsp;&nbsp;&nbsp;&nbsp;+ errorWithMMRecordCode:description:</option>
 	
 	<option value="//api/name/isRecordLevelCachingEnabled">&nbsp;&nbsp;&nbsp;&nbsp;+ isRecordLevelCachingEnabled</option>
@@ -63,6 +65,8 @@
 	<option value="//api/name/server">&nbsp;&nbsp;&nbsp;&nbsp;+ server</option>
 	
 	<option value="//api/name/setLoggingLevel:">&nbsp;&nbsp;&nbsp;&nbsp;+ setLoggingLevel:</option>
+	
+	<option value="//api/name/setOptions:">&nbsp;&nbsp;&nbsp;&nbsp;+ setOptions:</option>
 	
 	<option value="//api/name/shouldUseSubEntityRecordClassToRepresentData:">&nbsp;&nbsp;&nbsp;&nbsp;+ shouldUseSubEntityRecordClassToRepresentData:</option>
 	
@@ -113,9 +117,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Error Handling Convenience Methods">Error Handling Convenience Methods</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_MMRecordFetchRequests Methods">MMRecordFetchRequests Methods</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_MMServerPageManager Methods">MMServerPageManager Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_MMRecordFetchRequests Methods">MMRecordFetchRequests Methods</a></span></li>
 	
 </ul></li>
 
@@ -130,6 +134,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelRequestsWithDomain:">cancelRequestsWithDomain:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFormatter">dateFormatter</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/defaultOptions">defaultOptions</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/errorWithMMRecordCode:description:">errorWithMMRecordCode:description:</a></span></li>
 	
@@ -148,6 +154,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/server">server</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLoggingLevel:">setLoggingLevel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setOptions:">setOptions:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldUseSubEntityRecordClassToRepresentData:">shouldUseSubEntityRecordClassToRepresentData:</a></span></li>
 	
@@ -215,31 +223,58 @@ each type of record also corresponds to a certain type of Entity in a managed ob
 
 <h2>Configuration &ndash; Primary Keys</h2>
 
-<p>// TODO: Update this section to account for the new <a href="../Classes/MMRecordRepresentation.html">MMRecordRepresentation</a> class.</p>
-
 <p>You must configure your Core Data model correctly for MMRecord to work effectively.  There are two
 main parts to consider in configuring your data model.  The first is that all record types should
 have a primary key identified by the MMRecordEntityPrimaryAttributeKey key in the Entity&rsquo;s userInfo
 dictionary.  This will be used to uniquely identify records in the event of an update.  Typically
-this will be an integer or a string attribute.  In the latest version of MMRecord this can also be
-a relationship.  The way the relationship primary key works is by establishing the existence of the
-parent relationship.  In order to do that, the root parent relationship must itself have a primary
-key in order to be fetchable from Core Data.  If the root parent object exists, then MMRecord will
-traverse the relationships of that existing object to see if the child which we are trying to
-uniquely identify exists, and if so it will update that object rather than create a duplicate entry
-in the database.  While this is supported for to-many relationships, it is INTENDED for to-one
-relationships.  It&rsquo;s much easier to reliably identify a unique to-one relationship than a to-many
-relationship.  As such, while to-many relationships are supported, they are ONLY supported if the
-fields in the Entity directly map to the fields in the response object.  If you cannot depend on
-these fields matching exactly then you should ask for help, or look for ways to refactor the API or
-your data model, possibly through the use of value transformers or keyPaths.  The other way in
-which you may wish to configure your data model is through the use of altername name keys.  There
+this will be an integer or a string attribute.</p>
+
+<h2>Configuration &ndash; Primary Key Relationships</h2>
+
+<p>The primary key property can also be a relationship. The way the relationship primary key works
+is by establishing the existence of the parent relationship.  In order to do that, the root parent
+relationship must have a primary key itself in order to be fetchable from Core Data.  If the root
+parent object exists, then MMRecord will traverse the relationships of that existing object to see
+if the child which we are trying to uniquely identify exists, and if so it will update that object
+rather than create a duplicate entry in the database.  While this is supported for to-many
+relationships, it is INTENDED for to-one relationships. It&rsquo;s much easier to reliably identify a
+unique to-one relationship than a to-many relationship.  As such, while to-many relationships are
+supported, they are ONLY supported if the fields in the Entity directly map to the fields in the
+response object.  If you cannot depend on these fields matching exactly then you should look for
+ways to refactor the API or your data model, possibly through the use of value transformers or
+keyPaths.</p>
+
+<h2>Configuration &ndash; Alternate Name Keys</h2>
+
+<p>You can also configure your data model through the use of altername attribute name keys.  There
 is more information on their use above, but these are generally used when the name of an object&rsquo;s
 key in the response changes, or when the name is undesirable to use, such as if it is restricted by
-Core Data, or includes underscores.  The final way you can configure data model is through the use
-of NSValueTransformers.  An entity can define an attribute as transformable and include a
-NSValueTransformer subclass name in the Entity Description and MMRecord will honor that setting and
-use that transformer to construct the object.</p>
+Core Data, or includes underscores.</p>
+
+<h2>Configuration &ndash; NSValueTransformers</h2>
+
+<p>MMRecord will also respect the NSValueTransformer subclass defined on a transformable attribute.
+If a value transformer is set on an attribute description, then MMRecord will use that transformer
+to transform the value for that attribute. If no value transformer is set, then NSKeyedArchiver will
+be used.</p>
+
+<h2>Configuration &ndash; Parsing and Population</h2>
+
+<p>The parsing and population system of MMRecord can be configured to handle special cases as well.
+The entry point for customizing this system is the <a href="../Classes/MMRecordRepresentation.html">MMRecordRepresentation</a> class, and corresponding
+<a href="../Classes/MMRecordMarshaler.html">MMRecordMarshaler</a> class &ndash; which is defined by the representation. You can declare a custom
+representation on a subclass of MMRecord. For more information about custom representations and
+marshalers please see those corresponding header files.</p>
+
+<h2>Configuration &ndash; Dates</h2>
+
+<p>The parsing and population can support dates in either date format string form, or unix time stamp
+number form. If the date from your request is a unix time stamp that is returned in the form of a
+number, then the date attribute will be populated with a date created from that unix time stamp. No
+action is required by you.If the value returned is a date format string, then you must override the
+<a href="#//api/name/dateFormatter">dateFormatter</a> method in your MMRecord subclass to provide a <a href="#//api/name/dateFormatter">dateFormatter</a> that can parse that given
+date format string. That formatter will then be used to populate date attributes for that class of
+record.</p>
 
 <h2>Server</h2>
 
@@ -333,15 +368,18 @@ NSURLRequest object is required for accessing information in NSURLCache.</p>
 <p>All MMRecord resultBlocks and failureBlocks are called on the Main Queue.  Support for specific
 callback queues will be added in a future version.</p>
 
-<p>This category adds support for running a fetch request alongside the URL request.  It is meant for
-when data is likely to exist in some form, stale or otherwise, in the persistent store and it would
-be useful to return the existing data as quickly as possible and then follow up soon thereafter
-with the latest data from a web service.</p>
+<p>This extenion to MMRecord enables the user to set various options to customize the behavior of a
+specific MMRecord request.</p>
 
 <p>This category adds improved support for custom handling of pagination within requests.  It uses the
 customResponseBlock functionality documented above to achieve this goal, and is intended both as a
 great tool for implementing paginated HTTP requests, as well as a reference implementation for how
 to use the customResponseBlock feature.</p>
+
+<p>This category adds support for running a fetch request alongside the URL request.  It is meant for
+when data is likely to exist in some form, stale or otherwise, in the persistent store and it would
+be useful to return the existing data as quickly as possible and then follow up soon thereafter
+with the latest data from a web service.</p>
 					</div>
 					
 					
@@ -547,18 +585,28 @@ MMRecord.</p></span>
 						</ul>
 						
 						
-						<a title="MMRecordFetchRequests Methods" name="task_MMRecordFetchRequests Methods"></a>
-						<h3 class="subsubtitle task-title">MMRecordFetchRequests Methods</h3>
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:">+&nbsp;startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:</a></code>
-		<span class="tooltip"><p>Starts a dual fetch and web request to retrieve information as quickly and as efficiently as
-possible.  This method IS MEANT to be wrapped in a subclass&rsquo;s implementation which hides the fetch
-request, URN, etc. from the caller.  The caller (presumably a view controller) should not need to
-know about how to build the fetch request, it should only care about the data being received in the
-result block.</p></span>
+		<code><a href="#//api/name/setOptions:">+&nbsp;setOptions:</a></code>
+		<span class="tooltip"><p>This method allows you to set a specific set of options for a single MMRecord request.
+<a href="../Classes/MMRecordOptions.html">MMRecordOptions</a> follows the design paradigm set forth in Core Animation with the notion of an
+implicit transaction. Every MMRecord request starts with a default set of options. The defaults are
+specified above in the options class. Options are intended to be used sparingly and in special
+circumstances. As such, a set of options will only be applied to the first request started after
+-setOptions: is called. If you want those options to be used for every request, or for a specific
+request every time it&rsquo;s called, you should encapsulate that request inside of another method which
+sets a new set of options before starting the request on MMRecord.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/defaultOptions">+&nbsp;defaultOptions</a></code>
+		<span class="tooltip"><p>Designated accessor for obtaining the default set of options for a given class of MMRecord.</p></span>
 	</span>
 	
 	
@@ -578,6 +626,25 @@ paging parameter.  The <a href="#//api/name/server">server</a> class is responsi
 functionality is desired.  The purpose of this method is to enable the caller to receive a first
 page for a given resource and to subsequently request further pages.  The signature of the result
 block is therefore changed to account for this functionality.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="MMRecordFetchRequests Methods" name="task_MMRecordFetchRequests Methods"></a>
+						<h3 class="subsubtitle task-title">MMRecordFetchRequests Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:">+&nbsp;startRequestWithURN:data:context:domain:fetchRequest:customResponseBlock:resultBlock:failureBlock:</a></code>
+		<span class="tooltip"><p>Starts a dual fetch and web request to retrieve information as quickly and as efficiently as
+possible.  This method IS MEANT to be wrapped in a subclass&rsquo;s implementation which hides the fetch
+request, URN, etc. from the caller.  The caller (presumably a view controller) should not need to
+know about how to build the fetch request, it should only care about the data being received in the
+result block.</p></span>
 	</span>
 	
 	
@@ -664,7 +731,9 @@ configured for handling the server&rsquo;s specified date format.</p>
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>A NSDateFormatter configured to handle the server&rsquo;s date format.</p>
+		<p>A NSDateFormatter configured to handle the server&rsquo;s date format.
+@discussion You do not have to implement this method if your request returns unix date time stamps
+as numbers.</p>
 	</div>
 	
 	
@@ -675,9 +744,48 @@ configured for handling the server&rsquo;s specified date format.</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>This method is used by all of the parsing method base implementations to obtain a date formatter
 configured for handling the server&rsquo;s specified date format.</p><div class="warning"><p><strong>Warning:</strong> If you do not implement this method and attempt to populate properties of type Date
-you will receive a parsing error.</p></div><div class="warning"><p><strong>Warning:</strong> You should store the date formatter you create as a static variable so that it&rsquo;s not
+with a string value you will receive a parsing error.</p></div><div class="warning"><p><strong>Warning:</strong> You should store the date formatter you create as a static variable so that it&rsquo;s not
 recreated by every request.  Don&rsquo;t be surprised if this functionality is changed later so that
 the user isn&rsquo;t responsible for handling this.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/defaultOptions" title="defaultOptions"></a>
+	<h3 class="subsubtitle method-title">defaultOptions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Designated accessor for obtaining the default set of options for a given class of MMRecord.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (MMRecordOptions *)defaultOptions</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Designated accessor for obtaining the default set of options for a given class of MMRecord.</p>
 	</div>
 	
 	
@@ -901,7 +1009,7 @@ called if your response object is of type dictionary.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Access the set logging level for internal warning, error, and debug log statements.</p>
+		<p>Access the set logging level for internal warning, error, and debug log statements.</p><div class="warning"><p><strong>Warning:</strong> The loggingLevel is stored but ignored when Cocoa Lumberjack is being used.</p></div>
 	</div>
 	
 	
@@ -995,7 +1103,7 @@ class for populating instances of this record class.</p>
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
 		<p>The <a href="../Classes/MMRecordRepresentation.html">MMRecordRepresentation</a> subclass you would like to use for this type of record.
-@discussion The default representation class is MMRecordModelRepresentation. See it&rsquo;s header for
+@discussion The default representation class is <a href="../Classes/MMRecordRepresentation.html">MMRecordRepresentation</a>. See it&rsquo;s header for
 more details.</p>
 	</div>
 	
@@ -1103,7 +1211,73 @@ improperly configured data models.</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Set the desired logging level for internal warning, error, and debug log statements. Messages are
 logged when certain events take place, such as parsing errors, missing data warnings, and
-improperly configured data models.</p>
+improperly configured data models.</p><div class="warning"><p><strong>Warning:</strong> The <a href="#//api/name/loggingLevel">loggingLevel</a> is ignored when Cocoa Lumberjack is being used.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setOptions:" title="setOptions:"></a>
+	<h3 class="subsubtitle method-title">setOptions:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method allows you to set a specific set of options for a single MMRecord request.
+<a href="../Classes/MMRecordOptions.html">MMRecordOptions</a> follows the design paradigm set forth in Core Animation with the notion of an
+implicit transaction. Every MMRecord request starts with a default set of options. The defaults are
+specified above in the options class. Options are intended to be used sparingly and in special
+circumstances. As such, a set of options will only be applied to the first request started after
+-setOptions: is called. If you want those options to be used for every request, or for a specific
+request every time it&rsquo;s called, you should encapsulate that request inside of another method which
+sets a new set of options before starting the request on MMRecord.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)setOptions:(MMRecordOptions *)<em>options</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>The options object to be set on MMRecord.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method allows you to set a specific set of options for a single MMRecord request.
+<a href="../Classes/MMRecordOptions.html">MMRecordOptions</a> follows the design paradigm set forth in Core Animation with the notion of an
+implicit transaction. Every MMRecord request starts with a default set of options. The defaults are
+specified above in the options class. Options are intended to be used sparingly and in special
+circumstances. As such, a set of options will only be applied to the first request started after
+-setOptions: is called. If you want those options to be used for every request, or for a specific
+request every time it&rsquo;s called, you should encapsulate that request inside of another method which
+sets a new set of options before starting the request on MMRecord.</p><div class="warning"><p><strong>Warning:</strong> Options are implicitly reset after a request is run
+@discussion Tip: if you want multiple requests to use a specific set of options, you can group
+them in a batch block and they will all use the specified options that you set before starting the
+batch request.</p></div>
 	</div>
 	
 	
@@ -1757,7 +1931,7 @@ used as the location for fetching the detail resource for the record.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Mutual Mobile. All rights reserved. (Last updated: 2013-03-24)</span><br />
+						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-03-01)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

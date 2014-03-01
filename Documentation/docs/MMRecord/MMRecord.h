@@ -1,16 +1,32 @@
+// MMRecord.h
 //
-//  MMRecord.h
-//  MMRecord
+// Copyright (c) 2013 Mutual Mobile (http://www.mutualmobile.com/)
 //
-//  TODO: Replace with License Header
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 #import <CoreData/CoreData.h>
 
 #import "MMRecordErrors.h"
+#import "MMRecordLoggers.h"
+#import "MMRecordProtoRecord.h"
 
-/** To provide custom parsing functionality for your records, such as the setting a custom key or 
+/** To provide custom parsing functionality for your records, such as the setting a custom key or
  establishing a relationship, use the keys below in the UserInfo dictionary of an attribute or 
  relationship:
  
@@ -35,7 +51,9 @@ extern NSString * const MMRecordAttributeAlternateNameKey;
 
 @class MMRecordOptions, MMServer, MMServerPageManager;
 
-/** Use the method below to set the MMRecord Logging Level.  The default logging level is none.
+/** 
+ Use the method below to set the MMRecord Logging Level.  The default logging level is none.
+ MMRecord can support Cocoa Lumberjack. Logging level is ignored when Cocoa Lumberjack is used.
  */
 
 typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
@@ -52,32 +70,59 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  each type of record also corresponds to a certain type of Entity in a managed object model.
  
  ## Configuration - Primary Keys
- 
- // TODO: Update this section to account for the new MMRecordRepresentation class.
- 
+  
  You must configure your Core Data model correctly for MMRecord to work effectively.  There are two 
  main parts to consider in configuring your data model.  The first is that all record types should 
  have a primary key identified by the MMRecordEntityPrimaryAttributeKey key in the Entity's userInfo
  dictionary.  This will be used to uniquely identify records in the event of an update.  Typically 
- this will be an integer or a string attribute.  In the latest version of MMRecord this can also be 
- a relationship.  The way the relationship primary key works is by establishing the existence of the 
- parent relationship.  In order to do that, the root parent relationship must itself have a primary 
- key in order to be fetchable from Core Data.  If the root parent object exists, then MMRecord will 
- traverse the relationships of that existing object to see if the child which we are trying to 
- uniquely identify exists, and if so it will update that object rather than create a duplicate entry
- in the database.  While this is supported for to-many relationships, it is INTENDED for to-one 
- relationships.  It's much easier to reliably identify a unique to-one relationship than a to-many 
- relationship.  As such, while to-many relationships are supported, they are ONLY supported if the 
- fields in the Entity directly map to the fields in the response object.  If you cannot depend on 
- these fields matching exactly then you should ask for help, or look for ways to refactor the API or
- your data model, possibly through the use of value transformers or keyPaths.  The other way in 
- which you may wish to configure your data model is through the use of altername name keys.  There 
+ this will be an integer or a string attribute.  
+ 
+ ## Configuration - Primary Key Relationships
+ 
+ The primary key property can also be a relationship. The way the relationship primary key works 
+ is by establishing the existence of the parent relationship.  In order to do that, the root parent 
+ relationship must have a primary key itself in order to be fetchable from Core Data.  If the root 
+ parent object exists, then MMRecord will traverse the relationships of that existing object to see 
+ if the child which we are trying to uniquely identify exists, and if so it will update that object 
+ rather than create a duplicate entry in the database.  While this is supported for to-many 
+ relationships, it is INTENDED for to-one relationships. It's much easier to reliably identify a 
+ unique to-one relationship than a to-many relationship.  As such, while to-many relationships are 
+ supported, they are ONLY supported if the fields in the Entity directly map to the fields in the 
+ response object.  If you cannot depend on these fields matching exactly then you should look for 
+ ways to refactor the API or your data model, possibly through the use of value transformers or 
+ keyPaths.
+ 
+ ## Configuration - Alternate Name Keys
+
+ You can also configure your data model through the use of altername attribute name keys.  There 
  is more information on their use above, but these are generally used when the name of an object's 
  key in the response changes, or when the name is undesirable to use, such as if it is restricted by
- Core Data, or includes underscores.  The final way you can configure data model is through the use 
- of NSValueTransformers.  An entity can define an attribute as transformable and include a 
- NSValueTransformer subclass name in the Entity Description and MMRecord will honor that setting and 
- use that transformer to construct the object.
+ Core Data, or includes underscores.  
+ 
+ ## Configuration - NSValueTransformers
+
+ MMRecord will also respect the NSValueTransformer subclass defined on a transformable attribute. 
+ If a value transformer is set on an attribute description, then MMRecord will use that transformer 
+ to transform the value for that attribute. If no value transformer is set, then NSKeyedArchiver will
+ be used.
+ 
+ ## Configuration - Parsing and Population
+ 
+ The parsing and population system of MMRecord can be configured to handle special cases as well. 
+ The entry point for customizing this system is the MMRecordRepresentation class, and corresponding 
+ MMRecordMarshaler class - which is defined by the representation. You can declare a custom 
+ representation on a subclass of MMRecord. For more information about custom representations and 
+ marshalers please see those corresponding header files.
+ 
+ ## Configuration - Dates
+ 
+ The parsing and population can support dates in either date format string form, or unix time stamp 
+ number form. If the date from your request is a unix time stamp that is returned in the form of a 
+ number, then the date attribute will be populated with a date created from that unix time stamp. No 
+ action is required by you.If the value returned is a date format string, then you must override the
+ dateFormatter method in your MMRecord subclass to provide a dateFormatter that can parse that given
+ date format string. That formatter will then be used to populate date attributes for that class of
+ record.
  
  ## Server
  
@@ -212,7 +257,7 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  This method should be used when a user of this class would like to use a different representation 
  class for populating instances of this record class.
  @return The MMRecordRepresentation subclass you would like to use for this type of record.
- @discussion The default representation class is MMRecordModelRepresentation. See it's header for 
+ @discussion The default representation class is MMRecordRepresentation. See it's header for 
  more details.
  */
 + (Class)representationClass;
@@ -235,8 +280,10 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  configured for handling the server's specified date format.
  
  @return A NSDateFormatter configured to handle the server's date format.
+ @discussion You do not have to implement this method if your request returns unix date time stamps 
+ as numbers.
  @warning If you do not implement this method and attempt to populate properties of type Date 
- you will receive a parsing error.
+ with a string value you will receive a parsing error.
  @warning You should store the date formatter you create as a static variable so that it's not 
  recreated by every request.  Don't be surprised if this functionality is changed later so that 
  the user isn't responsible for handling this.
@@ -292,12 +339,16 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
  logged when certain events take place, such as parsing errors, missing data warnings, and 
  improperly configured data models.
  
+ @warning The loggingLevel is ignored when Cocoa Lumberjack is being used.
+ 
  @param loggingLevel The desired logging level
  */
 + (void)setLoggingLevel:(MMRecordLoggingLevel)loggingLevel;
 
 /**
- Access the set logging level for internal warning, error, and debug log statements. 
+ Access the set logging level for internal warning, error, and debug log statements.
+ 
+ @warning The loggingLevel is stored but ignored when Cocoa Lumberjack is being used.
  */
 + (MMRecordLoggingLevel)loggingLevel;
 
@@ -505,54 +556,194 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
 
 
 /**
+ This block should be used to conditionally delete orphaned records if they are not returned in a
+ request's response.
+ 
+ @param orphan The record which has now become an orphan.
+ @param populatedRecords An array of records that were populated from the response.
+ @param responseObject The JSON response object from the request.
+ @param stop A boolean reference you can set to YES to short circuit the orphan deletion process.
+ @return BOOL You should return YES if you want to delete the orphan and NO otherwise.
+ */
+typedef BOOL (^MMRecordOptionsDeleteOrphanedRecordBlock)(MMRecord *orphan,
+                                                         NSArray *populatedRecords,
+                                                         id responseObject,
+                                                         BOOL *stop);
+
+/**
+ This block should be used to optionally inject a primary key that will be used to uniquely identify
+ a record of a given type. The most common use case for this block should be when an API's JSON 
+ response does not contain a record primary key, but the caller who makes the request already has 
+ that key. Generally this will be the root level initial entity that the request to MMRecord is
+ going to return. This could be used to return primary keys for sub-entities, but this is generally
+ not recommended.
+ 
+ You may choose to generate a primary key for a given record based on the dictionary passed into 
+ the block. Hashing the dictionary to create the primary key may prove to be a valid solution for 
+ your specific use case.
+ 
+ @warning This block will only be executed if the primary key for a record cannot be obtained from 
+ the record dictionary.
+ 
+ @discussion This method can return nil.
+ 
+ @param entity The entity type to evaluate and return a primary key for.
+ @param dictionary The dictionary being used to populate the given record.
+ @param parentProtoRecord The parent proto record of the one whose primary key is being evaluated
+ here. This may be nil if the entity is the initial entity being populated by MMRecord.
+ @return id The primary key to associate with the record. This value must conform to NSCopying.
+ */
+typedef id<NSCopying> (^MMRecordOptionsEntityPrimaryKeyInjectionBlock)(NSEntityDescription *entity,
+                                                                       NSDictionary *dictionary,
+                                                                       MMRecordProtoRecord *parentProtoRecord);
+
+/**
+ This block may be used for inserting custom logic into the record population workflow. This block, 
+ if defined, will be executed prior to the MMRecordMarshaler's -populateProtoRecord: method.
+ 
+ @warning This block should only be used in relatively rare cases. It is not a substitute for proper
+ model configuration or for marshaler/representation subclassing. It is meant for rare cases where
+ injecting data into the population flow is required for accurate record population. Because this
+ block will be executed for each proto record for a given request, performance issues may arrise.
+ Please use caution.
+ @param protoRecord The proto record which is about to be populated.
+ */
+typedef void (^MMRecordOptionsRecordPrePopulationBlock)(MMRecordProtoRecord *protoRecord);
+
+
+/**
  This class represents various user settable options that MMRecord will use when starting requests.
  */
 
 @interface MMRecordOptions : NSObject
 
 /** 
-  Starts requests and tethers the managed objects generated from the response to a child context of 
+ Starts requests and tethers the managed objects generated from the response to a child context of 
  the one that is passed in rather than saving the objects directly to the persistent store.  This 
- method should be used when you want finer-grained control over the context saving behavior of the 
+ option should be used when you want finer-grained control over the context saving behavior of the 
  request.  MMRecord will still call save on the underlying child context, as it assumes that the 
  context you pass in is where you want the objects to go.  It's important to note that calling save 
  on a child context only pushes the data up one layer, to the parent, unless the child has no 
  parent, in which case it saves directly to the persistent store.
+ 
+ @discussion This option defaults to YES.
  */
 @property (nonatomic, assign) BOOL automaticallyPersistsRecords;
 
 /** 
  The queue that will be used by MMRecord when calling the result and failure blocks.
+ 
+ @discussion The default callback queue is the main queue.
  */
 @property (nonatomic) dispatch_queue_t callbackQueue;
 
 /**
- Must return the key path where records are located within the response object.  This will only be 
- called if your response object is of type dictionary.
+ Must specify the key path where records are located within the response object. This will only be
+ used if your response object is of type dictionary. This option gives you the ability to specify a 
+ different key path for an entity than the one in your subclass. Use this option sparingly.
+ Generally speaking you should subclass and create a different entity to provide different 
+ functionality.
+ 
+ @discussion Default is whatever is returned by this method on the MMRecord subclass.
+ @warning This option is NOT supported for batch requests!
  */
 @property (nonatomic, copy) NSString *keyPathForResponseObject;
 
 /**
- This method indicates whether records returned are cacheable. The record level cache is keyed by 
- the request URL and will obey the HTTP cache control headers.
+ This option indicates whether records returned are cacheable. The record level cache is keyed by 
+ the request URL and will obey the HTTP cache control headers. For more information on caching 
+ please see above documentation.
+ 
+ @discussion Default value is NO.
+ @warning This method is supported for batching, but may result in unintended entities being cached.
  */
 @property (nonatomic, assign) BOOL isRecordLevelCachingEnabled;
 
 /**
- This method returns the key path where metadata for the records are located within the response 
- object.  This will only be called if your response object is of type dictionary.  Returning a 
+ This option specifies the key path where metadata for the records are located within the response 
+ object.  This will only be used if your response object is of type dictionary.  Returning a 
  non-nil value will short-circuit parsing the cached response body and build a subset of the 
- response using this key and the value from the actual response.  This method is provided purely for
+ response using this key and the value from the actual response.  This option is provided purely for
  performance considerations and is not required.
+ 
+ @discussion Default value is the value returned in the subclass method.
  */
 @property (nonatomic, copy) NSString *keyPathForMetaData;
 
+/**
+ This option allows you to specify a page manager that will be used for the next request if it is
+ paginated. This gives you the flexibility to use a different page manager class than is specified
+ on your registered server class for a given entity. This may be useful if your API has different
+ pagination behavior in certain situations.
+ 
+ @discussion Default value is the page manager for the registered server class for the given entity.
+ */
+@property (nonatomic, strong) Class pageManagerClass;
+
+/**
+ This option allows you to specify a block that will be executed once per record which was orphaned
+ by this request's response until either it has been called n times for n number of orphans or until
+ you pass YES for the stop parameter.
+ 
+ This block will only be called for orphans of the initial entity type that was requested by
+ MMRecord. Sub-entities or child-entities will not be considered as orphans.
+ 
+ @discussion Default value is nil which means orphans will be ignored.
+ */
+@property (nonatomic, copy) MMRecordOptionsDeleteOrphanedRecordBlock deleteOrphanedRecordBlock;
+
+/**
+ This option allows you to specify a block that will be executed when a record is populated and no
+ primary key to identify it is found in the populating record dictionary. This allows you to return
+ your own primary key that will be used to uniquely identify the record. You may also choose to
+ generate a primary key for a given record based on the dictionary passed into the block. Hashing
+ the dictionary to create the primary key may prove to be a valid solution for your specific use
+ case.
+ 
+ @discussion This block should return nil if you have no way to uniquely identify a record for the
+ given type of entity. The default value of this option is nil.
+ */
+@property (nonatomic, copy) MMRecordOptionsEntityPrimaryKeyInjectionBlock entityPrimaryKeyInjectionBlock;
+
+/**
+ This option allows you to specify a block that will be executed immediately before record
+ population in order to perform some task like inserting data into the population process.
+ 
+ @discussion Default value is nil which means population will be performed normally.
+ */
+@property (nonatomic, copy) MMRecordOptionsRecordPrePopulationBlock recordPrePopulationBlock;
 
 @end
 
+
+/**
+ This extenion to MMRecord enables the user to set various options to customize the behavior of a 
+ specific MMRecord request.
+ */
 @interface MMRecord (MMRecordOptions)
 
+/**
+ This method allows you to set a specific set of options for a single MMRecord request. 
+ MMRecordOptions follows the design paradigm set forth in Core Animation with the notion of an 
+ implicit transaction. Every MMRecord request starts with a default set of options. The defaults are 
+ specified above in the options class. Options are intended to be used sparingly and in special 
+ circumstances. As such, a set of options will only be applied to the first request started after 
+ -setOptions: is called. If you want those options to be used for every request, or for a specific 
+ request every time it's called, you should encapsulate that request inside of another method which 
+ sets a new set of options before starting the request on MMRecord.
+ 
+ @param options The options object to be set on MMRecord.
+ @warning Options are implicitly reset after a request is run
+ @discussion Tip: if you want multiple requests to use a specific set of options, you can group 
+ them in a batch block and they will all use the specified options that you set before starting the 
+ batch request.
+ */
 + (void)setOptions:(MMRecordOptions *)options;
+
+/**
+ Designated accessor for obtaining the default set of options for a given class of MMRecord.
+ */
++ (MMRecordOptions *)defaultOptions;
 
 @end
 

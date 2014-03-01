@@ -54,6 +54,8 @@
 	
 	<option value="//api/name/setValue:onRecord:attribute:dateFormatter:">&nbsp;&nbsp;&nbsp;&nbsp;+ setValue:onRecord:attribute:dateFormatter:</option>
 	
+	<option value="//api/name/valueForAttribute:rawValue:dateFormatter:">&nbsp;&nbsp;&nbsp;&nbsp;+ valueForAttribute:rawValue:dateFormatter:</option>
+	
 	
 	
 	
@@ -95,6 +97,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/populateProtoRecord:attributeDescription:fromDictionary:">populateProtoRecord:attributeDescription:fromDictionary:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setValue:onRecord:attribute:dateFormatter:">setValue:onRecord:attribute:dateFormatter:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/valueForAttribute:rawValue:dateFormatter:">valueForAttribute:rawValue:dateFormatter:</a></span></li>
 	
 </ul></li>
 
@@ -241,6 +245,18 @@ instance of <a href="../Classes/MMRecord.html">MMRecord</a>. The value should be
 in the <a href="#//api/name/populateProtoRecord:">populateProtoRecord:</a> method defined above. The attribute is used to provide the type that
 the attribute represents. Population of different types is handled in different ways. Overriding
 this method allows you to change how different types of attributes are populated.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/valueForAttribute:rawValue:dateFormatter:">+&nbsp;valueForAttribute:rawValue:dateFormatter:</a></code>
+		<span class="tooltip"><p>This method is designed to be subclassed. It is used to supply the properly formatted value for the
+setValue: method above. The term &ldquo;formatted&rdquo; can mean different things for different types of
+attributes. For date attributes that may mean applying a date formatter, or for transformed
+attributes applying a value transformer. Or it may mean something entirely different based on the
+needs of your application. Thats why its a public method &ndash; to allow you to subclass and provide
+custom behavior as necessary.</p></span>
 	</span>
 	
 	
@@ -650,6 +666,83 @@ this method allows you to change how different types of attributes are populated
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/valueForAttribute:rawValue:dateFormatter:" title="valueForAttribute:rawValue:dateFormatter:"></a>
+	<h3 class="subsubtitle method-title">valueForAttribute:rawValue:dateFormatter:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is designed to be subclassed. It is used to supply the properly formatted value for the
+setValue: method above. The term &ldquo;formatted&rdquo; can mean different things for different types of
+attributes. For date attributes that may mean applying a date formatter, or for transformed
+attributes applying a value transformer. Or it may mean something entirely different based on the
+needs of your application. Thats why its a public method &ndash; to allow you to subclass and provide
+custom behavior as necessary.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (id)valueForAttribute:(NSAttributeDescription *)<em>attribute</em> rawValue:(id)<em>rawValue</em> dateFormatter:(NSDateFormatter *)<em>dateFormatter</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>attribute</em></dt>
+			<dd><p>The attribute to return a formatted value for.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>rawValue</em></dt>
+			<dd><p>The raw value as determined by the <a href="#//api/name/populateProtoRecord:">populateProtoRecord:</a> method for this record.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dateFormatter</em></dt>
+			<dd><p>The date formatter to use for formatting a Date attribute.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is designed to be subclassed. It is used to supply the properly formatted value for the
+setValue: method above. The term &ldquo;formatted&rdquo; can mean different things for different types of
+attributes. For date attributes that may mean applying a date formatter, or for transformed
+attributes applying a value transformer. Or it may mean something entirely different based on the
+needs of your application. Thats why its a public method &ndash; to allow you to subclass and provide
+custom behavior as necessary.</p>
+
+<p>A best practice when using this method is to treat the passed in raw value as the default. If you
+have nothing to do to that value, then just return it directly. Generally speaking you will not
+want to return nil from this method. The rawValue passed will never be nil.</p>
+
+<p>Another best practice is to call super if you are only customizing the logic for one type of
+attribute. Create a condition on that attribute type, and if its not met, simply return the result
+of super&rsquo;s implementation.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordMarshaler.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -665,7 +758,7 @@ this method allows you to change how different types of attributes are populated
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Mutual Mobile. All rights reserved. (Last updated: 2013-03-24)</span><br />
+						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-03-01)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
