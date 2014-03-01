@@ -217,13 +217,11 @@
     //is the correct one to assign
     if ([existingRecordOrCollectionFromRelationship respondsToSelector:@selector(count)]) {
         
-        BOOL existingRecord = NO;
         //is a faulted set; iterate through to find
         for (MMRecord *faultedObject in (NSSet *)existingRecordOrCollectionFromRelationship) {
             if ([self verifyObject:faultedObject containsValuesForKeysInDict:protoRecord.dictionary representation:protoRecord.representation] == YES) {
                 existingRecordFromParent = faultedObject;
                 
-                existingRecord = YES;
                 break;
             }
         }
