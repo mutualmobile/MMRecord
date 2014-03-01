@@ -578,16 +578,20 @@ typedef BOOL (^MMRecordOptionsDeleteOrphanedRecordBlock)(MMRecord *orphan,
  going to return. This could be used to return primary keys for sub-entities, but this is generally
  not recommended.
  
- This block will only be executed if the primary key for a record cannot be obtained from the record
- dictionary.
+ You may choose to generate a primary key for a given record based on the dictionary passed into 
+ the block. Hashing the dictionary to create the primary key may prove to be a valid solution for 
+ your specific use case.
  
- This method can return nil.
+ @warning This block will only be executed if the primary key for a record cannot be obtained from 
+ the record dictionary.
+ 
+ @discussion This method can return nil.
  
  @param entity The entity type to evaluate and return a primary key for.
  @param dictionary The dictionary being used to populate the given record.
  @param parentProtoRecord The parent proto record of the one whose primary key is being evaluated
  here. This may be nil if the entity is the initial entity being populated by MMRecord.
- @return id The primary key to associate with the record.
+ @return id The primary key to associate with the record. This value must conform to NSCopying.
  */
 typedef id<NSCopying> (^MMRecordOptionsEntityPrimaryKeyInjectionBlock)(NSEntityDescription *entity,
                                                                        NSDictionary *dictionary,
@@ -681,6 +685,9 @@ typedef void (^MMRecordOptionsRecordPrePopulationBlock)(MMRecordProtoRecord *pro
  by this request's response until either it has been called n times for n number of orphans or until
  you pass YES for the stop parameter.
  
+ This block will only be called for orphans of the initial entity type that was requested by
+ MMRecord. Sub-entities or child-entities will not be considered as orphans.
+ 
  @discussion Default value is nil which means orphans will be ignored.
  */
 @property (nonatomic, copy) MMRecordOptionsDeleteOrphanedRecordBlock deleteOrphanedRecordBlock;
@@ -688,7 +695,10 @@ typedef void (^MMRecordOptionsRecordPrePopulationBlock)(MMRecordProtoRecord *pro
 /**
  This option allows you to specify a block that will be executed when a record is populated and no
  primary key to identify it is found in the populating record dictionary. This allows you to return
- your own primary key that will be used to uniquely identify the record.
+ your own primary key that will be used to uniquely identify the record. You may also choose to
+ generate a primary key for a given record based on the dictionary passed into the block. Hashing
+ the dictionary to create the primary key may prove to be a valid solution for your specific use
+ case.
  
  @discussion This block should return nil if you have no way to uniquely identify a record for the
  given type of entity. The default value of this option is nil.

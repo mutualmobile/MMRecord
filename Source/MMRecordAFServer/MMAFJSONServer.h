@@ -45,8 +45,8 @@
  
  ## Batching
  
- This server implementation does support batching. If the request batching system in MMRecord is 
- used, then those requests will be batched using the AFHTTPClient supplied in the register method.
+ This server implementation does support batching. It relies on the dispatchGroup batching system
+ which is built into MMRecord and does not use any specific AFNetworking batching features.
  
  ## Cancellation
  
