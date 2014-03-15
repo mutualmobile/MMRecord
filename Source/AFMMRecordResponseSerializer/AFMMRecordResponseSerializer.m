@@ -100,11 +100,10 @@
 - (id)responseObjectForResponse:(NSURLResponse *)response
                            data:(NSData *)data
                           error:(NSError *__autoreleasing *)error {
-    NSError *serializationError = nil;
     
     id responseObject = [self.HTTPResponseSerializer responseObjectForResponse:response
                                                                           data:data
-                                                                         error:&serializationError];
+                                                                         error:error];
     
     NSAssert(([responseObject isKindOfClass:[NSDictionary class]] ||
               [responseObject isKindOfClass:[NSArray class]]),
