@@ -105,6 +105,15 @@
                                                                           data:data
                                                                          error:error];
     
+    if (*error != nil) {
+        if (responseObject != nil) {
+            NSMutableDictionary *userInfo = [(*error).userInfo mutableCopy];
+            userInfo[@"responseObject"] = responseObject;
+            NSError *newError = [NSError errorWithDomain:(*error).domain code:(*error).code userInfo:userInfo];
+            (*error) = newError;
+        }
+    }
+    
     NSAssert(([responseObject isKindOfClass:[NSDictionary class]] ||
               [responseObject isKindOfClass:[NSArray class]]),
              @"Response object should be of type array or dictionary.");
