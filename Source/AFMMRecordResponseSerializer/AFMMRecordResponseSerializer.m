@@ -60,7 +60,7 @@
     
     NSArray *responseArray = [responseObject valueForKeyPath:keyPath];
     
-    if ([responseArray isKindOfClass:[NSArray class]] == NO) {
+    if (responseArray && [responseArray isKindOfClass:[NSArray class]] == NO) {
         responseArray = @[responseArray];
     }
     
