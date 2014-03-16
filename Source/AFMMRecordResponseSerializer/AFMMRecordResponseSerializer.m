@@ -109,7 +109,9 @@
         if (responseObject != nil) {
             NSMutableDictionary *userInfo = [(*error).userInfo mutableCopy];
             userInfo[@"responseObject"] = responseObject;
-            NSError *newError = [NSError errorWithDomain:(*error).domain code:(*error).code userInfo:userInfo];
+            NSError *newError = [NSError errorWithDomain:(*error).domain
+                                                    code:(*error).code
+                                                userInfo:userInfo];
             (*error) = newError;
         }
     }
