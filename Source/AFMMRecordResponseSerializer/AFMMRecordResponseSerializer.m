@@ -25,6 +25,8 @@
 #import "MMRecord.h"
 #import "MMRecordResponse.h"
 
+NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseSerializerWithDataKey";
+
 @interface AFMMRecordResponseSerializer ()
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
@@ -60,7 +62,7 @@
     
     NSArray *responseArray = [responseObject valueForKeyPath:keyPath];
     
-    if ([responseArray isKindOfClass:[NSArray class]] == NO) {
+    if (responseArray && [responseArray isKindOfClass:[NSArray class]] == NO) {
         responseArray = @[responseArray];
     }
     
@@ -100,11 +102,24 @@
 - (id)responseObjectForResponse:(NSURLResponse *)response
                            data:(NSData *)data
                           error:(NSError *__autoreleasing *)error {
-    NSError *serializationError = nil;
     
     id responseObject = [self.HTTPResponseSerializer responseObjectForResponse:response
                                                                           data:data
-                                                                         error:&serializationError];
+                                                                         error:error];
+    
+    if (*error != nil) {
+        NSMutableDictionary *userInfo = [(*error).userInfo mutableCopy];
+        NSString *responseData = [[NSString alloc] initWithData:data
+                                                       encoding:NSUTF8StringEncoding];
+        
+        [userInfo setValue:responseData
+                    forKey:AFMMRecordResponseSerializerWithDataKey];
+        
+        NSError *newError = [NSError errorWithDomain:(*error).domain
+                                                code:(*error).code
+                                            userInfo:userInfo];
+        (*error) = newError;
+    }
     
     NSAssert(([responseObject isKindOfClass:[NSDictionary class]] ||
               [responseObject isKindOfClass:[NSArray class]]),
