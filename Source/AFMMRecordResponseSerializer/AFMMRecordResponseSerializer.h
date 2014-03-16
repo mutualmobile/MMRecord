@@ -24,6 +24,11 @@
 
 #import <CoreData/CoreData.h>
 
+/**
+ AFMMRecordResponseSerializerWithDataKey is used to access the the response data stored in userInfo after an error is returned from an AFNetworking request.
+ */
+extern NSString * const AFMMRecordResponseSerializerWithDataKey;
+
 @protocol AFMMRecordResponseSerializationEntityMapping;
 
 /**

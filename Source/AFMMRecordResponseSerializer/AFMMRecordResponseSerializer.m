@@ -25,6 +25,8 @@
 #import "MMRecord.h"
 #import "MMRecordResponse.h"
 
+NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseSerializerWithDataKey";
+
 @interface AFMMRecordResponseSerializer ()
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
@@ -108,7 +110,7 @@
     if (*error != nil) {
         if (responseObject != nil) {
             NSMutableDictionary *userInfo = [(*error).userInfo mutableCopy];
-            userInfo[@"responseObject"] = responseObject;
+            userInfo[AFMMRecordResponseSerializerWithDataKey] = responseObject;
             NSError *newError = [NSError errorWithDomain:(*error).domain
                                                     code:(*error).code
                                                 userInfo:userInfo];
