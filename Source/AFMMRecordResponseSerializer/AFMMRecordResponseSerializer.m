@@ -109,8 +109,10 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
     
     if (*error != nil) {
         NSMutableDictionary *userInfo = [(*error).userInfo mutableCopy];
+        NSString *responseData = [[NSString alloc] initWithData:data
+                                                       encoding:NSUTF8StringEncoding];
         
-        [userInfo setValue:responseObject
+        [userInfo setValue:responseData
                     forKey:AFMMRecordResponseSerializerWithDataKey];
         
         NSError *newError = [NSError errorWithDomain:(*error).domain
