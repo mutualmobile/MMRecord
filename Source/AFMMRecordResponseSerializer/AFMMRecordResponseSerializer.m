@@ -58,15 +58,25 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
                                initialEntity:(NSEntityDescription *)initialEntity {
     Class managedObjectClass = NSClassFromString([initialEntity managedObjectClassName]);
     
-    NSString *keyPath = [managedObjectClass keyPathForResponseObject];
+    NSString *keyPathForResponseObject = [managedObjectClass keyPathForResponseObject];
     
-    NSArray *responseArray = [responseObject valueForKeyPath:keyPath];
+    id recordResponseObject = responseObject;
     
-    if (responseArray && [responseArray isKindOfClass:[NSArray class]] == NO) {
-        responseArray = @[responseArray];
+    if (keyPathForResponseObject != nil) {
+        recordResponseObject = [responseObject valueForKeyPath:keyPathForResponseObject];
+    } else {
+        recordResponseObject = responseObject;
     }
     
-    return responseArray;
+    if (recordResponseObject == nil || [recordResponseObject isKindOfClass:[NSNull class]]) {
+        recordResponseObject = [NSArray array];
+    }
+    
+    if ([recordResponseObject isKindOfClass:[NSArray class]] == NO) {
+        recordResponseObject = [NSArray arrayWithObject:recordResponseObject];
+    }
+    
+    return recordResponseObject;
 }
 
 - (NSManagedObjectContext *)backgroundContext {
