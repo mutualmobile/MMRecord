@@ -131,9 +131,18 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
         (*error) = newError;
     }
     
-    NSAssert(([responseObject isKindOfClass:[NSDictionary class]] ||
-              [responseObject isKindOfClass:[NSArray class]]),
-             @"Response object should be of type array or dictionary.");
+    // Check for malformed server response
+    if (!([responseObject isKindOfClass:[NSDictionary class]] ||
+          [responseObject isKindOfClass:[NSArray class]])) {
+
+        NSDictionary *info = @{
+                               @"error":@"AFMMResponseObjectError",
+                               @"reason":@"Response object should be of type array or dictionary"
+                               };
+
+        (*error) = [[NSError alloc] initWithDomain:@"AFMMRecord" code:1 userInfo:info];
+        return nil;
+    }
 
     
     NSEntityDescription *initialEntity = [self.entityMapper recordResponseSerializer:self
