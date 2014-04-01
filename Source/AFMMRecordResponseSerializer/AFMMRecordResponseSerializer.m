@@ -132,11 +132,11 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
     }
     
     // Verify that the server responded in an expected manner.
-    if (!([responseObject isKindOfClass:[NSDictionary class]] ||
-          [responseObject isKindOfClass:[NSArray class]])) {
+    if (!([responseObject isKindOfClass:[NSDictionary class]]) &&
+        !([responseObject isKindOfClass:[NSArray class]])) {
 
         (*error) = [MMRecord errorWithMMRecordCode:MMRecordErrorCodeInvalidResponseFormat
-                                       description:@"Response object should be of type array or dictionary"];
+                                       description:[NSString stringWithFormat:@"The response object should be an array or dictionary. The returned response object type was: %@", NSStringFromClass([responseObject class])]];
 
         return nil;
     }

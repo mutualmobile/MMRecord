@@ -1039,7 +1039,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
             break;
         case MMRecordErrorCodeInvalidResponseFormat:
             result = NSLocalizedString(@"Invalid Response Format.",
-                                       @"The server responded in a manner which could not be processed by the serializer.");
+                                       @"The server response was in an unexpected format that could not be handled by MMRecord.");
             break;
         default:
         case MMRecordErrorCodeUnknown:
