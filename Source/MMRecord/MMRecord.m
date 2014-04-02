@@ -1037,6 +1037,10 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
             result = NSLocalizedString(@"Invalid Entity Description. This could be because this record class is not used in your managed object model, or because your persistent store coordinator or managed object model are not defined properly. An entity description is required for creating records.",
                                        @"This could be because this record class is not used in your managed object model, or because your persistent store coordinator or managed object model are not defined properly. An entity description is required for creating records.");
             break;
+        case MMRecordErrorCodeInvalidResponseFormat:
+            result = NSLocalizedString(@"Invalid Response Format.",
+                                       @"The server response was in an unexpected format that could not be handled by MMRecord.");
+            break;
         default:
         case MMRecordErrorCodeUnknown:
             result = NSLocalizedString(@"Unknown Error",
