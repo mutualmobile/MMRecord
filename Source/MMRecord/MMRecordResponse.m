@@ -68,7 +68,6 @@
 @property (nonatomic, copy) NSArray *responseObjectArray;
 @property (nonatomic, strong) NSMutableArray *objectGraph;  // Array of Protos
 @property (nonatomic, strong) NSMutableDictionary *responseGroups;  // Key = NSEntityDescription, Value = MMRecordResponseGroup
-- (NSEntityDescription *)mostSpecificEntityForResponseObject:(id)object withInitialEntity:(NSEntityDescription *)initialEntity;
 @end
 
 
@@ -164,8 +163,8 @@
 
 #pragma mark - Determine Entity subclass to use
 
-- (NSEntityDescription *)mostSpecificEntityForResponseObject:(id)object
-                                           withInitialEntity:(NSEntityDescription *)initialEntity{
+- (NSEntityDescription *)subEntityForRecordResponseObject:(id)object
+                                           withInitialEntity:(NSEntityDescription *)initialEntity {
     NSArray *subEntities = initialEntity.subentities;
 
     for (NSEntityDescription *subEntity in subEntities) {
@@ -173,7 +172,7 @@
 
         if ([subEntityClass respondsToSelector:@selector(shouldUseSubEntityRecordClassToRepresentData:)]) {
             if ([subEntityClass shouldUseSubEntityRecordClassToRepresentData:object]) {
-                return [self mostSpecificEntityForResponseObject:object withInitialEntity:subEntity];
+                return [self subEntityForRecordResponseObject:object withInitialEntity:subEntity];
             }
         }
     }
@@ -188,7 +187,7 @@
     
 
     for (id recordResponseObject in self.responseObjectArray) {
-        NSEntityDescription *entity = [self mostSpecificEntityForResponseObject:recordResponseObject
+        NSEntityDescription *entity = [self subEntityForRecordResponseObject:recordResponseObject
                                                               withInitialEntity:self.initialEntity];
         
         MMRecordProtoRecord *proto = [self protoRecordWithRecordResponseObject:recordResponseObject
@@ -285,11 +284,11 @@
             for (id object in relationshipObject) {
                 if ([protoRecord canAccomodateAdditionalProtoRecordForRelationshipDescription:relationshipDescription]) {
 
-                    NSEntityDescription *mostSpecificSubEntity= [self mostSpecificEntityForResponseObject:object
-                                                                                        withInitialEntity:entity];
+                    NSEntityDescription *recordSubEntity = [self subEntityForRecordResponseObject:object
+                                                                                withInitialEntity:entity];
 
                     MMRecordProtoRecord *relationshipProto = [self protoRecordWithRecordResponseObject:object
-                                                                                                entity:mostSpecificSubEntity
+                                                                                                entity:recordSubEntity
                                                                                 existingResponseGroups:responseGroups
                                                                                      parentProtoRecord:protoRecord];
                     
