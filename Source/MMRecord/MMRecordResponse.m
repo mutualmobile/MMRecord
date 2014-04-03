@@ -164,7 +164,7 @@
 #pragma mark - Determine Entity subclass to use
 
 - (NSEntityDescription *)subEntityForRecordResponseObject:(id)object
-                                           withInitialEntity:(NSEntityDescription *)initialEntity {
+                                        withInitialEntity:(NSEntityDescription *)initialEntity {
     NSArray *subEntities = initialEntity.subentities;
 
     for (NSEntityDescription *subEntity in subEntities) {
@@ -172,10 +172,12 @@
 
         if ([subEntityClass respondsToSelector:@selector(shouldUseSubEntityRecordClassToRepresentData:)]) {
             if ([subEntityClass shouldUseSubEntityRecordClassToRepresentData:object]) {
-                return [self subEntityForRecordResponseObject:object withInitialEntity:subEntity];
+                return [self subEntityForRecordResponseObject:object
+                                            withInitialEntity:subEntity];
             }
         }
     }
+    
     return initialEntity;
 }
 
@@ -188,7 +190,7 @@
 
     for (id recordResponseObject in self.responseObjectArray) {
         NSEntityDescription *entity = [self subEntityForRecordResponseObject:recordResponseObject
-                                                              withInitialEntity:self.initialEntity];
+                                                           withInitialEntity:self.initialEntity];
         
         MMRecordProtoRecord *proto = [self protoRecordWithRecordResponseObject:recordResponseObject
                                                                         entity:entity
