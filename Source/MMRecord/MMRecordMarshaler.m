@@ -52,11 +52,11 @@
         id value = [protoRecord.dictionary valueForKeyPath:possibleKeyPath];
         
         if (value == [NSNull null]) {
-            value = nil;
+            break;
         }
         
         if (value == nil) {
-            break;
+            continue;
         }
         
         [self setValue:value
