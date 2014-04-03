@@ -161,6 +161,23 @@
     [responseGroup addProtoRecord:protoRecord];
 }
 
+#pragma mark - Determine Entity subclass to use
+
+- (NSEntityDescription *)subEntityForRecordResponseObject:(id)object
+                                           withInitialEntity:(NSEntityDescription *)initialEntity {
+    NSArray *subEntities = initialEntity.subentities;
+
+    for (NSEntityDescription *subEntity in subEntities) {
+        Class subEntityClass = NSClassFromString([subEntity managedObjectClassName]);
+
+        if ([subEntityClass respondsToSelector:@selector(shouldUseSubEntityRecordClassToRepresentData:)]) {
+            if ([subEntityClass shouldUseSubEntityRecordClassToRepresentData:object]) {
+                return [self subEntityForRecordResponseObject:object withInitialEntity:subEntity];
+            }
+        }
+    }
+    return initialEntity;
+}
 
 #pragma mark - Building Proto Records
 
@@ -168,21 +185,10 @@
     NSMutableDictionary *responseGroups = [NSMutableDictionary dictionary];
     NSMutableArray *objectGraph = [NSMutableArray array];
     
-    NSArray *subEntities = self.initialEntity.subentities;
-    
+
     for (id recordResponseObject in self.responseObjectArray) {
-        NSEntityDescription *entity = self.initialEntity;
-        
-        for (NSEntityDescription *subEntity in subEntities) {
-            Class subEntityClass = NSClassFromString([subEntity managedObjectClassName]);
-            
-            if ([subEntityClass respondsToSelector:@selector(shouldUseSubEntityRecordClassToRepresentData:)]) {
-                if ([subEntityClass shouldUseSubEntityRecordClassToRepresentData:recordResponseObject]) {
-                    entity = subEntity;
-                    break;
-                }
-            }
-        }
+        NSEntityDescription *entity = [self subEntityForRecordResponseObject:recordResponseObject
+                                                              withInitialEntity:self.initialEntity];
         
         MMRecordProtoRecord *proto = [self protoRecordWithRecordResponseObject:recordResponseObject
                                                                         entity:entity
@@ -277,8 +283,12 @@
             
             for (id object in relationshipObject) {
                 if ([protoRecord canAccomodateAdditionalProtoRecordForRelationshipDescription:relationshipDescription]) {
+
+                    NSEntityDescription *recordSubEntity = [self subEntityForRecordResponseObject:object
+                                                                                withInitialEntity:entity];
+
                     MMRecordProtoRecord *relationshipProto = [self protoRecordWithRecordResponseObject:object
-                                                                                                entity:entity
+                                                                                                entity:recordSubEntity
                                                                                 existingResponseGroups:responseGroups
                                                                                      parentProtoRecord:protoRecord];
                     
