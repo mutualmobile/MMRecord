@@ -84,6 +84,8 @@
             currentEntity = currentEntity.superentity;
         }
         _primaryKey = primaryKey;
+        [self createRepresentationMapping];
+
     }
     return self;
 }
