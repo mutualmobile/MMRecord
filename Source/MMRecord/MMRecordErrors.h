@@ -32,7 +32,8 @@ typedef NS_ENUM(NSInteger, MMRecordErrorCode) {
     MMRecordErrorCodeUndefinedPageManager     = 2,
     MMRecordErrorCodeMissingRecordPrimaryKey  = 3,
     MMRecordErrorCodeInvalidEntityDescription = 4,
-    MMRecordErrorCodeCoreDataFetchError       = 5,
     MMRecordErrorCodeInvalidResponseFormat    = 6,
+    MMRecordErrorCodeCoreDataFetchError       = 700,
+    MMRecordErrorCodeCoreDataSaveError        = 701,
     MMRecordErrorCodeUnknown                  = 999
 };
