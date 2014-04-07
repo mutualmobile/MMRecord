@@ -75,17 +75,9 @@
         _attributeRepresentations = [NSMutableArray array];
         _relationshipRepresentations = [NSMutableArray array];
         _recordClassDateFormatter = [NSClassFromString([entity managedObjectClassName]) dateFormatter];
+        _primaryKey = [self primaryAttributeKeyForEntityDescription: entity];
         
-        NSString *primaryKey;
-        NSEntityDescription*currentEntity = entity;
-        while (!primaryKey && currentEntity) {
-            NSDictionary *userInfo = [entity userInfo];
-            primaryKey = [userInfo valueForKey:MMRecordEntityPrimaryAttributeKey];
-            currentEntity = currentEntity.superentity;
-        }
-        _primaryKey = primaryKey;
         [self createRepresentationMapping];
-
     }
     return self;
 }
@@ -122,6 +114,19 @@
     }
 
     return nil;
+}
+
+- (NSString *)primaryAttributeKeyForEntityDescription: (NSEntityDescription *)entity {
+    NSString *primaryKey;
+    NSEntityDescription *currentEntity = entity;
+
+    while (!primaryKey && currentEntity) {
+        NSDictionary *userInfo = [entity userInfo];
+        primaryKey = [userInfo valueForKey:MMRecordEntityPrimaryAttributeKey];
+        currentEntity = currentEntity.superentity;
+    }
+
+    return primaryKey;
 }
 
 - (id)primaryKeyValueFromDictionary:(NSDictionary *)dictionary {
