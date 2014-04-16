@@ -27,6 +27,8 @@
 @class FBTweakCategory;
 @class FBTweakCollection;
 
+#define FBMMRecordTweakModelDefine
+
 /**
  This class is responsible for creating a set of tweaks for a given Core Data model. The Core Data
  model will be traversed to create tweaks for every property of every entity on the model.
@@ -87,5 +89,17 @@
  @param entity The entity for which the tweak collection is being requested.
  */
 + (FBTweakCollection *)tweakCollectionForEntity:(NSEntityDescription *)entity;
+
+// Helper methods for obtaining tweak objects for certain types of values
++ (FBTweak *)tweakForPrimaryKeyForEntity:(NSEntityDescription *)entity;
++ (FBTweak *)tweakForKeyPathForEntity:(NSEntityDescription *)entity;
+
+// Helper methods for obtaining tweaked values for certain types of values
++ (NSString *)tweakedKeyPathForEntity:(NSEntityDescription *)entity;
++ (NSString *)tweakedPrimaryKeyForEntity:(NSEntityDescription *)entity;
++ (NSString *)tweakedKeyPathForMappingAttributeDescription:(NSAttributeDescription *)attribute
+                                                    entity:(NSEntityDescription *)entity;
++ (NSString *)tweakedKeyPathForMappingRelationshipDescription:(NSRelationshipDescription *)relationship
+                                                       entity:(NSEntityDescription *)entity;
 
 @end

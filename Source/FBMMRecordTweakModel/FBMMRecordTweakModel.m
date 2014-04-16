@@ -27,11 +27,14 @@
 #import "FBTweakCategory.h"
 #import "FBTweakCollection.h"
 #import "FBTweakStore.h"
+
+#import "MMRecord.h"
 #import "MMRecordRepresentation.h"
 
 @implementation FBMMRecordTweakModel
 
 + (void)loadTweaksForManagedObjectModel:(NSManagedObjectModel *)model {
+#define FBMMRecordTweakModelDefine
     FBTweakCategory *category = [self tweakCategory];
     
     for (NSEntityDescription *entity in model.entities) {
@@ -43,6 +46,30 @@
             [category addTweakCollection:collection];
         }
         
+        // Primary Key
+        FBTweak *primaryKeyTweak = [self tweakForPrimaryKeyForEntity:entity];
+        
+        if (primaryKeyTweak == nil) {
+            NSString *primaryKeyTweakIdentifier = [self tweakIdentifierForPrimaryKeyForEntity:entity];
+            primaryKeyTweak = [[FBTweak alloc] initWithIdentifier:primaryKeyTweakIdentifier];
+            primaryKeyTweak.name = primaryKeyTweakIdentifier;
+            primaryKeyTweak.defaultValue = [representation primaryKeyPropertyName];
+            [collection addTweak:primaryKeyTweak];
+        }
+        
+        // Key Path For Response Object
+        FBTweak *keyPathTweak = [self tweakForKeyPathForEntity:entity];
+        
+        if (keyPathTweak == nil) {
+            NSString *keyPathTweakIdentifier = [self tweakIdentifierForKeyPathForEntity:entity];
+            keyPathTweak = [[FBTweak alloc] initWithIdentifier:keyPathTweakIdentifier];
+            Class recordClass = NSClassFromString([entity managedObjectClassName]);
+            keyPathTweak.name = keyPathTweakIdentifier;
+            keyPathTweak.defaultValue = [recordClass keyPathForResponseObject];
+            [collection addTweak:keyPathTweak];
+        }
+        
+        // Properties
         for (id property in entity.properties) {
             NSArray *keyPaths = nil;
             
@@ -74,6 +101,14 @@
     return [NSString stringWithFormat:@"%@.%@", entity.name, property.name];
 }
 
++ (NSString *)tweakIdentifierForPrimaryKeyForEntity:(NSEntityDescription *)entity {
+    return [NSString stringWithFormat:@"%@.primaryKey", entity.name];
+}
+
++ (NSString *)tweakIdentifierForKeyPathForEntity:(NSEntityDescription *)entity {
+    return [NSString stringWithFormat:@"%@.keyPathForResponseObject", entity.name];
+}
+
 + (FBTweakCategory *)tweakCategory {
     FBTweakStore *store = [FBTweakStore sharedInstance];
     FBTweakCategory *category = [store tweakCategoryWithName:@"MMRecord"];
@@ -102,6 +137,66 @@
     FBTweak *tweak = [collection tweakWithIdentifier:tweakIdentifier];
     
     return tweak;
+}
+
++ (FBTweak *)tweakForPrimaryKeyForEntity:(NSEntityDescription *)entity {
+    NSString *tweakIdentifier = [self tweakIdentifierForPrimaryKeyForEntity:entity];
+    FBTweakCollection *collection = [self tweakCollectionForEntity:entity];
+    FBTweak *tweak = [collection tweakWithIdentifier:tweakIdentifier];
+    
+    return tweak;
+}
+
++ (FBTweak *)tweakForKeyPathForEntity:(NSEntityDescription *)entity {
+    NSString *tweakIdentifier = [self tweakIdentifierForKeyPathForEntity:entity];
+    FBTweakCollection *collection = [self tweakCollectionForEntity:entity];
+    FBTweak *tweak = [collection tweakWithIdentifier:tweakIdentifier];
+    
+    return tweak;
+}
+
++ (NSString *)tweakedKeyPathForEntity:(NSEntityDescription *)entity {
+    FBTweak *tweak = [self tweakForKeyPathForEntity:entity];
+    FBTweakValue keyPath = tweak.currentValue;
+    
+    if ([keyPath isKindOfClass:[NSString class]] == NO) {
+        return nil;
+    }
+    
+    return keyPath;
+}
+
++ (NSString *)tweakedPrimaryKeyForEntity:(NSEntityDescription *)entity {
+    FBTweak *tweak = [self tweakForPrimaryKeyForEntity:entity];
+    FBTweakValue primaryKey = tweak.currentValue;
+    
+    if ([primaryKey isKindOfClass:[NSString class]] == NO) {
+        return nil;
+    }
+    
+    return primaryKey;
+}
+
++ (NSString *)tweakedKeyPathForMappingAttributeDescription:(NSAttributeDescription *)attribute
+                                                    entity:(NSEntityDescription *)entity {
+    return [self tweakedKeyPathForMappingPropertyDescription:attribute entity:entity];
+}
+
++ (NSString *)tweakedKeyPathForMappingRelationshipDescription:(NSRelationshipDescription *)relationship
+                                                       entity:(NSEntityDescription *)entity {
+    return [self tweakedKeyPathForMappingPropertyDescription:relationship entity:entity];
+}
+
++ (NSString *)tweakedKeyPathForMappingPropertyDescription:(NSPropertyDescription *)property
+                                                   entity:(NSEntityDescription *)entity {
+    FBTweak *tweak = [self tweakForProperty:property entity:entity];
+    FBTweakValue tweakValue = [tweak currentValue];
+    
+    if ([tweakValue isKindOfClass:[NSString class]] == NO) {
+        return nil;
+    }
+    
+    return tweakValue;
 }
 
 @end

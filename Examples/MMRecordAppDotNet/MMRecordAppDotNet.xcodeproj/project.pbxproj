@@ -37,7 +37,6 @@
 		55AA657518FB1F610018B4A0 /* FBTweakShakeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AA656818FB1F610018B4A0 /* FBTweakShakeWindow.m */; };
 		55AA657618FB1F610018B4A0 /* FBTweakStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AA656A18FB1F610018B4A0 /* FBTweakStore.m */; };
 		55AA657718FB1F610018B4A0 /* FBTweakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AA656C18FB1F610018B4A0 /* FBTweakViewController.m */; };
-		55AA657E18FB203C0018B4A0 /* FBMMRecordTweakRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AA657C18FB203C0018B4A0 /* FBMMRecordTweakRepresentation.m */; };
 		55AA658118FB7E1A0018B4A0 /* FBMMRecordTweakModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AA658018FB7E1A0018B4A0 /* FBMMRecordTweakModel.m */; };
 		55E6987E16A247A400F25C9A /* Source.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E6987D16A247A400F25C9A /* Source.m */; };
 		55E712BB16FE15C900EC1159 /* ADNServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E712BA16FE15C900EC1159 /* ADNServer.m */; };
@@ -146,8 +145,6 @@
 		55AA656A18FB1F610018B4A0 /* FBTweakStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTweakStore.m; sourceTree = "<group>"; };
 		55AA656B18FB1F610018B4A0 /* FBTweakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBTweakViewController.h; sourceTree = "<group>"; };
 		55AA656C18FB1F610018B4A0 /* FBTweakViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTweakViewController.m; sourceTree = "<group>"; };
-		55AA657B18FB203C0018B4A0 /* FBMMRecordTweakRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMMRecordTweakRepresentation.h; sourceTree = "<group>"; };
-		55AA657C18FB203C0018B4A0 /* FBMMRecordTweakRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMMRecordTweakRepresentation.m; sourceTree = "<group>"; };
 		55AA657F18FB7E1A0018B4A0 /* FBMMRecordTweakModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMMRecordTweakModel.h; sourceTree = "<group>"; };
 		55AA658018FB7E1A0018B4A0 /* FBMMRecordTweakModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMMRecordTweakModel.m; sourceTree = "<group>"; };
 		55E6987C16A247A400F25C9A /* Source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Source.h; sourceTree = "<group>"; };
@@ -311,8 +308,6 @@
 			children = (
 				55AA657F18FB7E1A0018B4A0 /* FBMMRecordTweakModel.h */,
 				55AA658018FB7E1A0018B4A0 /* FBMMRecordTweakModel.m */,
-				55AA657B18FB203C0018B4A0 /* FBMMRecordTweakRepresentation.h */,
-				55AA657C18FB203C0018B4A0 /* FBMMRecordTweakRepresentation.m */,
 			);
 			name = FBMMRecordTweakModel;
 			path = ../../../Source/FBMMRecordTweakModel;
@@ -677,7 +672,6 @@
 				55AA657718FB1F610018B4A0 /* FBTweakViewController.m in Sources */,
 				55AA656D18FB1F610018B4A0 /* _FBTweakBindObserver.m in Sources */,
 				267469EC16A1C226006A6A81 /* MMRecordProtoRecord.m in Sources */,
-				55AA657E18FB203C0018B4A0 /* FBMMRecordTweakRepresentation.m in Sources */,
 				55E6987E16A247A400F25C9A /* Source.m in Sources */,
 				262496B816D9E45000767D83 /* MMRecordCache.m in Sources */,
 				55211F6A16F179E300729C51 /* MMRecordRepresentation.m in Sources */,

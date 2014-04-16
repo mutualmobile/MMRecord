@@ -8,8 +8,6 @@
 
 #import "ADNRecord.h"
 
-#import "FBMMRecordTweakRepresentation.h"
-
 static NSDateFormatter *ADNRecordDateFormatter;
 
 @implementation ADNRecord
@@ -26,10 +24,6 @@ static NSDateFormatter *ADNRecordDateFormatter;
     }
     
     return ADNRecordDateFormatter;
-}
-
-+ (Class)representationClass {
-    return [FBMMRecordTweakRepresentation class];
 }
 
 @end

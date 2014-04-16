@@ -18,13 +18,13 @@
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [ADNServer registerAFHTTPClient:[ADNHTTPClient sharedClient]];
-    [ADNRecord registerServerClass:[ADNServer class]];
+    //[ADNServer registerAFHTTPClient:[ADNHTTPClient sharedClient]];
+    //[ADNRecord registerServerClass:[ADNServer class]];
     
     [FBMMRecordTweakModel loadTweaksForManagedObjectModel:[MMDataManager sharedDataManager].managedObjectModel];
     
-    //[MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
-    //[ADNRecord registerServerClass:[MMJSONServer class]];
+    [MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
+    [ADNRecord registerServerClass:[MMJSONServer class]];
     
     //[MMRecord setLoggingLevel:MMRecordLoggingLevelDebug];
     
