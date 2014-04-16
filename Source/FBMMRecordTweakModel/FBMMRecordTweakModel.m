@@ -34,7 +34,6 @@
 @implementation FBMMRecordTweakModel
 
 + (void)loadTweaksForManagedObjectModel:(NSManagedObjectModel *)model {
-#define FBMMRecordTweakModelDefine
     FBTweakCategory *category = [self tweakCategory];
     
     for (NSEntityDescription *entity in model.entities) {
@@ -96,6 +95,59 @@
     }
 }
 
+
+#pragma mark - Tweaked Value Methods
+
++ (NSString *)tweakedKeyPathForEntity:(NSEntityDescription *)entity {
+    FBTweak *tweak = [self tweakForKeyPathForEntity:entity];
+    FBTweakValue keyPath = tweak.currentValue;
+    
+    if ([keyPath isKindOfClass:[NSString class]] == NO) {
+        return nil;
+    }
+    
+    return keyPath;
+}
+
++ (NSString *)tweakedPrimaryKeyForEntity:(NSEntityDescription *)entity {
+    FBTweak *tweak = [self tweakForPrimaryKeyForEntity:entity];
+    FBTweakValue primaryKey = tweak.currentValue;
+    
+    if ([primaryKey isKindOfClass:[NSString class]] == NO) {
+        return nil;
+    }
+    
+    return primaryKey;
+}
+
++ (NSString *)tweakedKeyPathForMappingAttributeDescription:(NSAttributeDescription *)attribute
+                                                    entity:(NSEntityDescription *)entity {
+    return [self tweakedKeyPathForMappingPropertyDescription:attribute entity:entity];
+}
+
++ (NSString *)tweakedKeyPathForMappingRelationshipDescription:(NSRelationshipDescription *)relationship
+                                                       entity:(NSEntityDescription *)entity {
+    return [self tweakedKeyPathForMappingPropertyDescription:relationship entity:entity];
+}
+
+
+#pragma mark - Private Methods
+
++ (NSString *)tweakedKeyPathForMappingPropertyDescription:(NSPropertyDescription *)property
+                                                   entity:(NSEntityDescription *)entity {
+    FBTweak *tweak = [self tweakForProperty:property entity:entity];
+    FBTweakValue tweakValue = [tweak currentValue];
+    
+    if ([tweakValue isKindOfClass:[NSString class]] == NO) {
+        return nil;
+    }
+    
+    return tweakValue;
+}
+
+
+#pragma mark - Tweak Identifiers
+
 + (NSString *)tweakIdentifierForProperty:(NSPropertyDescription *)property
                                   entity:(NSEntityDescription *)entity {
     return [NSString stringWithFormat:@"%@.%@", entity.name, property.name];
@@ -108,6 +160,9 @@
 + (NSString *)tweakIdentifierForKeyPathForEntity:(NSEntityDescription *)entity {
     return [NSString stringWithFormat:@"%@.keyPathForResponseObject", entity.name];
 }
+
+
+#pragma mark - Tweak Objects
 
 + (FBTweakCategory *)tweakCategory {
     FBTweakStore *store = [FBTweakStore sharedInstance];
@@ -153,50 +208,6 @@
     FBTweak *tweak = [collection tweakWithIdentifier:tweakIdentifier];
     
     return tweak;
-}
-
-+ (NSString *)tweakedKeyPathForEntity:(NSEntityDescription *)entity {
-    FBTweak *tweak = [self tweakForKeyPathForEntity:entity];
-    FBTweakValue keyPath = tweak.currentValue;
-    
-    if ([keyPath isKindOfClass:[NSString class]] == NO) {
-        return nil;
-    }
-    
-    return keyPath;
-}
-
-+ (NSString *)tweakedPrimaryKeyForEntity:(NSEntityDescription *)entity {
-    FBTweak *tweak = [self tweakForPrimaryKeyForEntity:entity];
-    FBTweakValue primaryKey = tweak.currentValue;
-    
-    if ([primaryKey isKindOfClass:[NSString class]] == NO) {
-        return nil;
-    }
-    
-    return primaryKey;
-}
-
-+ (NSString *)tweakedKeyPathForMappingAttributeDescription:(NSAttributeDescription *)attribute
-                                                    entity:(NSEntityDescription *)entity {
-    return [self tweakedKeyPathForMappingPropertyDescription:attribute entity:entity];
-}
-
-+ (NSString *)tweakedKeyPathForMappingRelationshipDescription:(NSRelationshipDescription *)relationship
-                                                       entity:(NSEntityDescription *)entity {
-    return [self tweakedKeyPathForMappingPropertyDescription:relationship entity:entity];
-}
-
-+ (NSString *)tweakedKeyPathForMappingPropertyDescription:(NSPropertyDescription *)property
-                                                   entity:(NSEntityDescription *)entity {
-    FBTweak *tweak = [self tweakForProperty:property entity:entity];
-    FBTweakValue tweakValue = [tweak currentValue];
-    
-    if ([tweakValue isKindOfClass:[NSString class]] == NO) {
-        return nil;
-    }
-    
-    return tweakValue;
 }
 
 @end

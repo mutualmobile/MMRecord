@@ -48,18 +48,65 @@
  Only the tweakForProperty and tweakIdentifierForProperty methods defined below should be used for
  accessing MMRecord tweak objects.
  
- This class does not need to be initialized. The loadTweaksForManagedObjectModel method should be
+ This class does not need to be initialized. The +loadTweaksForManagedObjectModel method should be
  called before any requests will need to be run.
  */
 @interface FBMMRecordTweakModel : NSObject
 
 /**
  This method will load the set of tweaks for the given managed object model. It will traverse the
- list of entities and create the tweaks as outlined above.
+ list of entities and create the tweaks as outlined above. This method must be executed in order for
+ MMRecord parsing behavior tweaks to appear in the tweaks menu.
  @param model The Core Data managed object model you are using for MMRecord.
- @warning This method must be executed in order for MMRecord tweaks to work.
+ @warning This method MUST be executed in order for MMRecord tweaks to work.
  */
 + (void)loadTweaksForManagedObjectModel:(NSManagedObjectModel *)model;
+
+
+//////////////////////////////////////////////////////////////////////
+// Methods for obtaining tweaked values for certain types of values //
+//////////////////////////////////////////////////////////////////////
+
+/**
+ This method returns the tweaked string value for the keyPath of an entity. It will pull the tweak
+ object for the given entity and return the current value of the tweak as long as that value is a
+ valid string.
+ @param entity The entity to request the tweaked value for.
+ */
++ (NSString *)tweakedKeyPathForEntity:(NSEntityDescription *)entity;
+
+/**
+ This method returns the tweaked string value for the primary key of an entity. It will pull the
+ tweak object for the given entity and return the current value of the tweak as long as that value
+ is a valid string.
+ @param entity The entity to request the tweaked value for.
+ */
++ (NSString *)tweakedPrimaryKeyForEntity:(NSEntityDescription *)entity;
+
+/**
+ This method returns the tweaked string value for mapping the given attribute of the given entity.
+ It will pull the tweak object for the given entity and return the current value of the tweak as
+ long as that value is a valid string.
+ @param attribute The attribute to request the mapping key path for.
+ @param entity The entity to request the tweaked value for.
+ */
++ (NSString *)tweakedKeyPathForMappingAttributeDescription:(NSAttributeDescription *)attribute
+                                                    entity:(NSEntityDescription *)entity;
+
+/**
+ This method returns the tweaked string value for mapping the given relationship of the given entity.
+ It will pull the tweak object for the given entity and return the current value of the tweak as
+ long as that value is a valid string.
+ @param relationship The relationship to request the mapping key path for.
+ @param entity The entity to request the tweaked value for.
+ */
++ (NSString *)tweakedKeyPathForMappingRelationshipDescription:(NSRelationshipDescription *)relationship
+                                                       entity:(NSEntityDescription *)entity;
+
+
+////////////////////////////////////////////////////////////////////////////
+// Helper methods for obtaining tweak objects for certain types of values //
+////////////////////////////////////////////////////////////////////////////
 
 /**
  This method returns a tweak identifier for a given property and entity. The identifier for a name
@@ -90,16 +137,20 @@
  */
 + (FBTweakCollection *)tweakCollectionForEntity:(NSEntityDescription *)entity;
 
-// Helper methods for obtaining tweak objects for certain types of values
+/**
+ This method returns the tweak object representing the primary key for a given entity. This tweak
+ is intended to override the primary key that would normally be defined in the entity's user info
+ dictionary.
+ @param entity The entity to request the primary key tweak object for.
+ */
 + (FBTweak *)tweakForPrimaryKeyForEntity:(NSEntityDescription *)entity;
-+ (FBTweak *)tweakForKeyPathForEntity:(NSEntityDescription *)entity;
 
-// Helper methods for obtaining tweaked values for certain types of values
-+ (NSString *)tweakedKeyPathForEntity:(NSEntityDescription *)entity;
-+ (NSString *)tweakedPrimaryKeyForEntity:(NSEntityDescription *)entity;
-+ (NSString *)tweakedKeyPathForMappingAttributeDescription:(NSAttributeDescription *)attribute
-                                                    entity:(NSEntityDescription *)entity;
-+ (NSString *)tweakedKeyPathForMappingRelationshipDescription:(NSRelationshipDescription *)relationship
-                                                       entity:(NSEntityDescription *)entity;
+/**
+ This method returns the tweak object representing the keyPathForResponseObject for a given record
+ class represented by an entity. This tweak is intended to override the keyPathForResponseObject
+ that would normally be returned by an MMRecord subclass.
+ @param entity The entity to request the keyPathForResponseObject tweak object for.
+ */
++ (FBTweak *)tweakForKeyPathForEntity:(NSEntityDescription *)entity;
 
 @end
