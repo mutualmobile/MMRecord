@@ -17,12 +17,21 @@
 
 @implementation MMAppDelegate
 
+/*
+ This appDelegate initialization implementation is customized to set up two different MMRecord
+ stack configurations. This example uses MMRecord both in the traditional way, with a subclass of
+ MMServer that gets used to make requests via MMRecord's request entry points. It also implements
+ an example using the AFMMRecordResponseSerializer, where requests are made through an
+ AFNetworking 2.0 session manager.
+*/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // AFMMRecordSessionManagerServer Example
     MMFoursquareSessionManager *serverClientManager = [MMFoursquareSessionManager serverClient];
 
     [AFMMRecordSessionManagerServer registerAFHTTPSessionManager:serverClientManager];
     [FSRecord registerServerClass:[AFMMRecordSessionManagerServer class]];
     
+    // AFMMRecordResponseSerializer Example
     MMFoursquareSessionManager *sessionManager = [MMFoursquareSessionManager sharedClient];
 
     NSManagedObjectContext *context = [[MMDataManager sharedDataManager] managedObjectContext];
