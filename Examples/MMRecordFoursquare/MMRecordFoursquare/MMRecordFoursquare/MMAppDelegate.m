@@ -18,7 +18,7 @@
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    MMFoursquareSessionManager *serverClientManager = [MMFoursquareSessionManager serverClient];
+    MMFoursquareSessionManager *serverClientManager = [MMFoursquareSessionManager sharedClient];
 
     [AFMMRecordSessionManagerServer registerAFHTTPSessionManager:serverClientManager];
     [FSRecord registerServerClass:[AFMMRecordSessionManagerServer class]];

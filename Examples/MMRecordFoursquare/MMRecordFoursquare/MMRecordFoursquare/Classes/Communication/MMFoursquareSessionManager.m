@@ -23,15 +23,4 @@ static NSString * const MMFoursquareAPIBaseURLString = @"https://api.foursquare.
     return _sharedClient;
 }
 
-+ (instancetype)serverClient {
-    static MMFoursquareSessionManager *_serverClient = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _serverClient = [[MMFoursquareSessionManager alloc] initWithBaseURL:[NSURL URLWithString:MMFoursquareAPIBaseURLString]];
-        [_serverClient setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone]];
-    });
-    
-    return _serverClient;
-}
-
 @end
