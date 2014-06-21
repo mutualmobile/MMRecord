@@ -718,6 +718,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                                description:@"Initial Entity is not a subclass of MMRecord"];
         return nil;
     }
+    
     MMRecordResponse *response = [MMRecordResponse responseFromResponseObjectArray:recordResponseArray
                                                                      initialEntity:initialEntity
                                                                            context:context];
@@ -1003,12 +1004,11 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
         return nil;
     }
     
-    NSString *name = NSStringFromClass(managedObjectClass);
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.managedObjectClassName == %@", name];
-    
-    for (id obj in entities) {
-        if ([predicate evaluateWithObject:obj]) {
-            return obj;
+    for (NSEntityDescription *entityDescription in entities) {
+        Class entityManagedObjectClass = NSClassFromString([entityDescription managedObjectClassName]);
+        
+        if (entityManagedObjectClass == managedObjectClass) {
+            return entityDescription;
         }
     }
     

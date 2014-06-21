@@ -142,6 +142,9 @@
       location = "group:Examples/MMRecordAppDotNet/MMRecordAppDotNet.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Examples/MMRecordAtlassian/MMRecordAtlassian.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Examples/MMRecordFoursquare/MMRecordFoursquare/MMRecordFoursquare.xcodeproj">
    </FileRef>
    <FileRef

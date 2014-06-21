@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="t4b-9P-e7D">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+    </dependencies>
+    <scenes>
+        <!--Plans View Controller - Plans-->
+        <scene sceneID="F3l-fJ-4qS">
+            <objects>
+                <tableViewController id="MVv-bU-iyr" customClass="PlansViewController" customModule="MMRecordAtlassian" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wze-BI-6I5">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellIdentifier" id="cVB-GO-hwh">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cVB-GO-hwh" id="VuR-BK-E0I">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MVv-bU-iyr" id="ELg-gC-4OW"/>
+                            <outlet property="delegate" destination="MVv-bU-iyr" id="GS2-xy-E8c"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Plans" id="exC-VY-TNj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mgA-NS-yeM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="760" y="387"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hjg-21-U3h">
+            <objects>
+                <navigationController id="t4b-9P-e7D" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vpQ-g0-UFn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10196078431372549" green="0.23921568627450981" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MVv-bU-iyr" kind="relationship" relationship="rootViewController" id="lgQ-Zs-Gfu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wvo-WV-jWe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60" y="387"/>
+        </scene>
+    </scenes>
+</document>
