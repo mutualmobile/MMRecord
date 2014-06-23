@@ -66,6 +66,7 @@
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) NSEntityDescription *initialEntity;
 @property (nonatomic, copy) NSArray *responseObjectArray;
+@property (nonatomic, strong) MMRecordOptions *options;
 @property (nonatomic, strong) NSMutableArray *objectGraph;  // Array of Protos
 @property (nonatomic, strong) NSMutableDictionary *responseGroups;  // Key = NSEntityDescription, Value = MMRecordResponseGroup
 @end
@@ -77,11 +78,13 @@
 
 + (MMRecordResponse *)responseFromResponseObjectArray:(NSArray *)responseObjectArray
                                         initialEntity:(NSEntityDescription *)initialEntity
-                                              context:(NSManagedObjectContext *)context {
+                                              context:(NSManagedObjectContext *)context
+                                              options:(MMRecordOptions *)options {
     MMRecordResponse *response = [[MMRecordResponse alloc] init];
     response.context = context;
     response.initialEntity = initialEntity;
     response.responseObjectArray = responseObjectArray;
+    response.options = options;
     
     return response;
 }
@@ -143,7 +146,7 @@
     if (responseGroup == nil) {
         if ([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]) {
             responseGroup = [[MMRecordResponseGroup alloc] initWithEntity:entity];
-            responseGroup.recordPrePopulationBlock = self.recordPrePopulationBlock;
+            responseGroup.recordPrePopulationBlock = self.options.recordPrePopulationBlock;
             responseGroups[entityDescriptionsKey] = responseGroup;
         } else {
             return nil;
@@ -228,10 +231,10 @@
         
         if (proto.hasRelationshipPrimarykey == NO) {
             if (proto.primaryKeyValue == nil) {
-                if (self.entityPrimaryKeyInjectionBlock != nil) {
-                    proto.primaryKeyValue = self.entityPrimaryKeyInjectionBlock(proto.entity,
-                                                                                proto.dictionary,
-                                                                                parentProtoRecord);
+                if (self.options.entityPrimaryKeyInjectionBlock != nil) {
+                    proto.primaryKeyValue = self.options.entityPrimaryKeyInjectionBlock(proto.entity,
+                                                                                        proto.dictionary,
+                                                                                        parentProtoRecord);
                 }
             }
         }
