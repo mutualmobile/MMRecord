@@ -76,6 +76,8 @@
         _relationshipRepresentations = [NSMutableArray array];
         _recordClassDateFormatter = [NSClassFromString([entity managedObjectClassName]) dateFormatter];
         _primaryKey = [self representationPrimaryKeyForEntityDescription:entity];
+        //TODO: Improve error handling for invalid primary key that may be returned from a subclass
+        //      or be misconfigured in the model file.
         
         [self createRepresentationMapping];
     }
