@@ -748,10 +748,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     }
     MMRecordResponse *response = [MMRecordResponse responseFromResponseObjectArray:recordResponseArray
                                                                      initialEntity:initialEntity
-                                                                           context:context];
-    
-    response.entityPrimaryKeyInjectionBlock = options.entityPrimaryKeyInjectionBlock;
-    response.recordPrePopulationBlock = options.recordPrePopulationBlock;
+                                                                           context:context
+                                                                           options:options];
     
     NSArray *records = [response records];
     

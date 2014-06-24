@@ -80,7 +80,9 @@
         _attributeRepresentations = [NSMutableArray array];
         _relationshipRepresentations = [NSMutableArray array];
         _recordClassDateFormatter = [NSClassFromString([entity managedObjectClassName]) dateFormatter];
-        _primaryKey = [self primaryAttributeKeyForEntityDescription: entity];
+        _primaryKey = [self representationPrimaryKeyForEntityDescription:entity];
+        //TODO: Improve error handling for invalid primary key that may be returned from a subclass
+        //      or be misconfigured in the model file.
         
         [self createRepresentationMapping];
     }
@@ -116,6 +118,25 @@
     return primaryKey;
 }
 
+- (NSString *)primaryKeyPropertyNameForEntityDescription:(NSEntityDescription *)entity {
+    NSDictionary *userInfo = [entity userInfo];
+    NSString *primaryKeyPropertyName = [userInfo valueForKey:MMRecordEntityPrimaryAttributeKey];
+    
+    return primaryKeyPropertyName;
+}
+
+- (NSString *)representationPrimaryKeyForEntityDescription:(NSEntityDescription *)entity {
+    NSString *primaryKeyPropertyName;
+    NSEntityDescription *currentEntity = entity;
+    
+    while (!primaryKeyPropertyName && currentEntity) {
+        primaryKeyPropertyName = [self primaryKeyPropertyNameForEntityDescription:entity];
+        currentEntity = currentEntity.superentity;
+    }
+    
+    return primaryKeyPropertyName;
+}
+
 - (NSAttributeDescription *)primaryAttributeDescription {
     NSString *primaryKeyPropertyName = [self primaryKeyPropertyName];
     id primaryKeyRepresentation = self.representationDictionary[primaryKeyPropertyName];
@@ -125,19 +146,6 @@
     }
 
     return nil;
-}
-
-- (NSString *)primaryAttributeKeyForEntityDescription: (NSEntityDescription *)entity {
-    NSString *primaryKey;
-    NSEntityDescription *currentEntity = entity;
-
-    while (!primaryKey && currentEntity) {
-        NSDictionary *userInfo = [entity userInfo];
-        primaryKey = [userInfo valueForKey:MMRecordEntityPrimaryAttributeKey];
-        currentEntity = currentEntity.superentity;
-    }
-
-    return primaryKey;
 }
 
 - (id)primaryKeyValueFromDictionary:(NSDictionary *)dictionary {

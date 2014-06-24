@@ -197,6 +197,20 @@
 - (NSString *)primaryKeyPropertyName;
 
 /**
+ This method is responsible for determining the name of the primary key property given the entity
+ description for this instance of an MMRecordRepresentation.
+ @param entity The entity description for this representation.
+ @return The name of the primary key property for this entity.
+ @discussion This method is designed to be subclassed if the user wishes to provide a different way
+ of determining which property to use as the primary key for a given type of entity.
+ @warning This method is called once per entity or superentity until a primary key is found, or no
+ further superentity exists for a given entity. It is in this way that this class supports entity
+ inheritance, meaning that if no primary key property is designated on an entity then the class will
+ go through the chain of superentities to see if a primary key exists there.
+ */
+- (NSString *)primaryKeyPropertyNameForEntityDescription:(NSEntityDescription *)entity;
+
+/**
  This method returns the primary key attribute description for this entity. This method will return
  nil if the entity uses a relationship for its primary key.
  */
