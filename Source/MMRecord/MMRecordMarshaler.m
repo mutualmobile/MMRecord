@@ -241,6 +241,12 @@
     }
 }
 
++ (void)mergeDuplicateRecordResponseObjectDictionary:(NSDictionary *)dictionary
+                             withExistingProtoRecord:(MMRecordProtoRecord *)protoRecord {
+    // There is no default implementation for this method. Feel free to provide your own :)
+}
+
+
 #pragma mark - To Many Relationship Test
 
 // TODO: Simplify this method by refactor/extract
