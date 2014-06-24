@@ -448,10 +448,14 @@ MMRecord also provides the TweakModel subspec that implements support for Facebo
 
 ```objective-c
 #define FBMMRecordTweakModelDefine
-    [FBMMRecordTweakModel loadTweaksForManagedObjectModel:[MMDataManager sharedDataManager].managedObjectModel];
+    [FBMMRecordTweakModel loadTweaksForManagedObjectModel:
+        [MMDataManager sharedDataManager].managedObjectModel];
 ```
 
-Thats all you need to enable Tweaks in your MMRecord project. As a best practice, you should only use the #define in Debug mode. After its setup, here's what the Tweaks UI looks like with MMRecord.
+Thats all you need to enable Tweaks in your MMRecord project. As a best practice, you should only use the #define in Debug mode. 
+
+After its setup, here's what the Tweaks UI looks like with MMRecord.
+
 
 <p align="center">
   <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-tweaks.png") alt="MMRecord Tweaks UI"/>
