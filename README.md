@@ -134,6 +134,10 @@ The library is architected to be as simple and lightweight as possible. Here's a
     <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/AFMMRecordResponseSerializer">ResponseSerializer</a></td>
     <td>A custom <tt>AFHTTPResponseSerializer</tt> that creates and returns <tt>MMRecord</tt> instances in an <tt>AFNetworking</tt> 2.0 success block.</td>
   </tr>
+  <tr>
+    <td><a href="https://github.com/mutualmobile/MMRecord/tree/master/Source/FBMMRecordTweakModel">TweakModel</a></td>
+    <td>An <tt>MMRecord</tt> subspec that implements support for Facebook Tweaks to tweak <tt>MMRecord</tt> response handling behavior.</td>
+  </tr>
 </table>
 
 ## Integration Guide
@@ -437,6 +441,21 @@ options.deleteOrphanedRecordBlock = ^(MMRecord *orphan,
  }
  failureBlock:failureBlock];
 ```
+
+## Tweaks
+
+MMRecord also provides the TweakModel subspec that implements support for Facebook Tweaks. You can use Tweaks to modify most MMRecord parsing and population parameters. This can be useful if you're working on an app where the API is in flux and is still being actively developed. The UI for Tweaks will show you a list of MMRecord entities in your data model, the primary key for each entity, all of the keys used to populate various attributes, and the key path that points to instances of that entity in the data model. Here's how you use it.
+
+```objective-c
+#define FBMMRecordTweakModelDefine
+    [FBMMRecordTweakModel loadTweaksForManagedObjectModel:[MMDataManager sharedDataManager].managedObjectModel];
+```
+
+Thats all you need to enable Tweaks in your MMRecord project. As a best practice, you should only use the #define in Debug mode. After its setup, here's what the Tweaks UI looks like with MMRecord.
+
+<p align="center">
+  <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-tweaks.png") alt="MMRecord Tweaks UI"/>
+</p>
 
 ## Requirements
 

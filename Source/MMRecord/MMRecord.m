@@ -27,6 +27,10 @@
 #import "MMRecordResponse.h"
 #import "MMServer.h"
 
+// Tweaks
+#ifdef FBMMRecordTweakModelDefine
+#import "FBMMRecordTweakModel.h"
+#endif
 
 @class MMRecordErrorHandler;
 
@@ -303,6 +307,24 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     return _mmrecord_logging_level;
 }
 
+
+#pragma mark - Tweaks Support
+
++ (NSString *)tweakedKeyPathForResponseObjectWithInitialEntity:(NSEntityDescription *)initialEntity
+                                               existingKeyPath:(NSString *)existingKeyPath {
+    NSString *keyPath = existingKeyPath;
+    NSString *tweakedValue = nil;
+    
+#ifdef FBMMRecordTweakModelDefine
+    tweakedValue = [FBMMRecordTweakModel tweakedKeyPathForEntity:initialEntity];
+#endif
+    
+    if (tweakedValue && [tweakedValue isKindOfClass:[NSString class]]) {
+        keyPath = tweakedValue;
+    }
+    
+    return keyPath;
+}
 
 #pragma mark - Internal Dispatch Methods
 
@@ -706,11 +728,17 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
         return nil;
     }
     
+    NSEntityDescription *initialEntity = [context MMRecord_entityForClass:self];
+    
     NSString *keyPathForResponseObject = options.keyPathForResponseObject;
+    
+#ifdef FBMMRecordTweakModelDefine
+    keyPathForResponseObject = [self tweakedKeyPathForResponseObjectWithInitialEntity:initialEntity
+                                                                      existingKeyPath:keyPathForResponseObject];
+#endif
     
     NSArray *recordResponseArray = [self parsingArrayFromResponseObject:responseObject
                                                keyPathForResponseObject:keyPathForResponseObject];
-    NSEntityDescription *initialEntity = [context MMRecord_entityForClass:self];
     
     if ([NSClassFromString([initialEntity managedObjectClassName]) isSubclassOfClass:[MMRecord class]] == NO) {
         MMRecordErrorHandler *errorHandler = [self currentErrorHandler];

@@ -12,15 +12,20 @@
 #import "ADNRecord.h"
 #import "ADNServer.h"
 #import "MMJSONServer.h"
+#import "MMDataManager.h"
+#import "FBMMRecordTweakModel.h"
 
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [ADNServer registerAFHTTPClient:[ADNHTTPClient sharedClient]];
-    [ADNRecord registerServerClass:[ADNServer class]];
+    //[ADNServer registerAFHTTPClient:[ADNHTTPClient sharedClient]];
+    //[ADNRecord registerServerClass:[ADNServer class]];
     
-    //[MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
-    //[ADNRecord registerServerClass:[MMJSONServer class]];
+    [FBMMRecordTweakModel loadTweaksForManagedObjectModel:[MMDataManager sharedDataManager].managedObjectModel];
+#define FBMMRecordTweakModelDefine
+
+    [MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
+    [ADNRecord registerServerClass:[MMJSONServer class]];
     
     //[MMRecord setLoggingLevel:MMRecordLoggingLevelDebug];
     
