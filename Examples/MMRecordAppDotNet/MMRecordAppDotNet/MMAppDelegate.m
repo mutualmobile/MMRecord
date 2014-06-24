@@ -22,7 +22,8 @@
     //[ADNRecord registerServerClass:[ADNServer class]];
     
     [FBMMRecordTweakModel loadTweaksForManagedObjectModel:[MMDataManager sharedDataManager].managedObjectModel];
-    
+#define FBMMRecordTweakModelDefine
+
     [MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
     [ADNRecord registerServerClass:[MMJSONServer class]];
     

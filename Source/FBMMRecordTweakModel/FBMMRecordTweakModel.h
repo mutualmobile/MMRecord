@@ -27,7 +27,13 @@
 @class FBTweakCategory;
 @class FBTweakCollection;
 
-#define FBMMRecordTweakModelDefine
+/**
+ Important!
+ 
+ You must include #define FBMMRecordTweakModelDefine in your project before changes made in Tweaks
+ will take effect in MMRecord. This is disabled by default in order to give you the option to only
+ enable tweaks in Release builds in production using Debug/Release build configurations.
+*/
 
 /**
  This class is responsible for creating a set of tweaks for a given Core Data model. The Core Data
@@ -59,6 +65,7 @@
  MMRecord parsing behavior tweaks to appear in the tweaks menu.
  @param model The Core Data managed object model you are using for MMRecord.
  @warning This method MUST be executed in order for MMRecord tweaks to work.
+ @warning Remember to include #define FBMMRecordTweakModelDefine to enable tweaked behaviors.
  */
 + (void)loadTweaksForManagedObjectModel:(NSManagedObjectModel *)model;
 
