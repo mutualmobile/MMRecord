@@ -13,6 +13,25 @@
   NSHashTable *_observers;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+  NSString *identifier = [coder decodeObjectForKey:@"identifier"];
+  
+  if ((self = [self initWithIdentifier:identifier])) {
+    _name = [coder decodeObjectForKey:@"name"];
+    _defaultValue = [coder decodeObjectForKey:@"defaultValue"];
+    _minimumValue = [coder decodeObjectForKey:@"minimumValue"];
+    _maximumValue = [coder decodeObjectForKey:@"maximumValue"];
+    _precisionValue = [coder decodeObjectForKey:@"precisionValue"];
+    _stepValue = [coder decodeObjectForKey:@"stepValue"];
+    
+    // Fall back to the user-defaults loaded value if current value isn't set.
+    _currentValue = [coder decodeObjectForKey:@"currentValue"] ?: _currentValue;
+  }
+  
+  return self;
+}
+
 - (instancetype)initWithIdentifier:(NSString *)identifier
 {
   if ((self = [super init])) {
@@ -23,8 +42,37 @@
   return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+  [coder encodeObject:_identifier forKey:@"identifier"];
+  [coder encodeObject:_name forKey:@"name"];
+  
+  if (!self.isAction) {
+    [coder encodeObject:_defaultValue forKey:@"defaultValue"];
+    [coder encodeObject:_minimumValue forKey:@"minimumValue"];
+    [coder encodeObject:_maximumValue forKey:@"maximumValue"];
+    [coder encodeObject:_currentValue forKey:@"currentValue"];
+    [coder encodeObject:_precisionValue forKey:@"precisionValue"];
+    [coder encodeObject:_stepValue forKey:@"stepValue"];
+  }
+}
+
+- (BOOL)isAction
+{
+  // NSBlock isn't a public class, walk the hierarchy for it.
+  Class blockClass = [^{} class];
+
+  while ([blockClass superclass] != [NSObject class]) {
+    blockClass = [blockClass superclass];
+  }
+
+  return [_defaultValue isKindOfClass:blockClass];
+}
+
 - (void)setCurrentValue:(FBTweakValue)currentValue
 {
+  NSAssert(!self.isAction, @"actions cannot have non-default values");
+
   if (_minimumValue != nil && currentValue != nil && [_minimumValue compare:currentValue] == NSOrderedDescending) {
     currentValue = _minimumValue;
   }

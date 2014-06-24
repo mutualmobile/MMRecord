@@ -46,6 +46,7 @@
 		55E712C716FE4A6D00EC1159 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E712C616FE4A6D00EC1159 /* UserCell.m */; };
 		55E712CC16FE4B4D00EC1159 /* ADNUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E712CB16FE4B4D00EC1159 /* ADNUserManager.m */; };
 		55E712CF16FE4EF800EC1159 /* ADNUserPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E712CE16FE4EF800EC1159 /* ADNUserPostsViewController.m */; };
+		55E779A1195A254F00ADB0EA /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E779A0195A254F00ADB0EA /* MessageUI.framework */; };
 		55F2674517034B3B004EEA41 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55F2673B17034B3B004EEA41 /* iTunesArtwork@2x.png */; };
 		55F2674617034B3B004EEA41 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 55F2673C17034B3B004EEA41 /* iTunesArtwork.png */; };
 		55F2674717034B3B004EEA41 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55F2673D17034B3B004EEA41 /* Icon@2x.png */; };
@@ -162,6 +163,7 @@
 		55E712CB16FE4B4D00EC1159 /* ADNUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNUserManager.m; sourceTree = "<group>"; };
 		55E712CD16FE4EF800EC1159 /* ADNUserPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADNUserPostsViewController.h; sourceTree = "<group>"; };
 		55E712CE16FE4EF800EC1159 /* ADNUserPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADNUserPostsViewController.m; sourceTree = "<group>"; };
+		55E779A0195A254F00ADB0EA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		55F2673B17034B3B004EEA41 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		55F2673C17034B3B004EEA41 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		55F2673D17034B3B004EEA41 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E779A1195A254F00ADB0EA /* MessageUI.framework in Frameworks */,
 				2690DDF016DAE39000FE31AC /* SystemConfiguration.framework in Frameworks */,
 				2690DDEE16DAE38A00FE31AC /* MobileCoreServices.framework in Frameworks */,
 				55F95258165C78CC0060851E /* CoreData.framework in Frameworks */,
@@ -392,6 +395,7 @@
 		55F951DE165C73460060851E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55E779A0195A254F00ADB0EA /* MessageUI.framework */,
 				2690DDEF16DAE39000FE31AC /* SystemConfiguration.framework */,
 				2690DDED16DAE38A00FE31AC /* MobileCoreServices.framework */,
 				55F95257165C78CC0060851E /* CoreData.framework */,
