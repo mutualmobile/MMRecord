@@ -238,6 +238,9 @@
                 }
             }
         }
+    } else {
+        [representation.marshalerClass mergeDuplicateRecordResponseObjectDictionary:recordResponseObject
+                                                            withExistingProtoRecord:proto];
     }
     
     [self uniquelyAddNewProtoRecord:proto toExistingResponseGroups:responseGroups];

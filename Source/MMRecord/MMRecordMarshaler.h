@@ -110,10 +110,34 @@
 + (void)establishPrimaryKeyRelationshipFromProtoRecord:(MMRecordProtoRecord *)protoRecord
              toParentRelationshipPrimaryKeyProtoRecord:(MMRecordProtoRecord *)parentRelationshipPrimaryKeyProto;
 
+/**
+ This method is used when a response contains multiple instances of the same record. MMRecord will
+ always do its best to create and populate these records and associate them with the appropriate
+ relationships on various other records. Generally speaking, its expected that a response will
+ contain either duplicate references to record primary keys, which allow MMRecord to fetch the
+ appropriate record to associate as a relationship. Or, the response may contain duplicate fully
+ saturated objects. In this case, the first object will "win", and all other references to that
+ object will be populated using the first one that is found.
+ 
+ This method is intended as a means to merge those various different response objects together to
+ create a master instance of a particular record. In some responses an object may contain a subset
+ of data in one place, and a larger subset of data in another place. In those instances, a user
+ may want for the larger subset to win, even if it wasn't found by MMRecord first.
+ 
+ You may override this method in a subclass of MMRecordMarshaler to provide this functionality.
+ @param dictionary The dictionary for the n+1th record response object of a given type and 
+ primary key.
+ @param protoRecord The proto record created to represent this specific object by MMRecord.
+ @discussion This method has no default implementation. You must subclass MMRecordMarshaler to
+ provide your own implementation.
+ */
++ (void)mergeDuplicateRecordResponseObjectDictionary:(NSDictionary *)dictionary
+                             withExistingProtoRecord:(MMRecordProtoRecord *)protoRecord;
 
-///-------------------------------
-/// @name Public Interface Methods
-///-------------------------------
+
+///---------------------------------
+/// @name Public Subclassing Methods
+///---------------------------------
 
 /** 
  This method is designed to be subclassed. It should be called to handle the population of a 
