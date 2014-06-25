@@ -8,4 +8,13 @@
 import CoreData
 
 class OutwardLink: Link {
+    override class func shouldUseSubEntityRecordClassToRepresentData(dict : NSDictionary) -> Bool {
+        let outwardIssue : AnyObject! = dict["outwardIssue"]
+
+        if (outwardIssue) {
+            return true
+        }
+        
+        return false
+    }
 }

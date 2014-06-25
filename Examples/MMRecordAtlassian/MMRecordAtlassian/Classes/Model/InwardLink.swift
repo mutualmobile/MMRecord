@@ -9,4 +9,13 @@
 import CoreData
 
 class InwardLink: Link {
+    override class func shouldUseSubEntityRecordClassToRepresentData(dict : NSDictionary) -> Bool {
+        let inwardIssue : AnyObject! = dict["inwardIssue"]
+        
+        if (inwardIssue) {
+            return true
+        }
+        
+        return false
+    }
 }

@@ -9,7 +9,7 @@
 import CoreData
 
 class Issue: ATLRecord {
-    @NSManaged var key: NSString
+    @NSManaged var primaryKey: NSString
     @NSManaged var id: NSString
-    @NSManaged var issueLinks: NSSet
+    @NSManaged var issueLinks: NSOrderedSet
 }

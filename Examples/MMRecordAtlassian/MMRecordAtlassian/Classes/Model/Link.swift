@@ -9,6 +9,7 @@
 import CoreData
 
 class Link: ATLRecord {
-    @NSManaged var name: NSString
     @NSManaged var id: NSString
+    @NSManaged var name: NSString
+    @NSManaged var key: NSString
 }
