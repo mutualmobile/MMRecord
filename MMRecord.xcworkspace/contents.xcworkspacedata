@@ -137,6 +137,16 @@
             location = "group:AFMMRecordResponseSerializationMapper.m">
          </FileRef>
       </Group>
+      <Group
+         location = "group:FBMMRecordTweakModel"
+         name = "FBMMRecordTweakModel">
+         <FileRef
+            location = "group:FBMMRecordTweakModel.h">
+         </FileRef>
+         <FileRef
+            location = "group:FBMMRecordTweakModel.m">
+         </FileRef>
+      </Group>
    </Group>
    <FileRef
       location = "group:Examples/MMRecordAppDotNet/MMRecordAppDotNet.xcodeproj">
