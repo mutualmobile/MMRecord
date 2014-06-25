@@ -243,7 +243,31 @@
 
 + (void)mergeDuplicateRecordResponseObjectDictionary:(NSDictionary *)dictionary
                              withExistingProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    // There is no default implementation for this method. Feel free to provide your own :)
+    if ([protoRecord.dictionary.allKeys count] == 1) {
+        NSAttributeDescription *primaryAttributeDescription = protoRecord.representation.primaryAttributeDescription;
+        NSArray *primaryKeyPaths = [protoRecord.representation keyPathsForMappingAttributeDescription:primaryAttributeDescription];
+        
+        BOOL dictionariesContainIdenticalPrimaryKeys = NO;
+        
+        for (NSString *keyPath in primaryKeyPaths) {
+            id dictionaryValue = [dictionary valueForKeyPath:keyPath];
+            id protoRecordValue = [dictionary valueForKeyPath:keyPath];
+            
+            if ([dictionaryValue isKindOfClass:[NSNumber class]] && [protoRecordValue isKindOfClass:[NSNumber class]]) {
+                dictionariesContainIdenticalPrimaryKeys = [dictionaryValue isEqualToNumber:protoRecordValue];
+            } else if ([dictionaryValue isKindOfClass:[NSString class]] && [protoRecordValue isKindOfClass:[NSString class]]) {
+                dictionariesContainIdenticalPrimaryKeys = [dictionaryValue isEqualToString:protoRecordValue];
+            }
+            
+            if (dictionariesContainIdenticalPrimaryKeys) {
+                break;
+            }
+        }
+        
+        if (dictionariesContainIdenticalPrimaryKeys) {
+            protoRecord.dictionary = dictionary;
+        }
+    }
 }
 
 

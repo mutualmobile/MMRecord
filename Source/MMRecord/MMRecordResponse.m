@@ -230,6 +230,7 @@
                                                         entity:entity
                                                 representation:representation];
         
+        
         if (proto.hasRelationshipPrimarykey == NO) {
             if (proto.primaryKeyValue == nil) {
                 if (self.options.entityPrimaryKeyInjectionBlock != nil) {
@@ -303,16 +304,19 @@
             }
             
             for (id object in relationshipObject) {
+                NSEntityDescription *recordSubEntity = [self subEntityForRecordResponseObject:object
+                                                                            withInitialEntity:entity];
+                
+                MMRecordProtoRecord *relationshipProto = [self protoRecordWithRecordResponseObject:object
+                                                                                            entity:recordSubEntity
+                                                                            existingResponseGroups:responseGroups
+                                                                                 parentProtoRecord:protoRecord];
+                
+                // By keeping the above section of code outside the conditional we can gaurantee that
+                // the protoRecord generation/parsing method above gets called for every relationship
+                // proto, which also causes the optional merge code to be run for all possible updated
+                // relationship protos.
                 if ([protoRecord canAccomodateAdditionalProtoRecordForRelationshipDescription:relationshipDescription]) {
-
-                    NSEntityDescription *recordSubEntity = [self subEntityForRecordResponseObject:object
-                                                                                withInitialEntity:entity];
-
-                    MMRecordProtoRecord *relationshipProto = [self protoRecordWithRecordResponseObject:object
-                                                                                                entity:recordSubEntity
-                                                                                existingResponseGroups:responseGroups
-                                                                                     parentProtoRecord:protoRecord];
-                    
                     [protoRecord addRelationshipProto:relationshipProto
                            forRelationshipDescription:relationshipDescription];
                 }
