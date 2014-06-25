@@ -8,6 +8,6 @@
 
 import CoreData
 
+// Base Record Class
 class ATLRecord: MMRecord {
-    
 }

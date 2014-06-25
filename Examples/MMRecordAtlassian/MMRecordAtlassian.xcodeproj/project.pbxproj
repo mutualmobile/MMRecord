@@ -83,6 +83,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		267E0BED195A83E000968879 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				26FC7C2B195A61E10066A195 /* InwardLink.swift */,
+				26FC7C3A195A65050066A195 /* Issue.swift */,
+				26FC7C35195A64600066A195 /* Link.swift */,
+				26FC7C36195A64600066A195 /* OutwardLink.swift */,
+				26FA0F0F19552050008068A2 /* Plan.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		267E0BEE195A83F400968879 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				26FC7C26195A5D8D0066A195 /* issue.json */,
+				26FA0F1119552760008068A2 /* plans.json */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
 		26FA0E8C19551BDB008068A2 = {
 			isa = PBXGroup;
 			children = (
@@ -177,15 +198,10 @@
 		26FA0F0619551E91008068A2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				26FA0E9C19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld */,
-				26FC7C2B195A61E10066A195 /* InwardLink.swift */,
-				26FC7C3A195A65050066A195 /* Issue.swift */,
-				26FC7C35195A64600066A195 /* Link.swift */,
-				26FC7C36195A64600066A195 /* OutwardLink.swift */,
+				267E0BED195A83E000968879 /* Entities */,
+				267E0BEE195A83F400968879 /* JSON */,
 				26FA0F0B19551EAE008068A2 /* ATLRecord.swift */,
-				26FA0F0F19552050008068A2 /* Plan.swift */,
-				26FC7C26195A5D8D0066A195 /* issue.json */,
-				26FA0F1119552760008068A2 /* plans.json */,
+				26FA0E9C19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";

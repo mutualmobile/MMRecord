@@ -57,7 +57,7 @@ class IssuesViewController: UITableViewController {
             domain: self,
             resultBlock: {records in
                 var results: Issue[] = records as Issue[]
-                print("\(results)")
+
                 self.issue = results[results.startIndex]
                 
                 self.title = "Linked Issues for \(self.issue?.id)"
@@ -81,7 +81,6 @@ class IssuesViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        print("\(links)")
         return links.count
     }
     
@@ -89,7 +88,6 @@ class IssuesViewController: UITableViewController {
         var cell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier", forIndexPath: indexPath) as UITableViewCell
         var link = links[indexPath.row]
         
-        //print("\(link.key)  \(link.name)\n")
         cell.textLabel.text = link.key
         
         return cell
