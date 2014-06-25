@@ -48,4 +48,10 @@ Pod::Spec.new do |s|
     sms.dependency 'MMRecord/Core'
   end
   
+  s.subspec 'TweakModel' do |tm|
+    tm.source_files = 'Source/FBMMRecordTweakModel/*.{h,m}'
+    tm.dependency 'MMRecord/Core'
+    tm.dependency 'Tweaks', '>= 1.1.0'
+  end
+  
 end

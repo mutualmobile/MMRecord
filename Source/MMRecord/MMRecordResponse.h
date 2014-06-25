@@ -35,16 +35,11 @@
 
 @interface MMRecordResponse : NSObject
 
-// Optional record primary key injection block
-@property (nonatomic, copy) MMRecordOptionsEntityPrimaryKeyInjectionBlock entityPrimaryKeyInjectionBlock;
-
-// Optional pre-population block.
-@property (nonatomic, copy) MMRecordOptionsRecordPrePopulationBlock recordPrePopulationBlock;
-
 // Designated Initializer
 + (MMRecordResponse *)responseFromResponseObjectArray:(NSArray *)responseObjectArray
                                         initialEntity:(NSEntityDescription *)initialEntity
-                                              context:(NSManagedObjectContext *)context;
+                                              context:(NSManagedObjectContext *)context
+                                              options:(MMRecordOptions *)options;
 
 // Records from Response Description
 - (NSArray *)records;

@@ -15,7 +15,10 @@
 #import "ADNPostManager.h"
 #import "Counts.h"
 
-@interface ADNPostsViewController ()
+#import "FBTweakViewController.h"
+#import "FBTweakStore.h"
+
+@interface ADNPostsViewController () <FBTweakViewControllerDelegate>
 
 @property (nonatomic, strong) ADNPostManager *postManager;
 @property (nonatomic, copy) NSArray *posts;
@@ -38,8 +41,20 @@
          forCellReuseIdentifier:@"PostCell"];
         
     [self getPosts];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Tweaks" style:UIBarButtonItemStyleBordered target:self action:@selector(showTweaks)];
+    self.navigationItem.rightBarButtonItem = item;
 }
 
+- (void)showTweaks {
+    FBTweakViewController *viewController = [[FBTweakViewController alloc] initWithStore:[FBTweakStore sharedInstance]];
+    viewController.tweaksDelegate = self;
+    [self presentViewController:viewController animated:YES completion:NULL];
+}
+
+- (void)tweakViewControllerPressedDone:(FBTweakViewController *)tweakViewController {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 
 #pragma mark - Posts Request Methods
 

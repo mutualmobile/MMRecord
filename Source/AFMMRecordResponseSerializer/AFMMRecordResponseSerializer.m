@@ -25,6 +25,8 @@
 #import "MMRecord.h"
 #import "MMRecordResponse.h"
 
+static MMRecordOptions* MM_responseSerializerRecordOptions;
+
 NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseSerializerWithDataKey";
 
 @interface AFMMRecordResponseSerializer ()
@@ -51,15 +53,33 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
     return serializer;
 }
 
++ (void)registerOptions:(MMRecordOptions *)options {
+    MM_responseSerializerRecordOptions = options;
+}
+
++ (MMRecordOptions *)currentOptions {
+    if (MM_responseSerializerRecordOptions != nil) {
+        return MM_responseSerializerRecordOptions;
+    }
+    
+    return nil;
+}
+
 
 #pragma mark - Private
 
++ (MMRecordOptions *)currentOptionsWithMMRecordSubclass:(Class)recordClass {
+    if (MM_responseSerializerRecordOptions != nil) {
+        return MM_responseSerializerRecordOptions;
+    }
+    
+    MMRecordOptions *options = [recordClass defaultOptions];
+    
+    return options;
+}
+
 - (NSArray *)responseArrayFromResponseObject:(id)responseObject
-                               initialEntity:(NSEntityDescription *)initialEntity {
-    Class managedObjectClass = NSClassFromString([initialEntity managedObjectClassName]);
-    
-    NSString *keyPathForResponseObject = [managedObjectClass keyPathForResponseObject];
-    
+                    keyPathForResponseObject:(NSString *)keyPathForResponseObject {
     id recordResponseObject = responseObject;
     
     if (keyPathForResponseObject != nil) {
@@ -146,14 +166,21 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
                                                                       responseObject:responseObject
                                                                              context:self.context];
     
+    Class managedObjectClass = NSClassFromString([initialEntity managedObjectClassName]);
+    
+    MMRecordOptions *options = [AFMMRecordResponseSerializer currentOptionsWithMMRecordSubclass:managedObjectClass];
+    
+    NSString *keyPathForResponseObject = [options keyPathForResponseObject];
+
     NSArray *responseArray = [self responseArrayFromResponseObject:responseObject
-                                                     initialEntity:initialEntity];
+                                          keyPathForResponseObject:keyPathForResponseObject];
     
     NSManagedObjectContext *backgroundContext = [self backgroundContext];
     
     MMRecordResponse *recordResponse = [MMRecordResponse responseFromResponseObjectArray:responseArray
-                                                                     initialEntity:initialEntity
-                                                                           context:self.context];
+                                                                           initialEntity:initialEntity
+                                                                                 context:self.context
+                                                                                 options:options];
     
     NSArray *records = [self recordsFromMMRecordResponse:recordResponse
                                        backgroundContext:backgroundContext];
