@@ -33,6 +33,12 @@
             location = "group:MMRecordCache.m">
          </FileRef>
          <FileRef
+            location = "group:MMRecordDebugger.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordDebugger.m">
+         </FileRef>
+         <FileRef
             location = "group:MMRecordErrors.h">
          </FileRef>
          <FileRef

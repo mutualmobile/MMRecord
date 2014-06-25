@@ -557,12 +557,6 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
 
 @interface MMRecordErrorHandler : NSObject
 
-- (void)handleErrorCode:(MMRecordErrorCode)errorCode
-         withParameters:(NSDictionary *)parameters;
-
-- (NSError *)primaryError;
-- (NSArray *)errorsEncounteredWhileHandlingResponse;
-
 @end
 
 
