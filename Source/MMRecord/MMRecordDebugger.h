@@ -26,24 +26,6 @@
 
 @class MMRecordOptions;
 
-#ifdef LOG_VERBOSE
-#define MMRLogInfo(fmt, ...) DDLogInfo((@"--[MMRecord INFO]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define MMRLogWarn(fmt, ...) DDLogWarn((@"--[MMRecord WARNING]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define MMRLogError(fmt, ...) DDLogError((@"--[MMRecord ERROR]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define MMRLogVerbose(fmt, ...) DDLogVerbose((@"--[MMRecord]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#else
-#define MMRLogInfo(fmt, ...) NSLog((@"--[MMRecord INFO]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define MMRLogWarn(fmt, ...) NSLog((@"--[MMRecord WARNING]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define MMRLogError(fmt, ...) NSLog((@"--[MMRecord ERROR]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define MMRLogVerbose(fmt, ...) NSLog((@"--[MMRecord]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#endif
-
-#ifdef LOG_VERBOSE
-#define MMRecordLumberjack 1
-#else
-#define MMRecordLumberjack 0
-#endif
-
 /**
  Use the method below to set the MMRecord Logging Level.  The default logging level is none.
  MMRecord can support Cocoa Lumberjack. Logging level is ignored when Cocoa Lumberjack is used.
@@ -57,6 +39,7 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
 };
 
 NSString * const MMRecordErrorDomain;
+NSString * const MMRecordDebuggerKey;
 
 NSString * const MMRecordDebuggerPropertyErrorDescription;
 NSString * const MMRecordDebuggerPropertyResponseObject;
@@ -89,8 +72,6 @@ typedef NS_ENUM(NSInteger, MMRecordErrorCode) {
 @interface MMRecordDebugger : NSObject
 
 @property (nonatomic, strong) id responseObject;
-@property (nonatomic, strong) id domain;
-@property (nonatomic, strong) MMRecordOptions *options;
 @property (nonatomic, strong) NSEntityDescription *initialEntity;
 
 @property (nonatomic) MMRecordLoggingLevel loggingLevel;

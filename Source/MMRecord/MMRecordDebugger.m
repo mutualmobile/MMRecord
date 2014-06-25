@@ -25,13 +25,23 @@
 
 #import "MMRecord.h"
 
-// This category adds custom errors and descriptions that describe error conditions in `MMRecord`.
-@interface NSError (MMRecord)
+#ifdef LOG_VERBOSE
+#define MMRLogInfo(fmt, ...) DDLogInfo((@"--[MMRecord INFO]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define MMRLogWarn(fmt, ...) DDLogWarn((@"--[MMRecord WARNING]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define MMRLogError(fmt, ...) DDLogError((@"--[MMRecord ERROR]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define MMRLogVerbose(fmt, ...) DDLogVerbose((@"--[MMRecord]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define MMRLogInfo(fmt, ...) NSLog((@"--[MMRecord INFO]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define MMRLogWarn(fmt, ...) NSLog((@"--[MMRecord WARNING]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define MMRLogError(fmt, ...) NSLog((@"--[MMRecord ERROR]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define MMRLogVerbose(fmt, ...) NSLog((@"--[MMRecord]-- %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#endif
 
-+ (NSString*)descriptionForMCErrorCode:(MMRecordErrorCode)errorCode;
-+ (NSError *)errorWithMMRecordCode:(MMRecordErrorCode)errorCode description:(NSString*)description;
-
-@end
+#ifdef LOG_VERBOSE
+#define MMRecordLumberjack 1
+#else
+#define MMRecordLumberjack 0
+#endif
 
 @interface MMRecordDebugger ()
 
@@ -42,10 +52,19 @@
 
 @implementation MMRecordDebugger
 
+- (id)init {
+    if ((self = [super init])) {
+        _errors = [NSMutableArray array];
+        _loggingLevel = [MMRecord loggingLevel];
+    }
+    
+    return self;
+}
+
 - (void)handleErrorCode:(MMRecordErrorCode)errorCode withParameters:(NSDictionary *)parameters {
     BOOL failureConditionError = [self failureConditionEncounteredWithErrorCode:errorCode];
     NSString *errorDescription = [self errorDescriptionWithErrorCode:errorCode parameters:parameters];
-    NSError *error = [NSError errorWithMMRecordCode:errorCode description:errorDescription];
+    NSError *error = [self errorWithErrorCode:errorCode description:errorDescription];
     
     if (failureConditionError) {
         self.primaryError = error;
@@ -53,7 +72,7 @@
     
     [self.errors addObject:error];
     
-    [self logMessageForCode:errorCode description:errorDescription isFatal:failureConditionError];
+    [self logMessageForCode:errorCode description:errorDescription];
 }
 
 - (NSArray *)errorsEncounteredWhileHandlingResponse {
@@ -73,14 +92,73 @@
     return parameters;
 }
 
-- (void)logMessageWithDescription:(NSString *)description minimumLoggingLevel:(MMRecordLoggingLevel)loggingLevel {
+- (void)logMessageWithDescription:(NSString *)description
+              minimumLoggingLevel:(MMRecordLoggingLevel)loggingLevel {
+    [self logMessageWithDescription:description minimumLoggingLevel:loggingLevel failureCondition:NO informationMessage:YES];
+}
+
+- (void)logMessageWithDescription:(NSString *)description
+              minimumLoggingLevel:(MMRecordLoggingLevel)loggingLevel
+                 failureCondition:(BOOL)failureCondition
+               informationMessage:(BOOL)informationMessage {
+    BOOL shouldPerformLog = [self shouldPerformLogForLoggingLevel:loggingLevel];
+
+    if (shouldPerformLog) {
+#if MMRecordLumberjack
+        if (failureCondition) {
+            MMRLogError(@"%@.", description);
+        } else if (informationMessage) {
+            MMRLogInfo(@"%@.", description);
+        } else {
+            MMRLogWarn(@"%@.", description);
+        }
+#else
+        NSString *logPrefix = @"--[MMRecord WARNING]-- %@.";
+        
+        if (failureCondition) {
+            logPrefix = @"--[MMRecord ERROR]-- %@.";
+        } else if (informationMessage) {
+            logPrefix = @"--[MMRecord INFO]-- %@.";
+        }
+        
+        NSLog(logPrefix, description);
+#endif
+    }
+}
+
+- (MMRecordLoggingLevel)loggingLevelForErrorCode:(MMRecordErrorCode)errorCode {
+    switch (errorCode) {
+        case MMRecordErrorCodeMissingRecordPrimaryKey:
+            return MMRecordLoggingLevelInfo;
+        case MMRecordErrorCodeUndefinedServer:
+            return MMRecordLoggingLevelInfo;
+        case MMRecordErrorCodeUndefinedPageManager:
+            return MMRecordLoggingLevelInfo;
+        case MMRecordErrorCodeInvalidEntityDescription:
+            return MMRecordLoggingLevelInfo;
+        default:
+            break;
+    }
     
+    return MMRecordLoggingLevelAll;
+}
+
+- (BOOL)shouldPerformLogForLoggingLevel:(MMRecordLoggingLevel)loggingLevel {
+    MMRecordLoggingLevel currentLevel = self.loggingLevel;
+    MMRecordLoggingLevel minimumLevel = loggingLevel;
+    
+    // Any logging level equal to or lower than the current level should be logged.
+    if (currentLevel >= minimumLevel &&
+        currentLevel > MMRecordLoggingLevelNone) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (BOOL)failureConditionEncounteredWithErrorCode:(MMRecordErrorCode)errorCode {
     if (errorCode == MMRecordErrorCodeUndefinedServer ||
         errorCode == MMRecordErrorCodeUndefinedPageManager ||
-        errorCode == MMRecordErrorCodeMissingRecordPrimaryKey ||
         errorCode == MMRecordErrorCodeInvalidEntityDescription ||
         errorCode == MMRecordErrorCodeInvalidResponseFormat ||
         errorCode == MMRecordErrorCodeCoreDataFetchError ||
@@ -92,56 +170,20 @@
 }
 
 - (NSString *)errorDescriptionWithErrorCode:(MMRecordErrorCode)errorCode parameters:(NSDictionary *)parameters {
-    return [NSError descriptionForMCErrorCode:errorCode];
+    return [self descriptionForErrorCode:errorCode];
 }
 
-- (void)logMessageForCode:(MMRecordErrorCode)errorCode description:(NSString *)description isFatal:(BOOL)isFatal {
-#if MMRecordLumberjack
-    NSString *errorCodeDescription = [NSError descriptionForMCErrorCode:errorCode];
-    
-    if (isFatal) {
-        MMRLogError(@"%@. %@", errorCodeDescription, description);
-    }
-    else{
-        MMRLogWarn(@"%@. %@", errorCodeDescription, description);
-    }
-#else
-    BOOL shouldLogMessage = NO;
-    
-    switch (self.loggingLevel) {
-        case MMRecordLoggingLevelAll:
-        case MMRecordLoggingLevelDebug:
-        case MMRecordLoggingLevelInfo:
-            shouldLogMessage = shouldLogMessage || errorCode == MMRecordErrorCodeMissingRecordPrimaryKey;
-            shouldLogMessage = shouldLogMessage || errorCode == MMRecordErrorCodeUndefinedServer;
-            shouldLogMessage = shouldLogMessage || errorCode == MMRecordErrorCodeUndefinedPageManager;
-            shouldLogMessage = shouldLogMessage || errorCode == MMRecordErrorCodeInvalidEntityDescription;
-            break;
-        case MMRecordLoggingLevelNone:
-            shouldLogMessage = NO;
-        default:
-            break;
-    }
-    
-    if (shouldLogMessage) {
-        NSString *logPrefix = @"--[MMRecord WARNING]-- %@. %@";
-        
-        if (isFatal) {
-            logPrefix = @"--[MMRecord ERROR]-- %@. %@";
-        }
-        
-        NSLog(logPrefix, [NSError descriptionForMCErrorCode:errorCode], description);
-    }
-#endif
+- (void)logMessageForCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
+    MMRecordLoggingLevel loggingLevel = [self loggingLevelForErrorCode:errorCode];
+    BOOL failureConditionError = [self failureConditionEncounteredWithErrorCode:errorCode];
+
+    [self logMessageWithDescription:description
+                minimumLoggingLevel:loggingLevel
+                   failureCondition:failureConditionError
+                 informationMessage:NO];
 }
 
-@end
-
-#pragma mark - Custom Error Additions
-
-@implementation NSError (MMRecord)
-
-+ (NSString *)descriptionForMCErrorCode:(MMRecordErrorCode)errorCode {
+- (NSString *)descriptionForErrorCode:(MMRecordErrorCode)errorCode {
     NSString *result = nil;
     switch (errorCode) {
         case MMRecordErrorCodeUndefinedServer:
@@ -170,21 +212,16 @@
     return result;
 }
 
-- (instancetype)initWithMMRecordCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
-    NSString *errorDescription = [[NSError descriptionForMCErrorCode:errorCode] stringByAppendingFormat:@" %@", description];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                              errorDescription,NSLocalizedDescriptionKey,
-                              nil];
+- (NSError *)errorWithErrorCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
+    NSString *errorDescription = [[self descriptionForErrorCode:errorCode] stringByAppendingFormat:@" %@", description];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:@[errorDescription, self]
+                                                         forKeys:@[NSLocalizedDescriptionKey, MMRecordDebuggerKey]];
     
-    self = [self initWithDomain:MMRecordErrorDomain
-                           code:errorCode
-                       userInfo:userInfo];
+    NSError *error = [[NSError alloc] initWithDomain:MMRecordErrorDomain
+                                                code:errorCode
+                                            userInfo:userInfo];
     
-    return self;
-}
-
-+ (NSError *)errorWithMMRecordCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
-    return [[NSError alloc] initWithMMRecordCode:errorCode description:description];
+    return error;
 }
 
 @end

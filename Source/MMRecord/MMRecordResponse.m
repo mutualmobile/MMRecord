@@ -41,6 +41,7 @@
 @property (nonatomic, strong) MMRecordRepresentation *representation;
 @property (nonatomic) BOOL hasRelationshipPrimaryKey;
 @property (nonatomic, copy) MMRecordOptionsRecordPrePopulationBlock recordPrePopulationBlock;
+@property (nonatomic, strong) MMRecordDebugger *debugger;
 
 - (instancetype)initWithEntity:(NSEntityDescription *)entity;
 
@@ -130,9 +131,8 @@
 #pragma mark - Logging
 
 - (void)logObjectGraph {
-    if ([MMRecord loggingLevel] != MMRecordLoggingLevelNone) {
-        MMRLogInfo(@"%@", self.objectGraph);
-    }
+    [self.options.debugger logMessageWithDescription:[NSString stringWithFormat:@"%@", self.objectGraph]
+                                 minimumLoggingLevel:MMRecordLoggingLevelNone];
 }
 
 
@@ -147,6 +147,7 @@
         if ([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]) {
             responseGroup = [[MMRecordResponseGroup alloc] initWithEntity:entity];
             responseGroup.recordPrePopulationBlock = self.options.recordPrePopulationBlock;
+            responseGroup.debugger = self.options.debugger;
             responseGroups[entityDescriptionsKey] = responseGroup;
         } else {
             return nil;
@@ -447,7 +448,11 @@
         if (record.primaryKeyValue != nil) {
             [existingRecordDictionary setObject:record forKey:record.primaryKeyValue];
         } else {
-            MMRLogVerbose(@"Fetched record with no primary key value \"%@\"", record);
+            MMRecordDebugger *debugger = self.debugger;
+            NSString *errorDescription = [NSString stringWithFormat:@"Fetched record with no primary key value \"%@\"", record];
+            NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyRecordClassName, MMRecordDebuggerPropertyErrorDescription]
+                                                             values:@[record.class, errorDescription]];
+            [debugger handleErrorCode:MMRecordErrorCodeMissingRecordPrimaryKey withParameters:parameters];
         }
     }
     
@@ -518,13 +523,11 @@
             MMRecord *record = [[recordClass alloc] initWithEntity:self.entity insertIntoManagedObjectContext:context];
             protoRecord.record = record;
             
-            if ([MMRecord loggingLevel] == MMRecordLoggingLevelDebug) {
-                MMRLogVerbose(@"Created proto record \"%@\", value: \"%@\"", protoRecord.entity.name, protoRecord.primaryKeyValue);
-            }
+            NSString *message = [NSString stringWithFormat:@"Created proto record \"%@\", value: \"%@\"", protoRecord.entity.name, protoRecord.primaryKeyValue];
+            [self.debugger logMessageWithDescription:message minimumLoggingLevel:MMRecordLoggingLevelDebug];
         }
     }
 }
-
 
 @end
 

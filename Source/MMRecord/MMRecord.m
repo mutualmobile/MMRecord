@@ -165,6 +165,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     options.keyPathForMetaData = [self keyPathForMetaData];
     options.pageManagerClass = [[self server] pageManagerClass];
     options.debugger = [[MMRecordDebugger alloc] init];
+    options.debugger.loggingLevel = [self loggingLevel];
     options.deleteOrphanedRecordBlock = nil;
     options.entityPrimaryKeyInjectionBlock = nil;
     options.recordPrePopulationBlock = nil;
@@ -468,7 +469,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 // You should really do your preflight check before calling this method.
 + (void)performRequestWithRequestState:(MMRecordRequestState *)state {
     MMRecordOptions *options = [self currentOptions];
-    
+        
     if ([state isBatched]) {
         dispatch_group_enter(state.dispatchGroup);
     }
@@ -689,6 +690,9 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     }
     
     NSEntityDescription *initialEntity = [context MMRecord_entityForClass:self];
+    
+    options.debugger.initialEntity = initialEntity;
+    options.debugger.responseObject = responseObject;
     
     NSString *keyPathForResponseObject = options.keyPathForResponseObject;
     
