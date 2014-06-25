@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26AF57BA195A58FF00D1D3A7 /* IssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF57B9195A58FF00D1D3A7 /* IssuesViewController.swift */; };
 		26FA0E9E19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0E9C19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld */; };
 		26FA0EA319551BDB008068A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26FA0EA119551BDB008068A2 /* Main.storyboard */; };
 		26FA0EA519551BDB008068A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26FA0EA419551BDB008068A2 /* Images.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26AF57B9195A58FF00D1D3A7 /* IssuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesViewController.swift; sourceTree = "<group>"; };
 		26FA0E9519551BDB008068A2 /* MMRecordAtlassian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMRecordAtlassian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26FA0E9919551BDB008068A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26FA0E9D19551BDB008068A2 /* MMRecordAtlassian.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MMRecordAtlassian.xcdatamodel; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				26FA0F0819551E91008068A2 /* PlansViewController.swift */,
+				26AF57B9195A58FF00D1D3A7 /* IssuesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26AF57BA195A58FF00D1D3A7 /* IssuesViewController.swift in Sources */,
 				26FA0EDD19551E07008068A2 /* MMRecord.m in Sources */,
 				26FA0EE519551E07008068A2 /* MMJSONServer.m in Sources */,
 				26FA0F1019552050008068A2 /* Plan.swift in Sources */,
