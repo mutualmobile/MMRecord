@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26ECD8AE195B3EB600DBB3C5 /* MMRecordDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ECD8AD195B3EB600DBB3C5 /* MMRecordDebugger.m */; };
 		5509C10516FEBA5A00310806 /* Tweet+MMRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C10416FEBA5A00310806 /* Tweet+MMRecord.m */; };
 		5509C10A16FEBDC300310806 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5509C10616FEBDC300310806 /* star@2x.png */; };
 		5509C10B16FEBDC300310806 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 5509C10716FEBDC300310806 /* star.png */; };
@@ -66,6 +67,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26ECD8AC195B3EB600DBB3C5 /* MMRecordDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordDebugger.h; sourceTree = "<group>"; };
+		26ECD8AD195B3EB600DBB3C5 /* MMRecordDebugger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordDebugger.m; sourceTree = "<group>"; };
 		5509C10316FEBA5A00310806 /* Tweet+MMRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tweet+MMRecord.h"; sourceTree = "<group>"; };
 		5509C10416FEBA5A00310806 /* Tweet+MMRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tweet+MMRecord.m"; sourceTree = "<group>"; };
 		5509C10616FEBDC300310806 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
@@ -78,7 +81,6 @@
 		55325F1F16FD55910074C313 /* MMRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecord.m; sourceTree = "<group>"; };
 		55325F2016FD55910074C313 /* MMRecordCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordCache.h; sourceTree = "<group>"; };
 		55325F2116FD55910074C313 /* MMRecordCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordCache.m; sourceTree = "<group>"; };
-		55325F2616FD55910074C313 /* MMRecordErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordErrors.h; sourceTree = "<group>"; };
 		55325F2716FD55910074C313 /* MMRecordMarshaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordMarshaler.h; sourceTree = "<group>"; };
 		55325F2816FD55910074C313 /* MMRecordMarshaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordMarshaler.m; sourceTree = "<group>"; };
 		55325F2916FD55910074C313 /* MMRecordProtoRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordProtoRecord.h; sourceTree = "<group>"; };
@@ -203,7 +205,8 @@
 				55325F1F16FD55910074C313 /* MMRecord.m */,
 				55325F2016FD55910074C313 /* MMRecordCache.h */,
 				55325F2116FD55910074C313 /* MMRecordCache.m */,
-				55325F2616FD55910074C313 /* MMRecordErrors.h */,
+				26ECD8AC195B3EB600DBB3C5 /* MMRecordDebugger.h */,
+				26ECD8AD195B3EB600DBB3C5 /* MMRecordDebugger.m */,
 				55325F2716FD55910074C313 /* MMRecordMarshaler.h */,
 				55325F2816FD55910074C313 /* MMRecordMarshaler.m */,
 				55325F2916FD55910074C313 /* MMRecordProtoRecord.h */,
@@ -476,6 +479,7 @@
 				55C6BD5316FD54AA000114DF /* MMAppDelegate.m in Sources */,
 				55C6BD5516FD54AA000114DF /* MMRecordTwitter.xcdatamodeld in Sources */,
 				55C6BD5C16FD54AA000114DF /* AFHTTPClient.m in Sources */,
+				26ECD8AE195B3EB600DBB3C5 /* MMRecordDebugger.m in Sources */,
 				55C6BD5D16FD54AA000114DF /* AFHTTPRequestOperation.m in Sources */,
 				55C6BD5E16FD54AA000114DF /* AFImageRequestOperation.m in Sources */,
 				55C6BD5F16FD54AA000114DF /* AFJSONRequestOperation.m in Sources */,

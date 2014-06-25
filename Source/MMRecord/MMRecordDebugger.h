@@ -27,10 +27,10 @@
 @class MMRecordOptions;
 
 /**
- Use the method below to set the MMRecord Logging Level.  The default logging level is none.
- MMRecord can support Cocoa Lumberjack. Logging level is ignored when Cocoa Lumberjack is used.
+ MMRecordLoggingLevel is used to determine when certain messages get logged. The default logging
+ level is none. MMRecord can support Cocoa Lumberjack. Logging level is ignored when 
+ Cocoa Lumberjack is used.
  */
-
 typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
     MMRecordLoggingLevelNone = 0,
     MMRecordLoggingLevelInfo = 1,
@@ -38,16 +38,35 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
     MMRecordLoggingLevelAll = 999
 };
 
+// MMRecordErrorDomain is the domain used for all errors created and returned by MMRecordDebugger
 NSString * const MMRecordErrorDomain;
+
+/**
+ MMRecordDebuggerKey can be used to access the instance of MMRecordDebugger on
+ the error object's userInfo dictionary. You may want to use this to view all
+ errors encountered on the population process, as well as metadata about the
+ request itself, including the response object and initial entity.
+ */
 NSString * const MMRecordDebuggerKey;
 
-NSString * const MMRecordDebuggerPropertyErrorDescription;
-NSString * const MMRecordDebuggerPropertyResponseObject;
-NSString * const MMRecordDebuggerPropertyRecordClassName;
-NSString * const MMRecordDebuggerPropertyEntityDescription;
-NSString * const MMRecordDebuggerPropertyPropertyName;
-NSString * const MMRecordDebuggerPropertyRecordDictionary;
-NSString * const MMRecordDebuggerPropertyServerClassName;
+/**
+ MMRecordDebuggerParameters are keys used to pass information along to
+ MMRecordDebugger when asking it to handle an error. These identify
+ specific objects that the debugger can use to customize its debugging
+ information.
+ 
+ These keys can also be used to access their associated objects from within
+ an error's userInfo dictionary if those objects have been passed into the
+ handleErrorCode:withParameters: method defined below.
+ */
+NSString * const MMRecordDebuggerParameterErrorDescription;
+NSString * const MMRecordDebuggerParameterResponseObject;
+NSString * const MMRecordDebuggerParameterRecordClassName;
+NSString * const MMRecordDebuggerParameterKeyPathForResponseObject;
+NSString * const MMRecordDebuggerParameterEntityDescription;
+NSString * const MMRecordDebuggerParameterPropertyName;
+NSString * const MMRecordDebuggerParameterRecordDictionary;
+NSString * const MMRecordDebuggerParameterServerClassName;
 
 
 /**
@@ -64,35 +83,100 @@ typedef NS_ENUM(NSInteger, MMRecordErrorCode) {
     MMRecordErrorCodeUnknown                  = 999
 };
 
-// List of parameter keys for the parameters dictionary
-// Pass in things like the entity name, or entity description, or primary key, etc.
-// Provide easy constructors for doing these things
 
-// Combination of Logging and Error Handling
+/**
+ This class is intended as the primary access point for debugging model configuration
+ and response handling issues and errors that may occur while building your application
+ with MMRecord. This class is called a Debugger to indicate that it is not intended
+ to be used in production. It is designed to help you while configuring your
+ model and setting up your requests.
+ 
+ You may still use MMRecordDebugger to handle actual errors in a production setting.
+ However, you should also understand that these issues typically should never happen
+ in production, and likely mean that your API has broken or is experiencing
+ unexpected behavior. Please plan accordingly.
+ 
+ MMRecordDebugger combines both error handling and debug logging to provide you with
+ helpful feedback about issues in your model configuration and response handling.
+ The type of errors handled by the debugger are listed above. Those errors
+ will be added to over time to provide even more helpful feedback.
+ */
 @interface MMRecordDebugger : NSObject
 
+/**
+ The responseObject returned by the request associated with this debugger.
+ */
 @property (nonatomic, strong) id responseObject;
+
+/**
+ The initialEntity where the request associated with this debugger started.
+ */
 @property (nonatomic, strong) NSEntityDescription *initialEntity;
 
+/**
+ The logging level for the debugger.
+ 
+ @discussion The default for this is the default set on MMRecord.
+ @discussion The default for MMRecord is MMRecordLoggingLevelNone.
+ */
 @property (nonatomic) MMRecordLoggingLevel loggingLevel;
 
-// Workhorse
-// Called for every error condition
-// May or may not print out to the log based on log level settings
+/**
+ This method is the workhorse of the debugger. This method should be
+ called to indicate that an error has been encountered and that it should
+ be tracked by the debugger.
+ 
+ Calling this method will create an NSError object with the appropriate
+ code and error description. An instance of the debugger will also exist
+ in the error's userInfo dictionary.
+ 
+ Depending on your logging level settings, this error also may or may
+ not be logged to the console.
+ 
+ @param errorCode The error code to handle.
+ @param parameters Custom parameters to provide additional information about the
+ error. These parameters will also be included in the error's userInfo
+ dictionary.
+ */
 - (void)handleErrorCode:(MMRecordErrorCode)errorCode
          withParameters:(NSDictionary *)parameters;
 
+/**
+ This method can be used to log a helpful message through the debugger.
+ The message will only be logged if its minimumLoggingLevel is lower than
+ or equal to the current debugger logging level.
+ 
+ @param description The message you want to display in the log.
+ @param loggingLevel The minimum logging level for the log message.
+ */
 - (void)logMessageWithDescription:(NSString *)description
               minimumLoggingLevel:(MMRecordLoggingLevel)loggingLevel;
 
-// Main error that will get shown in failure block
+/**
+ This is the main error that is associated with this debugger instance. This will be the error
+ that gets shown in an MMRecord failureBlock.
+ @return NSError an error object with an MMRecord error code and domain.
+ */
 - (NSError *)primaryError;
 
 // Way to provide access to every single error thrown by MMRecord
 - (NSArray *)errorsEncounteredWhileHandlingResponse;
 
+/**
+ This method can be used to determine if a serious error representing a condition that causes
+ MMRecord's request handling process to fail has occurred. If that has happened then the highest
+ priority error will be present in the primaryError accessor.
+ 
+ @return BOOL YES if a failing error has been encountered, otherwise NO.
+ */
 - (BOOL)encounteredFailureCondition;
 
+/**
+ Convenience method for setting up a parameters dictionary with keys and values.
+ 
+ @param keys An array of MMRecordDebuggerParameter keys
+ @param values An array of objects to associate with the given keys.
+ */
 - (NSDictionary *)parametersWithKeys:(NSArray *)keys values:(NSArray *)values;
 
 @end

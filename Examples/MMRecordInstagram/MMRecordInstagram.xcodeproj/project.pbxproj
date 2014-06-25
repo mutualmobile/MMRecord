@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26ECD8AB195B3EA200DBB3C5 /* MMRecordDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ECD8AA195B3EA200DBB3C5 /* MMRecordDebugger.m */; };
 		5509C0ED16FE8E6600310806 /* MMInstagramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C0EC16FE8E6600310806 /* MMInstagramManager.m */; };
 		5509C0F016FE902C00310806 /* MediaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C0EF16FE902C00310806 /* MediaCell.m */; };
 		5509C0F216FE903F00310806 /* MediaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5509C0F116FE903F00310806 /* MediaCell.xib */; };
@@ -73,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26ECD8A9195B3EA200DBB3C5 /* MMRecordDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordDebugger.h; sourceTree = "<group>"; };
+		26ECD8AA195B3EA200DBB3C5 /* MMRecordDebugger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordDebugger.m; sourceTree = "<group>"; };
 		5509C0EB16FE8E6600310806 /* MMInstagramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMInstagramManager.h; sourceTree = "<group>"; };
 		5509C0EC16FE8E6600310806 /* MMInstagramManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMInstagramManager.m; sourceTree = "<group>"; };
 		5509C0EE16FE902C00310806 /* MediaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaCell.h; sourceTree = "<group>"; };
@@ -130,7 +133,6 @@
 		9FABD97916FA93EF00184BA5 /* MMRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecord.m; sourceTree = "<group>"; };
 		9FABD97A16FA93EF00184BA5 /* MMRecordCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordCache.h; sourceTree = "<group>"; };
 		9FABD97B16FA93EF00184BA5 /* MMRecordCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordCache.m; sourceTree = "<group>"; };
-		9FABD98216FA93EF00184BA5 /* MMRecordErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordErrors.h; sourceTree = "<group>"; };
 		9FABD98316FA93EF00184BA5 /* MMRecordMarshaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordMarshaler.h; sourceTree = "<group>"; };
 		9FABD98416FA93EF00184BA5 /* MMRecordMarshaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordMarshaler.m; sourceTree = "<group>"; };
 		9FABD98816FA93EF00184BA5 /* MMRecordProtoRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordProtoRecord.h; sourceTree = "<group>"; };
@@ -380,7 +382,8 @@
 				9FABD97916FA93EF00184BA5 /* MMRecord.m */,
 				9FABD97A16FA93EF00184BA5 /* MMRecordCache.h */,
 				9FABD97B16FA93EF00184BA5 /* MMRecordCache.m */,
-				9FABD98216FA93EF00184BA5 /* MMRecordErrors.h */,
+				26ECD8A9195B3EA200DBB3C5 /* MMRecordDebugger.h */,
+				26ECD8AA195B3EA200DBB3C5 /* MMRecordDebugger.m */,
 				9FABD98316FA93EF00184BA5 /* MMRecordMarshaler.h */,
 				9FABD98416FA93EF00184BA5 /* MMRecordMarshaler.m */,
 				9FABD98816FA93EF00184BA5 /* MMRecordProtoRecord.h */,
@@ -565,6 +568,7 @@
 				9FABD9B816FA966A00184BA5 /* AFHTTPClient.m in Sources */,
 				9FABD9B916FA966A00184BA5 /* AFHTTPRequestOperation.m in Sources */,
 				9FABD9BA16FA966A00184BA5 /* AFImageRequestOperation.m in Sources */,
+				26ECD8AB195B3EA200DBB3C5 /* MMRecordDebugger.m in Sources */,
 				9FABD9BB16FA966A00184BA5 /* AFJSONRequestOperation.m in Sources */,
 				9FABD9BC16FA966A00184BA5 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9FABD9BD16FA966A00184BA5 /* AFPropertyListRequestOperation.m in Sources */,

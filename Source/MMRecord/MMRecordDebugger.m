@@ -43,6 +43,18 @@
 #define MMRecordLumberjack 0
 #endif
 
+NSString* const MMRecordErrorDomain = @"com.mutualmobile.mmrecord";
+NSString* const MMRecordDebuggerKey = @"MMRecordDebuggerKey";
+
+NSString* const MMRecordDebuggerParameterErrorDescription = @"MMRecordDebuggerParameterErrorDescription";
+NSString* const MMRecordDebuggerParameterResponseObject = @"MMRecordDebuggerParameterResponseObject";
+NSString* const MMRecordDebuggerParameterRecordClassName = @"MMRecordDebuggerParameterRecordClassName";
+NSString* const MMRecordDebuggerParameteryKeyPathForResponseObject = @"MMRecordDebuggerParameterKeyPathForResponseObject";
+NSString* const MMRecordDebuggerParameterEntityDescription = @"MMRecordDebuggerParameterEntityDescription";
+NSString* const MMRecordDebuggerParameterPropertyName = @"MMRecordDebuggerParameterPropertyName";
+NSString* const MMRecordDebuggerParameterRecordDictionary = @"MMRecordDebuggerParameterRecordDictionary";
+NSString* const MMRecordDebuggerParameterServerClassName = @"MMRecordDebuggerParameterServerClassName";
+
 @interface MMRecordDebugger ()
 
 @property (nonatomic, strong) NSMutableArray *errors;
@@ -63,8 +75,11 @@
 
 - (void)handleErrorCode:(MMRecordErrorCode)errorCode withParameters:(NSDictionary *)parameters {
     BOOL failureConditionError = [self failureConditionEncounteredWithErrorCode:errorCode];
-    NSString *errorDescription = [self errorDescriptionWithErrorCode:errorCode parameters:parameters];
-    NSError *error = [self errorWithErrorCode:errorCode description:errorDescription];
+    NSString *errorDescription = [self errorDescriptionWithErrorCode:errorCode
+                                                          parameters:parameters];
+    NSError *error = [self errorWithErrorCode:errorCode
+                                  description:errorDescription
+                                   parameters:parameters];
     
     if (failureConditionError) {
         self.primaryError = error;
@@ -94,7 +109,10 @@
 
 - (void)logMessageWithDescription:(NSString *)description
               minimumLoggingLevel:(MMRecordLoggingLevel)loggingLevel {
-    [self logMessageWithDescription:description minimumLoggingLevel:loggingLevel failureCondition:NO informationMessage:YES];
+    [self logMessageWithDescription:description
+                minimumLoggingLevel:loggingLevel
+                   failureCondition:NO
+                 informationMessage:YES];
 }
 
 - (void)logMessageWithDescription:(NSString *)description
@@ -169,8 +187,20 @@
     return NO;
 }
 
-- (NSString *)errorDescriptionWithErrorCode:(MMRecordErrorCode)errorCode parameters:(NSDictionary *)parameters {
-    return [self descriptionForErrorCode:errorCode];
+- (NSString *)errorDescriptionWithErrorCode:(MMRecordErrorCode)errorCode
+                                 parameters:(NSDictionary *)parameters {
+    NSString *errorDescription = [self descriptionForErrorCode:errorCode];
+    
+    if (errorCode == MMRecordErrorCodeCoreDataFetchError ||
+        errorCode == MMRecordErrorCodeCoreDataSaveError) {
+        NSString *parameterErrorDescription = [parameters objectForKey:MMRecordDebuggerParameterErrorDescription];
+        
+        if (parameterErrorDescription) {
+            errorDescription = [errorDescription stringByAppendingString:parameterErrorDescription];
+        }
+    }
+    
+    return errorDescription;
 }
 
 - (void)logMessageForCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
@@ -202,6 +232,15 @@
             result = NSLocalizedString(@"Invalid Response Format.",
                                        @"The server response was in an unexpected format that could not be handled by MMRecord.");
             break;
+        case MMRecordErrorCodeMissingRecordPrimaryKey:
+            result = NSLocalizedString(@"Missing Record Primary Key. No primary key was found for this proto record. This could mean that the primary key was not defined on the Managed Object Model, or that no primary key was injected into the population process.",
+                                       @"Missing Record Primary Key. No primary key was found for this proto record. This could mean that the primary key was not defined on the Managed Object Model, or that no primary key was injected into the population process.");
+            break;
+        case MMRecordErrorCodeCoreDataFetchError:
+        case MMRecordErrorCodeCoreDataSaveError:
+            result = NSLocalizedString(@"Core Data Error.",
+                                       @"Core Data Error.");
+            break;
         default:
         case MMRecordErrorCodeUnknown:
             result = NSLocalizedString(@"Unknown Error",
@@ -212,10 +251,14 @@
     return result;
 }
 
-- (NSError *)errorWithErrorCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
+- (NSError *)errorWithErrorCode:(MMRecordErrorCode)errorCode
+                    description:(NSString *)description
+                     parameters:(NSDictionary *)parameters {
     NSString *errorDescription = [[self descriptionForErrorCode:errorCode] stringByAppendingFormat:@" %@", description];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:@[errorDescription, self]
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObjects:@[errorDescription, self]
                                                          forKeys:@[NSLocalizedDescriptionKey, MMRecordDebuggerKey]];
+    
+    [userInfo addEntriesFromDictionary:parameters];
     
     NSError *error = [[NSError alloc] initWithDomain:MMRecordErrorDomain
                                                 code:errorCode

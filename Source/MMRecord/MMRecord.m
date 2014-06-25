@@ -32,8 +32,6 @@
 #import "FBMMRecordTweakModel.h"
 #endif
 
-NSString* const MMRecordErrorDomain = @"com.mutualmobile.mmrecord";
-
 static dispatch_group_t _mmrecord_request_group = nil;
 static dispatch_semaphore_t _mmrecord_request_semaphore = nil;
 static BOOL _mmrecord_batch_requests = NO;
@@ -459,10 +457,14 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     [self configureState:state forCurrentRequestWithOptions:options];
     [self validateSetUpForStartRequest];
     
-    BOOL cached = [self shortCircuitRequestByReturningCachedResultsForState:state options:options];
-    
-    if (cached == NO) {
-        [self performRequestWithRequestState:state];
+    if (options.debugger.encounteredFailureCondition) {
+        [self failRequestWithRequestState:state options:options];
+    } else {
+        BOOL cached = [self shortCircuitRequestByReturningCachedResultsForState:state options:options];
+        
+        if (cached == NO) {
+            [self performRequestWithRequestState:state];
+        }
     }
 }
 
@@ -665,8 +667,20 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     if ([self server] == nil) {
         MMRecordOptions *options = [self currentOptions];
         MMRecordDebugger *debugger = options.debugger;
-        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyServerClassName, MMRecordDebuggerPropertyRecordClassName]
-                                                         values:@[[self server], self]];
+        
+        NSMutableArray *keys = [NSMutableArray array];
+        NSMutableArray *values = [NSMutableArray array];
+        
+        [keys addObject:MMRecordDebuggerParameterRecordClassName];
+        [values addObject:self];
+        
+        if ([self server]) {
+            [keys addObject:MMRecordDebuggerParameterServerClassName];
+            [values addObject:[self server]];
+        }
+        
+        NSDictionary *parameters = [debugger parametersWithKeys:keys
+                                                         values:values];
         [debugger handleErrorCode:MMRecordErrorCodeUndefinedServer withParameters:parameters];
     }
     
@@ -682,9 +696,10 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                               context:(NSManagedObjectContext *)context {
     if (responseObject == nil) {
         MMRecordDebugger *debugger = options.debugger;
-        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyResponseObject,
-                                                                  MMRecordDebuggerPropertyRecordClassName]
-                                                         values:@[responseObject, self]];
+        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterResponseObject,
+                                                                  MMRecordDebuggerParameterRecordClassName]
+                                                         values:@[responseObject,
+                                                                  self]];
         [debugger handleErrorCode:MMRecordErrorCodeInvalidResponseFormat withParameters:parameters];
         return nil;
     }
@@ -704,14 +719,25 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     NSArray *recordResponseArray = [self parsingArrayFromResponseObject:responseObject
                                                keyPathForResponseObject:keyPathForResponseObject];
     
+    if (recordResponseArray.count == 0) {
+        MMRecordDebugger *debugger = options.debugger;
+        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterResponseObject,
+                                                                  MMRecordDebuggerParameterRecordClassName]
+                                                         values:@[responseObject,
+                                                                  self]];
+        [debugger handleErrorCode:MMRecordErrorCodeInvalidResponseFormat withParameters:parameters];
+        return nil;
+    }
+    
     if ([NSClassFromString([initialEntity managedObjectClassName]) isSubclassOfClass:[MMRecord class]] == NO) {
         MMRecordDebugger *debugger = options.debugger;
-        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyRecordClassName,
-                                                                  MMRecordDebuggerPropertyEntityDescription]
+        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterRecordClassName,
+                                                                  MMRecordDebuggerParameterEntityDescription]
                                                          values:@[self, initialEntity]];
         [debugger handleErrorCode:MMRecordErrorCodeInvalidEntityDescription withParameters:parameters];
         return nil;
     }
+    
     MMRecordResponse *response = [MMRecordResponse responseFromResponseObjectArray:recordResponseArray
                                                                      initialEntity:initialEntity
                                                                            context:context
@@ -764,7 +790,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
         
         MMRecordOptions *options = [self currentOptions];
         MMRecordDebugger *debugger = options.debugger;
-        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyErrorDescription] values:@[errorDescription]];
+        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterErrorDescription] values:@[errorDescription]];
         
         [debugger handleErrorCode:MMRecordErrorCodeCoreDataSaveError withParameters:parameters];
     }

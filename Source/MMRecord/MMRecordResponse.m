@@ -238,6 +238,18 @@
                                                                                         parentProtoRecord);
                 }
             }
+            
+            if (proto.primaryKeyValue == nil) {
+                MMRecordDebugger *debugger = self.options.debugger;
+                NSString *errorDescription = [NSString stringWithFormat:@"Creating proto record with no primary key value. \"%@\"", proto];
+                NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterRecordClassName,
+                                                                          MMRecordDebuggerParameterErrorDescription,
+                                                                          MMRecordDebuggerParameterEntityDescription]
+                                                                 values:@[proto.entity.managedObjectClassName,
+                                                                          errorDescription,
+                                                                          proto.entity]];
+                [debugger handleErrorCode:MMRecordErrorCodeMissingRecordPrimaryKey withParameters:parameters];
+            }
         }
     } else {
         [representation.marshalerClass mergeDuplicateRecordResponseObjectDictionary:recordResponseObject
@@ -450,7 +462,7 @@
         } else {
             MMRecordDebugger *debugger = self.debugger;
             NSString *errorDescription = [NSString stringWithFormat:@"Fetched record with no primary key value \"%@\"", record];
-            NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyRecordClassName, MMRecordDebuggerPropertyErrorDescription]
+            NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterRecordClassName, MMRecordDebuggerParameterErrorDescription]
                                                              values:@[record.class, errorDescription]];
             [debugger handleErrorCode:MMRecordErrorCodeMissingRecordPrimaryKey withParameters:parameters];
         }

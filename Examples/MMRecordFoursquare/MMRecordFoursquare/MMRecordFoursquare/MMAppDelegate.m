@@ -47,6 +47,8 @@
     
     sessionManager.responseSerializer = serializer;
     
+    //[MMRecord setLoggingLevel:MMRecordLoggingLevelAll];
+    
     return YES;
 }
 
