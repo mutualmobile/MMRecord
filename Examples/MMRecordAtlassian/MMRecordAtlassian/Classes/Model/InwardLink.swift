@@ -1,13 +1,12 @@
 //
-//  ATLRecord.swift
+//  MMRecordAtlassian.InwardLink
 //  MMRecordAtlassian
 //
-//  Created by Conrad Stoll on 6/20/14.
+//  Created by Conrad Stoll on 6/24/14.
 //  Copyright (c) 2014 Mutual Mobile. All rights reserved.
 //
 
 import CoreData
 
-class ATLRecord: MMRecord {
-    
+class InwardLink: Link {
 }

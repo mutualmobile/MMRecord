@@ -138,8 +138,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 #pragma mark - Required Subclass Methods
 
 + (NSString*)keyPathForResponseObject {
-    [self doesNotRecognizeSelector:_cmd];
-    
     return nil;
 }
 

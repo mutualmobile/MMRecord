@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         ATLRecord.registerServerClass(MMJSONServer);
         MMJSONServer.registerResourceName("plans", forPathComponent: "/plans")
+        MMJSONServer.registerResourceName("issue", forPathComponent: "/issue")
         
         return true
     }

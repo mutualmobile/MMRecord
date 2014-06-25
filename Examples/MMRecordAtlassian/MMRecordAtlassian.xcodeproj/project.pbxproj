@@ -22,9 +22,14 @@
 		26FA0EE519551E07008068A2 /* MMJSONServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0ED919551E07008068A2 /* MMJSONServer.m */; };
 		26FA0F0919551E91008068A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0F0419551E91008068A2 /* AppDelegate.swift */; };
 		26FA0F0A19551E91008068A2 /* PlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0F0819551E91008068A2 /* PlansViewController.swift */; };
-		26FA0F0C19551EAE008068A2 /* ATLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0F0B19551EAE008068A2 /* ATLRecord.swift */; };
-		26FA0F1019552050008068A2 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0F0F19552050008068A2 /* Plan.swift */; };
 		26FA0F1219552760008068A2 /* plans.json in Resources */ = {isa = PBXBuildFile; fileRef = 26FA0F1119552760008068A2 /* plans.json */; };
+		26FC7C27195A5D8D0066A195 /* issue.json in Resources */ = {isa = PBXBuildFile; fileRef = 26FC7C26195A5D8D0066A195 /* issue.json */; };
+		26FC7C31195A64130066A195 /* InwardLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC7C2B195A61E10066A195 /* InwardLink.swift */; };
+		26FC7C32195A641F0066A195 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0F0F19552050008068A2 /* Plan.swift */; };
+		26FC7C33195A64260066A195 /* ATLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0F0B19551EAE008068A2 /* ATLRecord.swift */; };
+		26FC7C38195A64600066A195 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC7C35195A64600066A195 /* Link.swift */; };
+		26FC7C39195A64600066A195 /* OutwardLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC7C36195A64600066A195 /* OutwardLink.swift */; };
+		26FC7C3B195A65050066A195 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC7C3A195A65050066A195 /* Issue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +65,11 @@
 		26FA0F0E19551FB1008068A2 /* MMRecordAtlassian-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMRecordAtlassian-Bridging-Header.h"; sourceTree = "<group>"; };
 		26FA0F0F19552050008068A2 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		26FA0F1119552760008068A2 /* plans.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plans.json; sourceTree = "<group>"; };
+		26FC7C26195A5D8D0066A195 /* issue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = issue.json; sourceTree = "<group>"; };
+		26FC7C2B195A61E10066A195 /* InwardLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InwardLink.swift; sourceTree = "<group>"; };
+		26FC7C35195A64600066A195 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		26FC7C36195A64600066A195 /* OutwardLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutwardLink.swift; sourceTree = "<group>"; };
+		26FC7C3A195A65050066A195 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,8 +178,13 @@
 			isa = PBXGroup;
 			children = (
 				26FA0E9C19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld */,
+				26FC7C2B195A61E10066A195 /* InwardLink.swift */,
+				26FC7C3A195A65050066A195 /* Issue.swift */,
+				26FC7C35195A64600066A195 /* Link.swift */,
+				26FC7C36195A64600066A195 /* OutwardLink.swift */,
 				26FA0F0B19551EAE008068A2 /* ATLRecord.swift */,
 				26FA0F0F19552050008068A2 /* Plan.swift */,
+				26FC7C26195A5D8D0066A195 /* issue.json */,
 				26FA0F1119552760008068A2 /* plans.json */,
 			);
 			path = Model;
@@ -253,6 +268,7 @@
 				26FA0F1219552760008068A2 /* plans.json in Resources */,
 				26FA0EA319551BDB008068A2 /* Main.storyboard in Resources */,
 				26FA0EA519551BDB008068A2 /* Images.xcassets in Resources */,
+				26FC7C27195A5D8D0066A195 /* issue.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,20 +279,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26FC7C38195A64600066A195 /* Link.swift in Sources */,
+				26FC7C32195A641F0066A195 /* Plan.swift in Sources */,
 				26AF57BA195A58FF00D1D3A7 /* IssuesViewController.swift in Sources */,
+				26FC7C3B195A65050066A195 /* Issue.swift in Sources */,
 				26FA0EDD19551E07008068A2 /* MMRecord.m in Sources */,
 				26FA0EE519551E07008068A2 /* MMJSONServer.m in Sources */,
-				26FA0F1019552050008068A2 /* Plan.swift in Sources */,
 				26FA0F0A19551E91008068A2 /* PlansViewController.swift in Sources */,
+				26FC7C39195A64600066A195 /* OutwardLink.swift in Sources */,
 				26FA0EE419551E07008068A2 /* MMServerPageManager.m in Sources */,
 				26FA0EE119551E07008068A2 /* MMRecordRepresentation.m in Sources */,
 				26FA0F0919551E91008068A2 /* AppDelegate.swift in Sources */,
 				26FA0EDF19551E07008068A2 /* MMRecordMarshaler.m in Sources */,
 				26FA0EE019551E07008068A2 /* MMRecordProtoRecord.m in Sources */,
-				26FA0F0C19551EAE008068A2 /* ATLRecord.swift in Sources */,
+				26FC7C33195A64260066A195 /* ATLRecord.swift in Sources */,
 				26FA0EE219551E07008068A2 /* MMRecordResponse.m in Sources */,
 				26FA0E9E19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld in Sources */,
 				26FA0EDE19551E07008068A2 /* MMRecordCache.m in Sources */,
+				26FC7C31195A64130066A195 /* InwardLink.swift in Sources */,
 				26FA0EE319551E07008068A2 /* MMServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
