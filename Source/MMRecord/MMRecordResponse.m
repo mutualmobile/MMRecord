@@ -462,8 +462,10 @@
         } else {
             MMRecordDebugger *debugger = self.debugger;
             NSString *errorDescription = [NSString stringWithFormat:@"Fetched record with no primary key value \"%@\"", record];
-            NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterRecordClassName, MMRecordDebuggerParameterErrorDescription]
-                                                             values:@[record.class, errorDescription]];
+            NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterRecordClassName,
+                                                                      MMRecordDebuggerParameterErrorDescription]
+                                                             values:@[record.class,
+                                                                      errorDescription]];
             [debugger handleErrorCode:MMRecordErrorCodeMissingRecordPrimaryKey withParameters:parameters];
         }
     }
