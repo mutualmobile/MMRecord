@@ -18,16 +18,18 @@
 @implementation MMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //[ADNServer registerAFHTTPClient:[ADNHTTPClient sharedClient]];
-    //[ADNRecord registerServerClass:[ADNServer class]];
+    [ADNServer registerAFHTTPClient:[ADNHTTPClient sharedClient]];
+    [ADNRecord registerServerClass:[ADNServer class]];
     
     [FBMMRecordTweakModel loadTweaksForManagedObjectModel:[MMDataManager sharedDataManager].managedObjectModel];
 #define FBMMRecordTweakModelDefine
 
-    [MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
-    [ADNRecord registerServerClass:[MMJSONServer class]];
+//  You can uncomment the below methods to enable the MMJSONServer for this example project
+//    [MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
+//    [ADNRecord registerServerClass:[MMJSONServer class]];
     
-    //[MMRecord setLoggingLevel:MMRecordLoggingLevelDebug];
+//  You can uncomment the below line to enable logging for this example project
+//    [MMRecord setLoggingLevel:MMRecordLoggingLevelDebug];
     
     return YES;
 }

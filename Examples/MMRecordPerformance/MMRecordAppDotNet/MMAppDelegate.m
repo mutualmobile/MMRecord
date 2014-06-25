@@ -17,6 +17,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MMJSONPerformanceTestingServer setResultSetSize:10000];
     [ADNRecord registerServerClass:[MMJSONPerformanceTestingServer class]];
+   
+//  You can uncomment the below line to enable logging for this example project
     //[MMRecord setLoggingLevel:MMRecordLoggingLevelAll];
     
     return YES;
