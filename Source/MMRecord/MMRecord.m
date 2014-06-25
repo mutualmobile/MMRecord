@@ -28,8 +28,6 @@
 #import "MMServer.h"
 
 
-@class MMRecordErrorHandler;
-
 NSString* const MMRecordErrorDomain = @"com.mutualmobile.mmrecord";
 
 static dispatch_group_t _mmrecord_request_group = nil;
@@ -43,23 +41,6 @@ static MMRecordOptions* MM_recordOptions;
 NSString * const MMRecordEntityPrimaryAttributeKey = @"MMRecordEntityPrimaryAttributeKey";
 NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternateNameKey";
 
-// This class is used for error handling with MMRecord.  You can specify error levels and this class
-// will be used to decide which errors are logged and which errors cause a fatal error that will
-// result in an import failure.  An instance of this class will be passed to virtually every private
-// parsing method.
-@interface MMRecordErrorHandler () {
-    MMRecordErrorCode   mostRecentFatalErrorCode_;
-    NSString *          mostRecentFatalErrorDescription_;
-    BOOL                receivedFatalError_;
-}
-
-- (BOOL)receivedFatalError;
-- (NSError *)fatalError;
-
-- (void)handleErrorCode:(MMRecordErrorCode)errorCode description:(NSString*)description;
-- (void)handleFatalErrorCode:(MMRecordErrorCode)errorCode description:(NSString*)description;
-
-@end
 
 @interface MMRecordRequestState : NSObject
 
@@ -107,15 +88,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 - (void)MMRecord_startObservingWithContext:(NSManagedObjectContext*)context;
 - (void)MMRecord_stopObservingWithContext:(NSManagedObjectContext*)context;
 - (NSEntityDescription*)MMRecord_entityForClass:(Class)managedObjectClass;
-
-@end
-
-
-// This category adds custom errors and descriptions that describe error conditions in `MMRecord`.
-@interface NSError (MMRecord)
-
-+ (NSString*)descriptionForMCErrorCode:(MMRecordErrorCode)errorCode;
-+ (NSError *)errorWithMMRecordCode:(MMRecordErrorCode)errorCode description:(NSString*)description;
 
 @end
 
@@ -188,7 +160,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     options.keyPathForResponseObject = [self keyPathForResponseObject];
     options.keyPathForMetaData = [self keyPathForMetaData];
     options.pageManagerClass = [[self server] pageManagerClass];
-    options.errorHandler = [[MMRecordErrorHandler alloc] init];
+    options.debugger = [[MMRecordDebugger alloc] init];
     options.deleteOrphanedRecordBlock = nil;
     options.entityPrimaryKeyInjectionBlock = nil;
     options.recordPrePopulationBlock = nil;
@@ -544,7 +516,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                                   onMainContext:state.context
                           fromBackgroundContext:state.backgroundContext];
     
-    if ([options.errorHandler receivedFatalError] == NO) {
+    if ([options.debugger encounteredFailureCondition] == NO) {
         [self passRequestWithRequestState:state options:options];
     } else {
         [self failRequestWithRequestState:state options:options];
@@ -565,7 +537,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     }
     
     dispatch_group_async(state.dispatchGroup, options.callbackQueue, ^{
-        state.failureBlock([options.errorHandler fatalError]);
+        state.failureBlock([options.debugger primaryError]);
         
         if ([state isBatched]) {
             dispatch_group_leave(state.dispatchGroup);
@@ -669,9 +641,10 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     // Make sure the server is set properly.
     if ([self server] == nil) {
         MMRecordOptions *options = [self currentOptions];
-        MMRecordErrorHandler *errorHandler = options.errorHandler;
-        [errorHandler handleFatalErrorCode:MMRecordErrorCodeUndefinedServer
-                               description:[NSString stringWithFormat:@"No server defined for class: %@", NSStringFromClass(self)]];
+        MMRecordDebugger *debugger = options.debugger;
+        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyServerClassName, MMRecordDebuggerPropertyRecordClassName]
+                                                         values:@[[self server], self]];
+        [debugger handleErrorCode:MMRecordErrorCodeUndefinedServer withParameters:parameters];
     }
     
     return YES;
@@ -685,8 +658,11 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                                 state:(MMRecordRequestState *)state
                               context:(NSManagedObjectContext *)context {
     if (responseObject == nil) {
-        [options.errorHandler handleFatalErrorCode:MMRecordErrorCodeInvalidResponseFormat
-                                             description:@"The response object should not be nil"];
+        MMRecordDebugger *debugger = options.debugger;
+        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyResponseObject,
+                                                                  MMRecordDebuggerPropertyRecordClassName]
+                                                         values:@[responseObject, self]];
+        [debugger handleErrorCode:MMRecordErrorCodeInvalidResponseFormat withParameters:parameters];
         return nil;
     }
     
@@ -697,9 +673,11 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     NSEntityDescription *initialEntity = [context MMRecord_entityForClass:self];
     
     if ([NSClassFromString([initialEntity managedObjectClassName]) isSubclassOfClass:[MMRecord class]] == NO) {
-        MMRecordErrorHandler *errorHandler = options.errorHandler;
-        [errorHandler handleFatalErrorCode:MMRecordErrorCodeInvalidEntityDescription
-                               description:@"Initial Entity is not a subclass of MMRecord"];
+        MMRecordDebugger *debugger = options.debugger;
+        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyRecordClassName,
+                                                                  MMRecordDebuggerPropertyEntityDescription]
+                                                         values:@[self, initialEntity]];
+        [debugger handleErrorCode:MMRecordErrorCodeInvalidEntityDescription withParameters:parameters];
         return nil;
     }
     MMRecordResponse *response = [MMRecordResponse responseFromResponseObjectArray:recordResponseArray
@@ -755,9 +733,10 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                                                                 coreDataErrorString];
         
         MMRecordOptions *options = [self currentOptions];
+        MMRecordDebugger *debugger = options.debugger;
+        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerPropertyErrorDescription] values:@[errorDescription]];
         
-        [options.errorHandler handleFatalErrorCode:MMRecordErrorCodeCoreDataSaveError
-                                             description:errorDescription];
+        [debugger handleErrorCode:MMRecordErrorCodeCoreDataSaveError withParameters:parameters];
     }
     
     [mainContext MMRecord_stopObservingWithContext:backgroundContext];
@@ -856,12 +835,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     return [self valueForKey:primaryAttributeKey];
 }
 
-
-#pragma mark - Error Helpers
-
-+ (NSError*)errorWithMMRecordCode:(MMRecordErrorCode)errorCode description:(NSString*)description {
-    return [NSError errorWithMMRecordCode:errorCode description:description];
-}
 
 @end
 
@@ -1010,132 +983,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 @end
 
 
-#pragma mark - Custom Error Additions
-
-@implementation NSError (MMRecord)
-
-+ (NSString *)descriptionForMCErrorCode:(MMRecordErrorCode)errorCode {
-    NSString *result = nil;
-    switch (errorCode) {
-        case MMRecordErrorCodeUndefinedServer:
-            result = NSLocalizedString(@"Undefined Server. A server class must be registered with MMRecord in order to start requests.",
-                                       @"A server class must be registered with MMRecord in order to start requests.");
-            break;
-        case MMRecordErrorCodeUndefinedPageManager:
-            result = NSLocalizedString(@"Missing Page Manager. A page manager class must be defined on your MMServer subclass in order to use paging.",
-                                       @"A page manager class must be defined on your MMServer subclass in order to use paging.");
-            break;
-        case MMRecordErrorCodeInvalidEntityDescription:
-            result = NSLocalizedString(@"Invalid Entity Description. This could be because this record class is not used in your managed object model, or because your persistent store coordinator or managed object model are not defined properly. An entity description is required for creating records.",
-                                       @"This could be because this record class is not used in your managed object model, or because your persistent store coordinator or managed object model are not defined properly. An entity description is required for creating records.");
-            break;
-        case MMRecordErrorCodeInvalidResponseFormat:
-            result = NSLocalizedString(@"Invalid Response Format.",
-                                       @"The server response was in an unexpected format that could not be handled by MMRecord.");
-            break;
-        default:
-        case MMRecordErrorCodeUnknown:
-            result = NSLocalizedString(@"Unknown Error",
-                                       @"Unknown Error Description");
-            break;
-    }
-    
-    return result;
-}
-
-- (instancetype)initWithMMRecordCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
-    NSString *errorDescription = [[NSError descriptionForMCErrorCode:errorCode] stringByAppendingFormat:@" %@", description];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                              errorDescription,NSLocalizedDescriptionKey,
-                              nil];
-    
-    self = [self initWithDomain:MMRecordErrorDomain
-                           code:errorCode
-                       userInfo:userInfo];
-    
-    return self;
-}
-
-+ (NSError *)errorWithMMRecordCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
-    return [[NSError alloc] initWithMMRecordCode:errorCode description:description];
-}
-
-@end
-
-
-
-#pragma mark - Custom Error Handler Class
-
-@implementation MMRecordErrorHandler
-
-- (BOOL)receivedFatalError {
-    return receivedFatalError_;
-}
-
-- (NSError *)fatalError {
-    if (receivedFatalError_) {
-        //TODO: Attach error handler itself to the error user info dictionary.
-        return [MMRecord errorWithMMRecordCode:mostRecentFatalErrorCode_ description:mostRecentFatalErrorDescription_];
-    }
-    
-    return nil;
-}
-
-- (void)handleErrorCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
-    [self logMessageForCode:errorCode description:description isFatal:NO];
-}
-
-- (void)handleFatalErrorCode:(MMRecordErrorCode)errorCode description:(NSString *)description {
-    mostRecentFatalErrorCode_ = errorCode;
-    mostRecentFatalErrorDescription_ = description;
-    receivedFatalError_ = YES;
-    
-    [self logMessageForCode:errorCode description:description isFatal:YES];
-}
-
-- (void)logMessageForCode:(MMRecordErrorCode)errorCode description:(NSString *)description isFatal:(BOOL)isFatal {
-#if MMRecordLumberjack
-    NSString *errorCodeDescription = [NSError descriptionForMCErrorCode:errorCode];
-    
-    if (isFatal) {
-        MMRLogError(@"%@. %@", errorCodeDescription, description);
-    }
-    else{
-        MMRLogWarn(@"%@. %@", errorCodeDescription, description);
-    }
-#else
-    BOOL shouldLogMessage = NO;
-    
-    switch ([MMRecord loggingLevel]) {
-        case MMRecordLoggingLevelAll:
-        case MMRecordLoggingLevelDebug:
-        case MMRecordLoggingLevelInfo:
-            shouldLogMessage = shouldLogMessage || errorCode == MMRecordErrorCodeMissingRecordPrimaryKey;
-            shouldLogMessage = shouldLogMessage || errorCode == MMRecordErrorCodeUndefinedServer;
-            shouldLogMessage = shouldLogMessage || errorCode == MMRecordErrorCodeUndefinedPageManager;
-            shouldLogMessage = shouldLogMessage || errorCode == MMRecordErrorCodeInvalidEntityDescription;
-            break;
-        case MMRecordLoggingLevelNone:
-            shouldLogMessage = NO;
-        default:
-            break;
-    }
-    
-    if (shouldLogMessage) {
-        NSString *logPrefix = @"--[MMRecord WARNING]-- %@. %@";
-        
-        if (isFatal) {
-            logPrefix = @"--[MMRecord ERROR]-- %@. %@";
-        }
-        
-        NSLog(logPrefix, [NSError descriptionForMCErrorCode:errorCode], description);
-    }
-#endif
-}
-
-@end
-
-
 #pragma mark - Request State Encapsulation
 
 @implementation MMRecordRequestState
@@ -1167,7 +1014,3 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 @implementation MMRecordOptions
 @end
 
-#undef MMRLogInfo
-#undef MMRLogWarn
-#undef MMRLogError
-#undef MMRLogVerbose

@@ -22,7 +22,7 @@
 
 
 #import "MMRecordCache.h"
-#import "MMRecordLoggers.h"
+#import "MMRecordDebugger.h"
 
 // This class contains a managed object context intended for use with caching records for a given request/response.
 @interface MMRecordCacheDataManager : NSObject
