@@ -39,7 +39,6 @@ static MMRecordLoggingLevel _mmrecord_logging_level = 0;
 
 static NSMutableDictionary* MM_registeredServerClasses;
 static MMRecordOptions* MM_recordOptions;
-static MMRecordErrorHandler* MM_errorHandler;
 
 NSString * const MMRecordEntityPrimaryAttributeKey = @"MMRecordEntityPrimaryAttributeKey";
 NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternateNameKey";
@@ -48,7 +47,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 // will be used to decide which errors are logged and which errors cause a fatal error that will
 // result in an import failure.  An instance of this class will be passed to virtually every private
 // parsing method.
-@interface MMRecordErrorHandler : NSObject {
+@interface MMRecordErrorHandler () {
     MMRecordErrorCode   mostRecentFatalErrorCode_;
     NSString *          mostRecentFatalErrorDescription_;
     BOOL                receivedFatalError_;
@@ -189,6 +188,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     options.keyPathForResponseObject = [self keyPathForResponseObject];
     options.keyPathForMetaData = [self keyPathForMetaData];
     options.pageManagerClass = [[self server] pageManagerClass];
+    options.errorHandler = [[MMRecordErrorHandler alloc] init];
     options.deleteOrphanedRecordBlock = nil;
     options.entityPrimaryKeyInjectionBlock = nil;
     options.recordPrePopulationBlock = nil;
@@ -199,22 +199,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     if ([self batchRequests] == NO) {
         MM_recordOptions = nil;
     }
-}
-
-
-#pragma mark - Error Handling
-
-+ (MMRecordErrorHandler *)currentErrorHandler {
-    if (MM_errorHandler) {
-        return MM_errorHandler;
-    }
-    
-    MM_errorHandler = [MMRecordErrorHandler new];
-    return MM_errorHandler;
-}
-
-+ (void)resetErrorHandler {
-    MM_errorHandler = nil;
 }
 
 
@@ -478,7 +462,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     MMRecordOptions *options = [self currentOptions];
     
     [self configureState:state forCurrentRequestWithOptions:options];
-    [self resetErrorHandler];
     [self validateSetUpForStartRequest];
     
     BOOL cached = [self shortCircuitRequestByReturningCachedResultsForState:state options:options];
@@ -561,7 +544,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                                   onMainContext:state.context
                           fromBackgroundContext:state.backgroundContext];
     
-    if ([[self currentErrorHandler] receivedFatalError] == NO) {
+    if ([options.errorHandler receivedFatalError] == NO) {
         [self passRequestWithRequestState:state options:options];
     } else {
         [self failRequestWithRequestState:state options:options];
@@ -582,7 +565,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     }
     
     dispatch_group_async(state.dispatchGroup, options.callbackQueue, ^{
-        state.failureBlock([[self currentErrorHandler] fatalError]);
+        state.failureBlock([options.errorHandler fatalError]);
         
         if ([state isBatched]) {
             dispatch_group_leave(state.dispatchGroup);
@@ -685,7 +668,8 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 + (BOOL)validateSetUpForStartRequest {
     // Make sure the server is set properly.
     if ([self server] == nil) {
-        MMRecordErrorHandler *errorHandler = [self currentErrorHandler];
+        MMRecordOptions *options = [self currentOptions];
+        MMRecordErrorHandler *errorHandler = options.errorHandler;
         [errorHandler handleFatalErrorCode:MMRecordErrorCodeUndefinedServer
                                description:[NSString stringWithFormat:@"No server defined for class: %@", NSStringFromClass(self)]];
     }
@@ -701,7 +685,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
                                 state:(MMRecordRequestState *)state
                               context:(NSManagedObjectContext *)context {
     if (responseObject == nil) {
-        [[self currentErrorHandler] handleFatalErrorCode:MMRecordErrorCodeInvalidResponseFormat
+        [options.errorHandler handleFatalErrorCode:MMRecordErrorCodeInvalidResponseFormat
                                              description:@"The response object should not be nil"];
         return nil;
     }
@@ -713,7 +697,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
     NSEntityDescription *initialEntity = [context MMRecord_entityForClass:self];
     
     if ([NSClassFromString([initialEntity managedObjectClassName]) isSubclassOfClass:[MMRecord class]] == NO) {
-        MMRecordErrorHandler *errorHandler = [self currentErrorHandler];
+        MMRecordErrorHandler *errorHandler = options.errorHandler;
         [errorHandler handleFatalErrorCode:MMRecordErrorCodeInvalidEntityDescription
                                description:@"Initial Entity is not a subclass of MMRecord"];
         return nil;
@@ -770,7 +754,9 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
         NSString *errorDescription = [NSString stringWithFormat:@"Unable to save background context while populating records. MMRecord import operation unsuccessful. %@",
                                                                 coreDataErrorString];
         
-        [[self currentErrorHandler] handleFatalErrorCode:MMRecordErrorCodeCoreDataSaveError
+        MMRecordOptions *options = [self currentOptions];
+        
+        [options.errorHandler handleFatalErrorCode:MMRecordErrorCodeCoreDataSaveError
                                              description:errorDescription];
     }
     
@@ -1088,6 +1074,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 
 - (NSError *)fatalError {
     if (receivedFatalError_) {
+        //TODO: Attach error handler itself to the error user info dictionary.
         return [MMRecord errorWithMMRecordCode:mostRecentFatalErrorCode_ description:mostRecentFatalErrorDescription_];
     }
     

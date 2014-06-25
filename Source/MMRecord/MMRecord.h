@@ -555,6 +555,17 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
 @end
 
 
+@interface MMRecordErrorHandler : NSObject
+
+- (void)handleErrorCode:(MMRecordErrorCode)errorCode
+         withParameters:(NSDictionary *)parameters;
+
+- (NSError *)primaryError;
+- (NSArray *)errorsEncounteredWhileHandlingResponse;
+
+@end
+
+
 /**
  This block should be used to conditionally delete orphaned records if they are not returned in a
  request's response.
@@ -679,6 +690,17 @@ typedef void (^MMRecordOptionsRecordPrePopulationBlock)(MMRecordProtoRecord *pro
  @discussion Default value is the page manager for the registered server class for the given entity.
  */
 @property (nonatomic, strong) Class pageManagerClass;
+
+/**
+ This option allows you to specify your own error handling class for implementing custom error
+ handling behavior. You might want to do this if you want to override certain MMRecord errors, or
+ more strictly enforce errors of your own. You may also be able to provide support for custom
+ errors. The MMRecordErrorHandler class and error handling system may grow more powerful
+ overtime, possibly obviating the need for this, but also possibly making this even more useful.
+ 
+ @discussion Default value for this is an instance of MMRecordErrorHandler.
+ */
+@property (nonatomic, strong) MMRecordErrorHandler *errorHandler;
 
 /**
  This option allows you to specify a block that will be executed once per record which was orphaned
