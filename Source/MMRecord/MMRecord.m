@@ -107,8 +107,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 #pragma mark - Required Subclass Methods
 
 + (NSString*)keyPathForResponseObject {
-    [self doesNotRecognizeSelector:_cmd];
-    
     return nil;
 }
 
@@ -1039,12 +1037,11 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
         return nil;
     }
     
-    NSString *name = NSStringFromClass(managedObjectClass);
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.managedObjectClassName == %@", name];
-    
-    for (id obj in entities) {
-        if ([predicate evaluateWithObject:obj]) {
-            return obj;
+    for (NSEntityDescription *entityDescription in entities) {
+        Class entityManagedObjectClass = NSClassFromString([entityDescription managedObjectClassName]);
+        
+        if (entityManagedObjectClass == managedObjectClass) {
+            return entityDescription;
         }
     }
     

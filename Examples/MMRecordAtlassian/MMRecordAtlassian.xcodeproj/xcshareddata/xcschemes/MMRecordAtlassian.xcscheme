@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "55D278061829765E008CB6B4"
-               BuildableName = "MMRecordFoursquare.app"
-               BlueprintName = "MMRecordFoursquare"
-               ReferencedContainer = "container:MMRecordFoursquare.xcodeproj">
+               BlueprintIdentifier = "26FA0E9419551BDB008068A2"
+               BuildableName = "MMRecordAtlassian.app"
+               BlueprintName = "MMRecordAtlassian"
+               ReferencedContainer = "container:MMRecordAtlassian.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "55D278271829765E008CB6B4"
-               BuildableName = "MMRecordFoursquareTests.xctest"
-               BlueprintName = "MMRecordFoursquareTests"
-               ReferencedContainer = "container:MMRecordFoursquare.xcodeproj">
+               BlueprintIdentifier = "26FA0EA919551BDB008068A2"
+               BuildableName = "MMRecordAtlassianTests.xctest"
+               BlueprintName = "MMRecordAtlassianTests"
+               ReferencedContainer = "container:MMRecordAtlassian.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "55D278061829765E008CB6B4"
-            BuildableName = "MMRecordFoursquare.app"
-            BlueprintName = "MMRecordFoursquare"
-            ReferencedContainer = "container:MMRecordFoursquare.xcodeproj">
+            BlueprintIdentifier = "26FA0E9419551BDB008068A2"
+            BuildableName = "MMRecordAtlassian.app"
+            BlueprintName = "MMRecordAtlassian"
+            ReferencedContainer = "container:MMRecordAtlassian.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -61,10 +61,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "55D278061829765E008CB6B4"
-            BuildableName = "MMRecordFoursquare.app"
-            BlueprintName = "MMRecordFoursquare"
-            ReferencedContainer = "container:MMRecordFoursquare.xcodeproj">
+            BlueprintIdentifier = "26FA0E9419551BDB008068A2"
+            BuildableName = "MMRecordAtlassian.app"
+            BlueprintName = "MMRecordAtlassian"
+            ReferencedContainer = "container:MMRecordAtlassian.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -79,10 +79,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "55D278061829765E008CB6B4"
-            BuildableName = "MMRecordFoursquare.app"
-            BlueprintName = "MMRecordFoursquare"
-            ReferencedContainer = "container:MMRecordFoursquare.xcodeproj">
+            BlueprintIdentifier = "26FA0E9419551BDB008068A2"
+            BuildableName = "MMRecordAtlassian.app"
+            BlueprintName = "MMRecordAtlassian"
+            ReferencedContainer = "container:MMRecordAtlassian.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

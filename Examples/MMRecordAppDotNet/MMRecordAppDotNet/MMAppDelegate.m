@@ -24,9 +24,11 @@
     [FBMMRecordTweakModel loadTweaksForManagedObjectModel:[MMDataManager sharedDataManager].managedObjectModel];
 #define FBMMRecordTweakModelDefine
 
+//  You can uncomment the below methods to enable the MMJSONServer for this example project
 //    [MMJSONServer registerResourceName:@"posts" forPathComponent:@"posts"];
 //    [ADNRecord registerServerClass:[MMJSONServer class]];
     
+//  You can uncomment the below line to enable logging for this example project
 //    [MMRecord setLoggingLevel:MMRecordLoggingLevelDebug];
     
     return YES;
