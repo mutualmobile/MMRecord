@@ -47,6 +47,9 @@
     
     sessionManager.responseSerializer = serializer;
     
+//  You can uncomment the below line to enable logging for this example project
+    //[MMRecord setLoggingLevel:MMRecordLoggingLevelAll];
+    
     return YES;
 }
 

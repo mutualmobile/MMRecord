@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26ECD8A8195B3E8800DBB3C5 /* MMRecordDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ECD8A7195B3E8800DBB3C5 /* MMRecordDebugger.m */; };
 		26F9870918666C03000CAF96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F9870518666C03000CAF96 /* Main.storyboard */; };
 		26F9870A18666C03000CAF96 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F9870818666C03000CAF96 /* MMViewController.m */; };
 		26F9870D18667076000CAF96 /* MMVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F9870C18667076000CAF96 /* MMVenueViewController.m */; };
@@ -72,6 +73,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26ECD8A6195B3E8800DBB3C5 /* MMRecordDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordDebugger.h; sourceTree = "<group>"; };
+		26ECD8A7195B3E8800DBB3C5 /* MMRecordDebugger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordDebugger.m; sourceTree = "<group>"; };
 		26F9870618666C03000CAF96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MMRecordFoursquare/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		26F9870718666C03000CAF96 /* MMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMViewController.h; path = MMRecordFoursquare/MMViewController.h; sourceTree = SOURCE_ROOT; };
 		26F9870818666C03000CAF96 /* MMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMViewController.m; path = MMRecordFoursquare/MMViewController.m; sourceTree = SOURCE_ROOT; };
@@ -138,8 +141,6 @@
 		55D2789218297E01008CB6B4 /* MMRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecord.m; sourceTree = "<group>"; };
 		55D2789318297E01008CB6B4 /* MMRecordCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordCache.h; sourceTree = "<group>"; };
 		55D2789418297E01008CB6B4 /* MMRecordCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordCache.m; sourceTree = "<group>"; };
-		55D2789518297E01008CB6B4 /* MMRecordErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordErrors.h; sourceTree = "<group>"; };
-		55D2789618297E01008CB6B4 /* MMRecordLoggers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordLoggers.h; sourceTree = "<group>"; };
 		55D2789718297E01008CB6B4 /* MMRecordMarshaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordMarshaler.h; sourceTree = "<group>"; };
 		55D2789818297E01008CB6B4 /* MMRecordMarshaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordMarshaler.m; sourceTree = "<group>"; };
 		55D2789918297E01008CB6B4 /* MMRecordProtoRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordProtoRecord.h; sourceTree = "<group>"; };
@@ -389,8 +390,8 @@
 				55D2789218297E01008CB6B4 /* MMRecord.m */,
 				55D2789318297E01008CB6B4 /* MMRecordCache.h */,
 				55D2789418297E01008CB6B4 /* MMRecordCache.m */,
-				55D2789518297E01008CB6B4 /* MMRecordErrors.h */,
-				55D2789618297E01008CB6B4 /* MMRecordLoggers.h */,
+				26ECD8A6195B3E8800DBB3C5 /* MMRecordDebugger.h */,
+				26ECD8A7195B3E8800DBB3C5 /* MMRecordDebugger.m */,
 				55D2789718297E01008CB6B4 /* MMRecordMarshaler.h */,
 				55D2789818297E01008CB6B4 /* MMRecordMarshaler.m */,
 				55D2789918297E01008CB6B4 /* MMRecordProtoRecord.h */,
@@ -558,6 +559,7 @@
 				550DFAA41846AF2300E76A6B /* Menu.m in Sources */,
 				26F9870A18666C03000CAF96 /* MMViewController.m in Sources */,
 				55D278AA18297E01008CB6B4 /* MMRecordRepresentation.m in Sources */,
+				26ECD8A8195B3E8800DBB3C5 /* MMRecordDebugger.m in Sources */,
 				55FB3C1A18C1A10400B861BA /* AFMMRecordSessionManagerServer.m in Sources */,
 				55D278B2182980BC008CB6B4 /* FSRecord.m in Sources */,
 				55D278A618297E01008CB6B4 /* MMRecord.m in Sources */,

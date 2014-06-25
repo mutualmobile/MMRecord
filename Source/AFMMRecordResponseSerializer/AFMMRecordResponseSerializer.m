@@ -151,16 +151,6 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
         (*error) = newError;
     }
     
-    // Verify that the server responded in an expected manner.
-    if (!([responseObject isKindOfClass:[NSDictionary class]]) &&
-        !([responseObject isKindOfClass:[NSArray class]])) {
-
-        (*error) = [MMRecord errorWithMMRecordCode:MMRecordErrorCodeInvalidResponseFormat
-                                       description:[NSString stringWithFormat:@"The response object should be an array or dictionary. The returned response object type was: %@", NSStringFromClass([responseObject class])]];
-
-        return nil;
-    }
-    
     NSEntityDescription *initialEntity = [self.entityMapper recordResponseSerializer:self
                                                                    entityForResponse:response
                                                                       responseObject:responseObject
@@ -168,7 +158,24 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
     
     Class managedObjectClass = NSClassFromString([initialEntity managedObjectClassName]);
     
-    MMRecordOptions *options = [AFMMRecordResponseSerializer currentOptionsWithMMRecordSubclass:managedObjectClass];
+    MMRecordOptions *options = [[self class] currentOptionsWithMMRecordSubclass:managedObjectClass];
+    
+    MMRecordDebugger *debugger = [[MMRecordDebugger alloc] init];
+    options.debugger = debugger;
+    
+    // Verify that the server responded in an expected manner.
+    if (!([responseObject isKindOfClass:[NSDictionary class]]) &&
+        !([responseObject isKindOfClass:[NSArray class]])) {
+        NSString *errorDescription = [NSString stringWithFormat:@"The response object should be an array or dictionary. The returned response object type was: %@", NSStringFromClass([responseObject class])];
+        NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterErrorDescription] values:@[errorDescription]];
+        
+        [debugger handleErrorCode:MMRecordErrorCodeInvalidResponseFormat
+                   withParameters:parameters];
+        
+        *error = [debugger primaryError];
+        
+        return nil;
+    }
     
     NSString *keyPathForResponseObject = [options keyPathForResponseObject];
 
@@ -184,6 +191,8 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
     
     NSArray *records = [self recordsFromMMRecordResponse:recordResponse
                                        backgroundContext:backgroundContext];
+    
+    *error = [debugger primaryError];
     
     return records;
 }

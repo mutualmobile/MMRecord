@@ -22,7 +22,7 @@
 
 
 #import "MMRecordCache.h"
-#import "MMRecordLoggers.h"
+#import "MMRecordDebugger.h"
 
 // This class contains a managed object context intended for use with caching records for a given request/response.
 @interface MMRecordCacheDataManager : NSObject
@@ -404,7 +404,7 @@
                                          error:&error]) {
             
         } else {
-            MMRLogError(@"Unable to find or create application support directory:\n%@", error);
+            //MMRLogError(@"Unable to find or create application support directory:\n%@", error);
             url = nil;
         }
     }
@@ -424,7 +424,7 @@
     
     NSManagedObjectModel *model = [self managedObjectModel];
     if (model == nil) {
-        MMRLogError(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
+        //MMRLogError(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
         return nil;
     }
     
@@ -439,7 +439,7 @@
                                                                                options:nil
                                                                                  error:&error];
     if (store == nil) {
-        MMRLogError(@"Failed to create MMRecord internal persistence store: %@", error);
+        //MMRLogError(@"Failed to create MMRecord internal persistence store: %@", error);
     }
     
     return _persistentStoreCoordinator;
@@ -454,11 +454,11 @@
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     
     if (!coordinator) {
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        [dict setValue:@"Failed to initialize the store" forKey:NSLocalizedDescriptionKey];
-        [dict setValue:@"There was an error building up the data file." forKey:NSLocalizedFailureReasonErrorKey];
-        NSError *error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
-        MMRLogError(@"%@", error);
+//        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//        [dict setValue:@"Failed to initialize the store" forKey:NSLocalizedDescriptionKey];
+//        [dict setValue:@"There was an error building up the data file." forKey:NSLocalizedFailureReasonErrorKey];
+//        NSError *error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
+//        MMRLogError(@"%@", error);
         return nil;
     }
     
