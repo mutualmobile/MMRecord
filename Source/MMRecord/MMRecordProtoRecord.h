@@ -37,6 +37,12 @@
    each unique record in the response object.  The proto record is not responsible for that, but it is
    an important consideration for a user of this class to consider.  This class is responsible for 
    populating records with their given dictionary, as well as establishing relationships to it's record.
+ 
+   Note: when the value representing a relationship is a single string or number that MMRecord will
+   convert that string or number into a dictionary with that value, and they primary key identified
+   for that targetted relationship's entity. That means that the representation of a proto record
+   will always be in the form of a dictionary, even if the response object form is a string or a
+   number.
  */
 
 @interface MMRecordProtoRecord : NSObject

@@ -268,6 +268,10 @@
             protoRecord.dictionary = dictionary;
         }
     }
+    
+    if ([dictionary.allKeys count] != [protoRecord.dictionary.allKeys count]) {
+        
+    }
 }
 
 
