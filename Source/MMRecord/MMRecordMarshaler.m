@@ -23,6 +23,7 @@
 #import "MMRecordMarshaler.h"
 
 #import "MMRecord.h"
+#import "MMRecordDebugger.h"
 #import "MMRecordProtoRecord.h"
 #import "MMRecordRepresentation.h"
 
@@ -176,6 +177,11 @@
         if ([relationship isToMany]) {
             [self establishToManyRelationship:relationship fromRecord:fromRecord toRecord:toRecord];
         } else {
+            if (relationship.inverseRelationship != nil && [fromRecord valueForKey:[relationship name]] != nil) {
+                [MMRecordDebugger logMessageWithDescription:
+                 [NSString stringWithFormat:@"Replacing existing value may invalidate an inverse relationship."]];
+            }
+            
             [fromRecord setValue:toRecord forKey:[relationship name]];
         }
     }

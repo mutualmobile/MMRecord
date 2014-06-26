@@ -153,6 +153,20 @@ typedef NS_ENUM(NSInteger, MMRecordErrorCode) {
               minimumLoggingLevel:(MMRecordLoggingLevel)loggingLevel;
 
 /**
+ This method can be used to log a helpful message through the debugger.
+ This message will be handled in a stateless fashion, and will leverage the current logging level
+ set on MMRecord itself.
+ @param description The message you want to display in the log.
+ @param loggingLevel The minimum logging level for the log message.
+ @warning Messages sent to this method will ONLY be logged if the logging level from MMRecord is
+ set to MMRecordLoggingLevelAll.
+ @discussion This method will only log messages when the logging level is set to ALL in order to
+ prevent excessive messages being sent to the console, and also to ensure that only the highest
+ level of logging will include messages sent in a stateless fashion.
+ */
++ (void)logMessageWithDescription:(NSString *)description;
+
+/**
  This is the main error that is associated with this debugger instance. This will be the error
  that gets shown in an MMRecord failureBlock.
  @return NSError an error object with an MMRecord error code and domain.
