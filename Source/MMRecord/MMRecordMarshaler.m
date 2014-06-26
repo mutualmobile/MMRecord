@@ -249,7 +249,35 @@
 
 + (void)mergeDuplicateRecordResponseObjectDictionary:(NSDictionary *)dictionary
                              withExistingProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    // There is no default implementation for this method. Feel free to provide your own :)
+    if ([protoRecord.dictionary.allKeys count] == 1) {
+        NSAttributeDescription *primaryAttributeDescription = protoRecord.representation.primaryAttributeDescription;
+        NSArray *primaryKeyPaths = [protoRecord.representation keyPathsForMappingAttributeDescription:primaryAttributeDescription];
+        
+        BOOL dictionariesContainIdenticalPrimaryKeys = NO;
+        
+        for (NSString *keyPath in primaryKeyPaths) {
+            id dictionaryValue = [dictionary valueForKeyPath:keyPath];
+            id protoRecordValue = [dictionary valueForKeyPath:keyPath];
+            
+            if ([dictionaryValue isKindOfClass:[NSNumber class]] && [protoRecordValue isKindOfClass:[NSNumber class]]) {
+                dictionariesContainIdenticalPrimaryKeys = [dictionaryValue isEqualToNumber:protoRecordValue];
+            } else if ([dictionaryValue isKindOfClass:[NSString class]] && [protoRecordValue isKindOfClass:[NSString class]]) {
+                dictionariesContainIdenticalPrimaryKeys = [dictionaryValue isEqualToString:protoRecordValue];
+            }
+            
+            if (dictionariesContainIdenticalPrimaryKeys) {
+                break;
+            }
+        }
+        
+        if (dictionariesContainIdenticalPrimaryKeys) {
+            protoRecord.dictionary = dictionary;
+        }
+    }
+    
+    if ([dictionary.allKeys count] != [protoRecord.dictionary.allKeys count]) {
+        [MMRecordDebugger logMessageWithDescription:@"Possible inconsistent duplicate records detected. MMRecord provided the opportunity to merge two dictionaries representing the same record, where those two dictionaries were not equal. You may override the MMRecordMarshaler mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord: method to deal with this issue if it becomes a problem. This is not expected behavior and may be due to an response issue."];
+    }
 }
 
 
