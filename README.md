@@ -256,6 +256,7 @@ For reference, here's a truncated version of the App.net User object to illustra
 ```
 
 ## Example Usage
+Here's a few examples of the various types of requests you can make with MMRecord. Notice that AFMMRecordResponseSerializer is a subspec of MMRecord.
 
 ### Standard Request
 
@@ -381,6 +382,7 @@ sessionManager.responseSerializer = serializer;
 ```
 
 ## MMRecordOptions Examples
+`MMRecordOptions` is a way to customize the behavior of a request. One of the ways you can use it is to specify blocks that apply to the following request after you specify a set of options. This allows you to do things like insert a new primary key for a record or specify orphan deletion behaviors.
 
 ### Primary Key Injection
 
@@ -442,6 +444,102 @@ options.deleteOrphanedRecordBlock = ^(MMRecord *orphan,
  failureBlock:failureBlock];
 ```
 
+## Swift Examples
+While MMRecord is implemented in Objective-C, you can also use the library from to build your model in Swift. The main thing you should be aware of when building your model in Swift is that entity managed object class names need to be fully namespaced. An example of that is below.
+  
+<p align="center">
+  <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-swift.png") alt="MMRecord Model Configuration for Swift"/>
+</p>
+
+Note that MMRecordAtlassian is used as the namespace for the Issue class in Swift. This is because the default namespace is the product name for your project. Please be aware that using special characters or spaces in your product name may lead to issues here. Typically those characters get replaced by underscores in your namespace, but for best results, simply use a single word for your product name to avoid issues.
+
+You should also remember to import MMRecord.h, and any of its subspecs you use, in your Objective-C Bridging Header. Then, you're ready to go building your MMRecord model in Swift!
+
+Here's a few examples of using MMRecord in Swift.
+
+### Swift MMRecord Subclass Implementation
+
+```swift
+import CoreData
+
+class Plan: ATLRecord {
+    @NSManaged var name: NSString
+    @NSManaged var id: NSString
+    
+    override class func keyPathForResponseObject() -> String {
+        return "plans.plan"
+    }
+}
+```
+
+### Standard Swift Request
+
+```swift
+Plan.startRequestWithURN("/plans",
+	data: nil,
+	context: managedObjectContext,
+	domain: self,
+	resultBlock: {records in
+		var results: Plan[] = records as Plan[]
+                
+		self.plans = results
+		self.tableView.reloadData()
+	},
+	failureBlock: { error in
+            
+	})
+```
+
+### Swift Request with MMRecordOptions
+
+```swift
+var options = Issue.defaultOptions()
+
+options.entityPrimaryKeyInjectionBlock = {(entity, dictionary, parentProtoRecord) -> NSCopying in
+    let dict = dictionary as Dictionary
+    let key: AnyObject? = dict["id"]
+    let returnKey = key as String
+    return returnKey
+}
+
+options.recordPrePopulationBlock = { protoRecord in
+    let proto: MMRecordProtoRecord = protoRecord
+    let entity: NSEntityDescription = protoRecord.entity
+    
+    var dictionary: AnyObject! = proto.dictionary.mutableCopy()
+    var mutableDictionary: NSMutableDictionary = dictionary as NSMutableDictionary
+    var primaryKey: AnyObject! = ""
+    
+    if (entity.name == "OutwardLink") {
+        primaryKey = mutableDictionary.valueForKeyPath("outwardIssue.key")
+    }
+    
+    if (entity.name == "InwardLink") {
+        primaryKey = mutableDictionary.valueForKeyPath("inwardIssue.key")
+    }
+    
+    mutableDictionary.setValue(primaryKey, forKey: "PrimaryKey")
+    
+    proto.dictionary = mutableDictionary
+}
+
+Issue.setOptions(options)
+
+Issue.startRequestWithURN("/issue",
+	data: nil,
+	context: managedObjectContext,
+	domain: self,
+	resultBlock: { records in
+   		var results: Issue[] = records as Issue[]
+    	
+    	self.results = results
+    	self.tableView.reloadData()
+	},
+	failureBlock: { error in
+    
+	})
+```
+
 ## Tweaks
 
 MMRecord also provides the TweakModel subspec that implements support for Facebook Tweaks. You can use Tweaks to modify most MMRecord parsing and population parameters. This can be useful if you're working on an app where the API is in flux and is still being actively developed. The UI for Tweaks will show you a list of MMRecord entities in your data model, the primary key for each entity, all of the keys used to populate various attributes, and the key path that points to instances of that entity in the data model. Here's how you use it.
@@ -460,6 +558,10 @@ After its setup, here's what the Tweaks UI looks like with MMRecord.
 <p align="center">
   <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-tweaks.png") alt="MMRecord Tweaks UI"/>
 </p>
+
+## Debugging
+
+
 
 ## Requirements
 
