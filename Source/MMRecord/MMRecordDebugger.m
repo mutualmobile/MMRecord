@@ -119,29 +119,38 @@ NSString* const MMRecordDebuggerParameterServerClassName = @"MMRecordDebuggerPar
               minimumLoggingLevel:(MMRecordLoggingLevel)loggingLevel
                  failureCondition:(BOOL)failureCondition
                informationMessage:(BOOL)informationMessage {
-    BOOL shouldPerformLog = [self shouldPerformLogForLoggingLevel:loggingLevel];
+    BOOL shouldPerformLog = [[self class] shouldPerformLogForLoggingLevel:loggingLevel
+                                                             currentLevel:self.loggingLevel];
 
     if (shouldPerformLog) {
-#if MMRecordLumberjack
-        if (failureCondition) {
-            MMRLogError(@"%@.", description);
-        } else if (informationMessage) {
-            MMRLogInfo(@"%@.", description);
-        } else {
-            MMRLogWarn(@"%@.", description);
-        }
-#else
-        NSString *logPrefix = @"--[MMRecord WARNING]-- %@.";
-        
-        if (failureCondition) {
-            logPrefix = @"--[MMRecord ERROR]-- %@.";
-        } else if (informationMessage) {
-            logPrefix = @"--[MMRecord INFO]-- %@.";
-        }
-        
-        NSLog(logPrefix, description);
-#endif
+        [[self class] logMessageWithDescription:description
+                               failureCondition:failureCondition
+                             informationMessage:informationMessage];
     }
+}
+
++ (void)logMessageWithDescription:(NSString *)description
+                 failureCondition:(BOOL)failureCondition
+               informationMessage:(BOOL)informationMessage {
+#if MMRecordLumberjack
+    if (failureCondition) {
+        MMRLogError(@"%@.", description);
+    } else if (informationMessage) {
+        MMRLogInfo(@"%@.", description);
+    } else {
+        MMRLogWarn(@"%@.", description);
+    }
+#else
+    NSString *logPrefix = @"--[MMRecord WARNING]-- %@.";
+    
+    if (failureCondition) {
+        logPrefix = @"--[MMRecord ERROR]-- %@.";
+    } else if (informationMessage) {
+        logPrefix = @"--[MMRecord INFO]-- %@.";
+    }
+    
+    NSLog(logPrefix, description);
+#endif
 }
 
 - (MMRecordLoggingLevel)loggingLevelForErrorCode:(MMRecordErrorCode)errorCode {
@@ -161,10 +170,8 @@ NSString* const MMRecordDebuggerParameterServerClassName = @"MMRecordDebuggerPar
     return MMRecordLoggingLevelAll;
 }
 
-- (BOOL)shouldPerformLogForLoggingLevel:(MMRecordLoggingLevel)loggingLevel {
-    MMRecordLoggingLevel currentLevel = self.loggingLevel;
-    MMRecordLoggingLevel minimumLevel = loggingLevel;
-    
++ (BOOL)shouldPerformLogForLoggingLevel:(MMRecordLoggingLevel)minimumLevel
+                           currentLevel:(MMRecordLoggingLevel)currentLevel {
     // Any logging level equal to or lower than the current level should be logged.
     if (currentLevel >= minimumLevel &&
         currentLevel > MMRecordLoggingLevelNone) {
@@ -211,6 +218,15 @@ NSString* const MMRecordDebuggerParameterServerClassName = @"MMRecordDebuggerPar
                 minimumLoggingLevel:loggingLevel
                    failureCondition:failureConditionError
                  informationMessage:NO];
+}
+
++ (void)logMessageWithDescription:(NSString *)description {
+    BOOL shouldPerformLog = [self shouldPerformLogForLoggingLevel:MMRecordLoggingLevelAll
+                                                     currentLevel:[MMRecord loggingLevel]];
+    
+    if (shouldPerformLog) {
+        [self logMessageWithDescription:description failureCondition:NO informationMessage:YES];
+    }
 }
 
 - (NSString *)descriptionForErrorCode:(MMRecordErrorCode)errorCode {
