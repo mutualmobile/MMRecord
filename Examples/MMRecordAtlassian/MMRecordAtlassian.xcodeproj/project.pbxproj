@@ -11,15 +11,6 @@
 		26FA0E9E19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0E9C19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld */; };
 		26FA0EA319551BDB008068A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26FA0EA119551BDB008068A2 /* Main.storyboard */; };
 		26FA0EA519551BDB008068A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26FA0EA419551BDB008068A2 /* Images.xcassets */; };
-		26FA0EDD19551E07008068A2 /* MMRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0EC619551E07008068A2 /* MMRecord.m */; };
-		26FA0EDE19551E07008068A2 /* MMRecordCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0EC819551E07008068A2 /* MMRecordCache.m */; };
-		26FA0EDF19551E07008068A2 /* MMRecordMarshaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0ECC19551E07008068A2 /* MMRecordMarshaler.m */; };
-		26FA0EE019551E07008068A2 /* MMRecordProtoRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0ECE19551E07008068A2 /* MMRecordProtoRecord.m */; };
-		26FA0EE119551E07008068A2 /* MMRecordRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0ED019551E07008068A2 /* MMRecordRepresentation.m */; };
-		26FA0EE219551E07008068A2 /* MMRecordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0ED219551E07008068A2 /* MMRecordResponse.m */; };
-		26FA0EE319551E07008068A2 /* MMServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0ED419551E07008068A2 /* MMServer.m */; };
-		26FA0EE419551E07008068A2 /* MMServerPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0ED619551E07008068A2 /* MMServerPageManager.m */; };
-		26FA0EE519551E07008068A2 /* MMJSONServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0ED919551E07008068A2 /* MMJSONServer.m */; };
 		26FA0F0919551E91008068A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0F0419551E91008068A2 /* AppDelegate.swift */; };
 		26FA0F0A19551E91008068A2 /* PlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0F0819551E91008068A2 /* PlansViewController.swift */; };
 		26FA0F1219552760008068A2 /* plans.json in Resources */ = {isa = PBXBuildFile; fileRef = 26FA0F1119552760008068A2 /* plans.json */; };
@@ -30,6 +21,16 @@
 		26FC7C38195A64600066A195 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC7C35195A64600066A195 /* Link.swift */; };
 		26FC7C39195A64600066A195 /* OutwardLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC7C36195A64600066A195 /* OutwardLink.swift */; };
 		26FC7C3B195A65050066A195 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC7C3A195A65050066A195 /* Issue.swift */; };
+		55A1CC1F195B9C6A007FBCB8 /* MMRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC0B195B9C6A007FBCB8 /* MMRecord.m */; };
+		55A1CC20195B9C6A007FBCB8 /* MMRecordCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC0D195B9C6A007FBCB8 /* MMRecordCache.m */; };
+		55A1CC21195B9C6A007FBCB8 /* MMRecordDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC0F195B9C6A007FBCB8 /* MMRecordDebugger.m */; };
+		55A1CC22195B9C6A007FBCB8 /* MMRecordMarshaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC11195B9C6A007FBCB8 /* MMRecordMarshaler.m */; };
+		55A1CC23195B9C6A007FBCB8 /* MMRecordProtoRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC13195B9C6A007FBCB8 /* MMRecordProtoRecord.m */; };
+		55A1CC24195B9C6A007FBCB8 /* MMRecordRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC15195B9C6A007FBCB8 /* MMRecordRepresentation.m */; };
+		55A1CC25195B9C6A007FBCB8 /* MMRecordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC17195B9C6A007FBCB8 /* MMRecordResponse.m */; };
+		55A1CC26195B9C6A007FBCB8 /* MMServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC19195B9C6A007FBCB8 /* MMServer.m */; };
+		55A1CC27195B9C6A007FBCB8 /* MMServerPageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC1B195B9C6A007FBCB8 /* MMServerPageManager.m */; };
+		55A1CC28195B9C6A007FBCB8 /* MMJSONServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A1CC1E195B9C6A007FBCB8 /* MMJSONServer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,26 +40,6 @@
 		26FA0E9D19551BDB008068A2 /* MMRecordAtlassian.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MMRecordAtlassian.xcdatamodel; sourceTree = "<group>"; };
 		26FA0EA219551BDB008068A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		26FA0EA419551BDB008068A2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		26FA0EC519551E07008068A2 /* MMRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecord.h; sourceTree = "<group>"; };
-		26FA0EC619551E07008068A2 /* MMRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecord.m; sourceTree = "<group>"; };
-		26FA0EC719551E07008068A2 /* MMRecordCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordCache.h; sourceTree = "<group>"; };
-		26FA0EC819551E07008068A2 /* MMRecordCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordCache.m; sourceTree = "<group>"; };
-		26FA0EC919551E07008068A2 /* MMRecordErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordErrors.h; sourceTree = "<group>"; };
-		26FA0ECA19551E07008068A2 /* MMRecordLoggers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordLoggers.h; sourceTree = "<group>"; };
-		26FA0ECB19551E07008068A2 /* MMRecordMarshaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordMarshaler.h; sourceTree = "<group>"; };
-		26FA0ECC19551E07008068A2 /* MMRecordMarshaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordMarshaler.m; sourceTree = "<group>"; };
-		26FA0ECD19551E07008068A2 /* MMRecordProtoRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordProtoRecord.h; sourceTree = "<group>"; };
-		26FA0ECE19551E07008068A2 /* MMRecordProtoRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordProtoRecord.m; sourceTree = "<group>"; };
-		26FA0ECF19551E07008068A2 /* MMRecordRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordRepresentation.h; sourceTree = "<group>"; };
-		26FA0ED019551E07008068A2 /* MMRecordRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordRepresentation.m; sourceTree = "<group>"; };
-		26FA0ED119551E07008068A2 /* MMRecordResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordResponse.h; sourceTree = "<group>"; };
-		26FA0ED219551E07008068A2 /* MMRecordResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordResponse.m; sourceTree = "<group>"; };
-		26FA0ED319551E07008068A2 /* MMServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMServer.h; sourceTree = "<group>"; };
-		26FA0ED419551E07008068A2 /* MMServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMServer.m; sourceTree = "<group>"; };
-		26FA0ED519551E07008068A2 /* MMServerPageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMServerPageManager.h; sourceTree = "<group>"; };
-		26FA0ED619551E07008068A2 /* MMServerPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMServerPageManager.m; sourceTree = "<group>"; };
-		26FA0ED819551E07008068A2 /* MMJSONServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMJSONServer.h; sourceTree = "<group>"; };
-		26FA0ED919551E07008068A2 /* MMJSONServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMJSONServer.m; sourceTree = "<group>"; };
 		26FA0F0419551E91008068A2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26FA0F0819551E91008068A2 /* PlansViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlansViewController.swift; sourceTree = "<group>"; };
 		26FA0F0B19551EAE008068A2 /* ATLRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATLRecord.swift; sourceTree = "<group>"; };
@@ -70,6 +51,26 @@
 		26FC7C35195A64600066A195 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		26FC7C36195A64600066A195 /* OutwardLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutwardLink.swift; sourceTree = "<group>"; };
 		26FC7C3A195A65050066A195 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
+		55A1CC0A195B9C6A007FBCB8 /* MMRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecord.h; sourceTree = "<group>"; };
+		55A1CC0B195B9C6A007FBCB8 /* MMRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecord.m; sourceTree = "<group>"; };
+		55A1CC0C195B9C6A007FBCB8 /* MMRecordCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordCache.h; sourceTree = "<group>"; };
+		55A1CC0D195B9C6A007FBCB8 /* MMRecordCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordCache.m; sourceTree = "<group>"; };
+		55A1CC0E195B9C6A007FBCB8 /* MMRecordDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordDebugger.h; sourceTree = "<group>"; };
+		55A1CC0F195B9C6A007FBCB8 /* MMRecordDebugger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordDebugger.m; sourceTree = "<group>"; };
+		55A1CC10195B9C6A007FBCB8 /* MMRecordMarshaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordMarshaler.h; sourceTree = "<group>"; };
+		55A1CC11195B9C6A007FBCB8 /* MMRecordMarshaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordMarshaler.m; sourceTree = "<group>"; };
+		55A1CC12195B9C6A007FBCB8 /* MMRecordProtoRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordProtoRecord.h; sourceTree = "<group>"; };
+		55A1CC13195B9C6A007FBCB8 /* MMRecordProtoRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordProtoRecord.m; sourceTree = "<group>"; };
+		55A1CC14195B9C6A007FBCB8 /* MMRecordRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordRepresentation.h; sourceTree = "<group>"; };
+		55A1CC15195B9C6A007FBCB8 /* MMRecordRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordRepresentation.m; sourceTree = "<group>"; };
+		55A1CC16195B9C6A007FBCB8 /* MMRecordResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordResponse.h; sourceTree = "<group>"; };
+		55A1CC17195B9C6A007FBCB8 /* MMRecordResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordResponse.m; sourceTree = "<group>"; };
+		55A1CC18195B9C6A007FBCB8 /* MMServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMServer.h; sourceTree = "<group>"; };
+		55A1CC19195B9C6A007FBCB8 /* MMServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMServer.m; sourceTree = "<group>"; };
+		55A1CC1A195B9C6A007FBCB8 /* MMServerPageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMServerPageManager.h; sourceTree = "<group>"; };
+		55A1CC1B195B9C6A007FBCB8 /* MMServerPageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMServerPageManager.m; sourceTree = "<group>"; };
+		55A1CC1D195B9C6A007FBCB8 /* MMJSONServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMJSONServer.h; sourceTree = "<group>"; };
+		55A1CC1E195B9C6A007FBCB8 /* MMJSONServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMJSONServer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,10 +124,10 @@
 		26FA0E9719551BDB008068A2 /* MMRecordAtlassian */ = {
 			isa = PBXGroup;
 			children = (
+				55A1CC08195B9C61007FBCB8 /* Vendor */,
 				26FA0F0319551E91008068A2 /* Classes */,
 				26FA0F0D19551F89008068A2 /* Resources */,
 				26FA0E9819551BDB008068A2 /* Supporting Files */,
-				26FA0EBB19551DDC008068A2 /* Vendor */,
 			);
 			path = MMRecordAtlassian;
 			sourceTree = "<group>";
@@ -138,51 +139,6 @@
 				26FA0F0E19551FB1008068A2 /* MMRecordAtlassian-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		26FA0EBB19551DDC008068A2 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				26FA0EC419551E07008068A2 /* MMRecord */,
-				26FA0ED719551E07008068A2 /* MMRecordJSONServer */,
-			);
-			path = Vendor;
-			sourceTree = "<group>";
-		};
-		26FA0EC419551E07008068A2 /* MMRecord */ = {
-			isa = PBXGroup;
-			children = (
-				26FA0EC519551E07008068A2 /* MMRecord.h */,
-				26FA0EC619551E07008068A2 /* MMRecord.m */,
-				26FA0EC719551E07008068A2 /* MMRecordCache.h */,
-				26FA0EC819551E07008068A2 /* MMRecordCache.m */,
-				26FA0EC919551E07008068A2 /* MMRecordErrors.h */,
-				26FA0ECA19551E07008068A2 /* MMRecordLoggers.h */,
-				26FA0ECB19551E07008068A2 /* MMRecordMarshaler.h */,
-				26FA0ECC19551E07008068A2 /* MMRecordMarshaler.m */,
-				26FA0ECD19551E07008068A2 /* MMRecordProtoRecord.h */,
-				26FA0ECE19551E07008068A2 /* MMRecordProtoRecord.m */,
-				26FA0ECF19551E07008068A2 /* MMRecordRepresentation.h */,
-				26FA0ED019551E07008068A2 /* MMRecordRepresentation.m */,
-				26FA0ED119551E07008068A2 /* MMRecordResponse.h */,
-				26FA0ED219551E07008068A2 /* MMRecordResponse.m */,
-				26FA0ED319551E07008068A2 /* MMServer.h */,
-				26FA0ED419551E07008068A2 /* MMServer.m */,
-				26FA0ED519551E07008068A2 /* MMServerPageManager.h */,
-				26FA0ED619551E07008068A2 /* MMServerPageManager.m */,
-			);
-			name = MMRecord;
-			path = ../../../../Source/MMRecord;
-			sourceTree = "<group>";
-		};
-		26FA0ED719551E07008068A2 /* MMRecordJSONServer */ = {
-			isa = PBXGroup;
-			children = (
-				26FA0ED819551E07008068A2 /* MMJSONServer.h */,
-				26FA0ED919551E07008068A2 /* MMJSONServer.m */,
-			);
-			name = MMRecordJSONServer;
-			path = ../../../../Source/MMRecordJSONServer;
 			sourceTree = "<group>";
 		};
 		26FA0F0319551E91008068A2 /* Classes */ = {
@@ -222,6 +178,51 @@
 				26FA0EA419551BDB008068A2 /* Images.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		55A1CC08195B9C61007FBCB8 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				55A1CC09195B9C6A007FBCB8 /* MMRecord */,
+				55A1CC1C195B9C6A007FBCB8 /* MMRecordJSONServer */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		55A1CC09195B9C6A007FBCB8 /* MMRecord */ = {
+			isa = PBXGroup;
+			children = (
+				55A1CC0A195B9C6A007FBCB8 /* MMRecord.h */,
+				55A1CC0B195B9C6A007FBCB8 /* MMRecord.m */,
+				55A1CC0C195B9C6A007FBCB8 /* MMRecordCache.h */,
+				55A1CC0D195B9C6A007FBCB8 /* MMRecordCache.m */,
+				55A1CC0E195B9C6A007FBCB8 /* MMRecordDebugger.h */,
+				55A1CC0F195B9C6A007FBCB8 /* MMRecordDebugger.m */,
+				55A1CC10195B9C6A007FBCB8 /* MMRecordMarshaler.h */,
+				55A1CC11195B9C6A007FBCB8 /* MMRecordMarshaler.m */,
+				55A1CC12195B9C6A007FBCB8 /* MMRecordProtoRecord.h */,
+				55A1CC13195B9C6A007FBCB8 /* MMRecordProtoRecord.m */,
+				55A1CC14195B9C6A007FBCB8 /* MMRecordRepresentation.h */,
+				55A1CC15195B9C6A007FBCB8 /* MMRecordRepresentation.m */,
+				55A1CC16195B9C6A007FBCB8 /* MMRecordResponse.h */,
+				55A1CC17195B9C6A007FBCB8 /* MMRecordResponse.m */,
+				55A1CC18195B9C6A007FBCB8 /* MMServer.h */,
+				55A1CC19195B9C6A007FBCB8 /* MMServer.m */,
+				55A1CC1A195B9C6A007FBCB8 /* MMServerPageManager.h */,
+				55A1CC1B195B9C6A007FBCB8 /* MMServerPageManager.m */,
+			);
+			name = MMRecord;
+			path = ../../../Source/MMRecord;
+			sourceTree = "<group>";
+		};
+		55A1CC1C195B9C6A007FBCB8 /* MMRecordJSONServer */ = {
+			isa = PBXGroup;
+			children = (
+				55A1CC1D195B9C6A007FBCB8 /* MMJSONServer.h */,
+				55A1CC1E195B9C6A007FBCB8 /* MMJSONServer.m */,
+			);
+			name = MMRecordJSONServer;
+			path = ../../../Source/MMRecordJSONServer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,25 +296,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55A1CC25195B9C6A007FBCB8 /* MMRecordResponse.m in Sources */,
+				55A1CC21195B9C6A007FBCB8 /* MMRecordDebugger.m in Sources */,
 				26FC7C38195A64600066A195 /* Link.swift in Sources */,
+				55A1CC22195B9C6A007FBCB8 /* MMRecordMarshaler.m in Sources */,
 				26FC7C32195A641F0066A195 /* Plan.swift in Sources */,
 				26AF57BA195A58FF00D1D3A7 /* IssuesViewController.swift in Sources */,
+				55A1CC20195B9C6A007FBCB8 /* MMRecordCache.m in Sources */,
+				55A1CC23195B9C6A007FBCB8 /* MMRecordProtoRecord.m in Sources */,
 				26FC7C3B195A65050066A195 /* Issue.swift in Sources */,
-				26FA0EDD19551E07008068A2 /* MMRecord.m in Sources */,
-				26FA0EE519551E07008068A2 /* MMJSONServer.m in Sources */,
 				26FA0F0A19551E91008068A2 /* PlansViewController.swift in Sources */,
 				26FC7C39195A64600066A195 /* OutwardLink.swift in Sources */,
-				26FA0EE419551E07008068A2 /* MMServerPageManager.m in Sources */,
-				26FA0EE119551E07008068A2 /* MMRecordRepresentation.m in Sources */,
 				26FA0F0919551E91008068A2 /* AppDelegate.swift in Sources */,
-				26FA0EDF19551E07008068A2 /* MMRecordMarshaler.m in Sources */,
-				26FA0EE019551E07008068A2 /* MMRecordProtoRecord.m in Sources */,
+				55A1CC28195B9C6A007FBCB8 /* MMJSONServer.m in Sources */,
 				26FC7C33195A64260066A195 /* ATLRecord.swift in Sources */,
-				26FA0EE219551E07008068A2 /* MMRecordResponse.m in Sources */,
+				55A1CC1F195B9C6A007FBCB8 /* MMRecord.m in Sources */,
+				55A1CC26195B9C6A007FBCB8 /* MMServer.m in Sources */,
 				26FA0E9E19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld in Sources */,
-				26FA0EDE19551E07008068A2 /* MMRecordCache.m in Sources */,
+				55A1CC27195B9C6A007FBCB8 /* MMServerPageManager.m in Sources */,
 				26FC7C31195A64130066A195 /* InwardLink.swift in Sources */,
-				26FA0EE319551E07008068A2 /* MMServer.m in Sources */,
+				55A1CC24195B9C6A007FBCB8 /* MMRecordRepresentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
