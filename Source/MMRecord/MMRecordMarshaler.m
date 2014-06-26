@@ -276,7 +276,7 @@
     }
     
     if ([dictionary.allKeys count] != [protoRecord.dictionary.allKeys count]) {
-        
+        [MMRecordDebugger logMessageWithDescription:@"Possible inconsistent duplicate records detected. MMRecord provided the opportunity to merge two dictionaries representing the same record, where those two dictionaries were not equal. You may override the MMRecordMarshaler mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord: method to deal with this issue if it becomes a problem. This is not expected behavior and may be due to an response issue."];
     }
 }
 
