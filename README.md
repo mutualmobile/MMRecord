@@ -28,6 +28,9 @@ Keep reading to learn more about how to start using MMRecord in your project!
 - [Download MMRecord](https://github.com/mutualmobile/MMRecord/archive/master.zip) and try out the included example apps.
 - Continue reading the integration instructions below.
 - Check out the [documentation](http://mutualmobile.github.com/MMRecord/Documentation/) for all the rest of the details.
+- Review the [examples](https://github.com/mutualmobile/MMRecord#example-usage) below for inspiration on specific usage.
+- Read about MMRecord's support for [Swift](https://github.com/mutualmobile/MMRecord#swift-examples) and [Tweaks](https://github.com/mutualmobile/MMRecord#tweaks).
+- If you run into any issues, check out some useful [debugging](https://github.com/mutualmobile/MMRecord#debugging) tips.
 
 ---
 ##Installing MMRecord
@@ -35,7 +38,7 @@ Keep reading to learn more about how to start using MMRecord in your project!
 You can install MMRecord in your project by using [CocoaPods](https://github.com/cocoapods/cocoapods):
 
 ```Ruby
-pod 'MMRecord', '~> 1.3.0'
+pod 'MMRecord', '~> 1.4.0'
 ```
 
 ## Overview
@@ -256,6 +259,7 @@ For reference, here's a truncated version of the App.net User object to illustra
 ```
 
 ## Example Usage
+Here's a few examples of the various types of requests you can make with MMRecord. Notice that AFMMRecordResponseSerializer is a subspec of MMRecord.
 
 ### Standard Request
 
@@ -381,6 +385,7 @@ sessionManager.responseSerializer = serializer;
 ```
 
 ## MMRecordOptions Examples
+`MMRecordOptions` is a way to customize the behavior of a request. One of the ways you can use it is to specify blocks that apply to the following request after you specify a set of options. This allows you to do things like insert a new primary key for a record or specify orphan deletion behaviors.
 
 ### Primary Key Injection
 
@@ -442,6 +447,102 @@ options.deleteOrphanedRecordBlock = ^(MMRecord *orphan,
  failureBlock:failureBlock];
 ```
 
+## Swift Examples
+While MMRecord is implemented in Objective-C, you can also use the library from to build your model in Swift. The main thing you should be aware of when building your model in Swift is that entity managed object class names need to be fully namespaced. An example of that is below.
+  
+<p align="center">
+  <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-swift.png") alt="MMRecord Model Configuration for Swift"/>
+</p>
+
+Note that MMRecordAtlassian is used as the namespace for the Issue class in Swift. This is because the default namespace is the product name for your project. Please be aware that using special characters or spaces in your product name may lead to issues here. Typically those characters get replaced by underscores in your namespace, but for best results, simply use a single word for your product name to avoid issues.
+
+You should also remember to import MMRecord.h, and any of its subspecs you use, in your Objective-C Bridging Header. Then, you're ready to go building your MMRecord model in Swift!
+
+Here's a few examples of using MMRecord in Swift.
+
+### Swift MMRecord Subclass Implementation
+
+```swift
+import CoreData
+
+class Plan: ATLRecord {
+    @NSManaged var name: NSString
+    @NSManaged var id: NSString
+    
+    override class func keyPathForResponseObject() -> String {
+        return "plans.plan"
+    }
+}
+```
+
+### Standard Swift Request
+
+```swift
+Plan.startRequestWithURN("/plans",
+	data: nil,
+	context: managedObjectContext,
+	domain: self,
+	resultBlock: {records in
+		var results: Plan[] = records as Plan[]
+                
+		self.plans = results
+		self.tableView.reloadData()
+	},
+	failureBlock: { error in
+            
+	})
+```
+
+### Swift Request with MMRecordOptions
+
+```swift
+var options = Issue.defaultOptions()
+
+options.entityPrimaryKeyInjectionBlock = {(entity, dictionary, parentProtoRecord) -> NSCopying in
+    let dict = dictionary as Dictionary
+    let key: AnyObject? = dict["id"]
+    let returnKey = key as String
+    return returnKey
+}
+
+options.recordPrePopulationBlock = { protoRecord in
+    let proto: MMRecordProtoRecord = protoRecord
+    let entity: NSEntityDescription = protoRecord.entity
+    
+    var dictionary: AnyObject! = proto.dictionary.mutableCopy()
+    var mutableDictionary: NSMutableDictionary = dictionary as NSMutableDictionary
+    var primaryKey: AnyObject! = ""
+    
+    if (entity.name == "OutwardLink") {
+        primaryKey = mutableDictionary.valueForKeyPath("outwardIssue.key")
+    }
+    
+    if (entity.name == "InwardLink") {
+        primaryKey = mutableDictionary.valueForKeyPath("inwardIssue.key")
+    }
+    
+    mutableDictionary.setValue(primaryKey, forKey: "PrimaryKey")
+    
+    proto.dictionary = mutableDictionary
+}
+
+Issue.setOptions(options)
+
+Issue.startRequestWithURN("/issue",
+	data: nil,
+	context: managedObjectContext,
+	domain: self,
+	resultBlock: { records in
+   		var results: Issue[] = records as Issue[]
+    	
+    	self.results = results
+    	self.tableView.reloadData()
+	},
+	failureBlock: { error in
+    
+	})
+```
+
 ## Tweaks
 
 MMRecord also provides the TweakModel subspec that implements support for Facebook Tweaks. You can use Tweaks to modify most MMRecord parsing and population parameters. This can be useful if you're working on an app where the API is in flux and is still being actively developed. The UI for Tweaks will show you a list of MMRecord entities in your data model, the primary key for each entity, all of the keys used to populate various attributes, and the key path that points to instances of that entity in the data model. Here's how you use it.
@@ -461,9 +562,47 @@ After its setup, here's what the Tweaks UI looks like with MMRecord.
   <img src="https://www.github.com/mutualmobile/MMRecord/raw/gh-pages/Images/MMRecord-tweaks.png") alt="MMRecord Tweaks UI"/>
 </p>
 
+## Debugging
+
+`MMRecordDebugger` is a class used by `MMRecord` to provide debugging information back to you about how your model is configured and how MMRecord is handling the response handed to it by your server class. You can use MMRecordDebugger to help resolve issues that may exist in your model configuration, or identify inconsistencies with your response format.
+
+MMRecord is designed to make it as fast and easy as possible to serialize managed objects from a web service. One of the goals of the library is to provide meaningful means of customization to support all sorts of response formats, while still maintaining an easy to use primary interface that does not require excessive configuration and setup. In most cases, the amount of configuration and customization required by a user of MMRecord will depend on how complex the response format of your web service is.
+
+When MMRecord encounters an error while handling a request it may take a few measures based on the severity of the error.
+
+- Assertions. In some cases, like if a managed object class being populated is not a subclass of MMRecord, an assertion will be thrown.
+- Logs. In many cases, MMRecord will log a message containing the error to the console. By default MMRecord will not actually print anything to the console, unless you specify a logging level manually. This is for security reasons.
+- Non-failure Errors. In some cases, MMRecord will create an `NSError` describing an issue, and associate it with the `MMRecordDebugger`. However, if the error isn't serious enough, the request will not fail.
+- Failure Errors. In several cases, MMRecord will create an `NSError` describing a critical issue it encountered while handling a request. These errors are associated with the debugger, and will be passed back into the failureBlock indicating a reason that the request failed.
+
+If you encounter issues with a request, your first step should be to enable MMRecord logging, using the command below.
+
+```objective-c
+[MMRecord setLoggingLevel:MMRecordLoggingLevelAll];
+```
+
+You can lower the logging level incrementally to receive finer grained logging information, but its a good idea to start with the highest level to get a broader picture of what is going on.
+
+If your request is failing, you can use the `NSError` object that is passed into the failure block to review all sorts of data about the failure. The error parameter in the failure block will actually include the `MMRecordDebugger` instance, which contains all of the errors encountered while handling the request, and various bits of state relevant to the critical error.
+
+The debugger is attached to the `NSError` in its userInfo dictionary. Here's an example of how you can use it.
+
+```objective-c
+     failureBlock:^(NSError *error) {
+         NSDictionary *recordDictionary = [[error userInfo] valueForKey:MMRecordDebuggerParameterRecordDictionary];
+         
+         MMRecordDebugger *debugger = [[error userInfo] valueForKey:MMRecordDebuggerKey];
+         NSArray *allErrors = [debugger errorsEncounteredWhileHandlingResponse];
+         id responseObject = [debugger responseObject];
+         NSString *entityName = [[debugger initialEntity] name];
+     }];
+```
+
+If you encounter errors that you would like to see tracked, or have suggestions about the severity of some errors, please create an issue or file a pull request.
+
 ## Requirements
 
-MMRecord 1.3.0 and higher requires either [iOS 6.0](https://developer.apple.com/library/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS6.html) and above, or [Mac OS 10.8](https://developer.apple.com/library/mac/releasenotes/macosx/whatsnewinosx/Articles/MacOSX10_8.html) ([64-bit with modern Cocoa runtime](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtVersionsPlatforms.html)) and above.
+MMRecord 1.4.0 and higher requires either [iOS 6.0](https://developer.apple.com/library/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS6.html) and above, or [Mac OS 10.8](https://developer.apple.com/library/mac/releasenotes/macosx/whatsnewinosx/Articles/MacOSX10_8.html) ([64-bit with modern Cocoa runtime](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtVersionsPlatforms.html)) and above.
 
 ### ARC
 
