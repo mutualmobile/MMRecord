@@ -25,7 +25,8 @@
 @class MMRecord;
 @class MMRecordProtoRecord;
 
-/** This class is the main sheriff in town for populating an instance of MMRecord. This class holds
+/** 
+ This class is the main sheriff in town for populating an instance of MMRecord. This class holds
  no state but takes as parameters the proto records which hold all of the information necesary to
  populate the record that they hold. This class is meant to be subclassed, although this is the base
  implementation of the marshaler. The class that will be used to marshal a record of a given type of

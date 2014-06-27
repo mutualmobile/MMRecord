@@ -172,7 +172,10 @@ typedef NS_ENUM(NSInteger, MMRecordErrorCode) {
  */
 - (NSError *)primaryError;
 
-// Way to provide access to every single error thrown by MMRecord
+/**
+ Way to provide access to every single error thrown by MMRecord.
+ @return NSArray an array of errors encountered while handling the response.
+ */
 - (NSArray *)errorsEncounteredWhileHandlingResponse;
 
 /**
