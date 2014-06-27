@@ -1,5 +1,25 @@
 #MMRecord Changelog
 
+##[1.4.0](https://github.com/mutualmobile/MMRecord/issues?milestone=6&state=closed) (Friday, June 27th, 2014)
+**New**
+* Improved support for sub-entity inheritance. [#50](https://github.com/mutualmobile/MMRecord/issues/50) (Andrea Cremaschi)
+* Improved support for sub-entity inheritance in relationships. [#52](https://github.com/mutualmobile/MMRecord/pull/52) (Ian Dundas)
+* Added logging and tracking of Core Data errors. [#53](https://github.com/mutualmobile/MMRecord/issues/53) (Viktor Krykun)
+* Improved error handling for invalid response formats. [#54](https://github.com/mutualmobile/MMRecord/pull/54) (Jeremy Hilts)
+* Added support for MMRecordOptions and the entityPrimaryKeyInjectionBlock in AFMMRecordResponseSerializer. [#56](https://github.com/mutualmobile/MMRecord/issues/56) (Ian Dundas, Jon Brooks, Conrad Stoll)
+* Added a new subclassing option for customizing the primary key for a representation. [#58](https://github.com/mutualmobile/MMRecord/pull/58) (Conrad Stoll)
+* Added a new MMRecordDebugger class for improving the MMRecord debugging experience. [#59](https://github.com/mutualmobile/MMRecord/pull/59) (Conrad Stoll)
+* Added support for merging duplicate dictionaries that represent a single record. [#60](https://github.com/mutualmobile/MMRecord/pull/60) (Andrea Cremaschi and Conrad Stoll)
+* Added support for Swift, and a new MMRecordAtlassian example project written in Swift. [#74](https://github.com/mutualmobile/MMRecord/pull/74) (Conrad Stoll)
+* Added logging to handle an issue where setting an existing relationship may invalidate an existing inverse relationship. [#75](https://github.com/mutualmobile/MMRecord/issues/75) (Alex Malek)
+* Added support for Facebook Tweaks. [#77](https://github.com/mutualmobile/MMRecord/pull/77) (Conrad Stoll)
+
+**Fixed**
+* **FIXED** an issue([#45](https://github.com/mutualmobile/MMRecord/issues/45)) where the AFMMRecordResponseSerializer did not pass through AFNetworking 2.0 errors. (Brian Watson)
+* **FIXED** an issue([#46](https://github.com/mutualmobile/MMRecord/issues/46)) where the AFMMRecordResponseSerializer did not handle root level response objects. (Andrea Cremaschi)
+* **FIXED** an issue([#55](https://github.com/mutualmobile/MMRecord/pull/55)) where the MMRecordMarshaler did not iterate through all potential key paths. (Nick Bolton)
+
+
 ##[1.3.0](https://github.com/mutualmobile/MMRecord/issues?milestone=6&state=closed) (Tuesday, March 4th, 2014)
 **New**
 * Added a new way to inject a primary key into the population system. [#41](https://github.com/mutualmobile/MMRecord/pull/41) (Conrad Stoll)

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'MMRecord'
-  s.version  = '1.3.0'
+  s.version  = '1.4.0'
   s.license  = 'MIT'
   s.summary  = 'A simple block based web service integration library.'
   s.homepage = 'https://github.com/MutualMobile/MMRecord'

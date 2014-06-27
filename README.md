@@ -38,7 +38,7 @@ Keep reading to learn more about how to start using MMRecord in your project!
 You can install MMRecord in your project by using [CocoaPods](https://github.com/cocoapods/cocoapods):
 
 ```Ruby
-pod 'MMRecord', '~> 1.3.0'
+pod 'MMRecord', '~> 1.4.0'
 ```
 
 ## Overview
@@ -602,7 +602,7 @@ If you encounter errors that you would like to see tracked, or have suggestions 
 
 ## Requirements
 
-MMRecord 1.3.0 and higher requires either [iOS 6.0](https://developer.apple.com/library/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS6.html) and above, or [Mac OS 10.8](https://developer.apple.com/library/mac/releasenotes/macosx/whatsnewinosx/Articles/MacOSX10_8.html) ([64-bit with modern Cocoa runtime](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtVersionsPlatforms.html)) and above.
+MMRecord 1.4.0 and higher requires either [iOS 6.0](https://developer.apple.com/library/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS6.html) and above, or [Mac OS 10.8](https://developer.apple.com/library/mac/releasenotes/macosx/whatsnewinosx/Articles/MacOSX10_8.html) ([64-bit with modern Cocoa runtime](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtVersionsPlatforms.html)) and above.
 
 ### ARC
 
