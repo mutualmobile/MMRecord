@@ -545,7 +545,7 @@ Issue.startRequestWithURN("/issue",
 
 ## Tweaks
 
-`MMRecord` also provides the TweakModel subspec that implements support for Facebook Tweaks. You can use Tweaks to modify most `MMRecord` parsing and population parameters. This can be useful if you're working on an app where the API is in flux and is still being actively developed. The UI for Tweaks will show you a list of MMRecord entities in your data model, the primary key for each entity, all of the keys used to populate various attributes, and the key path that points to instances of that entity in the data model. Here's how you use it.
+MMRecord also provides the TweakModel subspec that implements support for Facebook Tweaks. You can use Tweaks to modify most MMRecord parsing and population parameters. This can be useful if you're working on an app where the API is in flux and is still being actively developed. The UI for Tweaks will show you a list of MMRecord entities in your data model, the primary key for each entity, all of the keys used to populate various attributes, and the key path that points to instances of that entity in the data model. Here's how you use it.
 
 ```objective-c
 #define FBMMRecordTweakModelDefine
@@ -553,9 +553,9 @@ Issue.startRequestWithURN("/issue",
         [MMDataManager sharedDataManager].managedObjectModel];
 ```
 
-Thats all you need to enable Tweaks in your `MMRecord` project. As a best practice, you should only use the #define in Debug mode. 
+Thats all you need to enable Tweaks in your MMRecord project. As a best practice, you should only use the #define in Debug mode. 
 
-After its setup, here's what the Tweaks UI looks like with `MMRecord`.
+After its setup, here's what the Tweaks UI looks like with MMRecord.
 
 
 <p align="center">
@@ -564,28 +564,28 @@ After its setup, here's what the Tweaks UI looks like with `MMRecord`.
 
 ## Debugging
 
-MMRecordDebugger is a class used by `MMRecord` to provide debugging information back to you about how your model is configured and how `MMRecord` is handling the response handed to it by your server class. You can use MMRecordDebugger to help resolve issues that may exist in your model configuration, or identify inconsistencies with your response format.
+`MMRecordDebugger` is a class used by `MMRecord` to provide debugging information back to you about how your model is configured and how MMRecord is handling the response handed to it by your server class. You can use MMRecordDebugger to help resolve issues that may exist in your model configuration, or identify inconsistencies with your response format.
 
-`MMRecord` is designed to make it as fast and easy as possible to serialize managed objects from a web service. One of the goals of the library is to provide meaningful means of customization to support all sorts of response formats, while still maintaining an easy to use primary interface that does not require excessive configuration and setup. In most cases, the amount of configuration and customization required by a user of MMRecord will depend on how complex the response format of your web service is.
+MMRecord is designed to make it as fast and easy as possible to serialize managed objects from a web service. One of the goals of the library is to provide meaningful means of customization to support all sorts of response formats, while still maintaining an easy to use primary interface that does not require excessive configuration and setup. In most cases, the amount of configuration and customization required by a user of MMRecord will depend on how complex the response format of your web service is.
 
-When `MMRecord` encounters an error while handling a request it may take a few measures based on the severity of the error.
+When MMRecord encounters an error while handling a request it may take a few measures based on the severity of the error.
 
-- Assertions. In some cases, like if a managed object class being populated is not a subclass of `MMRecord`, an assertion will be thrown.
-- Logs. In many cases, `MMRecord` will log a message containing the error to the console. By default `MMRecord` will not actually print anything to the console, unless you specify a logging level manually. This is for security reasons.
-- Non-failure Errors. In some cases, `MMRecord` will create an NSError describing an issue, and associate it with the `MMRecordDebugger`. However, if the error isn't serious enough, the request will not fail.
-- Failure Errors. In several cases, `MMRecord` will create an NSError describing a critical issue it encountered while handling a request. These errors are associated with the debugger, and will be passed back into the failureBlock indicating a reason that the request failed.
+- Assertions. In some cases, like if a managed object class being populated is not a subclass of MMRecord, an assertion will be thrown.
+- Logs. In many cases, MMRecord will log a message containing the error to the console. By default MMRecord will not actually print anything to the console, unless you specify a logging level manually. This is for security reasons.
+- Non-failure Errors. In some cases, MMRecord will create an `NSError` describing an issue, and associate it with the `MMRecordDebugger`. However, if the error isn't serious enough, the request will not fail.
+- Failure Errors. In several cases, MMRecord will create an `NSError` describing a critical issue it encountered while handling a request. These errors are associated with the debugger, and will be passed back into the failureBlock indicating a reason that the request failed.
 
-If you encounter issues with a request, your first step should be to enable `MMRecord` logging, using the command below.
+If you encounter issues with a request, your first step should be to enable MMRecord logging, using the command below.
 
 ```objective-c
 [MMRecord setLoggingLevel:MMRecordLoggingLevelAll];
 ```
 
-You can lower the logging level incrementally to receive more fine grained logging information, but its a good idea to start with the highest level to get a broader picture of what is going on.
+You can lower the logging level incrementally to receive finer grained logging information, but its a good idea to start with the highest level to get a broader picture of what is going on.
 
-If your request is failing, you can use the NSError object that is passed into the failure block to review all sorts of data about the failure. The error parameter in the failure block will actually include the `MMRecordDebugger` instance, which contains all of the errors encountered while handling the request, and various bits of state relevant to the critical error.
+If your request is failing, you can use the `NSError` object that is passed into the failure block to review all sorts of data about the failure. The error parameter in the failure block will actually include the `MMRecordDebugger` instance, which contains all of the errors encountered while handling the request, and various bits of state relevant to the critical error.
 
-The debugger is attached to the NSError in its userInfo dictionary. Here's an example of how you can use it.
+The debugger is attached to the `NSError` in its userInfo dictionary. Here's an example of how you can use it.
 
 ```objective-c
      failureBlock:^(NSError *error) {
