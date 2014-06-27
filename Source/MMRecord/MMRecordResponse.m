@@ -1,4 +1,4 @@
-// MMRecordResponseDescription.m
+// MMRecordResponse.m
 //
 // Copyright (c) 2013 Mutual Mobile (http://www.mutualmobile.com/)
 //

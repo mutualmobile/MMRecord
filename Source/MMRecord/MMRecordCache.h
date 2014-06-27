@@ -22,7 +22,7 @@
 
 #import <CoreData/CoreData.h>
 
-/*
+/**
  This class encapsulates the functionality for caching managed objects in correspondence to a 
  particular NSURLRequest's NSCachedURLResponse. It is meant to be a private class used by MMRecord 
  should you wish to enable caching support for a given entity type. However, it could be used as a 
@@ -46,29 +46,41 @@
 
 @interface MMRecordCache : NSObject
 
-/* 
+/**
  This method returns YES if there are cached results for a given key. The key is typically the
  absolute URL for a given NSURLRequest. You can specify the key using the cacheRecords method below.
+ @param cacheKey The key used to identify cached results.
+ @return BOOL YES for has results, NO otherwise.
  */
 + (BOOL)hasResultsForKey:(NSString *)cacheKey;
 
-/* 
+/**
  This method retrieves cached results in a given context. If results are cached, it will fetch
  those objectIDs from the internal caching persistent store and attempt to obtain records matching 
  those object IDs in the provided managed object context. Those records, along with the cached 
  response object (if any) will be returned in the cache result block. This method will also respect 
  the caching policy of the NSURLCache and of this NSURLRequest. If the response for that request is 
  not cached, no results will be returned - regardless of what is found in the cache persistent store.
+ @param request Request object to obtain cached results for.
+ @param cacheKey Key used to identify the cached results.
+ @param metaKeyPath Key used to identify metadata that may have been returned in the response.
+ @param context managed object context to return cached results in.
+ @param cacheResultBlock Result block that will be executed when this method finishes checking for
+ cached results.
  */
 + (void)getCachedResultsForRequest:(NSURLRequest *)request
                           cacheKey:(NSString *)cacheKey
                        metaKeyPath:(NSString *)metaKeyPath
                            context:(NSManagedObjectContext *)context
                   cacheResultBlock:(void(^)(NSArray *cachedResults, id responseObject))cacheResultBlock;
-/*
+/**
  This method caches the objectIDs of the given records. Those records should be subclasses of 
- NSManagedObjectContext. The key provided will be used to locate those records later if a subsequent
+ NSManagedObject. The key provided will be used to locate those records later if a subsequent
  request is made for a certain NSURLRequest which you wish to associate with that key.
+ @param records An array of records that should be cached.
+ @param metadata Metadata contained in the response that should also be cached.
+ @param key A key that will be associated with and used to identify cached results.
+ @param context A managed object context where these records exist.
  */
 + (void)cacheRecords:(NSArray *)records
         withMetadata:(NSDictionary *)metadata
