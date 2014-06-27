@@ -49,6 +49,7 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'TweakModel' do |tm|
+    tm.ios.deployment_target = '6.0'
     tm.source_files = 'Source/FBMMRecordTweakModel/*.{h,m}'
     tm.dependency 'MMRecord/Core'
     tm.dependency 'Tweaks', '>= 1.1.0'
