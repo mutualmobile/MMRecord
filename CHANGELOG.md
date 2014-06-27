@@ -1,6 +1,6 @@
 #MMRecord Changelog
 
-##[1.4.0](https://github.com/mutualmobile/MMRecord/issues?milestone=6&state=closed) (Friday, June 27th, 2014)
+##[1.4.0](https://github.com/mutualmobile/MMRecord/issues?milestone=7&state=closed) (Friday, June 27th, 2014)
 **New**
 * Improved support for sub-entity inheritance. [#50](https://github.com/mutualmobile/MMRecord/issues/50) (Andrea Cremaschi)
 * Improved support for sub-entity inheritance in relationships. [#52](https://github.com/mutualmobile/MMRecord/pull/52) (Ian Dundas)
@@ -42,6 +42,11 @@
 **Fixed**
 * **FIXED** an issue([#34](https://github.com/mutualmobile/MMRecord/issues/34)) where MMRecord's future with AFNetworking 2.0 was uncertain. (Conrad Stoll)
 * **FIXED** an issue([#4](https://github.com/mutualmobile/MMRecord/issues/4)) where MMRecord had difficulty deleting orphans if you wanted to. (Conrad Stoll)
+
+##[1.1.1](https://github.com/mutualmobile/MMRecord/issues?milestone=8&state=closed) (Monday, July 8th, 2013)
+
+**Fixed**
+* **FIXED** an issue([#32](https://github.com/mutualmobile/MMRecord/pull/32)) causing a crash with nil keys. (Conrad Stoll)
 
 ##[1.1.0](https://github.com/mutualmobile/MMRecord/issues?milestone=4&state=closed) (Monday, July 8th, 2013)
 **New**
