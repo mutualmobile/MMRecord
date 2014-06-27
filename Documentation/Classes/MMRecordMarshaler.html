@@ -48,6 +48,8 @@
 	
 	<option value="//api/name/establishRelationshipsOnProtoRecord:">&nbsp;&nbsp;&nbsp;&nbsp;+ establishRelationshipsOnProtoRecord:</option>
 	
+	<option value="//api/name/mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord:">&nbsp;&nbsp;&nbsp;&nbsp;+ mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord:</option>
+	
 	<option value="//api/name/populateProtoRecord:">&nbsp;&nbsp;&nbsp;&nbsp;+ populateProtoRecord:</option>
 	
 	<option value="//api/name/populateProtoRecord:attributeDescription:fromDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;+ populateProtoRecord:attributeDescription:fromDictionary:</option>
@@ -76,6 +78,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Public Interface Methods">Public Interface Methods</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Public Subclassing Methods">Public Subclassing Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -91,6 +95,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/establishRelationship:fromRecord:toRecord:">establishRelationship:fromRecord:toRecord:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/establishRelationshipsOnProtoRecord:">establishRelationshipsOnProtoRecord:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord:">mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/populateProtoRecord:">populateProtoRecord:</a></span></li>
 	
@@ -195,8 +201,8 @@ can be overriden, are not necesarily recommended to be changed.</p>
 						
 						
 						<a title="Public Interface Methods" name="task_Public Interface Methods"></a>
-						
-<h3 class="subsubtitle task-title">Public Interface Methods</h3>
+						<h3 class="subsubtitle task-title">Public Interface Methods</h3>
+
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
@@ -227,6 +233,27 @@ record&rsquo;s instance of <a href="../Classes/MMRecord.html"><code>MMRecord</co
 	
 	
 </li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord:">+&nbsp;mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord:</a></code>
+		<span class="tooltip"><p>This method is used when a response contains multiple instances of the same record. <a href="../Classes/MMRecord.html">MMRecord</a> will
+always do its best to create and populate these records and associate them with the appropriate
+relationships on various other records. Generally speaking, its expected that a response will
+contain either duplicate references to record primary keys, which allow <a href="../Classes/MMRecord.html">MMRecord</a> to fetch the
+appropriate record to associate as a relationship. Or, the response may contain duplicate fully
+saturated objects. In this case, the first fully saturated object will &ldquo;win&rdquo;, and all other
+references to that object will be populated using the first one that is found.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Public Subclassing Methods" name="task_Public Subclassing Methods"></a>
+						<h3 class="subsubtitle task-title">Public Subclassing Methods</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/populateProtoRecord:attributeDescription:fromDictionary:">+&nbsp;populateProtoRecord:attributeDescription:fromDictionary:</a></code>
 		<span class="tooltip"><p>This method is designed to be subclassed. It should be called to handle the population of a
@@ -454,6 +481,85 @@ record and attempt to establish a relationship with each of them.</p>
 		<p>This method initiates the process of establishing relationships to all of the relationship protos
 for the given proto record. It will iterate through the relationship protos associated to the proto
 record and attempt to establish a relationship with each of them.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordMarshaler.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord:" title="mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord:"></a>
+	<h3 class="subsubtitle method-title">mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is used when a response contains multiple instances of the same record. <a href="../Classes/MMRecord.html">MMRecord</a> will
+always do its best to create and populate these records and associate them with the appropriate
+relationships on various other records. Generally speaking, its expected that a response will
+contain either duplicate references to record primary keys, which allow <a href="../Classes/MMRecord.html">MMRecord</a> to fetch the
+appropriate record to associate as a relationship. Or, the response may contain duplicate fully
+saturated objects. In this case, the first fully saturated object will &ldquo;win&rdquo;, and all other
+references to that object will be populated using the first one that is found.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)mergeDuplicateRecordResponseObjectDictionary:(NSDictionary *)<em>dictionary</em> withExistingProtoRecord:(MMRecordProtoRecord *)<em>protoRecord</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dictionary</em></dt>
+			<dd><p>The dictionary for the n+1th record response object of a given type and
+primary key.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>protoRecord</em></dt>
+			<dd><p>The proto record created to represent this specific object by <a href="../Classes/MMRecord.html">MMRecord</a>.
+@discussion The default implementation of this method will look for cases where a given record is
+only identified by a primary key and includes no additional data to populate it with. In this case
+the primary key of that original proto record will be compared with the incoming object dictionary
+and if they match then the new dictionary will be associated with the proto record.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is used when a response contains multiple instances of the same record. <a href="../Classes/MMRecord.html">MMRecord</a> will
+always do its best to create and populate these records and associate them with the appropriate
+relationships on various other records. Generally speaking, its expected that a response will
+contain either duplicate references to record primary keys, which allow <a href="../Classes/MMRecord.html">MMRecord</a> to fetch the
+appropriate record to associate as a relationship. Or, the response may contain duplicate fully
+saturated objects. In this case, the first fully saturated object will &ldquo;win&rdquo;, and all other
+references to that object will be populated using the first one that is found.</p>
+
+<p>This method is intended as a means to merge those various different response objects together to
+create a master instance of a particular record. In some responses an object may contain a subset
+of data in one place, and a larger subset of data in another place. In those instances, a user
+may want for the larger subset to win, even if it wasn&rsquo;t found by <a href="../Classes/MMRecord.html">MMRecord</a> first.</p>
+
+<p>You may override this method in a subclass of MMRecordMarshaler to provide this functionality.</p><div class="warning"><p><strong>Warning:</strong> If you decide to subclass this method you may want to use the super implementation
+as a starting point for your own implementation. Calling super is not required, but is recommended.</p></div>
 	</div>
 	
 	
@@ -758,7 +864,7 @@ of super&rsquo;s implementation.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-03-01)</span><br />
+						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-06-27)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

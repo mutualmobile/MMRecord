@@ -22,8 +22,7 @@
 
 #import <CoreData/CoreData.h>
 
-#import "MMRecordErrors.h"
-#import "MMRecordLoggers.h"
+#import "MMRecordDebugger.h"
 #import "MMRecordProtoRecord.h"
 
 /** To provide custom parsing functionality for your records, such as the setting a custom key or
@@ -50,18 +49,6 @@ extern NSString * const MMRecordEntityPrimaryAttributeKey;
 extern NSString * const MMRecordAttributeAlternateNameKey;
 
 @class MMRecordOptions, MMServer, MMServerPageManager;
-
-/** 
- Use the method below to set the MMRecord Logging Level.  The default logging level is none.
- MMRecord can support Cocoa Lumberjack. Logging level is ignored when Cocoa Lumberjack is used.
- */
-
-typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
-    MMRecordLoggingLevelNone = 0,
-    MMRecordLoggingLevelInfo = 1,
-    MMRecordLoggingLevelDebug = 2,
-    MMRecordLoggingLevelAll = 999
-};
 
 /**
  `MMRecord` provides a pattern for interfacing with a server to retrieve records.  A record is 
@@ -451,15 +438,6 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
 
 - (id)primaryKeyValue;
 
-/**
- This helper method returns a custom error and description that describes error conditions in 
- MMRecord.
- 
- @param errorCode MMRecordErrorCode value for this error.
- @param description String to be contained in this error's UserInfo dictionary.
- */
-+ (NSError *)errorWithMMRecordCode:(MMRecordErrorCode)errorCode description:(NSString *)description;
-
 @end
 
 
@@ -679,6 +657,17 @@ typedef void (^MMRecordOptionsRecordPrePopulationBlock)(MMRecordProtoRecord *pro
  @discussion Default value is the page manager for the registered server class for the given entity.
  */
 @property (nonatomic, strong) Class pageManagerClass;
+
+/**
+ This option allows you to specify your own debugger class for implementing custom error handling
+ behavior. You might want to do this if you want to override certain MMRecord errors, or
+ more strictly enforce errors of your own. You may also be able to provide support for custom
+ errors. The MMRecordDebugger class and error handling system may grow more powerful overtime,
+ possibly obviating the need for this, but also possibly making this even more useful.
+ 
+ @discussion Default value for this is an instance of MMRecordDebugger.
+ */
+@property (nonatomic, strong) MMRecordDebugger *debugger;
 
 /**
  This option allows you to specify a block that will be executed once per record which was orphaned

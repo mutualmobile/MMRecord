@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MMRecordResponse Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MMRecord </a></h1>
+				<a id="developerHome" href="../index.html">Mutual Mobile</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MMRecordResponse Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/responseFromResponseObjectArray:initialEntity:context:options:">&nbsp;&nbsp;&nbsp;&nbsp;+ responseFromResponseObjectArray:initialEntity:context:options:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/records">&nbsp;&nbsp;&nbsp;&nbsp;- records</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/responseFromResponseObjectArray:initialEntity:context:options:">responseFromResponseObjectArray:initialEntity:context:options:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/records">records</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MMRecordResponse Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MMRecordResponse Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MMRecordResponse.h<br />MMRecordResponse.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>This class describes the response from a request started by <a href="../Classes/MMRecord.html">MMRecord</a>.  It contains the array of objects
+obtained from the response object which should be converted into MMRecords.  It also contains the initial
+entity, which all of the objects in the response object array should be a type of.  This class has only
+one instance method, <a href="#//api/name/records">records</a>, which returns an array of <a href="../Classes/MMRecord.html">MMRecord</a> objects created from the response object.
+As such, this class is responsible for building <a href="#//api/name/records">records</a> from the response object based on information from
+the inital entity and storing them in the given context.</p>
+
+<p>This class represents the entry point for initiating the parsing/population response for <a href="../Classes/MMRecord.html">MMRecord</a>.
+As such, it can be used in a standalone fashion to provide the <a href="../Classes/MMRecord.html">MMRecord</a> population/parsing support
+to other classes and frameworks. An example of how this could be done is the AFMMRecordResponseSerializer,
+which uses MMRecordResponse on its own to provide similar behavior in the form of an AFNetworking
+response serializer.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/responseFromResponseObjectArray:initialEntity:context:options:">+&nbsp;responseFromResponseObjectArray:initialEntity:context:options:</a></code>
+		<span class="tooltip"><p>Designated Initializer</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/records">&ndash;&nbsp;records</a></code>
+		<span class="tooltip"><p>This method is used to launch the entire parsing process. Execution of this method is synchronous.
+If you wish to provide asynchronous support (and you probably do), you should call this method from
+within an asynchronous block or operation.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/responseFromResponseObjectArray:initialEntity:context:options:" title="responseFromResponseObjectArray:initialEntity:context:options:"></a>
+	<h3 class="subsubtitle method-title">responseFromResponseObjectArray:initialEntity:context:options:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Designated Initializer</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (MMRecordResponse *)responseFromResponseObjectArray:(NSArray *)<em>responseObjectArray</em> initialEntity:(NSEntityDescription *)<em>initialEntity</em> context:(NSManagedObjectContext *)<em>context</em> options:(MMRecordOptions *)<em>options</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>responseObjectArray</em></dt>
+			<dd><p>An array of objects intended to be used for creating <a href="../Classes/MMRecord.html">MMRecord</a> instances.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>initialEntity</em></dt>
+			<dd><p>The initial Core Data entity that will be returned by the <a href="#//api/name/records">records</a> method.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>A managed object <a href="#//api/name/context">context</a> to fetch existing <a href="#//api/name/records">records</a> from and store new <a href="#//api/name/records">records</a> to.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>options</em></dt>
+			<dd><p>A <a href="../Classes/MMRecordOptions.html">MMRecordOptions</a> object to customize the response handling behaviors.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Designated Initializer</p>
+
+<p>This method creates an MMRecordResponse from a response object array, initial entity, and other
+information. If a user whiches to initiate the population process with only a single object, then
+that object should be inserted into an array to instantiate this class.</p>
+
+<p>Calling this method and creating an MMRecordResponse configures this class completely in order to
+call the <a href="#//api/name/records">records</a> method below and return an array of saturated and populated <a href="#//api/name/records">records</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordResponse.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/records" title="records"></a>
+	<h3 class="subsubtitle method-title">records</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is used to launch the entire parsing process. Execution of this method is synchronous.
+If you wish to provide asynchronous support (and you probably do), you should call this method from
+within an asynchronous block or operation.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)records</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An array of records of the same type as (or sub-entity of) the initial entity provided
+above.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is used to launch the entire parsing process. Execution of this method is synchronous.
+If you wish to provide asynchronous support (and you probably do), you should call this method from
+within an asynchronous block or operation.</p>
+
+<p>A great way to call this method is from within the managed object context&rsquo;s performBlock or
+performBlockAndWait method.</p>
+
+<p>Its also important to remember to call save on your <a href="#//api/name/context">context</a> after using this method. This method
+will not call save for you. It will only insert or update objects in that <a href="#//api/name/context">context</a>. Its up to you
+to save those changes.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordResponse.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-06-27)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

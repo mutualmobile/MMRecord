@@ -69,6 +69,8 @@
 	
 	<option value="//api/name/primaryKeyPropertyName">&nbsp;&nbsp;&nbsp;&nbsp;- primaryKeyPropertyName</option>
 	
+	<option value="//api/name/primaryKeyPropertyNameForEntityDescription:">&nbsp;&nbsp;&nbsp;&nbsp;- primaryKeyPropertyNameForEntityDescription:</option>
+	
 	<option value="//api/name/primaryKeyValueFromDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- primaryKeyValueFromDictionary:</option>
 	
 	<option value="//api/name/primaryRelationshipDescription">&nbsp;&nbsp;&nbsp;&nbsp;- primaryRelationshipDescription</option>
@@ -144,6 +146,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryAttributeDescription">primaryAttributeDescription</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryKeyPropertyName">primaryKeyPropertyName</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryKeyPropertyNameForEntityDescription:">primaryKeyPropertyNameForEntityDescription:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryKeyValueFromDictionary:">primaryKeyValueFromDictionary:</a></span></li>
 	
@@ -387,6 +391,14 @@ this property. Overriding this method allows you to do that.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/primaryKeyPropertyName">&ndash;&nbsp;primaryKeyPropertyName</a></code>
 		<span class="tooltip"><p>This method returns the name of the primary key property for this <a href="#//api/name/entity">entity</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/primaryKeyPropertyNameForEntityDescription:">&ndash;&nbsp;primaryKeyPropertyNameForEntityDescription:</a></code>
+		<span class="tooltip"><p>This method is responsible for determining the name of the primary key property given the <a href="#//api/name/entity">entity</a>
+description for this instance of an MMRecordRepresentation.</p></span>
 	</span>
 	
 	
@@ -966,6 +978,67 @@ nil if the <a href="#//api/name/entity">entity</a> uses a relationship for its p
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/primaryKeyPropertyNameForEntityDescription:" title="primaryKeyPropertyNameForEntityDescription:"></a>
+	<h3 class="subsubtitle method-title">primaryKeyPropertyNameForEntityDescription:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is responsible for determining the name of the primary key property given the <a href="#//api/name/entity">entity</a>
+description for this instance of an MMRecordRepresentation.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)primaryKeyPropertyNameForEntityDescription:(NSEntityDescription *)<em>entity</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>entity</em></dt>
+			<dd><p>The <a href="#//api/name/entity">entity</a> description for this representation.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The name of the primary key property for this <a href="#//api/name/entity">entity</a>.
+@discussion This method is designed to be subclassed if the user wishes to provide a different way
+of determining which property to use as the primary key for a given type of <a href="#//api/name/entity">entity</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is responsible for determining the name of the primary key property given the <a href="#//api/name/entity">entity</a>
+description for this instance of an MMRecordRepresentation.</p><div class="warning"><p><strong>Warning:</strong> This method is called once per <a href="#//api/name/entity">entity</a> or super<a href="#//api/name/entity">entity</a> until a primary key is found, or no
+further super<a href="#//api/name/entity">entity</a> exists for a given <a href="#//api/name/entity">entity</a>. It is in this way that this class supports <a href="#//api/name/entity">entity</a>
+inheritance, meaning that if no primary key property is designated on an <a href="#//api/name/entity">entity</a> then the class will
+go through the chain of superentities to see if a primary key exists there.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordRepresentation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/primaryKeyValueFromDictionary:" title="primaryKeyValueFromDictionary:"></a>
 	<h3 class="subsubtitle method-title">primaryKeyValueFromDictionary:</h3>
 	
@@ -1185,7 +1258,7 @@ one.</p></div>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-03-01)</span><br />
+						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-06-27)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

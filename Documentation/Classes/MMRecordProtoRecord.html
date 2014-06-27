@@ -1,0 +1,1109 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MMRecordProtoRecord Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">MMRecord </a></h1>
+				<a id="developerHome" href="../index.html">Mutual Mobile</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MMRecordProtoRecord Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/dictionary">&nbsp;&nbsp;&nbsp;&nbsp;dictionary</option>
+	
+	<option value="//api/name/entity">&nbsp;&nbsp;&nbsp;&nbsp;entity</option>
+	
+	<option value="//api/name/hasRelationshipPrimarykey">&nbsp;&nbsp;&nbsp;&nbsp;hasRelationshipPrimarykey</option>
+	
+	<option value="//api/name/primaryAttributeDescription">&nbsp;&nbsp;&nbsp;&nbsp;primaryAttributeDescription</option>
+	
+	<option value="//api/name/primaryKeyValue">&nbsp;&nbsp;&nbsp;&nbsp;primaryKeyValue</option>
+	
+	<option value="//api/name/record">&nbsp;&nbsp;&nbsp;&nbsp;record</option>
+	
+	<option value="//api/name/relationshipDescriptions">&nbsp;&nbsp;&nbsp;&nbsp;relationshipDescriptions</option>
+	
+	<option value="//api/name/relationshipPrimaryKeyProto">&nbsp;&nbsp;&nbsp;&nbsp;relationshipPrimaryKeyProto</option>
+	
+	<option value="//api/name/relationshipProtos">&nbsp;&nbsp;&nbsp;&nbsp;relationshipProtos</option>
+	
+	<option value="//api/name/representation">&nbsp;&nbsp;&nbsp;&nbsp;representation</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/protoRecordWithDictionary:entity:representation:">&nbsp;&nbsp;&nbsp;&nbsp;+ protoRecordWithDictionary:entity:representation:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addRelationshipProto:forRelationshipDescription:">&nbsp;&nbsp;&nbsp;&nbsp;- addRelationshipProto:forRelationshipDescription:</option>
+	
+	<option value="//api/name/canAccomodateAdditionalProtoRecordForRelationshipDescription:">&nbsp;&nbsp;&nbsp;&nbsp;- canAccomodateAdditionalProtoRecordForRelationshipDescription:</option>
+	
+	<option value="//api/name/relationshipProtoRecordsForRelationshipDescription:">&nbsp;&nbsp;&nbsp;&nbsp;- relationshipProtoRecordsForRelationshipDescription:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Population Properties">Population Properties</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Relationship Properties">Relationship Properties</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Uniquing Properties">Uniquing Properties</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Relationship Methods">Relationship Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dictionary">dictionary</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/entity">entity</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasRelationshipPrimarykey">hasRelationshipPrimarykey</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryAttributeDescription">primaryAttributeDescription</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/primaryKeyValue">primaryKeyValue</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/record">record</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/relationshipDescriptions">relationshipDescriptions</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/relationshipPrimaryKeyProto">relationshipPrimaryKeyProto</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/relationshipProtos">relationshipProtos</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/representation">representation</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/protoRecordWithDictionary:entity:representation:">protoRecordWithDictionary:entity:representation:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addRelationshipProto:forRelationshipDescription:">addRelationshipProto:forRelationshipDescription:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/canAccomodateAdditionalProtoRecordForRelationshipDescription:">canAccomodateAdditionalProtoRecordForRelationshipDescription:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/relationshipProtoRecordsForRelationshipDescription:">relationshipProtoRecordsForRelationshipDescription:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MMRecordProtoRecord Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MMRecordProtoRecord Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MMRecordProtoRecord.h<br />MMRecordProtoRecord.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>   This class represents a <a href="#//api/name/record">record</a> in its prototype state before it hatches into a full living breathing
+   <a href="../Classes/MMRecord.html">MMRecord</a>.  Proto records are typically created to match the contents of a request&rsquo;s response object.
+   If your response object contains an array of 20 records of type &ldquo;user&rdquo;, then you would create 20
+   proto records for the user <a href="#//api/name/entity">entity</a>.  A proto <a href="#//api/name/record">record</a> contains the <a href="#//api/name/entity">entity</a> whose type it represents and the
+   <a href="#//api/name/dictionary">dictionary</a> it is based on from the response object.  It is also responsible for maintaining the
+   association between itself and other proto records that represent the relationships to it&rsquo;s fully
+   formed <a href="#//api/name/record">record</a>.  One subtle thing to keep in mind is that only one proto <a href="#//api/name/record">record</a> should be created for
+   each unique <a href="#//api/name/record">record</a> in the response object.  The proto <a href="#//api/name/record">record</a> is not responsible for that, but it is
+   an important consideration for a user of this class to consider.  This class is responsible for
+   populating records with their given <a href="#//api/name/dictionary">dictionary</a>, as well as establishing relationships to it&rsquo;s <a href="#//api/name/record">record</a>.</p>
+
+<p>   Note: when the value representing a relationship is a single string or number that <a href="../Classes/MMRecord.html">MMRecord</a> will
+   convert that string or number into a <a href="#//api/name/dictionary">dictionary</a> with that value, and they primary key identified
+   for that targetted relationship&rsquo;s <a href="#//api/name/entity">entity</a>. That means that the <a href="#//api/name/representation">representation</a> of a proto <a href="#//api/name/record">record</a>
+   will always be in the form of a <a href="#//api/name/dictionary">dictionary</a>, even if the response object form is a string or a
+   number.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Population Properties" name="task_Population Properties"></a>
+						<h3 class="subsubtitle task-title">Population Properties</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/record">&nbsp;&nbsp;record</a></code>
+		<span class="tooltip"><p>The record instance represented by this proto record.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dictionary">&nbsp;&nbsp;dictionary</a></code>
+		<span class="tooltip"><p>The dictionary being used to populate this proto <a href="#//api/name/record">record</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/entity">&nbsp;&nbsp;entity</a></code>
+		<span class="tooltip"><p>The entity type for this proto <a href="#//api/name/record">record</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/representation">&nbsp;&nbsp;representation</a></code>
+		<span class="tooltip"><p>The representation used to describe this type of proto <a href="#//api/name/record">record</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Relationship Properties" name="task_Relationship Properties"></a>
+						<h3 class="subsubtitle task-title">Relationship Properties</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/relationshipProtos">&nbsp;&nbsp;relationshipProtos</a></code>
+		<span class="tooltip"><p>An array of relationship proto records that define the objects that will be associated as
+relationships on this proto <a href="#//api/name/record">record</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/relationshipDescriptions">&nbsp;&nbsp;relationshipDescriptions</a></code>
+		<span class="tooltip"><p>The relationship descriptions for this proto record&rsquo;s type of <a href="#//api/name/entity">entity</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Uniquing Properties" name="task_Uniquing Properties"></a>
+						<h3 class="subsubtitle task-title">Uniquing Properties</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/primaryKeyValue">&nbsp;&nbsp;primaryKeyValue</a></code>
+		<span class="tooltip"><p>The primary key value for this proto <a href="#//api/name/record">record</a>. Typically a string or number.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/primaryAttributeDescription">&nbsp;&nbsp;primaryAttributeDescription</a></code>
+		<span class="tooltip"><p>The primary key attribute description for this proto <a href="#//api/name/record">record</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/relationshipPrimaryKeyProto">&nbsp;&nbsp;relationshipPrimaryKeyProto</a></code>
+		<span class="tooltip"><p>The relationship primary key proto is used to reference the proto that can uniquely identify this
+<a href="#//api/name/record">record</a> using one of its relationships.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasRelationshipPrimarykey">&nbsp;&nbsp;hasRelationshipPrimarykey</a></code>
+		<span class="tooltip"><p>Property for defining whether or not this <a href="#//api/name/record">record</a> has a relationship as its primary key.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/protoRecordWithDictionary:entity:representation:">+&nbsp;protoRecordWithDictionary:entity:representation:</a></code>
+		<span class="tooltip"><p>Designated Initializer</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Relationship Methods" name="task_Relationship Methods"></a>
+						<h3 class="subsubtitle task-title">Relationship Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addRelationshipProto:forRelationshipDescription:">&ndash;&nbsp;addRelationshipProto:forRelationshipDescription:</a></code>
+		<span class="tooltip"><p>This method is used to associate another proto as having a relationship to this one.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/canAccomodateAdditionalProtoRecordForRelationshipDescription:">&ndash;&nbsp;canAccomodateAdditionalProtoRecordForRelationshipDescription:</a></code>
+		<span class="tooltip"><p>This method can be used to tell whether or not there is already a valid relationshipProtoRecord for
+a given relationship description. This returns NO if there is already a relationshipProtoRecord for
+that relationship. In the case of to-many relationships this will always return YES.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/relationshipProtoRecordsForRelationshipDescription:">&ndash;&nbsp;relationshipProtoRecordsForRelationshipDescription:</a></code>
+		<span class="tooltip"><p>Returns the proto records for a given relationship description.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/dictionary" title="dictionary"></a>
+	<h3 class="subsubtitle method-title">dictionary</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The dictionary being used to populate this proto <a href="#//api/name/record">record</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSDictionary *dictionary</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The dictionary being used to populate this proto <a href="#//api/name/record">record</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/entity" title="entity"></a>
+	<h3 class="subsubtitle method-title">entity</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The entity type for this proto <a href="#//api/name/record">record</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSEntityDescription *entity</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The entity type for this proto <a href="#//api/name/record">record</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasRelationshipPrimarykey" title="hasRelationshipPrimarykey"></a>
+	<h3 class="subsubtitle method-title">hasRelationshipPrimarykey</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Property for defining whether or not this <a href="#//api/name/record">record</a> has a relationship as its primary key.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL hasRelationshipPrimarykey</code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the proto <a href="#//api/name/record">record</a> has a relationship as its primary key.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Property for defining whether or not this <a href="#//api/name/record">record</a> has a relationship as its primary key.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/primaryAttributeDescription" title="primaryAttributeDescription"></a>
+	<h3 class="subsubtitle method-title">primaryAttributeDescription</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The primary key attribute description for this proto <a href="#//api/name/record">record</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSAttributeDescription *primaryAttributeDescription</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The primary key attribute description for this proto <a href="#//api/name/record">record</a>.</p><div class="warning"><p><strong>Warning:</strong> This will be nil if the proto <a href="#//api/name/record">record</a> uses a relationship as its primary key.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/primaryKeyValue" title="primaryKeyValue"></a>
+	<h3 class="subsubtitle method-title">primaryKeyValue</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The primary key value for this proto <a href="#//api/name/record">record</a>. Typically a string or number.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) id primaryKeyValue</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The primary key value for this proto <a href="#//api/name/record">record</a>. Typically a string or number.</p><div class="warning"><p><strong>Warning:</strong> This will be nil if the proto <a href="#//api/name/record">record</a> uses a relationship as its primary key.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/record" title="record"></a>
+	<h3 class="subsubtitle method-title">record</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The record instance represented by this proto record.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) MMRecord *record</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The record instance represented by this proto record.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/relationshipDescriptions" title="relationshipDescriptions"></a>
+	<h3 class="subsubtitle method-title">relationshipDescriptions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The relationship descriptions for this proto record&rsquo;s type of <a href="#//api/name/entity">entity</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *relationshipDescriptions</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The relationship descriptions for this proto record&rsquo;s type of <a href="#//api/name/entity">entity</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/relationshipPrimaryKeyProto" title="relationshipPrimaryKeyProto"></a>
+	<h3 class="subsubtitle method-title">relationshipPrimaryKeyProto</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The relationship primary key proto is used to reference the proto that can uniquely identify this
+<a href="#//api/name/record">record</a> using one of its relationships.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) MMRecordProtoRecord *relationshipPrimaryKeyProto</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The relationship primary key proto is used to reference the proto that can uniquely identify this
+<a href="#//api/name/record">record</a> using one of its relationships.</p><div class="warning"><p><strong>Warning:</strong> This will be nil if the proto <a href="#//api/name/record">record</a> does not use a relationship as its primary key.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/relationshipProtos" title="relationshipProtos"></a>
+	<h3 class="subsubtitle method-title">relationshipProtos</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>An array of relationship proto records that define the objects that will be associated as
+relationships on this proto <a href="#//api/name/record">record</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *relationshipProtos</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>An array of relationship proto records that define the objects that will be associated as
+relationships on this proto <a href="#//api/name/record">record</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/representation" title="representation"></a>
+	<h3 class="subsubtitle method-title">representation</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The representation used to describe this type of proto <a href="#//api/name/record">record</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) MMRecordRepresentation *representation</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The representation used to describe this type of proto <a href="#//api/name/record">record</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/protoRecordWithDictionary:entity:representation:" title="protoRecordWithDictionary:entity:representation:"></a>
+	<h3 class="subsubtitle method-title">protoRecordWithDictionary:entity:representation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Designated Initializer</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (MMRecordProtoRecord *)protoRecordWithDictionary:(NSDictionary *)<em>dictionary</em> entity:(NSEntityDescription *)<em>entity</em> representation:(MMRecordRepresentation *)<em>representation</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dictionary</em></dt>
+			<dd><p>The <a href="#//api/name/dictionary">dictionary</a> used to populate the proto <a href="#//api/name/record">record</a>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>entity</em></dt>
+			<dd><p>The type of <a href="#//api/name/record">record</a> this describes.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>representation</em></dt>
+			<dd><p>The <a href="#//api/name/representation">representation</a> used to describe this proto <a href="#//api/name/record">record</a>.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Designated Initializer</p>
+
+<p>This method is used to instantiate a base proto <a href="#//api/name/record">record</a>. The proto <a href="#//api/name/record">record</a> is configured with a
+<a href="#//api/name/dictionary">dictionary</a> that is used to populate the <a href="#//api/name/record">record</a>, an <a href="#//api/name/entity">entity</a> to describe the type of <a href="#//api/name/record">record</a>, and a
+<a href="#//api/name/representation">representation</a> that describes how the <a href="#//api/name/record">record</a> can be populated from that <a href="#//api/name/dictionary">dictionary</a>. This method
+should always be used to instantiate a proto <a href="#//api/name/record">record</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addRelationshipProto:forRelationshipDescription:" title="addRelationshipProto:forRelationshipDescription:"></a>
+	<h3 class="subsubtitle method-title">addRelationshipProto:forRelationshipDescription:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method is used to associate another proto as having a relationship to this one.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addRelationshipProto:(MMRecordProtoRecord *)<em>relationshipProto</em> forRelationshipDescription:(NSRelationshipDescription *)<em>relationshipDescription</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>relationshipProto</em></dt>
+			<dd><p>The proto <a href="#//api/name/record">record</a> representing the relationship.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>relationshipDescription</em></dt>
+			<dd><p>The relationship on this proto to associate the proto with.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is used to associate another proto as having a relationship to this one.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/canAccomodateAdditionalProtoRecordForRelationshipDescription:" title="canAccomodateAdditionalProtoRecordForRelationshipDescription:"></a>
+	<h3 class="subsubtitle method-title">canAccomodateAdditionalProtoRecordForRelationshipDescription:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This method can be used to tell whether or not there is already a valid relationshipProtoRecord for
+a given relationship description. This returns NO if there is already a relationshipProtoRecord for
+that relationship. In the case of to-many relationships this will always return YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)canAccomodateAdditionalProtoRecordForRelationshipDescription:(NSRelationshipDescription *)<em>relationshipDescription</em></code></div>
+	
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>NO if there is already a valid relationshipProtoRecord for a given relationshipDescription
+@discussion In the case of to-many relationships this will always return YES.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method can be used to tell whether or not there is already a valid relationshipProtoRecord for
+a given relationship description. This returns NO if there is already a relationshipProtoRecord for
+that relationship. In the case of to-many relationships this will always return YES.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/relationshipProtoRecordsForRelationshipDescription:" title="relationshipProtoRecordsForRelationshipDescription:"></a>
+	<h3 class="subsubtitle method-title">relationshipProtoRecordsForRelationshipDescription:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the proto records for a given relationship description.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)relationshipProtoRecordsForRelationshipDescription:(NSRelationshipDescription *)<em>relationshipDescription</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>relationshipDescription</em></dt>
+			<dd><p>The relationship to request proto records for.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>An array of proto records for the given relationship.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns the proto records for a given relationship description.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MMRecordProtoRecord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-06-27)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

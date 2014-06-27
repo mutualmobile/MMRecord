@@ -23,6 +23,7 @@
 #import "MMRecordMarshaler.h"
 
 #import "MMRecord.h"
+#import "MMRecordDebugger.h"
 #import "MMRecordProtoRecord.h"
 #import "MMRecordRepresentation.h"
 
@@ -52,11 +53,11 @@
         id value = [protoRecord.dictionary valueForKeyPath:possibleKeyPath];
         
         if (value == [NSNull null]) {
-            value = nil;
+            break;
         }
         
         if (value == nil) {
-            break;
+            continue;
         }
         
         [self setValue:value
@@ -176,6 +177,11 @@
         if ([relationship isToMany]) {
             [self establishToManyRelationship:relationship fromRecord:fromRecord toRecord:toRecord];
         } else {
+            if (relationship.inverseRelationship != nil && [fromRecord valueForKey:[relationship name]] != nil) {
+                [MMRecordDebugger logMessageWithDescription:
+                 [NSString stringWithFormat:@"Replacing existing value may invalidate an inverse relationship."]];
+            }
+            
             [fromRecord setValue:toRecord forKey:[relationship name]];
         }
     }
@@ -240,6 +246,40 @@
         protoRecord.record = existingRecordFromParent;
     }
 }
+
++ (void)mergeDuplicateRecordResponseObjectDictionary:(NSDictionary *)dictionary
+                             withExistingProtoRecord:(MMRecordProtoRecord *)protoRecord {
+    if ([protoRecord.dictionary.allKeys count] == 1) {
+        NSAttributeDescription *primaryAttributeDescription = protoRecord.representation.primaryAttributeDescription;
+        NSArray *primaryKeyPaths = [protoRecord.representation keyPathsForMappingAttributeDescription:primaryAttributeDescription];
+        
+        BOOL dictionariesContainIdenticalPrimaryKeys = NO;
+        
+        for (NSString *keyPath in primaryKeyPaths) {
+            id dictionaryValue = [dictionary valueForKeyPath:keyPath];
+            id protoRecordValue = [dictionary valueForKeyPath:keyPath];
+            
+            if ([dictionaryValue isKindOfClass:[NSNumber class]] && [protoRecordValue isKindOfClass:[NSNumber class]]) {
+                dictionariesContainIdenticalPrimaryKeys = [dictionaryValue isEqualToNumber:protoRecordValue];
+            } else if ([dictionaryValue isKindOfClass:[NSString class]] && [protoRecordValue isKindOfClass:[NSString class]]) {
+                dictionariesContainIdenticalPrimaryKeys = [dictionaryValue isEqualToString:protoRecordValue];
+            }
+            
+            if (dictionariesContainIdenticalPrimaryKeys) {
+                break;
+            }
+        }
+        
+        if (dictionariesContainIdenticalPrimaryKeys) {
+            protoRecord.dictionary = dictionary;
+        }
+    }
+    
+    if ([dictionary.allKeys count] != [protoRecord.dictionary.allKeys count]) {
+        [MMRecordDebugger logMessageWithDescription:@"Possible inconsistent duplicate records detected. MMRecord provided the opportunity to merge two dictionaries representing the same record, where those two dictionaries were not equal. You may override the MMRecordMarshaler mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord: method to deal with this issue if it becomes a problem. This is not expected behavior and may be due to an response issue."];
+    }
+}
+
 
 #pragma mark - To Many Relationship Test
 

@@ -48,8 +48,6 @@
 	
 	<option value="//api/name/defaultOptions">&nbsp;&nbsp;&nbsp;&nbsp;+ defaultOptions</option>
 	
-	<option value="//api/name/errorWithMMRecordCode:description:">&nbsp;&nbsp;&nbsp;&nbsp;+ errorWithMMRecordCode:description:</option>
-	
 	<option value="//api/name/isRecordLevelCachingEnabled">&nbsp;&nbsp;&nbsp;&nbsp;+ isRecordLevelCachingEnabled</option>
 	
 	<option value="//api/name/keyPathForMetaData">&nbsp;&nbsp;&nbsp;&nbsp;+ keyPathForMetaData</option>
@@ -115,11 +113,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Starting and Stopping Server Requests">Starting and Stopping Server Requests</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Error Handling Convenience Methods">Error Handling Convenience Methods</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_MMRecordFetchRequests Methods">MMRecordFetchRequests Methods</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_MMServerPageManager Methods">MMServerPageManager Methods</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_MMRecordFetchRequests Methods">MMRecordFetchRequests Methods</a></span></li>
 	
 </ul></li>
 
@@ -136,8 +132,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dateFormatter">dateFormatter</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/defaultOptions">defaultOptions</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/errorWithMMRecordCode:description:">errorWithMMRecordCode:description:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isRecordLevelCachingEnabled">isRecordLevelCachingEnabled</a></span></li>
 	
@@ -371,15 +365,15 @@ callback queues will be added in a future version.</p>
 <p>This extenion to MMRecord enables the user to set various options to customize the behavior of a
 specific MMRecord request.</p>
 
-<p>This category adds improved support for custom handling of pagination within requests.  It uses the
-customResponseBlock functionality documented above to achieve this goal, and is intended both as a
-great tool for implementing paginated HTTP requests, as well as a reference implementation for how
-to use the customResponseBlock feature.</p>
-
 <p>This category adds support for running a fetch request alongside the URL request.  It is meant for
 when data is likely to exist in some form, stale or otherwise, in the persistent store and it would
 be useful to return the existing data as quickly as possible and then follow up soon thereafter
 with the latest data from a web service.</p>
+
+<p>This category adds improved support for custom handling of pagination within requests.  It uses the
+customResponseBlock functionality documented above to achieve this goal, and is intended both as a
+great tool for implementing paginated HTTP requests, as well as a reference implementation for how
+to use the customResponseBlock feature.</p>
 					</div>
 					
 					
@@ -569,22 +563,6 @@ used as the location for fetching the detail resource for the record.</p></span>
 						</ul>
 						
 						
-						<a title="Error Handling Convenience Methods" name="task_Error Handling Convenience Methods"></a>
-						<h3 class="subsubtitle task-title">Error Handling Convenience Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/errorWithMMRecordCode:description:">+&nbsp;errorWithMMRecordCode:description:</a></code>
-		<span class="tooltip"><p>This helper method returns a custom error and description that describes error conditions in
-MMRecord.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
 						
 						<h3 class="subsubtitle task-title">Other Methods</h3>
 
@@ -614,25 +592,6 @@ sets a new set of options before starting the request on MMRecord.</p></span>
 						</ul>
 						
 						
-						<a title="MMServerPageManager Methods" name="task_MMServerPageManager Methods"></a>
-						<h3 class="subsubtitle task-title">MMServerPageManager Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:">+&nbsp;startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:</a></code>
-		<span class="tooltip"><p>Starts a paged request on the registered <a href="#//api/name/server">server</a> class.  This is achieved by passing YES as the
-paging parameter.  The <a href="#//api/name/server">server</a> class is responsible for handling this accordingly, if paging
-functionality is desired.  The purpose of this method is to enable the caller to receive a first
-page for a given resource and to subsequently request further pages.  The signature of the result
-block is therefore changed to account for this functionality.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
 						<a title="MMRecordFetchRequests Methods" name="task_MMRecordFetchRequests Methods"></a>
 						<h3 class="subsubtitle task-title">MMRecordFetchRequests Methods</h3>
 
@@ -645,6 +604,25 @@ possible.  This method IS MEANT to be wrapped in a subclass&rsquo;s implementati
 request, URN, etc. from the caller.  The caller (presumably a view controller) should not need to
 know about how to build the fetch request, it should only care about the data being received in the
 result block.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="MMServerPageManager Methods" name="task_MMServerPageManager Methods"></a>
+						<h3 class="subsubtitle task-title">MMServerPageManager Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:">+&nbsp;startPagedRequestWithURN:data:context:domain:resultBlock:failureBlock:</a></code>
+		<span class="tooltip"><p>Starts a paged request on the registered <a href="#//api/name/server">server</a> class.  This is achieved by passing YES as the
+paging parameter.  The <a href="#//api/name/server">server</a> class is responsible for handling this accordingly, if paging
+functionality is desired.  The purpose of this method is to enable the caller to receive a first
+page for a given resource and to subsequently request further pages.  The signature of the result
+block is therefore changed to account for this functionality.</p></span>
 	</span>
 	
 	
@@ -786,62 +764,6 @@ the user isn&rsquo;t responsible for handling this.</p></div>
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Designated accessor for obtaining the default set of options for a given class of MMRecord.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MMRecord.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/errorWithMMRecordCode:description:" title="errorWithMMRecordCode:description:"></a>
-	<h3 class="subsubtitle method-title">errorWithMMRecordCode:description:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>This helper method returns a custom error and description that describes error conditions in
-MMRecord.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (NSError *)errorWithMMRecordCode:(MMRecordErrorCode)<em>errorCode</em> description:(NSString *)<em>description</em></code></div>
-	
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>errorCode</em></dt>
-			<dd><p>MMRecordErrorCode value for this error.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>description</em></dt>
-			<dd><p>String to be contained in this error&rsquo;s UserInfo dictionary.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>This helper method returns a custom error and description that describes error conditions in
-MMRecord.</p>
 	</div>
 	
 	
@@ -1931,7 +1853,7 @@ used as the location for fetching the detail resource for the record.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-03-01)</span><br />
+						<p><span class="copyright">&copy; 2014 Mutual Mobile. All rights reserved. (Last updated: 2014-06-27)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
