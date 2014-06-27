@@ -82,11 +82,11 @@ The library is architected to be as simple and lightweight as possible. Here's a
 <table>
   <tr><th colspan="2" style="text-align:center;">Population</th></tr>
   <tr>
-    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecord.html">MMRecordResponse</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecordResponse.html">MMRecordResponse</a></td>
     <td>A class that handles the process of turning a response into native <tt>MMRecord</tt> objects.</td>
   </tr>
   <tr>
-    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecord.html">MMRecordProtoRecord</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecordProtoRecord.html">MMRecordProtoRecord</a></td>
     <td>A container class used as a placeholder for the object graph during the population process.</td>
   </tr>
   <tr>
@@ -106,13 +106,13 @@ The library is architected to be as simple and lightweight as possible. Here's a
   
   <tr><th colspan="2" style="text-align:center;">Caching</th></tr>
   <tr>
-    <td><a href="http://cocoadocs.org/docsets/MMRecord/1.4.0/Classes/MMRecordCache.html">MMRecordCache</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecordCache.html">MMRecordCache</a></td>
     <td>A class that maps <tt>NSManagedObject</tt> ObjectIDs to an <tt>NSCachedURLResponse</tt>.</td>
   </tr>
   
     <tr><th colspan="2" style="text-align:center;">Debugging</th></tr>
   <tr>
-    <td><a href="http://cocoadocs.org/docsets/MMRecord/1.4.0/Classes/MMRecordDebugger.html">MMRecordDebugger</a></td>
+    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecordDebugger.html">MMRecordDebugger</a></td>
     <td>A class that manages <tt>NSError</tt> objects to provide debugging feedback.</td>
   </tr>
 </table>
