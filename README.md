@@ -106,8 +106,14 @@ The library is architected to be as simple and lightweight as possible. Here's a
   
   <tr><th colspan="2" style="text-align:center;">Caching</th></tr>
   <tr>
-    <td><a href="http://mutualmobile.github.com/MMRecord/Documentation/Classes/MMRecord.html">MMRecordCache</a></td>
-    <td>An class that maps <tt>NSManagedObject</tt> ObjectIDs to an <tt>NSCachedURLResponse</tt>	.</td>
+    <td><a href="http://cocoadocs.org/docsets/MMRecord/1.4.0/Classes/MMRecordCache.html">MMRecordCache</a></td>
+    <td>A class that maps <tt>NSManagedObject</tt> ObjectIDs to an <tt>NSCachedURLResponse</tt>.</td>
+  </tr>
+  
+    <tr><th colspan="2" style="text-align:center;">Debugging</th></tr>
+  <tr>
+    <td><a href="http://cocoadocs.org/docsets/MMRecord/1.4.0/Classes/MMRecordDebugger.html">MMRecordDebugger</a></td>
+    <td>A class that manages <tt>NSError</tt> objects to provide debugging feedback.</td>
   </tr>
 </table>
 
