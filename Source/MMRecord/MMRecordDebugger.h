@@ -78,6 +78,7 @@ typedef NS_ENUM(NSInteger, MMRecordErrorCode) {
     MMRecordErrorCodeMissingRecordPrimaryKey  = 3,
     MMRecordErrorCodeInvalidEntityDescription = 4,
     MMRecordErrorCodeInvalidResponseFormat    = 6,
+    MMRecordErrorCodeEmptyResultSet           = 7,
     MMRecordErrorCodeCoreDataFetchError       = 700,
     MMRecordErrorCodeCoreDataSaveError        = 701,
     MMRecordErrorCodeUnknown                  = 999

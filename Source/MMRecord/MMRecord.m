@@ -733,7 +733,7 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
             [parameters setObject:responseObject forKey:MMRecordDebuggerParameterResponseObject];
         }
         
-        [debugger handleErrorCode:MMRecordErrorCodeInvalidResponseFormat withParameters:parameters];
+        [debugger handleErrorCode:MMRecordErrorCodeEmptyResultSet withParameters:parameters];
         return nil;
     }
     
