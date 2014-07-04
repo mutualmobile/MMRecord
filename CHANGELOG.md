@@ -1,5 +1,9 @@
 #MMRecord Changelog
 
+##[1.4.1](https://github.com/mutualmobile/MMRecord/issues?milestone=9&state=closed) (Friday, July 4th, 2014)
+**Fixed**
+* **FIXED** an issue([#83](https://github.com/mutualmobile/MMRecord/issues/83)) where MMRecord treated empty result sets as request failures. (Andrea Cremaschi)
+
 ##[1.4.0](https://github.com/mutualmobile/MMRecord/issues?milestone=7&state=closed) (Friday, June 27th, 2014)
 **New**
 * Improved support for sub-entity inheritance. [#50](https://github.com/mutualmobile/MMRecord/issues/50) (Andrea Cremaschi)
