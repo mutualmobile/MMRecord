@@ -38,7 +38,7 @@ Keep reading to learn more about how to start using MMRecord in your project!
 You can install MMRecord in your project by using [CocoaPods](https://github.com/cocoapods/cocoapods):
 
 ```Ruby
-pod 'MMRecord', '~> 1.4.0'
+pod 'MMRecord', '~> 1.4.1'
 ```
 
 ## Overview
