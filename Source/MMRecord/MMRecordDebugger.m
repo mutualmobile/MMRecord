@@ -163,6 +163,8 @@ NSString* const MMRecordDebuggerParameterServerClassName = @"MMRecordDebuggerPar
             return MMRecordLoggingLevelInfo;
         case MMRecordErrorCodeInvalidEntityDescription:
             return MMRecordLoggingLevelInfo;
+        case MMRecordErrorCodeEmptyResultSet:
+            return MMRecordLoggingLevelInfo;
         default:
             break;
     }
@@ -247,6 +249,9 @@ NSString* const MMRecordDebuggerParameterServerClassName = @"MMRecordDebuggerPar
         case MMRecordErrorCodeInvalidResponseFormat:
             result = NSLocalizedString(@"Invalid Response Format.",
                                        @"The server response was in an unexpected format that could not be handled by MMRecord.");
+            break;
+        case MMRecordErrorCodeEmptyResultSet:
+            result = NSLocalizedString(@"Empty Result Set.", @"The result set returned from the server is empty. This is a warning, and may not be the result an error.");
             break;
         case MMRecordErrorCodeMissingRecordPrimaryKey:
             result = NSLocalizedString(@"Missing Record Primary Key. No primary key was found for this proto record. This could mean that the primary key was not defined on the Managed Object Model, or that no primary key was injected into the population process.",
