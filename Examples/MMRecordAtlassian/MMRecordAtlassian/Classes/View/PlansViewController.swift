@@ -9,7 +9,7 @@
 import UIKit
 
 class PlansViewController: UITableViewController, UITableViewDataSource {
-    var plans: Plan[] = []
+    var plans: [Plan] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class PlansViewController: UITableViewController, UITableViewDataSource {
             context: managedObjectContext,
             domain: self,
             resultBlock: {records in
-                var results: Plan[] = records as Plan[]
+                var results: [Plan] = records as [Plan]
                 
                 self.plans = results
                 self.tableView.reloadData()

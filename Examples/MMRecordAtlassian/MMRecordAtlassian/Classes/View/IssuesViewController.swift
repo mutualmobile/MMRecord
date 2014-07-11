@@ -8,10 +8,11 @@
 
 import UIKit
 import CoreData
+import Foundation
 
 class IssuesViewController: UITableViewController {
     var issue : Issue?
-    var links : Link[] = []
+    var links : [Link] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +33,8 @@ class IssuesViewController: UITableViewController {
             let proto : MMRecordProtoRecord = protoRecord
             let entity : NSEntityDescription = protoRecord.entity
             
-            var dictionary : AnyObject! = proto.dictionary.mutableCopy()
-            var mutableDictionary : NSMutableDictionary = dictionary as NSMutableDictionary
+            var dictionary : NSDictionary! = proto.dictionary
+            var mutableDictionary : NSMutableDictionary = dictionary.mutableCopy() as NSMutableDictionary
             var primaryKey : AnyObject! = ""
             
             if (entity.name == "OutwardLink") {
@@ -56,14 +57,14 @@ class IssuesViewController: UITableViewController {
             context: managedObjectContext,
             domain: self,
             resultBlock: {records in
-                var results: Issue[] = records as Issue[]
+                var results: [Issue] = records as [Issue]
 
                 self.issue = results[results.startIndex]
                 
                 self.title = "Linked Issues for \(self.issue?.id)"
                 
                 let array = self.issue?.issueLinks.array
-                let linksArray : Link[] = array as Link[]
+                let linksArray : [Link] = array as [Link]
                     
                 if (array) {
                     self.links = linksArray
