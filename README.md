@@ -489,7 +489,7 @@ Plan.startRequestWithURN("/plans",
 	context: managedObjectContext,
 	domain: self,
 	resultBlock: {records in
-		var results: Plan[] = records as Plan[]
+		var results: [Plan] = records as [Plan]
                 
 		self.plans = results
 		self.tableView.reloadData()
@@ -539,7 +539,7 @@ Issue.startRequestWithURN("/issue",
 	context: managedObjectContext,
 	domain: self,
 	resultBlock: { records in
-   		var results: Issue[] = records as Issue[]
+   		var results: [Issue] = records as [Issue]
     	
     	self.results = results
     	self.tableView.reloadData()
