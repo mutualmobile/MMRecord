@@ -11,9 +11,7 @@ import CoreData
 class OutwardLink: Link {
     
     override class func shouldUseSubEntityRecordClassToRepresentData(dict : [NSObject : AnyObject]!) -> Bool {
-        let outwardIssue : AnyObject! = dict["outwardIssue"]
-
-        if (outwardIssue) {
+        if let outwardIssue : AnyObject! = dict["outwardIssue"] {
             return true
         }
         
