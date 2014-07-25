@@ -108,10 +108,15 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
 
 - (NSArray *)recordsFromMMRecordResponse:(MMRecordResponse *)recordResponse
                        backgroundContext:(NSManagedObjectContext *)backgroundContext {
-    __block NSMutableArray *objectIDs = [NSMutableArray array];
+    NSMutableArray *objectIDs = [NSMutableArray array];
     
     [backgroundContext performBlockAndWait:^{
+        NSError *error;
         NSArray *records = [recordResponse records];
+        if (![backgroundContext save:&error]) {
+            NSLog(@"%s encountered error saving: %@", __PRETTY_FUNCTION__, error);
+            return;
+        }
         
         for (MMRecord *record in records) {
             [objectIDs addObject:[record objectID]];
@@ -120,9 +125,12 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
     
     NSMutableArray *records = [NSMutableArray array];
     
-    for (NSManagedObjectID *objectID in objectIDs) {
-        [records addObject:[self.context objectWithID:objectID]];
-    }
+    
+    [self.context performBlockAndWait:^{
+        for (NSManagedObjectID *objectID in objectIDs) {
+            [records addObject:[self.context objectWithID:objectID]];
+        }
+    }];
     
     return records;
 }
@@ -179,7 +187,7 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
     
     MMRecordResponse *recordResponse = [MMRecordResponse responseFromResponseObjectArray:responseArray
                                                                            initialEntity:initialEntity
-                                                                                 context:self.context
+                                                                                 context:backgroundContext
                                                                                  options:options];
     
     NSArray *records = [self recordsFromMMRecordResponse:recordResponse
