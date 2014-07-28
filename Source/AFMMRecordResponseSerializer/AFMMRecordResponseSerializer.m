@@ -107,14 +107,21 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
 }
 
 - (NSArray *)recordsFromMMRecordResponse:(MMRecordResponse *)recordResponse
-                       backgroundContext:(NSManagedObjectContext *)backgroundContext {
+                       backgroundContext:(NSManagedObjectContext *)backgroundContext
+                                 options:(MMRecordOptions *)options {
     NSMutableArray *objectIDs = [NSMutableArray array];
     
     [backgroundContext performBlockAndWait:^{
         NSError *error;
         NSArray *records = [recordResponse records];
         if (![backgroundContext save:&error]) {
-            NSLog(@"%s encountered error saving: %@", __PRETTY_FUNCTION__, error);
+            NSDictionary *parameters = nil;
+            if (error.localizedDescription != nil) {
+                parameters = [options.debugger parametersWithKeys:@[MMRecordDebuggerParameterErrorDescription]
+                                              values:@[error.localizedDescription]];
+            }
+            [options.debugger handleErrorCode:MMRecordErrorCodeCoreDataSaveError
+                               withParameters:parameters];
             return;
         }
         
@@ -124,7 +131,6 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
     }];
     
     NSMutableArray *records = [NSMutableArray array];
-    
     
     [self.context performBlockAndWait:^{
         for (NSManagedObjectID *objectID in objectIDs) {
@@ -198,7 +204,8 @@ NSString * const AFMMRecordResponseSerializerWithDataKey = @"AFMMRecordResponseS
                                                                                  options:options];
     
     NSArray *records = [self recordsFromMMRecordResponse:recordResponse
-                                       backgroundContext:backgroundContext];
+                                       backgroundContext:backgroundContext
+                                                 options:options];
     
     *error = [debugger primaryError];
     
