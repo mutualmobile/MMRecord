@@ -193,9 +193,14 @@ static BOOL _mmrecord_batch_requests = NO;
     
     MMRecordResponse *response = [self responseForState:state context:state.backgroundContext];
     
-    [response recordsWithCompletionBlock:^(NSArray *records) {
-        [self completeRequestWithState:state records:records];
-    }];
+    if (response) {
+        [response recordsWithCompletionBlock:^(NSArray *records) {
+            [self completeRequestWithState:state records:records];
+        }];
+    } else {
+        [self failRequestWithRequestState:state];
+    }
+    
 }
 
 + (NSArray *)synchronousRecordsForRequestState:(MMRecordRequestState *)state {
