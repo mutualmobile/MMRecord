@@ -104,6 +104,13 @@
     return [MMRecordMarshaler class];
 }
 
+- (MMRecordProtoRecord *)protoRecordWithRecordResponseObject:(id)recordResponseObject
+                                                      entity:(NSEntityDescription *)entity {
+    return [MMRecordProtoRecord protoRecordWithRecordResponseObject:recordResponseObject
+                                                             entity:entity
+                                                     representation:self];
+}
+
 - (NSDateFormatter *)dateFormatter {
     return self.recordClassDateFormatter;
 }
@@ -295,6 +302,37 @@
 #endif
     
     return keyPaths;
+}
+
+- (id)relationshipObjectFromRecordResponseObject:(id)recordResponseObject
+                                possibleKeyPaths:(NSArray *)possibleKeyPaths
+                         relationshipDescription:(NSRelationshipDescription *)relationshipDescription
+               destinationPrimaryKeyPropertyName:(NSString *)destinationPrimaryKeyPropertyName {
+    id relationshipObject = nil;
+    
+    for (NSString *keyPath in possibleKeyPaths) {
+        relationshipObject = [recordResponseObject valueForKeyPath:keyPath];
+        if (relationshipObject == [NSNull null]) {
+            relationshipObject = nil;
+        }
+        
+        if (relationshipObject) {
+            if (([relationshipObject isKindOfClass:[NSDictionary class]] == NO) &&
+                ([relationshipObject isKindOfClass:[NSArray class]] == NO)) {
+                id primaryKey = destinationPrimaryKeyPropertyName;
+                
+                if (primaryKey) {
+                    relationshipObject = @{primaryKey : relationshipObject};
+                } else {
+                    relationshipObject = nil;
+                }
+            }
+            
+            break;
+        }
+    }
+    
+    return relationshipObject;
 }
 
 

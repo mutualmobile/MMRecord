@@ -51,97 +51,6 @@ static BOOL _mmrecord_batch_requests = NO;
 
 @implementation MMRecordRequest
 
-
-#pragma mark - Internal Dispatch Methods
-
-+ (dispatch_queue_t)parsingQueue {
-    static dispatch_queue_t _parsing_queue = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        _parsing_queue = dispatch_queue_create("com.mutualmobile.mmrecord", NULL);
-    });
-    
-    return _parsing_queue;
-}
-
-+ (void)setDispatchGroup:(dispatch_group_t)dispatchGroup {
-    if (_mmrecord_request_semaphore == nil) {
-        _mmrecord_request_semaphore = dispatch_semaphore_create(1);
-    }
-    
-    dispatch_semaphore_wait(_mmrecord_request_semaphore, DISPATCH_TIME_FOREVER);
-    if (dispatchGroup != _mmrecord_request_group) {
-        if (_mmrecord_request_group) {
-            _mmrecord_request_group = nil;
-        }
-        
-        if (dispatchGroup) {
-            _mmrecord_request_group = dispatchGroup;
-        }
-    }
-    dispatch_semaphore_signal(_mmrecord_request_semaphore);
-}
-
-+ (dispatch_group_t)dispatchGroup {
-    if (_mmrecord_request_semaphore == nil) {
-        _mmrecord_request_semaphore = dispatch_semaphore_create(1);
-    }
-    
-    dispatch_semaphore_wait(_mmrecord_request_semaphore, DISPATCH_TIME_FOREVER);
-    if(_mmrecord_request_group == NULL) {
-        _mmrecord_request_group = dispatch_group_create();
-    }
-    dispatch_semaphore_signal(_mmrecord_request_semaphore);
-    return _mmrecord_request_group;
-}
-
-
-#pragma mark - Batching
-
-+ (void)setBatchDispatchGroup:(BOOL)batch {
-    _mmrecord_batch_requests = batch;
-    
-    if (batch) {
-        [self setDispatchGroup:dispatch_group_create()];
-    } else {
-        [self setDispatchGroup:nil];
-    }
-}
-
-+ (BOOL)batchRequests {
-    return _mmrecord_batch_requests;
-}
-
-#pragma mark - Refactoring
-
-+ (void)configureBackgroundContext:(NSManagedObjectContext *)backgroundContext
-                       withOptions:(MMRecordOptions *)options
-                       mainContext:(NSManagedObjectContext *)mainContext
-              mainStoreCoordinator:(NSPersistentStoreCoordinator *)mainStoreCoordinator {
-    if (options.automaticallyPersistsRecords == NO) {
-        if ([backgroundContext respondsToSelector:@selector(setParentContext:)]) {
-            [backgroundContext setParentContext:mainContext];
-        }
-    } else {
-        [backgroundContext setPersistentStoreCoordinator:mainStoreCoordinator];
-    }
-}
-
-+ (void)configureRequestState:(MMRecordRequestState *)state {
-    state.batched = [self batchRequests];
-    state.dispatchGroup = [self dispatchGroup];
-    state.parsingQueue = [self parsingQueue];
-    
-    if (state.options.isRecordLevelCachingEnabled) {
-        state.cacheKey = [self keyForCachingRequestWithState:state];
-        state.keyPathForMetaData = [state.options keyPathForMetaData];
-    }
-}
-
-
-
-#pragma mark - Performing Requests
-
 + (void)startRequestWithRequestState:(MMRecordRequestState *)state {
     [self configureRequestState:state];
     [self preflightRequestWithRequestState:state];
@@ -155,6 +64,23 @@ static BOOL _mmrecord_batch_requests = NO;
     dispatch_group_notify(dispatchGroup, dispatch_get_main_queue(), completionBlock);
     [self setBatchDispatchGroup:NO];
 }
+
+
+#pragma mark - Request State Methods
+
++ (void)configureRequestState:(MMRecordRequestState *)state {
+    state.batched = [self batchRequests];
+    state.dispatchGroup = [self dispatchGroup];
+    state.parsingQueue = [self parsingQueue];
+    
+    if (state.options.isRecordLevelCachingEnabled) {
+        state.cacheKey = [self keyForCachingRequestWithState:state];
+        state.keyPathForMetaData = [state.options keyPathForMetaData];
+    }
+}
+
+
+#pragma mark - Performing Request Methods
 
 + (void)preflightRequestWithRequestState:(MMRecordRequestState *)state {
     MMRecordOptions *options = state.options;
@@ -172,8 +98,33 @@ static BOOL _mmrecord_batch_requests = NO;
     }
 }
 
-// You should really do your preflight check before calling this method.
-+ (void)performRequestWithRequestState:(MMRecordRequestState *)state {
++ (BOOL)validateSetUpForStartRequestState:(MMRecordRequestState *)state {  // Make sure the server is set properly.
+    if (state.serverClass == nil) {
+        MMRecordOptions *options = state.options;
+        MMRecordDebugger *debugger = options.debugger;
+        
+        NSMutableArray *keys = [NSMutableArray array];
+        NSMutableArray *values = [NSMutableArray array];
+        
+        [keys addObject:MMRecordDebuggerParameterRecordClassName];
+        [values addObject:self];
+        
+        if (state.serverClass) {
+            [keys addObject:MMRecordDebuggerParameterServerClassName];
+            [values addObject:state.serverClass];
+        }
+        
+        NSDictionary *parameters = [debugger parametersWithKeys:keys
+                                                         values:values];
+        [debugger handleErrorCode:MMRecordErrorCodeUndefinedServer withParameters:parameters];
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
++ (void)performRequestWithRequestState:(MMRecordRequestState *)state {  // You should really do your preflight check before calling this method.
     if ([state isBatched]) {
         dispatch_group_enter(state.dispatchGroup);
     }
@@ -207,29 +158,7 @@ static BOOL _mmrecord_batch_requests = NO;
 }
 
 
-#pragma mark - Finalizing Requests
-
-+ (NSArray *)recordsForRequestState:(MMRecordRequestState *)state {
-    state.backgroundContext = [[NSManagedObjectContext alloc] init];
-    
-    MMRecordResponse *response = [self responseForState:state context:state.backgroundContext];
-    
-    [self configureBackgroundContext:state.backgroundContext
-                         withOptions:state.options
-                         mainContext:state.context
-                mainStoreCoordinator:state.coordinator];
-    
-    state.records = [response records];
-    
-    state.objectIDs = [self objectIDsForRecords:state.records
-                                  onMainContext:state.context
-                          fromBackgroundContext:state.backgroundContext
-                                          state:state];
-    
-    NSArray *mainContextRecords = [self mainContextRecordsFromObjectIDs:state.objectIDs mainContext:state.context];
-
-    return mainContextRecords;
-}
+#pragma mark - Response Handling Methods
 
 + (void)continueRequestByHandlingResponse:(id)responseObject
                                     state:(MMRecordRequestState *)state {
@@ -269,6 +198,31 @@ static BOOL _mmrecord_batch_requests = NO;
     }];
 }
 
++ (NSArray *)synchronousRecordsForRequestState:(MMRecordRequestState *)state {
+    state.backgroundContext = [[NSManagedObjectContext alloc] init];
+    
+    MMRecordResponse *response = [self responseForState:state context:state.backgroundContext];
+    
+    [self configureBackgroundContext:state.backgroundContext
+                         withOptions:state.options
+                         mainContext:state.context
+                mainStoreCoordinator:state.coordinator];
+    
+    state.records = [response records];
+    
+    state.objectIDs = [self objectIDsForRecords:state.records
+                                  onMainContext:state.context
+                          fromBackgroundContext:state.backgroundContext
+                                          state:state];
+    
+    NSArray *mainContextRecords = [self mainContextRecordsFromObjectIDs:state.objectIDs mainContext:state.context];
+    
+    return mainContextRecords;
+}
+
+
+#pragma mark - Completing Request Methods
+
 + (void)completeRequestWithState:(MMRecordRequestState *)state records:(NSArray *)records {
     state.records = records;
     
@@ -302,7 +256,7 @@ static BOOL _mmrecord_batch_requests = NO;
 
 + (void)failRequestWithRequestState:(MMRecordRequestState *)state {
     MMRecordOptions *options = state.options;
-
+    
     if ([state isBatched]) {
         dispatch_group_enter(state.dispatchGroup);
     }
@@ -318,7 +272,7 @@ static BOOL _mmrecord_batch_requests = NO;
 
 + (void)invokeResultBlockWithRequestState:(MMRecordRequestState *)state {
     MMRecordOptions *options = state.options;
-
+    
     if ([state isBatched]) {
         dispatch_group_enter(state.dispatchGroup);
     }
@@ -339,106 +293,7 @@ static BOOL _mmrecord_batch_requests = NO;
 }
 
 
-#pragma mark - Caching
-
-+ (BOOL)shortCircuitRequestByReturningCachedResultsForState:(MMRecordRequestState *)state {
-    MMRecordOptions *options = state.options;
-
-    if (options.isRecordLevelCachingEnabled) {
-        BOOL cached = [MMRecordCache hasResultsForKey:state.cacheKey];
-        
-        if (cached) {
-            NSURLRequest *request = [self cachingRequestWithState:state];
-            
-            [MMRecordCache
-             getCachedResultsForRequest:request
-             cacheKey:state.cacheKey
-             metaKeyPath:state.keyPathForMetaData
-             context:state.context
-             cacheResultBlock:^(NSArray *cachedResults, id responseObject) {
-                 state.responseObject = responseObject;
-                 state.records = cachedResults;
-                 
-                 if (cachedResults) {
-                     NSMutableArray *objectIDs = [NSMutableArray array];
-                     
-                     for (MMRecord *record in cachedResults) {
-                         [objectIDs addObject:record.objectID];
-                     }
-                     
-                     state.objectIDs = objectIDs;
-                     
-                     [self passRequestWithRequestState:state];
-                 }
-             }];
-        }
-        
-        return cached;
-    } else {
-        return NO;
-    }
-}
-
-+ (void)performCachingForRecords:(NSArray *)records
-              fromResponseObject:(id)responseObject
-                    requestState:(MMRecordRequestState *)state
-                     withOptions:(MMRecordOptions *)options {
-    if ([options isRecordLevelCachingEnabled]) {
-        NSDictionary *metadata = nil;
-        
-        if ([responseObject isKindOfClass:[NSDictionary class]] && state.keyPathForMetaData != nil) {
-            metadata = [responseObject objectForKey:state.keyPathForMetaData];
-        }
-        
-        [MMRecordCache cacheRecords:records
-                       withMetadata:metadata
-                             forKey:state.cacheKey
-                        fromContext:state.context];
-    }
-}
-
-+ (NSURLRequest *)cachingRequestWithState:(MMRecordRequestState *)state {
-    return [state.serverClass requestWithURN:state.URN data:state.data];
-}
-
-+ (NSString *)keyForCachingRequestWithState:(MMRecordRequestState *)state {
-    NSURLRequest *request = [self cachingRequestWithState:state];
-    
-    return request.URL.absoluteString;
-}
-
-
-#pragma mark - Validation
-
-+ (BOOL)validateSetUpForStartRequestState:(MMRecordRequestState *)state {
-    // Make sure the server is set properly.
-    if (state.serverClass == nil) {
-        MMRecordOptions *options = state.options;
-        MMRecordDebugger *debugger = options.debugger;
-        
-        NSMutableArray *keys = [NSMutableArray array];
-        NSMutableArray *values = [NSMutableArray array];
-        
-        [keys addObject:MMRecordDebuggerParameterRecordClassName];
-        [values addObject:self];
-        
-        if (state.serverClass) {
-            [keys addObject:MMRecordDebuggerParameterServerClassName];
-            [values addObject:state.serverClass];
-        }
-        
-        NSDictionary *parameters = [debugger parametersWithKeys:keys
-                                                         values:values];
-        [debugger handleErrorCode:MMRecordErrorCodeUndefinedServer withParameters:parameters];
-        
-        return NO;
-    }
-    
-    return YES;
-}
-
-
-#pragma mark - Parsing Helper Methods
+#pragma mark - MMRecordResponse Formatting Methods
 
 + (MMRecordResponse *)responseForState:(MMRecordRequestState *)state
                                context:(NSManagedObjectContext *)context {
@@ -542,6 +397,22 @@ static BOOL _mmrecord_batch_requests = NO;
     return recordResponseObject;
 }
 
+
+#pragma mark - Core Data Methods
+
++ (void)configureBackgroundContext:(NSManagedObjectContext *)backgroundContext
+                       withOptions:(MMRecordOptions *)options
+                       mainContext:(NSManagedObjectContext *)mainContext
+              mainStoreCoordinator:(NSPersistentStoreCoordinator *)mainStoreCoordinator {
+    if (options.automaticallyPersistsRecords == NO) {
+        if ([backgroundContext respondsToSelector:@selector(setParentContext:)]) {
+            [backgroundContext setParentContext:mainContext];
+        }
+    } else {
+        [backgroundContext setPersistentStoreCoordinator:mainStoreCoordinator];
+    }
+}
+
 + (NSArray *)objectIDsForRecords:(NSArray *)records
                    onMainContext:(NSManagedObjectContext *)mainContext
            fromBackgroundContext:(NSManagedObjectContext *)backgroundContext
@@ -584,6 +455,136 @@ static BOOL _mmrecord_batch_requests = NO;
     }
     
     return mainContextRecords;
+}
+
+
+#pragma mark - Internal Dispatch Methods
+
++ (dispatch_queue_t)parsingQueue {
+    static dispatch_queue_t _parsing_queue = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _parsing_queue = dispatch_queue_create("com.mutualmobile.mmrecord", NULL);
+    });
+    
+    return _parsing_queue;
+}
+
++ (void)setDispatchGroup:(dispatch_group_t)dispatchGroup {
+    if (_mmrecord_request_semaphore == nil) {
+        _mmrecord_request_semaphore = dispatch_semaphore_create(1);
+    }
+    
+    dispatch_semaphore_wait(_mmrecord_request_semaphore, DISPATCH_TIME_FOREVER);
+    if (dispatchGroup != _mmrecord_request_group) {
+        if (_mmrecord_request_group) {
+            _mmrecord_request_group = nil;
+        }
+        
+        if (dispatchGroup) {
+            _mmrecord_request_group = dispatchGroup;
+        }
+    }
+    dispatch_semaphore_signal(_mmrecord_request_semaphore);
+}
+
++ (dispatch_group_t)dispatchGroup {
+    if (_mmrecord_request_semaphore == nil) {
+        _mmrecord_request_semaphore = dispatch_semaphore_create(1);
+    }
+    
+    dispatch_semaphore_wait(_mmrecord_request_semaphore, DISPATCH_TIME_FOREVER);
+    if(_mmrecord_request_group == NULL) {
+        _mmrecord_request_group = dispatch_group_create();
+    }
+    dispatch_semaphore_signal(_mmrecord_request_semaphore);
+    return _mmrecord_request_group;
+}
+
+
+#pragma mark - Batching Methods
+
++ (void)setBatchDispatchGroup:(BOOL)batch {
+    _mmrecord_batch_requests = batch;
+    
+    if (batch) {
+        [self setDispatchGroup:dispatch_group_create()];
+    } else {
+        [self setDispatchGroup:nil];
+    }
+}
+
++ (BOOL)batchRequests {
+    return _mmrecord_batch_requests;
+}
+
+
+#pragma mark - Caching Methods
+
++ (BOOL)shortCircuitRequestByReturningCachedResultsForState:(MMRecordRequestState *)state {
+    MMRecordOptions *options = state.options;
+    
+    if (options.isRecordLevelCachingEnabled) {
+        BOOL cached = [MMRecordCache hasResultsForKey:state.cacheKey];
+        
+        if (cached) {
+            NSURLRequest *request = [self cachingRequestWithState:state];
+            
+            [MMRecordCache
+             getCachedResultsForRequest:request
+             cacheKey:state.cacheKey
+             metaKeyPath:state.keyPathForMetaData
+             context:state.context
+             cacheResultBlock:^(NSArray *cachedResults, id responseObject) {
+                 state.responseObject = responseObject;
+                 state.records = cachedResults;
+                 
+                 if (cachedResults) {
+                     NSMutableArray *objectIDs = [NSMutableArray array];
+                     
+                     for (MMRecord *record in cachedResults) {
+                         [objectIDs addObject:record.objectID];
+                     }
+                     
+                     state.objectIDs = objectIDs;
+                     
+                     [self passRequestWithRequestState:state];
+                 }
+             }];
+        }
+        
+        return cached;
+    } else {
+        return NO;
+    }
+}
+
++ (void)performCachingForRecords:(NSArray *)records
+              fromResponseObject:(id)responseObject
+                    requestState:(MMRecordRequestState *)state
+                     withOptions:(MMRecordOptions *)options {
+    if ([options isRecordLevelCachingEnabled]) {
+        NSDictionary *metadata = nil;
+        
+        if ([responseObject isKindOfClass:[NSDictionary class]] && state.keyPathForMetaData != nil) {
+            metadata = [responseObject objectForKey:state.keyPathForMetaData];
+        }
+        
+        [MMRecordCache cacheRecords:records
+                       withMetadata:metadata
+                             forKey:state.cacheKey
+                        fromContext:state.context];
+    }
+}
+
++ (NSURLRequest *)cachingRequestWithState:(MMRecordRequestState *)state {
+    return [state.serverClass requestWithURN:state.URN data:state.data];
+}
+
++ (NSString *)keyForCachingRequestWithState:(MMRecordRequestState *)state {
+    NSURLRequest *request = [self cachingRequestWithState:state];
+    
+    return request.URL.absoluteString;
 }
 
 
@@ -651,7 +652,7 @@ static BOOL _mmrecord_batch_requests = NO;
 }
 
 
-#pragma mark - Tweaks Support
+#pragma mark - Tweaks Support Methods
 
 + (NSString *)tweakedKeyPathForResponseObjectWithInitialEntity:(NSEntityDescription *)initialEntity
                                                existingKeyPath:(NSString *)existingKeyPath {
@@ -672,13 +673,11 @@ static BOOL _mmrecord_batch_requests = NO;
 @end
 
 
-
-
 #pragma mark - Managed Object Context Additions
 
 @implementation NSManagedObjectContext (MMRecord)
 
-#pragma mark - Context Merging
+#pragma mark - Context Merging Methods
 
 - (void)MMRecord_startObservingWithContext:(NSManagedObjectContext *)otherContext {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -702,7 +701,7 @@ static BOOL _mmrecord_batch_requests = NO;
 }
 
 
-#pragma mark - Entity Class
+#pragma mark - Entity Class Methods
 
 - (NSEntityDescription *)MMRecord_entityForClass:(Class)managedObjectClass {
     NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;

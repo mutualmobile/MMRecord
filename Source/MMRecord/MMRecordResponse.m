@@ -235,10 +235,8 @@
     MMRecordProtoRecord *proto = [recordResponseGroup protoRecordForPrimaryKeyValue:primaryValue];
     
     if (proto == nil) {
-        proto = [MMRecordProtoRecord protoRecordWithRecordResponseObject:recordResponseObject
-                                                                  entity:entity
-                                                          representation:representation];
-        
+        proto = [representation protoRecordWithRecordResponseObject:recordResponseObject
+                                                             entity:entity];
         
         if (proto.hasRelationshipPrimarykey == NO) {
             if (proto.primaryKeyValue == nil) {
@@ -305,10 +303,10 @@
         NSArray *keyPaths = [representation keyPathsForMappingRelationshipDescription:relationshipDescription];
         NSString *destinationPrimaryKeyPropertyName = [responseGroup.representation primaryKeyPropertyName];
         
-        id relationshipObject = [self relationshipObjectFromRecordResponseObject:recordResponseObject
-                                                                possibleKeyPaths:keyPaths
-                                                         relationshipDescription:relationshipDescription
-                                               destinationPrimaryKeyPropertyName:destinationPrimaryKeyPropertyName];
+        id relationshipObject = [representation relationshipObjectFromRecordResponseObject:recordResponseObject
+                                                                          possibleKeyPaths:keyPaths
+                                                                   relationshipDescription:relationshipDescription
+                                                         destinationPrimaryKeyPropertyName:destinationPrimaryKeyPropertyName];
         
         if (relationshipObject) {
             if ([relationshipObject isKindOfClass:[NSArray class]] == NO) {
@@ -335,37 +333,6 @@
             }
         }
     }
-}
-
-- (id)relationshipObjectFromRecordResponseObject:(id)recordResponseObject
-                                possibleKeyPaths:(NSArray *)keyPaths
-                         relationshipDescription:(NSRelationshipDescription *)relationshipDescription
-               destinationPrimaryKeyPropertyName:(NSString *)destinationPrimaryKeyPropertyName {
-    id relationshipObject = nil;
-    
-    for (NSString *keyPath in keyPaths) {
-        relationshipObject = [recordResponseObject valueForKeyPath:keyPath];
-        if (relationshipObject == [NSNull null]) {
-            relationshipObject = nil;
-        }
-        
-        if (relationshipObject) {
-            if (([relationshipObject isKindOfClass:[NSDictionary class]] == NO) &&
-                ([relationshipObject isKindOfClass:[NSArray class]] == NO)) {
-                id primaryKey = destinationPrimaryKeyPropertyName;
-                
-                if (primaryKey) {
-                    relationshipObject = @{primaryKey : relationshipObject};
-                } else {
-                    relationshipObject = nil;
-                }
-            }
-            
-            break;
-        }
-    }
-    
-    return relationshipObject;
 }
 
 @end

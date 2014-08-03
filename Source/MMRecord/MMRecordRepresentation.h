@@ -104,6 +104,20 @@
 - (Class)marshalerClass;
 
 
+///--------------------
+/// @name Proto Records
+///--------------------
+/**
+ Convenience method for constructing new instances of MMRecordProtoRecord for a given record
+ response object and entity description.
+ @param recordResponseObject The record response object representing this record.
+ @param entity The entity type for this record.
+ @return A fully saturated MMRecordProtoRecord placeholder for the given record response object.
+ */
+- (MMRecordProtoRecord *)protoRecordWithRecordResponseObject:(id)recordResponseObject
+                                                      entity:(NSEntityDescription *)entity;
+
+
 ///----------------------
 /// @name Date Formatting
 ///----------------------
@@ -156,6 +170,26 @@
  @return An NSArray containing the key paths for mapping this relationship description.
  */
 - (NSArray *)keyPathsForMappingRelationshipDescription:(NSRelationshipDescription *)relationshipDescription;
+
+/**
+ This method returns the first relationship object found on the given record response object for the
+ included possible key paths. This will be the record response object that represents the given
+ relationship description. If the relationship object is a single value, i.e. a string or number, then
+ the destination primary key propery name will be used to create a dictionary to represent the object.
+ 
+ Subclasses may which to provide alternative behavior, such as encapsulating the destination primary
+ key property name in another object or ignoring it completely.
+ 
+ @param recordResponseObject The object representing the record that is the parent for this relationship.
+ @param possibleKeyPaths The possible key paths for locating a relationship object.
+ @param relationshipDescription The relationship we are looking for.
+ @param destinationPrimaryKeyPropertyName An optional string that can be used as a key for the relationship object.
+ @return A relationship object for this relationship from the given record response object.
+ */
+- (id)relationshipObjectFromRecordResponseObject:(id)recordResponseObject
+                                possibleKeyPaths:(NSArray *)possibleKeyPaths
+                         relationshipDescription:(NSRelationshipDescription *)relationshipDescription
+               destinationPrimaryKeyPropertyName:(NSString *)destinationPrimaryKeyPropertyName;
 
 
 ///---------------------------------------------
