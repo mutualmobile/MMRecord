@@ -11,6 +11,7 @@
 		2648FBEA195B0861009A6CBB /* MMRecordDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2648FBE8195AFC5B009A6CBB /* MMRecordDebugger.m */; };
 		267469E516A1C128006A6A81 /* MMRecordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 267469E416A1C128006A6A81 /* MMRecordResponse.m */; };
 		267469EC16A1C226006A6A81 /* MMRecordProtoRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 267469EB16A1C226006A6A81 /* MMRecordProtoRecord.m */; };
+		26828564198E8B5B005D2E58 /* MMRecordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26828563198E8B5B005D2E58 /* MMRecordRequest.m */; };
 		2690DDEE16DAE38A00FE31AC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2690DDED16DAE38A00FE31AC /* MobileCoreServices.framework */; };
 		2690DDF016DAE39000FE31AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2690DDEF16DAE39000FE31AC /* SystemConfiguration.framework */; };
 		55063A2C16FD626B009263E2 /* MMAFJSONServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55063A2A16FD6249009263E2 /* MMAFJSONServer.m */; };
@@ -102,6 +103,8 @@
 		267469E416A1C128006A6A81 /* MMRecordResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordResponse.m; sourceTree = "<group>"; };
 		267469EA16A1C226006A6A81 /* MMRecordProtoRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordProtoRecord.h; sourceTree = "<group>"; };
 		267469EB16A1C226006A6A81 /* MMRecordProtoRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordProtoRecord.m; sourceTree = "<group>"; };
+		26828562198E8B5B005D2E58 /* MMRecordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordRequest.h; sourceTree = "<group>"; };
+		26828563198E8B5B005D2E58 /* MMRecordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordRequest.m; sourceTree = "<group>"; };
 		2690DDED16DAE38A00FE31AC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2690DDEF16DAE39000FE31AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		55063A2916FD6249009263E2 /* MMAFJSONServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAFJSONServer.h; sourceTree = "<group>"; };
@@ -488,6 +491,8 @@
 				267469EB16A1C226006A6A81 /* MMRecordProtoRecord.m */,
 				55211F6816F179E300729C51 /* MMRecordRepresentation.h */,
 				55211F6916F179E300729C51 /* MMRecordRepresentation.m */,
+				26828562198E8B5B005D2E58 /* MMRecordRequest.h */,
+				26828563198E8B5B005D2E58 /* MMRecordRequest.m */,
 				267469E316A1C128006A6A81 /* MMRecordResponse.h */,
 				267469E416A1C128006A6A81 /* MMRecordResponse.m */,
 				55F9520F165C741E0060851E /* MMServer.h */,
@@ -690,6 +695,7 @@
 				55AA657218FB1F610018B4A0 /* FBTweakCategory.m in Sources */,
 				55E712BE16FE15E300EC1159 /* ADNPageManager.m in Sources */,
 				55AA657118FB1F610018B4A0 /* FBTweak.m in Sources */,
+				26828564198E8B5B005D2E58 /* MMRecordRequest.m in Sources */,
 				55E712C216FE4A4000EC1159 /* ADNUsersViewController.m in Sources */,
 				55E712C716FE4A6D00EC1159 /* UserCell.m in Sources */,
 				55AA656F18FB1F610018B4A0 /* _FBTweakCollectionViewController.m in Sources */,

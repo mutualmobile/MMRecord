@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26828570198EA8D3005D2E58 /* MMRecordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2682856F198EA8D3005D2E58 /* MMRecordRequest.m */; };
 		26ECD8AB195B3EA200DBB3C5 /* MMRecordDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ECD8AA195B3EA200DBB3C5 /* MMRecordDebugger.m */; };
 		5509C0ED16FE8E6600310806 /* MMInstagramManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C0EC16FE8E6600310806 /* MMInstagramManager.m */; };
 		5509C0F016FE902C00310806 /* MediaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C0EF16FE902C00310806 /* MediaCell.m */; };
@@ -74,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2682856E198EA8D3005D2E58 /* MMRecordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordRequest.h; sourceTree = "<group>"; };
+		2682856F198EA8D3005D2E58 /* MMRecordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordRequest.m; sourceTree = "<group>"; };
 		26ECD8A9195B3EA200DBB3C5 /* MMRecordDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordDebugger.h; sourceTree = "<group>"; };
 		26ECD8AA195B3EA200DBB3C5 /* MMRecordDebugger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordDebugger.m; sourceTree = "<group>"; };
 		5509C0EB16FE8E6600310806 /* MMInstagramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMInstagramManager.h; sourceTree = "<group>"; };
@@ -390,6 +393,8 @@
 				9FABD98916FA93EF00184BA5 /* MMRecordProtoRecord.m */,
 				9FABD98A16FA93EF00184BA5 /* MMRecordRepresentation.h */,
 				9FABD98B16FA93EF00184BA5 /* MMRecordRepresentation.m */,
+				2682856E198EA8D3005D2E58 /* MMRecordRequest.h */,
+				2682856F198EA8D3005D2E58 /* MMRecordRequest.m */,
 				9FABD98C16FA93EF00184BA5 /* MMRecordResponse.h */,
 				9FABD98D16FA93EF00184BA5 /* MMRecordResponse.m */,
 				9FABD98E16FA93EF00184BA5 /* MMServer.h */,
@@ -580,6 +585,7 @@
 				5528734316FD6351006AFD47 /* MMRecordDynamicMarshaler.m in Sources */,
 				5528734416FD6351006AFD47 /* MMRecordDynamicRepresentation.m in Sources */,
 				5509C0ED16FE8E6600310806 /* MMInstagramManager.m in Sources */,
+				26828570198EA8D3005D2E58 /* MMRecordRequest.m in Sources */,
 				5509C0F016FE902C00310806 /* MediaCell.m in Sources */,
 				5509C0F716FE911300310806 /* Media+DataAccess.m in Sources */,
 				5509C0FA16FE995B00310806 /* MMSearchManager.m in Sources */,

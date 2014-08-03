@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2682856A198EA88C005D2E58 /* MMRecordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26828569198EA88C005D2E58 /* MMRecordRequest.m */; };
 		26ECD8AE195B3EB600DBB3C5 /* MMRecordDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ECD8AD195B3EB600DBB3C5 /* MMRecordDebugger.m */; };
 		5509C10516FEBA5A00310806 /* Tweet+MMRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5509C10416FEBA5A00310806 /* Tweet+MMRecord.m */; };
 		5509C10A16FEBDC300310806 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5509C10616FEBDC300310806 /* star@2x.png */; };
@@ -67,6 +68,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26828568198EA88C005D2E58 /* MMRecordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordRequest.h; sourceTree = "<group>"; };
+		26828569198EA88C005D2E58 /* MMRecordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordRequest.m; sourceTree = "<group>"; };
 		26ECD8AC195B3EB600DBB3C5 /* MMRecordDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordDebugger.h; sourceTree = "<group>"; };
 		26ECD8AD195B3EB600DBB3C5 /* MMRecordDebugger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordDebugger.m; sourceTree = "<group>"; };
 		5509C10316FEBA5A00310806 /* Tweet+MMRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tweet+MMRecord.h"; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				55325F2A16FD55910074C313 /* MMRecordProtoRecord.m */,
 				55325F2B16FD55910074C313 /* MMRecordRepresentation.h */,
 				55325F2C16FD55910074C313 /* MMRecordRepresentation.m */,
+				26828568198EA88C005D2E58 /* MMRecordRequest.h */,
+				26828569198EA88C005D2E58 /* MMRecordRequest.m */,
 				55325F2D16FD55910074C313 /* MMRecordResponse.h */,
 				55325F2E16FD55910074C313 /* MMRecordResponse.m */,
 				55325F2F16FD55910074C313 /* MMServer.h */,
@@ -500,6 +505,7 @@
 				55325F3E16FD55910074C313 /* MMServerPageManager.m in Sources */,
 				55325F4916FD596D0074C313 /* TWRecord.m in Sources */,
 				55325F5216FD5D920074C313 /* User.m in Sources */,
+				2682856A198EA88C005D2E58 /* MMRecordRequest.m in Sources */,
 				55325F5516FD5D920074C313 /* Tweet.m in Sources */,
 				5509C10516FEBA5A00310806 /* Tweet+MMRecord.m in Sources */,
 				5509C11016FEBF1B00310806 /* TWFavoritesViewController.m in Sources */,

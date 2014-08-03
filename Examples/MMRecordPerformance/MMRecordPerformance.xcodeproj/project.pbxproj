@@ -10,6 +10,7 @@
 		262496B816D9E45000767D83 /* MMRecordCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 262496B716D9E45000767D83 /* MMRecordCache.m */; };
 		267469E516A1C128006A6A81 /* MMRecordResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 267469E416A1C128006A6A81 /* MMRecordResponse.m */; };
 		267469EC16A1C226006A6A81 /* MMRecordProtoRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 267469EB16A1C226006A6A81 /* MMRecordProtoRecord.m */; };
+		26828573198EA8DF005D2E58 /* MMRecordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26828572198EA8DF005D2E58 /* MMRecordRequest.m */; };
 		2690DDEE16DAE38A00FE31AC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2690DDED16DAE38A00FE31AC /* MobileCoreServices.framework */; };
 		2690DDF016DAE39000FE31AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2690DDEF16DAE39000FE31AC /* SystemConfiguration.framework */; };
 		26ECD8B1195B3EC900DBB3C5 /* MMRecordDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ECD8B0195B3EC900DBB3C5 /* MMRecordDebugger.m */; };
@@ -83,6 +84,8 @@
 		267469E416A1C128006A6A81 /* MMRecordResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordResponse.m; sourceTree = "<group>"; };
 		267469EA16A1C226006A6A81 /* MMRecordProtoRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordProtoRecord.h; sourceTree = "<group>"; };
 		267469EB16A1C226006A6A81 /* MMRecordProtoRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordProtoRecord.m; sourceTree = "<group>"; };
+		26828571198EA8DF005D2E58 /* MMRecordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordRequest.h; sourceTree = "<group>"; };
+		26828572198EA8DF005D2E58 /* MMRecordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordRequest.m; sourceTree = "<group>"; };
 		2690DDED16DAE38A00FE31AC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2690DDEF16DAE39000FE31AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		26ECD8AF195B3EC900DBB3C5 /* MMRecordDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordDebugger.h; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				267469EB16A1C226006A6A81 /* MMRecordProtoRecord.m */,
 				55211F6816F179E300729C51 /* MMRecordRepresentation.h */,
 				55211F6916F179E300729C51 /* MMRecordRepresentation.m */,
+				26828571198EA8DF005D2E58 /* MMRecordRequest.h */,
+				26828572198EA8DF005D2E58 /* MMRecordRequest.m */,
 				267469E316A1C128006A6A81 /* MMRecordResponse.h */,
 				267469E416A1C128006A6A81 /* MMRecordResponse.m */,
 				55F9520F165C741E0060851E /* MMServer.h */,
@@ -546,6 +551,7 @@
 				55F95219165C744C0060851E /* AppDotNetModel.xcdatamodeld in Sources */,
 				55F95224165C76370060851E /* User.m in Sources */,
 				55F95227165C76370060851E /* Post.m in Sources */,
+				26828573198EA8DF005D2E58 /* MMRecordRequest.m in Sources */,
 				55F9522A165C76920060851E /* ADNRecord.m in Sources */,
 				55F95243165C77380060851E /* AFHTTPClient.m in Sources */,
 				55F95244165C77380060851E /* AFHTTPRequestOperation.m in Sources */,

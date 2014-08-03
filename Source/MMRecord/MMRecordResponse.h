@@ -78,5 +78,6 @@
  above.
  */
 - (NSArray *)records;
+- (void)recordsWithCompletionBlock:(void(^)(NSArray *records))completionBlock;
 
 @end

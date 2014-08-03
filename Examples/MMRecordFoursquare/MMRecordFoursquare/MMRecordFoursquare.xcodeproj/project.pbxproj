@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26828567198EA4AD005D2E58 /* MMRecordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26828566198EA4AD005D2E58 /* MMRecordRequest.m */; };
 		26ECD8A8195B3E8800DBB3C5 /* MMRecordDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 26ECD8A7195B3E8800DBB3C5 /* MMRecordDebugger.m */; };
 		26F9870918666C03000CAF96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F9870518666C03000CAF96 /* Main.storyboard */; };
 		26F9870A18666C03000CAF96 /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F9870818666C03000CAF96 /* MMViewController.m */; };
@@ -73,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26828565198EA4AD005D2E58 /* MMRecordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordRequest.h; sourceTree = "<group>"; };
+		26828566198EA4AD005D2E58 /* MMRecordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordRequest.m; sourceTree = "<group>"; };
 		26ECD8A6195B3E8800DBB3C5 /* MMRecordDebugger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordDebugger.h; sourceTree = "<group>"; };
 		26ECD8A7195B3E8800DBB3C5 /* MMRecordDebugger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordDebugger.m; sourceTree = "<group>"; };
 		26F9870618666C03000CAF96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MMRecordFoursquare/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
@@ -398,6 +401,8 @@
 				55D2789A18297E01008CB6B4 /* MMRecordProtoRecord.m */,
 				55D2789B18297E01008CB6B4 /* MMRecordRepresentation.h */,
 				55D2789C18297E01008CB6B4 /* MMRecordRepresentation.m */,
+				26828565198EA4AD005D2E58 /* MMRecordRequest.h */,
+				26828566198EA4AD005D2E58 /* MMRecordRequest.m */,
 				55D2789D18297E01008CB6B4 /* MMRecordResponse.h */,
 				55D2789E18297E01008CB6B4 /* MMRecordResponse.m */,
 				55D2789F18297E01008CB6B4 /* MMServer.h */,
@@ -571,6 +576,7 @@
 				55D2786F18297CC6008CB6B4 /* Foursquare.xcdatamodeld in Sources */,
 				55D2785E1829769B008CB6B4 /* AFURLSessionManager.m in Sources */,
 				55D278A918297E01008CB6B4 /* MMRecordProtoRecord.m in Sources */,
+				26828567198EA4AD005D2E58 /* MMRecordRequest.m in Sources */,
 				55D278A718297E01008CB6B4 /* MMRecordCache.m in Sources */,
 				550DFA9B1846AF2300E76A6B /* PhotoItem.m in Sources */,
 				550DFAA71846AF2300E76A6B /* Contact.m in Sources */,

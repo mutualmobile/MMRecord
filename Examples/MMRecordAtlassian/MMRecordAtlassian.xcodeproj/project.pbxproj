@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2682856D198EA8C8005D2E58 /* MMRecordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2682856C198EA8C8005D2E58 /* MMRecordRequest.m */; };
 		26AF57BA195A58FF00D1D3A7 /* IssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF57B9195A58FF00D1D3A7 /* IssuesViewController.swift */; };
 		26FA0E9E19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26FA0E9C19551BDB008068A2 /* MMRecordAtlassian.xcdatamodeld */; };
 		26FA0EA319551BDB008068A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26FA0EA119551BDB008068A2 /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2682856B198EA8C8005D2E58 /* MMRecordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordRequest.h; sourceTree = "<group>"; };
+		2682856C198EA8C8005D2E58 /* MMRecordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordRequest.m; sourceTree = "<group>"; };
 		26AF57B9195A58FF00D1D3A7 /* IssuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesViewController.swift; sourceTree = "<group>"; };
 		26FA0E9519551BDB008068A2 /* MMRecordAtlassian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMRecordAtlassian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26FA0E9919551BDB008068A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				55A1CC13195B9C6A007FBCB8 /* MMRecordProtoRecord.m */,
 				55A1CC14195B9C6A007FBCB8 /* MMRecordRepresentation.h */,
 				55A1CC15195B9C6A007FBCB8 /* MMRecordRepresentation.m */,
+				2682856B198EA8C8005D2E58 /* MMRecordRequest.h */,
+				2682856C198EA8C8005D2E58 /* MMRecordRequest.m */,
 				55A1CC16195B9C6A007FBCB8 /* MMRecordResponse.h */,
 				55A1CC17195B9C6A007FBCB8 /* MMRecordResponse.m */,
 				55A1CC18195B9C6A007FBCB8 /* MMServer.h */,
@@ -304,6 +309,7 @@
 				26AF57BA195A58FF00D1D3A7 /* IssuesViewController.swift in Sources */,
 				55A1CC20195B9C6A007FBCB8 /* MMRecordCache.m in Sources */,
 				55A1CC23195B9C6A007FBCB8 /* MMRecordProtoRecord.m in Sources */,
+				2682856D198EA8C8005D2E58 /* MMRecordRequest.m in Sources */,
 				26FC7C3B195A65050066A195 /* Issue.swift in Sources */,
 				26FA0F0A19551E91008068A2 /* PlansViewController.swift in Sources */,
 				26FC7C39195A64600066A195 /* OutwardLink.swift in Sources */,

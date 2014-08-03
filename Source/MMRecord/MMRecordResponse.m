@@ -114,7 +114,16 @@
     
     // Step 4: Profit!
     NSArray *records = [self recordsFromObjectGraph];
+    
     return records;
+}
+
+- (void)recordsWithCompletionBlock:(void (^)(NSArray *))completionBlock {
+    NSArray *records = [self records];
+    
+    if (completionBlock) {
+        completionBlock(records);
+    }
 }
 
 - (NSArray *)recordsFromObjectGraph {
