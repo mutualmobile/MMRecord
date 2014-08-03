@@ -21,6 +21,7 @@
 		5528734616FD6371006AFD47 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5528734516FD6371006AFD47 /* Default-568h@2x.png */; };
 		5528734816FD6391006AFD47 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5528734716FD6391006AFD47 /* SystemConfiguration.framework */; };
 		5528734A16FD6395006AFD47 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5528734916FD6395006AFD47 /* MobileCoreServices.framework */; };
+		55642CD1198ED24C0059C0D5 /* MMRecordSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55642CD0198ED24C0059C0D5 /* MMRecordSerializer.m */; };
 		55C898B117068B00004E3C50 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B017068B00004E3C50 /* Icon.png */; };
 		55C898B317068B06004E3C50 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B217068B05004E3C50 /* Icon@2x.png */; };
 		55C898BF17068B2C004E3C50 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C898B517068B2C004E3C50 /* Icon-72.png */; };
@@ -99,6 +100,8 @@
 		5528734516FD6371006AFD47 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		5528734716FD6391006AFD47 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5528734916FD6395006AFD47 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		55642CCF198ED24C0059C0D5 /* MMRecordSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordSerializer.h; sourceTree = "<group>"; };
+		55642CD0198ED24C0059C0D5 /* MMRecordSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordSerializer.m; sourceTree = "<group>"; };
 		55C898B017068B00004E3C50 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../Icon.png; sourceTree = "<group>"; };
 		55C898B217068B05004E3C50 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../Icon@2x.png"; sourceTree = "<group>"; };
 		55C898B517068B2C004E3C50 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 				2682856F198EA8D3005D2E58 /* MMRecordRequest.m */,
 				9FABD98C16FA93EF00184BA5 /* MMRecordResponse.h */,
 				9FABD98D16FA93EF00184BA5 /* MMRecordResponse.m */,
+				55642CCF198ED24C0059C0D5 /* MMRecordSerializer.h */,
+				55642CD0198ED24C0059C0D5 /* MMRecordSerializer.m */,
 				9FABD98E16FA93EF00184BA5 /* MMServer.h */,
 				9FABD98F16FA93EF00184BA5 /* MMServer.m */,
 				9FABD99016FA93EF00184BA5 /* MMServerPageManager.h */,
@@ -574,6 +579,7 @@
 				9FABD9B916FA966A00184BA5 /* AFHTTPRequestOperation.m in Sources */,
 				9FABD9BA16FA966A00184BA5 /* AFImageRequestOperation.m in Sources */,
 				26ECD8AB195B3EA200DBB3C5 /* MMRecordDebugger.m in Sources */,
+				55642CD1198ED24C0059C0D5 /* MMRecordSerializer.m in Sources */,
 				9FABD9BB16FA966A00184BA5 /* AFJSONRequestOperation.m in Sources */,
 				9FABD9BC16FA966A00184BA5 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9FABD9BD16FA966A00184BA5 /* AFPropertyListRequestOperation.m in Sources */,

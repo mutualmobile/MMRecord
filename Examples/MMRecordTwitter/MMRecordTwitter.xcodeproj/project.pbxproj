@@ -30,6 +30,7 @@
 		55325F4916FD596D0074C313 /* TWRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 55325F4816FD596D0074C313 /* TWRecord.m */; };
 		55325F5216FD5D920074C313 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 55325F5116FD5D920074C313 /* User.m */; };
 		55325F5516FD5D920074C313 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 55325F5416FD5D920074C313 /* Tweet.m */; };
+		55642CD4198ED2590059C0D5 /* MMRecordSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55642CD3198ED2590059C0D5 /* MMRecordSerializer.m */; };
 		55C6BCFD16FD5416000114DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C6BCFC16FD5416000114DF /* UIKit.framework */; };
 		55C6BCFF16FD5416000114DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C6BCFE16FD5416000114DF /* Foundation.framework */; };
 		55C6BD0116FD5416000114DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C6BD0016FD5416000114DF /* CoreGraphics.framework */; };
@@ -106,6 +107,8 @@
 		55325F5116FD5D920074C313 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		55325F5316FD5D920074C313 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		55325F5416FD5D920074C313 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		55642CD2198ED2590059C0D5 /* MMRecordSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordSerializer.h; sourceTree = "<group>"; };
+		55642CD3198ED2590059C0D5 /* MMRecordSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordSerializer.m; sourceTree = "<group>"; };
 		55C6BCF916FD5416000114DF /* MMRecordTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMRecordTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C6BCFC16FD5416000114DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		55C6BCFE16FD5416000114DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -220,6 +223,8 @@
 				26828569198EA88C005D2E58 /* MMRecordRequest.m */,
 				55325F2D16FD55910074C313 /* MMRecordResponse.h */,
 				55325F2E16FD55910074C313 /* MMRecordResponse.m */,
+				55642CD2198ED2590059C0D5 /* MMRecordSerializer.h */,
+				55642CD3198ED2590059C0D5 /* MMRecordSerializer.m */,
 				55325F2F16FD55910074C313 /* MMServer.h */,
 				55325F3016FD55910074C313 /* MMServer.m */,
 				55325F3116FD55910074C313 /* MMServerPageManager.h */,
@@ -490,6 +495,7 @@
 				55C6BD5F16FD54AA000114DF /* AFJSONRequestOperation.m in Sources */,
 				55C6BD6016FD54AA000114DF /* AFNetworkActivityIndicatorManager.m in Sources */,
 				55C6BD6116FD54AA000114DF /* AFPropertyListRequestOperation.m in Sources */,
+				55642CD4198ED2590059C0D5 /* MMRecordSerializer.m in Sources */,
 				55C6BD6216FD54AA000114DF /* AFURLConnectionOperation.m in Sources */,
 				55C6BD6316FD54AA000114DF /* AFXMLRequestOperation.m in Sources */,
 				55C6BD6416FD54AA000114DF /* UIImageView+AFNetworking.m in Sources */,

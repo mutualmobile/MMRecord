@@ -69,6 +69,12 @@
             location = "group:MMRecordResponse.m">
          </FileRef>
          <FileRef
+            location = "group:MMRecordSerializer.h">
+         </FileRef>
+         <FileRef
+            location = "group:MMRecordSerializer.m">
+         </FileRef>
+         <FileRef
             location = "group:MMServer.h">
          </FileRef>
          <FileRef

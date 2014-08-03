@@ -18,6 +18,7 @@
 		550DFAA41846AF2300E76A6B /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFAA31846AF2300E76A6B /* Menu.m */; };
 		550DFAA71846AF2300E76A6B /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFAA61846AF2300E76A6B /* Contact.m */; };
 		550DFAAA1846AF2300E76A6B /* PhotoGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 550DFAA91846AF2300E76A6B /* PhotoGroup.m */; };
+		55642CCE198ED23D0059C0D5 /* MMRecordSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55642CCD198ED23D0059C0D5 /* MMRecordSerializer.m */; };
 		557FB4F81864B0A30010748E /* AFMMRecordResponseSerializationMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 557FB4F71864B0A30010748E /* AFMMRecordResponseSerializationMapper.m */; };
 		55D2780B1829765E008CB6B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D2780A1829765E008CB6B4 /* Foundation.framework */; };
 		55D2780D1829765E008CB6B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D2780C1829765E008CB6B4 /* CoreGraphics.framework */; };
@@ -95,6 +96,8 @@
 		550DFAA61846AF2300E76A6B /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		550DFAA81846AF2300E76A6B /* PhotoGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoGroup.h; sourceTree = "<group>"; };
 		550DFAA91846AF2300E76A6B /* PhotoGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoGroup.m; sourceTree = "<group>"; };
+		55642CCC198ED23D0059C0D5 /* MMRecordSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRecordSerializer.h; sourceTree = "<group>"; };
+		55642CCD198ED23D0059C0D5 /* MMRecordSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRecordSerializer.m; sourceTree = "<group>"; };
 		557FB4F61864B0A30010748E /* AFMMRecordResponseSerializationMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFMMRecordResponseSerializationMapper.h; sourceTree = "<group>"; };
 		557FB4F71864B0A30010748E /* AFMMRecordResponseSerializationMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFMMRecordResponseSerializationMapper.m; sourceTree = "<group>"; };
 		55D278071829765E008CB6B4 /* MMRecordFoursquare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMRecordFoursquare.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -405,6 +408,8 @@
 				26828566198EA4AD005D2E58 /* MMRecordRequest.m */,
 				55D2789D18297E01008CB6B4 /* MMRecordResponse.h */,
 				55D2789E18297E01008CB6B4 /* MMRecordResponse.m */,
+				55642CCC198ED23D0059C0D5 /* MMRecordSerializer.h */,
+				55642CCD198ED23D0059C0D5 /* MMRecordSerializer.m */,
 				55D2789F18297E01008CB6B4 /* MMServer.h */,
 				55D278A018297E01008CB6B4 /* MMServer.m */,
 				55D278A118297E01008CB6B4 /* MMServerPageManager.h */,
@@ -565,6 +570,7 @@
 				26F9870A18666C03000CAF96 /* MMViewController.m in Sources */,
 				55D278AA18297E01008CB6B4 /* MMRecordRepresentation.m in Sources */,
 				26ECD8A8195B3E8800DBB3C5 /* MMRecordDebugger.m in Sources */,
+				55642CCE198ED23D0059C0D5 /* MMRecordSerializer.m in Sources */,
 				55FB3C1A18C1A10400B861BA /* AFMMRecordSessionManagerServer.m in Sources */,
 				55D278B2182980BC008CB6B4 /* FSRecord.m in Sources */,
 				55D278A618297E01008CB6B4 /* MMRecord.m in Sources */,
