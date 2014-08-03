@@ -250,19 +250,6 @@ extern NSString * const MMRecordAttributeAlternateNameKey;
 + (Class)representationClass;
 
 /**
- This method is used by the -startDetailRequestWithDomain: method to locate and obtain the resource 
- data for a specific record.  This URN should be everything after the base URL that is necesary to 
- provide a unique location for obtaining the specified resource.  A common implementation of this 
- method will be to return a resource URI obtained via a previous server call.  For APIs that do not 
- support this you will need to construct this URN yourself.
- 
- @return A NSString containing the detail URN for the record.
- @warning If you do not implement this method then the startDetailRequest method 
- will implicitly fail.
- */
-- (NSString *)recordDetailURN;
-
-/**
  This method is used by all of the parsing method base implementations to obtain a date formatter 
  configured for handling the server's specified date format.
  
@@ -403,22 +390,6 @@ extern NSString * const MMRecordAttributeAlternateNameKey;
                 resultBlock:(void(^)(NSArray *records, id customResponseObject))resultBlock
                failureBlock:(void(^)(NSError *error))failureBlock;
 
-/**
- Starts a detail request for an instance of a record.  This method calls the recordDetailURN method, 
- which should be implemented by a record needing to use this method.  The record detail URN will be 
- used as the location for fetching the detail resource for the record.
- 
- @param domain The domain that this request should be associated with.
- @param resultBlock A block object to be executed when the request finishes successfully.  The block 
- contains a reference to the calling record which will have been updated with the returned data from 
- the detail request.
- @param failureBlock A block object to be executed when the request finishes unsuccessfully.  
- The block contains an error object that describes a request failure or a record parsing failure.
- */
-- (void)startDetailRequestWithDomain:(id)domain
-                         resultBlock:(void(^)(MMRecord *record))resultBlock
-                        failureBlock:(void(^)(NSError *error))failureBlock;
-
 /** 
  Starts batched requests.
  
@@ -432,11 +403,50 @@ extern NSString * const MMRecordAttributeAlternateNameKey;
                          withCompletionBlock:(void(^)())completionBlock;
 
 
-///-----------------------------------------
-/// @name Error Handling Convenience Methods
-///-----------------------------------------
+///-----------------------
+/// @name Instance Methods
+///-----------------------
 
+/**
+ Returns the primary key value for the record.
+ @return The primary key value for the record.
+ */
 - (id)primaryKeyValue;
+
+/**
+ This method uses the MMRecordSerializer class to return a serialized version of this record.
+ @return The serialized record.
+ */
+- (id)serializedObject;
+
+/**
+ This method is used by the -startDetailRequestWithDomain: method to locate and obtain the resource
+ data for a specific record.  This URN should be everything after the base URL that is necesary to
+ provide a unique location for obtaining the specified resource.  A common implementation of this
+ method will be to return a resource URI obtained via a previous server call.  For APIs that do not
+ support this you will need to construct this URN yourself.
+ 
+ @return A NSString containing the detail URN for the record.
+ @warning If you do not implement this method then the startDetailRequest method
+ will implicitly fail.
+ */
+- (NSString *)recordDetailURN;
+
+/**
+ Starts a detail request for an instance of a record.  This method calls the recordDetailURN method,
+ which should be implemented by a record needing to use this method.  The record detail URN will be
+ used as the location for fetching the detail resource for the record.
+ 
+ @param domain The domain that this request should be associated with.
+ @param resultBlock A block object to be executed when the request finishes successfully.  The block
+ contains a reference to the calling record which will have been updated with the returned data from
+ the detail request.
+ @param failureBlock A block object to be executed when the request finishes unsuccessfully.
+ The block contains an error object that describes a request failure or a record parsing failure.
+ */
+- (void)startDetailRequestWithDomain:(id)domain
+                         resultBlock:(void(^)(MMRecord *record))resultBlock
+                        failureBlock:(void(^)(NSError *error))failureBlock;
 
 @end
 

@@ -23,6 +23,79 @@
 
 #import "MMRecordSerializer.h"
 
+#import "MMRecord.h"
+#import "MMRecordRepresentation.h"
+
 @implementation MMRecordSerializer
+
++ (id)serializedObjectForRecord:(MMRecord *)record
+             withRepresentation:(MMRecordRepresentation *)representation {
+    NSEntityDescription *entity = representation.entity;
+    NSMutableDictionary *serializedObject = [NSMutableDictionary dictionary];
+
+    NSArray *attributes = [[entity attributesByName] allValues];
+    
+    for (NSAttributeDescription *attribute in attributes) {
+        NSArray *keyPaths = [representation keyPathsForMappingAttributeDescription:attribute];
+        NSString *firstKeyPath = [keyPaths firstObject];
+        
+        if (firstKeyPath != nil) {
+            id value = [record valueForKey:attribute.name];
+            
+            if (value != nil) {
+                [serializedObject setValue:value forKeyPath:firstKeyPath];
+            }
+        }
+    }
+    
+    // Need to detect circular references and recursion so that we don't get into an infinite loop here going through relationships
+    
+    
+//    NSArray *relationships = [[entity relationshipsByName] allValues];
+//    
+//    for (NSRelationshipDescription *relationship in relationships) {
+//        NSArray *keyPaths = [representation keyPathsForMappingRelationshipDescription:relationship];
+//        NSString *firstKeyPath = [keyPaths firstObject];
+//        
+//        if (firstKeyPath != nil) {
+//            if ([relationship isToMany]) {
+//                NSMutableArray *array = [NSMutableArray array];
+//                
+//                NSSet *set = [record valueForKey:relationship.name];
+//                NSArray *allObjects = [set allObjects];
+//                
+//                for (MMRecord *value in allObjects) {
+//                    if ([value respondsToSelector:@selector(serializedObject)]) {
+//                        id serializedRecord = [value serializedObject];
+//                        
+//                        if (serializedRecord != nil) {
+//                            [array addObject:serializedRecord];
+//                        }
+//                    }
+//                }
+//                
+//                if ([array count] > 0) {
+//                    [serializedObject setValue:array forKeyPath:firstKeyPath];
+//                }
+//            } else {
+//                MMRecord *value = [record valueForKey:relationship.name];
+//                
+//                if ([value respondsToSelector:@selector(serializedObject)]) {
+//                    id serializedRecord = [value serializedObject];
+//                    
+//                    if (serializedRecord != nil) {
+//                        [serializedObject setValue:serializedRecord forKeyPath:firstKeyPath];
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    if ([serializedObject count] == 0) {
+        return nil;
+    }
+    
+    return serializedObject;
+}
 
 @end

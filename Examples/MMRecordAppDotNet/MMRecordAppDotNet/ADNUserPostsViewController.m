@@ -62,6 +62,9 @@
          }
      }
      failureBlock:nil];
+    
+    id serial = [self.user serializedObject];
+    NSLog(@"%@", serial);
 }
 
 

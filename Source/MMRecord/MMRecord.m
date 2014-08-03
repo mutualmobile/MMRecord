@@ -25,6 +25,7 @@
 #import "MMRecordCache.h"
 #import "MMRecordRepresentation.h"
 #import "MMRecordRequest.h"
+#import "MMRecordSerializer.h"
 #import "MMServer.h"
 
 static MMRecordLoggingLevel MM_mmrecord_logging_level = 0;
@@ -64,10 +65,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
 }
 
 + (NSDateFormatter *)dateFormatter {
-    return nil;
-}
-
-- (NSString *)recordDetailURN {
     return nil;
 }
 
@@ -248,6 +245,40 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
      } failureBlock:failureBlock];
 }
 
++ (void)startBatchedRequestsInExecutionBlock:(void(^)())batchExecutionBlock
+                         withCompletionBlock:(void(^)())completionBlock {
+    MM_mmrecord_batch_requests = YES;
+    [MMRecordRequest startBatchedRequestsInBatchExecutionBlock:batchExecutionBlock
+                                           withCompletionBlock:completionBlock];
+    MM_mmrecord_batch_requests = NO;
+    [self restoreDefaultOptions];
+}
+
+
+#pragma mark - Instance Methods
+
+- (id)primaryKeyValue {
+    NSDictionary *userInfo = [[self entity] userInfo];
+    NSString *primaryAttributeKey = [userInfo valueForKey:MMRecordEntityPrimaryAttributeKey];
+    
+    if (primaryAttributeKey == nil) {
+        return nil;
+    }
+    
+    return [self valueForKey:primaryAttributeKey];
+}
+
+- (id)serializedObject {
+    MMRecordRepresentation *representation = [[[[self class] representationClass] alloc] initWithEntity:self.entity];
+    id serializedObject = [MMRecordSerializer serializedObjectForRecord:self withRepresentation:representation];
+    
+    return serializedObject;
+}
+
+- (NSString *)recordDetailURN {
+    return nil;
+}
+
 - (void)startDetailRequestWithDomain:(id)domain
                          resultBlock:(void (^)(MMRecord *object))resultBlock
                         failureBlock:(void (^)(NSError *error))failureBlock {
@@ -276,29 +307,6 @@ NSString * const MMRecordAttributeAlternateNameKey = @"MMRecordAttributeAlternat
              failureBlock(error);
          }
      }];
-}
-
-+ (void)startBatchedRequestsInExecutionBlock:(void(^)())batchExecutionBlock
-                         withCompletionBlock:(void(^)())completionBlock {
-    MM_mmrecord_batch_requests = YES;
-    [MMRecordRequest startBatchedRequestsInBatchExecutionBlock:batchExecutionBlock
-                                           withCompletionBlock:completionBlock];
-    MM_mmrecord_batch_requests = NO;
-    [self restoreDefaultOptions];
-}
-
-
-#pragma mark - Primary Key Methods
-
-- (id)primaryKeyValue {
-    NSDictionary *userInfo = [[self entity] userInfo];
-    NSString *primaryAttributeKey = [userInfo valueForKey:MMRecordEntityPrimaryAttributeKey];
-    
-    if (primaryAttributeKey == nil) {
-        return nil;
-    }
-    
-    return [self valueForKey:primaryAttributeKey];
 }
 
 @end
