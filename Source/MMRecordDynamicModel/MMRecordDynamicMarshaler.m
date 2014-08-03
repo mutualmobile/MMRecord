@@ -45,8 +45,7 @@
   MMRecordDynamicRepresentation *dynamicRepresentation =
       (MMRecordDynamicRepresentation *)protoRecord.representation;
   [self populateProtoRecord:protoRecord
-       attributeDescription:dynamicRepresentation.dynamicStorageAttribute
-             fromDictionary:protoRecord.dictionary];
+   withAttributeDescription:dynamicRepresentation.dynamicStorageAttribute];
 }
 
 + (void)populateProtoRecord:(MMRecordProtoRecord *)protoRecord
@@ -64,8 +63,7 @@
          dateFormatter:protoRecord.representation.dateFormatter];
     } else {
         [super populateProtoRecord:protoRecord
-              attributeDescription:attributeDescription
-                    fromDictionary:dictionary];
+          withAttributeDescription:attributeDescription];
     }
 }
 

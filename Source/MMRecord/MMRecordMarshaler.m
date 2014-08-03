@@ -39,18 +39,16 @@
     
     for (NSAttributeDescription *attributeDescription in [protoRecord.representation attributeDescriptions]) {
         [self populateProtoRecord:protoRecord
-             attributeDescription:attributeDescription
-                   fromDictionary:protoRecord.dictionary];
+         withAttributeDescription:attributeDescription];
     }
 }
 
 + (void)populateProtoRecord:(MMRecordProtoRecord *)protoRecord
-       attributeDescription:(NSAttributeDescription *)attributeDescription
-             fromDictionary:(NSDictionary *)dictionary {
+   withAttributeDescription:(NSAttributeDescription *)attributeDescription {
     NSArray *possibleKeyPaths = [protoRecord.representation keyPathsForMappingAttributeDescription:attributeDescription];
     
     for (NSString *possibleKeyPath in possibleKeyPaths) {
-        id value = [protoRecord.dictionary valueForKeyPath:possibleKeyPath];
+        id value = [protoRecord.recordResponseObject valueForKeyPath:possibleKeyPath];
         
         if (value == [NSNull null]) {
             break;
@@ -225,7 +223,9 @@
         
         //is a faulted set; iterate through to find
         for (MMRecord *faultedObject in (NSSet *)existingRecordOrCollectionFromRelationship) {
-            if ([self verifyObject:faultedObject containsValuesForKeysInDict:protoRecord.dictionary representation:protoRecord.representation] == YES) {
+            if ([self verifyObject:faultedObject
+       containsValuesForKeysInDict:protoRecord.recordResponseObject
+                    representation:protoRecord.representation] == YES) {
                 existingRecordFromParent = faultedObject;
                 
                 break;
@@ -247,17 +247,20 @@
     }
 }
 
-+ (void)mergeDuplicateRecordResponseObjectDictionary:(NSDictionary *)dictionary
-                             withExistingProtoRecord:(MMRecordProtoRecord *)protoRecord {
-    if ([protoRecord.dictionary.allKeys count] == 1) {
++ (void)mergeDuplicateRecordResponseObject:(id)recordResponseObject
+                   withExistingProtoRecord:(MMRecordProtoRecord *)protoRecord {
+    NSDictionary *recordResponseObjectDictionary = recordResponseObject;
+    NSDictionary *existingProtoRecordResponseObject = protoRecord.recordResponseObject;
+    
+    if ([existingProtoRecordResponseObject.allKeys count] == 1) {
         NSAttributeDescription *primaryAttributeDescription = protoRecord.representation.primaryAttributeDescription;
         NSArray *primaryKeyPaths = [protoRecord.representation keyPathsForMappingAttributeDescription:primaryAttributeDescription];
         
         BOOL dictionariesContainIdenticalPrimaryKeys = NO;
         
         for (NSString *keyPath in primaryKeyPaths) {
-            id dictionaryValue = [dictionary valueForKeyPath:keyPath];
-            id protoRecordValue = [dictionary valueForKeyPath:keyPath];
+            id dictionaryValue = [recordResponseObjectDictionary valueForKeyPath:keyPath];
+            id protoRecordValue = [recordResponseObjectDictionary valueForKeyPath:keyPath];
             
             if ([dictionaryValue isKindOfClass:[NSNumber class]] && [protoRecordValue isKindOfClass:[NSNumber class]]) {
                 dictionariesContainIdenticalPrimaryKeys = [dictionaryValue isEqualToNumber:protoRecordValue];
@@ -271,11 +274,11 @@
         }
         
         if (dictionariesContainIdenticalPrimaryKeys) {
-            protoRecord.dictionary = dictionary;
+            protoRecord.recordResponseObject = recordResponseObjectDictionary;
         }
     }
     
-    if ([dictionary.allKeys count] != [protoRecord.dictionary.allKeys count]) {
+    if ([recordResponseObjectDictionary.allKeys count] != [existingProtoRecordResponseObject.allKeys count]) {
         [MMRecordDebugger logMessageWithDescription:@"Possible inconsistent duplicate records detected. MMRecord provided the opportunity to merge two dictionaries representing the same record, where those two dictionaries were not equal. You may override the MMRecordMarshaler mergeDuplicateRecordResponseObjectDictionary:withExistingProtoRecord: method to deal with this issue if it becomes a problem. This is not expected behavior and may be due to an response issue."];
     }
 }

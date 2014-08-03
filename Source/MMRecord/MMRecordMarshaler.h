@@ -37,11 +37,11 @@
  ## Default Implementation
  
  The default implementation of the marshaler populates all attributes on the given proto record's 
- instance of MMRecord as defined by that proto record's representation. The marshal will ask the 
+ instance of MMRecord as defined by that proto record's representation. The marshaler will ask the
  representation for the list of attributes, and attempt to populate all of them using the 
- +populateProtoRecord:attributeDescription:fromDictionary method. By default, that method will call
+ +populateProtoRecord:withAttributeDescription: method. By default, that method will call
  the +setValue method for the attribute using the first valid key which obtains a value from the 
- dictionary.
+ proto record's record response object.
  
  The default implementation of the marshaler will also establish each relationship as similarly 
  defined by the proto record's representation.
@@ -52,9 +52,9 @@
  MMRecord. For example, if you wanted to change the behavior for how numbers and strings are 
  populated, you could create a custom marshaler. If you wanted the ability to create more
  specialized date population, you could create a custom marshaler. If you want to change how
- transformable attributes are populated, or perhaps add support for storing the entire dictionary or
- a different value entirely in an attribute, then creating a custom marshaler through subclassing is
- definitely a route you should explore.
+ transformable attributes are populated, or perhaps add support for storing the entire record response 
+ object (or a different value entirely) in an attribute, then creating a custom marshaler through
+ subclassing is definitely a route you should explore.
  
  Another option for subclassing is to subclass to provide an extension of functionality rather than 
  different functionality. For example, you may choose to conditionally establish a relationship 
@@ -126,18 +126,17 @@
  may want for the larger subset to win, even if it wasn't found by MMRecord first.
  
  You may override this method in a subclass of MMRecordMarshaler to provide this functionality.
- @param dictionary The dictionary for the n+1th record response object of a given type and 
- primary key.
+ @param recordResponseObject The object for the n+1th record of a given type and primary key.
  @param protoRecord The proto record created to represent this specific object by MMRecord.
  @discussion The default implementation of this method will look for cases where a given record is
  only identified by a primary key and includes no additional data to populate it with. In this case
- the primary key of that original proto record will be compared with the incoming object dictionary
- and if they match then the new dictionary will be associated with the proto record.
+ the primary key of that original proto record will be compared with the incoming record response 
+ object and if they match then the new record response object will be associated with the proto record.
  @warning If you decide to subclass this method you may want to use the super implementation
  as a starting point for your own implementation. Calling super is not required, but is recommended.
  */
-+ (void)mergeDuplicateRecordResponseObjectDictionary:(NSDictionary *)dictionary
-                             withExistingProtoRecord:(MMRecordProtoRecord *)protoRecord;
++ (void)mergeDuplicateRecordResponseObject:(id)recordResponseObject
+                   withExistingProtoRecord:(MMRecordProtoRecord *)protoRecord;
 
 
 ///---------------------------------
@@ -146,18 +145,16 @@
 
 /** 
  This method is designed to be subclassed. It should be called to handle the population of a 
- specific attribute from a given dictionary for a particular record on the given proto record. 
- The basic implementation of this will call +setValue: with a value obtained from the given 
- dictionary based on possible key paths from the proto's representation. However, a subclass may 
- want to provide custom behavior, which is what this method is intended to be used for.
+ specific attribute from a given record response object for a particular record on the given proto 
+ record. The basic implementation of this will call +setValue: with a value obtained from the given
+ record response object based on possible key paths from the proto's representation. However, a 
+ subclass may want to provide custom behavior, which is what this method is intended to be used for.
  
  @param protoRecord The proto record that we wish to populate an attribute for.
  @param attributeDescription The attribute that we wish to populate.
- @param dictionary The set of values we have to choose from when populating this proto record.
  */
 + (void)populateProtoRecord:(MMRecordProtoRecord *)protoRecord
-       attributeDescription:(NSAttributeDescription *)attributeDescription
-             fromDictionary:(NSDictionary *)dictionary;
+   withAttributeDescription:(NSAttributeDescription *)attributeDescription;
 
 /**
  This method is designed to be subclassed. It should be used to set the value of an attribute on an 

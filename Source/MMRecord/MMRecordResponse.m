@@ -231,20 +231,20 @@
         recordResponseObject = @{representation.primaryKeyPropertyName : recordResponseObject};
     }
     
-    id primaryValue = [representation primaryKeyValueFromDictionary:recordResponseObject];
+    id primaryValue = [representation primaryKeyValueFromRecordResponseObject:recordResponseObject];
     MMRecordProtoRecord *proto = [recordResponseGroup protoRecordForPrimaryKeyValue:primaryValue];
     
     if (proto == nil) {
-        proto = [MMRecordProtoRecord protoRecordWithDictionary:recordResponseObject
-                                                        entity:entity
-                                                representation:representation];
+        proto = [MMRecordProtoRecord protoRecordWithRecordResponseObject:recordResponseObject
+                                                                  entity:entity
+                                                          representation:representation];
         
         
         if (proto.hasRelationshipPrimarykey == NO) {
             if (proto.primaryKeyValue == nil) {
                 if (self.options.entityPrimaryKeyInjectionBlock != nil) {
                     proto.primaryKeyValue = self.options.entityPrimaryKeyInjectionBlock(proto.entity,
-                                                                                        proto.dictionary,
+                                                                                        proto.recordResponseObject,
                                                                                         parentProtoRecord);
                 }
             }
@@ -262,8 +262,8 @@
             }
         }
     } else {
-        [representation.marshalerClass mergeDuplicateRecordResponseObjectDictionary:recordResponseObject
-                                                            withExistingProtoRecord:proto];
+        [representation.marshalerClass mergeDuplicateRecordResponseObject:recordResponseObject
+                                                  withExistingProtoRecord:proto];
     }
     
     [self uniquelyAddNewProtoRecord:proto toExistingResponseGroups:responseGroups];
@@ -296,16 +296,19 @@
                           existingResponseGroups:(NSMutableDictionary *)responseGroups
                                   representation:(MMRecordRepresentation *)representation
                          relationshipDescription:(NSRelationshipDescription *)relationshipDescription {
-    NSDictionary *dictionary = protoRecord.dictionary;
+    id recordResponseObject = protoRecord.recordResponseObject;
     NSEntityDescription *entity = [relationshipDescription destinationEntity];
     MMRecordResponseGroup *responseGroup = [self responseGroupForEntity:entity
                                              fromExistingResponseGroups:responseGroups];
     
     if (responseGroup != nil) {
         NSArray *keyPaths = [representation keyPathsForMappingRelationshipDescription:relationshipDescription];
-        id relationshipObject = [self relationshipObjectFromDictionary:dictionary
-                                                          fromKeyPaths:keyPaths
-                                                         responseGroup:responseGroup];
+        NSString *destinationPrimaryKeyPropertyName = [responseGroup.representation primaryKeyPropertyName];
+        
+        id relationshipObject = [self relationshipObjectFromRecordResponseObject:recordResponseObject
+                                                                possibleKeyPaths:keyPaths
+                                                         relationshipDescription:relationshipDescription
+                                               destinationPrimaryKeyPropertyName:destinationPrimaryKeyPropertyName];
         
         if (relationshipObject) {
             if ([relationshipObject isKindOfClass:[NSArray class]] == NO) {
@@ -334,13 +337,14 @@
     }
 }
 
-- (id)relationshipObjectFromDictionary:(NSDictionary *)dictionary
-                          fromKeyPaths:(NSArray *)keyPaths
-                         responseGroup:(MMRecordResponseGroup *)responseGroup {
+- (id)relationshipObjectFromRecordResponseObject:(id)recordResponseObject
+                                possibleKeyPaths:(NSArray *)keyPaths
+                         relationshipDescription:(NSRelationshipDescription *)relationshipDescription
+               destinationPrimaryKeyPropertyName:(NSString *)destinationPrimaryKeyPropertyName {
     id relationshipObject = nil;
     
     for (NSString *keyPath in keyPaths) {
-        relationshipObject = [dictionary valueForKeyPath:keyPath];
+        relationshipObject = [recordResponseObject valueForKeyPath:keyPath];
         if (relationshipObject == [NSNull null]) {
             relationshipObject = nil;
         }
@@ -348,7 +352,7 @@
         if (relationshipObject) {
             if (([relationshipObject isKindOfClass:[NSDictionary class]] == NO) &&
                 ([relationshipObject isKindOfClass:[NSArray class]] == NO)) {
-                id primaryKey = [[responseGroup representation] primaryKeyPropertyName];
+                id primaryKey = destinationPrimaryKeyPropertyName;
                 
                 if (primaryKey) {
                     relationshipObject = @{primaryKey : relationshipObject};

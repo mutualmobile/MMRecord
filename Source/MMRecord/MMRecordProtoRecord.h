@@ -28,22 +28,24 @@
 @class MMRecordRepresentation;
 
 /**
-   This class represents a record in its prototype state before it hatches into a full living breathing
-   MMRecord.  Proto records are typically created to match the contents of a request's response object.
-   If your response object contains an array of 20 records of type "user", then you would create 20
-   proto records for the user entity.  A proto record contains the entity whose type it represents and the
-   dictionary it is based on from the response object.  It is also responsible for maintaining the
-   association between itself and other proto records that represent the relationships to it's fully
-   formed record.  One subtle thing to keep in mind is that only one proto record should be created for
-   each unique record in the response object.  The proto record is not responsible for that, but it is
-   an important consideration for a user of this class to consider.  This class is responsible for 
-   populating records with their given dictionary, as well as establishing relationships to it's record.
+ This class represents a record in its prototype state before it hatches into a full living breathing
+ MMRecord.  Proto records are typically created to match the contents of a request's response object.
+ If your response object contains an array of 20 records of type "user", then you would create 20
+ proto records for the user entity.  A proto record contains the entity whose type it represents and the
+ individual response object it is based on from the overall request's response object.
  
-   Note: when the value representing a relationship is a single string or number that MMRecord will
-   convert that string or number into a dictionary with that value, and they primary key identified
-   for that targetted relationship's entity. That means that the representation of a proto record
-   will always be in the form of a dictionary, even if the response object form is a string or a
-   number.
+ It is also responsible for maintaining the association between itself and other proto records that
+ represent the relationships to it's fully formed record. One subtle thing to keep in mind is that
+ only one proto record should be created for each unique record in the response object. The proto 
+ record is not responsible for that, but it is an important consideration for a user of this class 
+ to consider. This class is used as a placeholder while records are being populated with their given 
+ response objects.
+ 
+ Note: when the value representing a relationship is a single string or number that MMRecord will
+ convert that string or number into a dictionary with that value, and they primary key identified
+ for that targetted relationship's entity. That means that the representation of a proto record
+ will always be in the form of a dictionary, even if the response object form is a string or a
+ number.
  */
 
 @interface MMRecordProtoRecord : NSObject
@@ -58,9 +60,9 @@
 @property (nonatomic, strong) MMRecord *record;
 
 /**
- The dictionary being used to populate this proto record.
+ The response object being used to populate this proto record.
  */
-@property (nonatomic, copy) NSDictionary *dictionary;
+@property (nonatomic, strong) id recordResponseObject;
 
 /**
  The entity type for this proto record.
@@ -122,17 +124,17 @@
  Designated Initializer
 
  This method is used to instantiate a base proto record. The proto record is configured with a
- dictionary that is used to populate the record, an entity to describe the type of record, and a
- representation that describes how the record can be populated from that dictionary. This method
- should always be used to instantiate a proto record.
+ record response object that is used to populate the record, an entity to describe the type of
+ record, and arepresentation that describes how the record can be populated from that object. 
+ This method should always be used to instantiate a proto record.
  
- @param dictionary The dictionary used to populate the proto record.
+ @param recordResponseObject The response object used to populate the proto record.
  @param entity The type of record this describes.
  @param representation The representation used to describe this proto record.
  */
-+ (MMRecordProtoRecord *)protoRecordWithDictionary:(NSDictionary *)dictionary
-                                            entity:(NSEntityDescription *)entity
-                                    representation:(MMRecordRepresentation *)representation;
++ (MMRecordProtoRecord *)protoRecordWithRecordResponseObject:(id)recordResponseObject
+                                                      entity:(NSEntityDescription *)entity
+                                              representation:(MMRecordRepresentation *)representation;
 
 
 ///---------------------------

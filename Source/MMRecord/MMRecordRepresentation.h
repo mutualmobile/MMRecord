@@ -23,25 +23,27 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class MMRecordProtoRecord;
+
 /**
  This class encapsulates the representation an MMRecord entity.  A representation contains 
  all of the information required to build a full record of this type of entity.  
  MMRecordRepresentation is closely tied to CoreData's NSEntityDescription. The representation is 
  composed of all of the attributes and relationships for the given entity.  It's job is to keep 
  track of all the possible keys that could 'represent' that attribute or relationship in a response 
- dictionary.  If you're trying to figure out what keyPath might map to a record attribute, this 
+ object.  If you're trying to figure out what keyPath might map to a record attribute, this
  class can help.
  
  ## Default Representation
  
  The default representation is, as described above, very closely tied to the core data model. An 
  entity is composed of a list of properties - typically attributes and relationships. The default 
- representation will attempt to relate each attribute on an entity to a given dictionary. It will
- use two means to relate them: name, and alternate name. The name of the attribute or relationship 
- will be used as a key to search the dictionary for a value to populate it with. In addition, you 
- can define a key on the attribute or relationship's user info dictionary that allows you to specify
- an alternate key path that will be used for searching the dictionary. More information about that 
- can be found on the MMRecord header documentation on model configuration.
+ representation will attempt to relate each attribute on an entity to a given record response object. 
+ It will use two means to relate them: name, and alternate name. The name of the attribute or relationship
+ will be used as a key to search the record response object for a value to populate it with. In addition, 
+ you can define a key on the attribute or relationship's user info dictionary that allows you to specify
+ an alternate key path that will be used for searching the record response object. More information 
+ about that can be found on the MMRecord header documentation on model configuration.
  
  ## Marshalling
  
@@ -218,13 +220,13 @@
 
 /**
  This method should return either a number or string that represents the primary key value as
- obtained from the given dictionary.  It should return nil if this entity is using a relationship as
- its primary key.
+ obtained from the given record response object.  It should return nil if this entity is using a 
+ relationship as its primary key.
  
- @param dictionary The dictionary that contains the primary key value.
- @return The primary key value from the given dictionary.
+ @param recordResponseObject The object that contains the primary key value for a given record.
+ @return The primary key value for the record represented by the given record response object.
  */
-- (id)primaryKeyValueFromDictionary:(NSDictionary *)dictionary;
+- (id)primaryKeyValueFromRecordResponseObject:(id)recordResponseObject;
 
 /** 
  This method is used to check if this entity has a relationship as it's primary key.

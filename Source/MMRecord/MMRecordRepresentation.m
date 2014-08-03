@@ -148,14 +148,14 @@
     return nil;
 }
 
-- (id)primaryKeyValueFromDictionary:(NSDictionary *)dictionary {
+- (id)primaryKeyValueFromRecordResponseObject:(id)recordResponseObject {
     id primaryKeyRepresentation = self.representationDictionary[self.primaryKey];
     
     if ([primaryKeyRepresentation isKindOfClass:[MMRecordAttributeRepresentation class]]) {
         id value = nil;
         
         for (NSString *key in [primaryKeyRepresentation keyPaths]) {
-            value = [dictionary valueForKeyPath:key];
+            value = [recordResponseObject valueForKeyPath:key];
             
             if (value != nil) {
                 return value;
