@@ -223,35 +223,32 @@
     }
     
     id primaryValue = [representation primaryKeyValueFromDictionary:recordResponseObject];
-    MMRecordProtoRecord *proto = [recordResponseGroup protoRecordForPrimaryKeyValue:primaryValue];
+    if (primaryValue == nil) {
+        if (self.options.entityPrimaryKeyInjectionBlock != nil) {
+            primaryValue = self.options.entityPrimaryKeyInjectionBlock(entity,
+                                                                       recordResponseObject,
+                                                                       parentProtoRecord);
+            if (primaryValue == nil) {
+                MMRecordDebugger *debugger = self.options.debugger;
+                NSString *errorDescription = [NSString stringWithFormat:@"No primary key value for response object. \"%@\"", recordResponseObject];
+                NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterRecordClassName,
+                                                                          MMRecordDebuggerParameterErrorDescription,
+                                                                          MMRecordDebuggerParameterEntityDescription]
+                                                                 values:@[entity.managedObjectClassName,
+                                                                          errorDescription,
+                                                                          entity]];
+                [debugger handleErrorCode:MMRecordErrorCodeMissingRecordPrimaryKey withParameters:parameters];
+            }
+        }
+    }
+    MMRecordProtoRecord *proto = [recordResponseGroup protoRecordForPrimaryKeyValue:primaryValue];    
     
     if (proto == nil) {
         proto = [MMRecordProtoRecord protoRecordWithDictionary:recordResponseObject
                                                         entity:entity
-                                                representation:representation];
+                                                representation:representation
+                                               primaryKeyValue:primaryValue];
         
-        
-        if (proto.hasRelationshipPrimarykey == NO) {
-            if (proto.primaryKeyValue == nil) {
-                if (self.options.entityPrimaryKeyInjectionBlock != nil) {
-                    proto.primaryKeyValue = self.options.entityPrimaryKeyInjectionBlock(proto.entity,
-                                                                                        proto.dictionary,
-                                                                                        parentProtoRecord);
-                }
-            }
-            
-            if (proto.primaryKeyValue == nil) {
-                MMRecordDebugger *debugger = self.options.debugger;
-                NSString *errorDescription = [NSString stringWithFormat:@"Creating proto record with no primary key value. \"%@\"", proto];
-                NSDictionary *parameters = [debugger parametersWithKeys:@[MMRecordDebuggerParameterRecordClassName,
-                                                                          MMRecordDebuggerParameterErrorDescription,
-                                                                          MMRecordDebuggerParameterEntityDescription]
-                                                                 values:@[proto.entity.managedObjectClassName,
-                                                                          errorDescription,
-                                                                          proto.entity]];
-                [debugger handleErrorCode:MMRecordErrorCodeMissingRecordPrimaryKey withParameters:parameters];
-            }
-        }
     } else {
         [representation.marshalerClass mergeDuplicateRecordResponseObjectDictionary:recordResponseObject
                                                             withExistingProtoRecord:proto];

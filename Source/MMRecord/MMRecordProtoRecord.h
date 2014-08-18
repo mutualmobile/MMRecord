@@ -132,7 +132,8 @@
  */
 + (MMRecordProtoRecord *)protoRecordWithDictionary:(NSDictionary *)dictionary
                                             entity:(NSEntityDescription *)entity
-                                    representation:(MMRecordRepresentation *)representation;
+                                    representation:(MMRecordRepresentation *)representation
+                                   primaryKeyValue:(id)primaryKeyValue;
 
 
 ///---------------------------
