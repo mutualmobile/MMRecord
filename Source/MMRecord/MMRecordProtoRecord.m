@@ -39,12 +39,13 @@
 
 + (MMRecordProtoRecord *)protoRecordWithDictionary:(NSDictionary *)dictionary
                                             entity:(NSEntityDescription *)entity
-                                    representation:(MMRecordRepresentation *)representation {
+                                    representation:(MMRecordRepresentation *)representation
+                                   primaryKeyValue:(id)primaryKeyValue {
     NSParameterAssert([NSClassFromString([entity managedObjectClassName]) isSubclassOfClass:[MMRecord class]]);
     MMRecordProtoRecord *protoRecord = [[MMRecordProtoRecord alloc] init];
     protoRecord.dictionary = dictionary;
     protoRecord.entity = entity;
-    protoRecord.primaryKeyValue = [representation primaryKeyValueFromDictionary:dictionary];
+    protoRecord.primaryKeyValue = primaryKeyValue;
     protoRecord.relationshipProtosDictionary = [NSMutableDictionary dictionary];
     protoRecord.relationshipDescriptionsDictionary = [NSMutableDictionary dictionary];
     protoRecord.hasRelationshipPrimarykey = [representation hasRelationshipPrimaryKey];
