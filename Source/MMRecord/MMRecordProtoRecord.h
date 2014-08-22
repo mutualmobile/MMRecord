@@ -134,7 +134,8 @@
  */
 + (MMRecordProtoRecord *)protoRecordWithRecordResponseObject:(id)recordResponseObject
                                                       entity:(NSEntityDescription *)entity
-                                              representation:(MMRecordRepresentation *)representation;
+                                              representation:(MMRecordRepresentation *)representation
+                                             primaryKeyValue:(id)primaryKeyValue;
 
 
 ///---------------------------

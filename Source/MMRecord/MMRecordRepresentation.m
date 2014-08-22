@@ -108,7 +108,8 @@
                                                       entity:(NSEntityDescription *)entity {
     return [MMRecordProtoRecord protoRecordWithRecordResponseObject:recordResponseObject
                                                              entity:entity
-                                                     representation:self];
+                                                     representation:self
+                                                    primaryKeyValue:[self primaryKeyValueFromRecordResponseObject:recordResponseObject]];
 }
 
 - (NSDateFormatter *)dateFormatter {
