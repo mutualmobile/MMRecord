@@ -180,7 +180,7 @@ In addition, we provide the AFMMRecordResponseSerializer subspec specially for A
 
 ### MMRecord Subclass Implementation
 
-You are required to override one method on your subclass of MMRecord in order to tell the parsing system where to locate the object(s) are tbat you wish to parse. This method returns a key path that specifies the location relative to the root of the response object. If your response object is an array, you can just return nil.
+You are required to override one method on your subclass of MMRecord in order to tell the parsing system where to locate the object(s) you wish to parse. This method returns a key path that specifies the location relative to the root of the response object. If your response object is an array, you can just return nil.
 
 In an App.net request, all returned objects are located in an object called "data", so our subclass of <tt>MMRecord</tt> will look like this:
 
