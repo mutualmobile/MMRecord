@@ -777,6 +777,7 @@
 		55F95200165C73460060851E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMRecordAppDotNet/MMRecordAppDotNet-Prefix.pch";
 				INFOPLIST_FILE = "MMRecordAppDotNet/MMRecordAppDotNet-Info.plist";
@@ -790,6 +791,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMRecordAppDotNet/MMRecordAppDotNet-Prefix.pch";
 				INFOPLIST_FILE = "MMRecordAppDotNet/MMRecordAppDotNet-Info.plist";
