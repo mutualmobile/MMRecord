@@ -22,7 +22,6 @@
 
 @property (nonatomic, strong) ADNPostManager *postManager;
 @property (nonatomic, copy) NSArray *posts;
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 

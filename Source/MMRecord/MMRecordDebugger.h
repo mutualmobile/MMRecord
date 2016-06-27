@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, MMRecordLoggingLevel) {
 };
 
 // MMRecordErrorDomain is the domain used for all errors created and returned by MMRecordDebugger
-NSString * const MMRecordErrorDomain;
+FOUNDATION_EXTERN NSString * const MMRecordErrorDomain;
 
 /**
  MMRecordDebuggerKey can be used to access the instance of MMRecordDebugger on
@@ -47,7 +47,7 @@ NSString * const MMRecordErrorDomain;
  errors encountered on the population process, as well as metadata about the
  request itself, including the response object and initial entity.
  */
-NSString * const MMRecordDebuggerKey;
+FOUNDATION_EXTERN NSString * const MMRecordDebuggerKey;
 
 /**
  MMRecordDebuggerParameters are keys used to pass information along to
@@ -59,14 +59,14 @@ NSString * const MMRecordDebuggerKey;
  an error's userInfo dictionary if those objects have been passed into the
  handleErrorCode:withParameters: method defined below.
  */
-NSString * const MMRecordDebuggerParameterErrorDescription;
-NSString * const MMRecordDebuggerParameterResponseObject;
-NSString * const MMRecordDebuggerParameterRecordClassName;
-NSString * const MMRecordDebuggerParameterKeyPathForResponseObject;
-NSString * const MMRecordDebuggerParameterEntityDescription;
-NSString * const MMRecordDebuggerParameterPropertyName;
-NSString * const MMRecordDebuggerParameterRecordDictionary;
-NSString * const MMRecordDebuggerParameterServerClassName;
+FOUNDATION_EXTERN NSString * const MMRecordDebuggerParameterErrorDescription;
+FOUNDATION_EXTERN NSString * const MMRecordDebuggerParameterResponseObject;
+FOUNDATION_EXTERN NSString * const MMRecordDebuggerParameterRecordClassName;
+FOUNDATION_EXTERN NSString * const MMRecordDebuggerParameterKeyPathForResponseObject;
+FOUNDATION_EXTERN NSString * const MMRecordDebuggerParameterEntityDescription;
+FOUNDATION_EXTERN NSString * const MMRecordDebuggerParameterPropertyName;
+FOUNDATION_EXTERN NSString * const MMRecordDebuggerParameterRecordDictionary;
+FOUNDATION_EXTERN NSString * const MMRecordDebuggerParameterServerClassName;
 
 
 /**

@@ -650,6 +650,7 @@
 		9FABD8DA16FA7DC700184BA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMRecordInstagram/Source/MMRecordInstagram-Prefix.pch";
 				INFOPLIST_FILE = "MMRecordInstagram/SupportingFiles/MMRecordInstagram-Info.plist";
@@ -666,6 +667,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMRecordInstagram/Source/MMRecordInstagram-Prefix.pch";
 				INFOPLIST_FILE = "MMRecordInstagram/SupportingFiles/MMRecordInstagram-Info.plist";

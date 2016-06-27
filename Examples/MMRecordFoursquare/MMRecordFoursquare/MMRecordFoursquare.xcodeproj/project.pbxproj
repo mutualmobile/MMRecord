@@ -701,6 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMRecordFoursquare/MMRecordFoursquare-Prefix.pch";
 				INFOPLIST_FILE = "MMRecordFoursquare/MMRecordFoursquare-Info.plist";
@@ -715,6 +716,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MMRecordFoursquare/MMRecordFoursquare-Prefix.pch";
 				INFOPLIST_FILE = "MMRecordFoursquare/MMRecordFoursquare-Info.plist";
