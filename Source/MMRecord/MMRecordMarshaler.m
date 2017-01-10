@@ -198,9 +198,9 @@
         useOrderedSet = relationship.isOrdered ? YES : NO;
     }
     if (useOrderedSet) {
-        relationshipSet = [fromRecord mutableOrderedSetValueForKey:[relationship name]];
+        relationshipSet = [NSMutableOrderedSet orderedSetWithOrderedSet:[fromRecord mutableOrderedSetValueForKey:[relationship name]]];
     } else {
-        relationshipSet = [fromRecord mutableSetValueForKey:[relationship name]];
+        relationshipSet = [NSMutableSet setWithSet:[fromRecord mutableSetValueForKey:[relationship name]]];
     }
     
     [relationshipSet addObject:toRecord];
